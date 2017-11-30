@@ -300,7 +300,7 @@ $$("link").on('click', function () {
 });
 
 $$('#Orders22').on('click', function () {
-
+    debugger;
     mainView.router.loadPage({ url: 'Qutaion.html', force: true });
 
 });
