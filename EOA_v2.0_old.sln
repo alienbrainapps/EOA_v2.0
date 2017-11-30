@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "EOA_v2.0", "EOA2.0\EOA_v2.0.jsproj", "{0CA88EE2-760B-403B-B1C9-EE4501CCF9CE}"
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "EOA2.0", "EOA_v2.0\EOA2.0.jsproj", "{0CA88EE2-760B-403B-B1C9-EE4501CCF9CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +54,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3F26CD76-0F79-41A3-A25F-5629F2F4BB89}
+		SolutionGuid = {11EA5045-1300-4769-BDCB-C5BB1AAA54AB}
 	EndGlobalSection
 EndGlobal
