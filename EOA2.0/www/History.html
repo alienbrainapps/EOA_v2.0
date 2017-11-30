@@ -1,0 +1,127 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<style>
+    .navbar-fixed .page-content {
+        padding-top: 0px !important;
+    }
+</style>
+{{#if @global.ios}}
+<div class="navbar">
+    <div class="navbar-inner">
+        <div id="backhistory" class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+        <div class="center sliding">{{OrdersHistory}}</div>
+        <div class="right">
+            <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+        </div>
+    </div>
+</div>
+{{/if}}
+<div class="pages">
+
+
+    <div data-page="orderhistory" class="page">
+        <div class="page-content">
+
+            {{#if @global.android}}
+            <div class="navbar" style="background-color:#00695c">
+                <div class="navbar-inner">
+                    <div id="backsetting" class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+                    <div class="center sliding">{{OrdersHistory}}</div>
+                    <div class="right">
+                        <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+            <style>
+                .navbar-fixed .page-content {
+                    padding-top: 0px !important;
+                }
+            </style>
+
+            <!-- Scrollable page content-->
+            <!--    <div class="page-content">-->
+            <div id="on" class="content-block">
+                <p id="headings" class="buttons-row">
+                    <a href="#" id="OrderDate" class="button ">{{byDate}}</a>
+                    <a href="#" id="Status" class="button active">{{byStatus}}</a>
+                    <a href="#" id="vendoreb" class="button">{{byVendore}}</a>
+
+                </p>
+                <div id="Vendor"></div>
+                <div id="var" class="conte1nt-block">
+
+                </div>
+                <div id="status" style="1display:none">
+
+                    <div style="display:none" id="lblRecvied">Order Recived</div>
+                    <div style="display:none" id="Recvied"></div>
+
+
+                    <div style="display:none" id="lblApproved">Under Processing</div>
+                    <div style="display:none" id="Approved"></div>
+
+
+                    <div style="display:none" id="lblAssigned">Order Assigned</div>
+                    <div style="display:none" id="Assigned"></div>
+
+
+                    <div style="display:none" id="lblWaitForLoad">Dispatched</div>
+                    <div style="display:none" id="WaitForLoad"></div>
+
+
+                    <div style="display:none" id="lblInvoiced">Dispatched</div>
+                    <div style="display:none" id="Invoiced"></div>
+
+
+                    <div style="display:none" id="lblRescheduled">Under Processing</div>
+                    <div style="display:none" id="Rescheduled"></div>
+
+
+                    <div style="display:none" id="lblRejected">Order Dilvred</div>
+                    <div style="display:none" id="Rejected"></div>
+
+
+                    <div style="display:none" id="">Order Rejected</div>
+                    <div id="lblDilvred" style="display:none" id="Dilvred"></div>
+
+
+                    <div style="display:none" id="lblDeleted">Cancelled</div>
+                    <div style="display:none" id="Deleted"></div>
+
+
+                    <div style="display:none" id="lblRejected">Order Closed</div>
+                    <div style="display:none" id="Closed"></div>
+
+
+                    <div style="display:none" id="lblRejectCompleted">Order Reject Completed</div>
+                    <div style="display:none" id="RejectCompleted"></div>
+
+
+                    <div style="display:none" id="lblCanceled">Order Canceled</div>
+                    <div style="display:none" id="Canceled"></div>
+
+
+                    <div style="display:none" id="lblOnHold">Order On Hold</div>
+                    <div style="display:none" id="OnHold"></div>
+
+                    <div style="display:none" id="lblLockedtoRN">Under Processing</div>
+                    <div style="display:none" id="LockedtoRN"></div>
+
+                    <div style="display:none" id="lblCollected">Processed</div>
+                    <div style="display:none" id="Collected"></div>
+
+
+                    <div style="display:none" id="lblNewAfterUpdate">Under Processing</div>
+                    <div style="display:none" id="NewAfterUpdate"></div>
+
+
+                    <div style="display:none" id="lblComplementaryOrder">Order Complementary Order</div>
+                    <div style="display:none" id="ComplementaryOrder"></div>
+
+                </div>
+            </div>
+            <div id="off" style="margin-top:50%; margin-bottom:50%;    text-align: center; display:none; width:100%; align-cnotent:center"><p style="font-weight:bold; font-size: larg">{{Youdonthaveanyordersinyourhistory}}</p></div>
+        </div>
+    </div>
+</div>

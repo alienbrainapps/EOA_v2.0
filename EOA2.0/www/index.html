@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <!-- Path to your custom app styles-->
+    <link href="css/custom-font.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/my-app.css">
+</head>
+<body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p>Left panel content goes here</p>
+        </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    <div class="panel panel-right panel-cover">
+        <div class="content-block">
+            <p>Right panel content goes here</p>
+        </div>
+    </div>
+    <div class="views">
+        <div class="view view-main navbar-through toolbar-through">
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <!-- We have home navbar without left link-->
+                    <div class="center sliding">Incube Ordering App</div>
+                    <div class="right">
+                        <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Pages-->
+            <div class="pages navbar-through toolbar-through">
+                <!-- Page, data-page contains page name-->
+                <div data-page="index" class="page login-page no-navbar no-toolbar">
+                    <!-- Scrollable page content-->
+                    <div class="page-content">
+
+                        <div class="logo">
+                            <img src="img/temp_logo.svg" />
+                        </div>
+                        <form>
+                            <div class="list-block">
+                                <ul>
+                                    <li class="item-content">
+                                        <div class="item-media"><i class="icon-username"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input id="IPusn" type="text" name="username" placeholder="Username">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content">
+                                        <div class="item-media"><i class="icon-pass"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input id='IPpass' type="password" name="password" placeholder="Password">
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--<div class="list-block">
+                                <div class="list-block-label">
+                                    <p><a id='lgn1' href="#" style="" class="button button active"><span style="color:#fff">Log in</span></a></p>
+                                    <div class="button-row">
+                                        <p><a style="color:#003f37; display:inline-block" class=""><span id="sign">Sign up</span> / <span id='fgpass'>Forget Password ?</span></a></p>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </form>
+                        <div class="button-row forget_pass">
+                            <a><span id='fgpass'>Forget Password ?</span></a>
+                        </div>
+                        <div class="login-btn">
+                            <p><a id='lgn1' href="#" class="button button-round">Log in</a></p>
+                        </div>
+                        <div class="button-row register_btn">
+                            <a>New here ?<span id='sign'>SIGNUP</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Toolbar-->
+            
+            <div class="toolbar tabbar tabbar-labels androidtool toolbar-bottom" style="background-color:#f8f8f8">
+
+                <div id="org" class="toolbar-inner" style="padding-left: 1px;">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript" src="js/Getting.js"></script>
+    <script type="text/javascript" src="js/Validation.js"></script>
+    <script type="text/javascript" src="js/gmaps.js"></script>
+    <script>
+
+        (function () {
+            if (Framework7.prototype.device.android) {
+                Dom7('head').append(
+                    '<link rel="stylesheet" href="css/framework7.material.css">' +
+                    '<link rel="stylesheet" href="css/framework7.material.colors.css">'
+                );
+            }
+            else {
+                Dom7('head').append(
+                    '<link rel="stylesheet" href="css/framework7.ios.css">' +
+                    '<link rel="stylesheet" href="css/framework7.ios.colors.css">'
+                );
+            }
+        })();
+        if (isAndroid) {
+            // Change class
+            $$('.view.navbar-through').removeClass('navbar-through').addClass('navbar-fixed');
+            // And move Navbar into Page
+            $$('.view .navbar').prependTo('.view .page');
+        }
+    </script>
+    <script type="text/javascript" src="js/loclization.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/posting.js"></script>
+</body>
+</html>

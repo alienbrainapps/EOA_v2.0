@@ -1,0 +1,53 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+{{#if @global.ios}}
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="left"><a href="#" id="backbutt" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+        <div class="center sliding">{{ItemsforNestle}}</div>
+        <div class="right">
+            <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+        </div>
+    </div>
+</div>{{/if}}
+<div class="pages">
+    <!-- Page, data-page contains page name-->
+    <div data-page="Nestle" class="page page-allitem">
+        <!-- Scrollable page content-->
+        {{#if @global.android}}
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left"><a href="#" id="backbutt" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+                <div class="center sliding">{{ItemsforNestle}}</div>
+                <div class="right">
+                    <a id="search_on_all_items" href="#" onclick="showSearch()" class="link icon-only"><i class="icon-search"></i></a>
+                </div>
+            </div>
+        </div>{{/if}}
+
+        <div class="page-content">
+            <div class="content-block-i1nner">
+
+                <form id="search_form" data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init hidden_element">
+                    <div class="searchbar-input">
+                        <input class="search" type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+                    </div><a href="#" class="searchbar-cancel">{{Cancel}}</a>
+                </form>
+
+
+                <div class="searchbar-overlay"></div>
+                <div class="content-block searchbar-not-found">
+                    <div class="content-block-inner">{{Nothingfound}}</div>
+                </div>
+
+                <div style="padding: 0px 0px;
+    margin-left: 0; height:100%" class="cont1ent-block-inner">
+
+                    <div style="margin-top:0%" class="list-block list-block-search">
+                        <ul id="nes"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,150 @@
+
+
+<style>
+
+ .picker-modal-inner{direction: ltr !important;}
+
+
+</style>
+{{#if @global.ios}}
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a id="Back1" href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+    <div class="center sliding">{{ItemDetails}}</div>
+    <div class="right">
+      <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+    </div>
+  </div>
+</div>
+{{/if}}
+<div class="pages">
+
+  <div data-page="ItemDE" class="page no-toolbar">
+      
+     {{#if @global.android}}
+      <div class="navbar" style="background-color:#00695c;">
+  <div class="navbar-inner">
+    <div class="left"><a id="Back1" href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+    <div class="center sliding">{{ItemDetails}}</div>
+    <div class="right">
+      <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+    </div>
+  </div>
+</div>
+      {{/if}}
+      
+    <!-- Scrollable page content-->
+    <div class="page-content" style="overflow-x: hidden;">
+        <style>
+
+ .picker-modal-inner{direction: ltr !important;}
+
+
+</style>
+      
+<div class="list-block">
+
+    <ul>
+     <li>
+ <div class="contact-header" style="display:flex;">
+ <div class="item-photo" style="width:50%" > <img id="itemimage" style="width: auto;
+    height: auto;
+    max-height: 150px;
+    max-width: 150px; 
+     
+    border-radius: 70%;
+    padding: 3% 3% 3%;" src="./images/icons/nes.jpg"> </div>
+ <div class="header-text">
+ <h3 id="ItemDetails">Water Bottle 1.5L</h3>
+ <p id="vendorename">{{Nestle}}</p>
+ </div>
+ </div>
+ </li>
+    </ul>
+        </div>
+  
+    <!-- Text inputs -->
+     <div class="content-block-title">{{Selingunite}}</div>
+          <div class="list-block">
+            <ul id="UOM">
+
+            </ul>
+        </div>
+        
+        
+        
+        <div class="list-block inset" style="padding-left:4%;">
+            <ul>
+              <li>
+                <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">{{Quntity}}</div>
+                  <div class="item-input">
+                    <input class="pic1ker-device" pattern="[0-9]*" type="number"   id="Qun" >
+                  </div>
+                </div>
+                    </div>
+              </li>
+            </ul>
+        </div>
+        
+        
+         <div class="content-block-title">{{PriceDetails}}</div>
+          <div class="list-block">
+            <ul>
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">{{Gross}}</div>
+                    <div id="Gross" class="item-after">JD 1.250</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">{{Discount}}</div>
+                    <div id="Discount" class="item-after">10 %</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">{{Tax}}</div>
+                    <div id="Tax"  class="item-after">JD 2.500</div>
+                  </div>
+                </div>
+              </li>
+              </ul>
+              </div>
+         <div class="content-block"></div>
+          <div class="list-block">
+          <ul>
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label" >{{TottalPrice}}</div>
+                    <div id="Price" class="item-after" style="color:#00695c">
+JD 100.000                    </div>
+                  </div>
+                </div>
+              </li>
+              
+             
+            </ul>
+        </div>
+        <div class="content-block">
+            <div class="list-block inset">
+<ul>
+<li><a id="OrderButton" href="#" class="button button-round">{{Addtoorder}}</a></li>
+</ul>
+</div>
+            </div>
+  
+   
+    
+    </div>
+</div>
+    </div>
+<!--</div>-->

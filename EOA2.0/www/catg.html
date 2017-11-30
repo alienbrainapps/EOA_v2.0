@@ -1,0 +1,91 @@
+
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+ {{#if @global.ios}}
+<div class="navbar">
+  <div class="navbar-inner">
+   <div id="backOrder" class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+    <div class="center sliding">Orders</div>
+    <div class="right">
+      <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+    </div>
+  </div>
+</div>
+{{/if}}
+<div class="pages">
+
+  <div data-page="catg" class="page">
+      
+      {{#if @global.android}}
+<div class="navbar" style="background-color:#00695c">
+  <div class="navbar-inner">
+   <div id="backsetting" class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+    <div class="center sliding">Orders</div>
+    <div class="right">
+      <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+    </div>
+  </div>
+</div>
+{{/if}}
+      <style>
+      
+      
+      .swiper-custom {
+  position:relative;
+  height:100%;
+}
+.swiper-container {
+  height:100%;
+}
+.swiper-slide {
+  background: #fff;
+}
+.swiper-slide span {
+  text-align:center;
+  display:block;
+  margin: 20px;
+  font-size:21px;
+}
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: none;
+  border:1px solid #aaa;
+  border-radius: 0 0 0 0;
+  opacity:1;
+  cursor: pointer;
+}
+.swiper-pagination-bullet-active {
+  background: #00695c;
+  border-color: #00695c;
+}   
+          .swiper-button-next{
+              top:30px;
+          }
+          .swiper-button-prev{
+              top: 30px;
+          }
+      </style>
+    <!-- Scrollable page content-->
+  <div class="page-content">
+  <div id="orderon" class="swiper-custom">
+    <div class="swiper-container">
+      <div class="swiper-pagination"></div>
+      <div class="swiper-wrapper">
+<!--
+        <div class="swiper-slide"><span>Slide 1</span></div>
+        <div class="swiper-slide"><span>Slide 2</span></div>
+        <div class="swiper-slide"><span>Slide 3</span></div>
+        <div class="swiper-slide"><span>Slide 4</span></div>
+        <div class="swiper-slide"><span>Slide 5</span></div>
+        <div class="swiper-slide"><span>Slide 6</span></div>
+        <div class="swiper-slide"><span>Slide 7</span></div>
+-->
+      </div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+      <div style="display:none" id="noorderinfo" class="content-block"><div class="row">  <div class="col-100">You dont have any orders nor Bundels </div></div>  </div></div>'
+</div>
+    </div>

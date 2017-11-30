@@ -1,0 +1,114 @@
+﻿<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+{{#if @global.ios}}
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="left"></div>
+        <div class="center sliding">Home</div>
+        <div class="right">
+            <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+        </div>
+        <div class="subnavbar">
+            <div class="buttons-row">
+
+                <a id="tab1" href="#tab1" class="tab-link  button"><span>offers</span></a>
+
+                <a id="tab2" href="#tab3" class="tab-link  button"><span>Vendores</span></a>
+
+                <a id="tab3" href="#tab2" class="tab-link active button"><span>Items</span></a>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div data-page="home" class="page home-page with-subnavbar">
+
+    {{#if @global.android}}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><a href="#" class="link icon-only"><i class="icon-menu"></i></a></div>
+            <div class="center sliding">Home</div>
+            <div class="right">
+                <a href="#" class="link icon-only"><i class="icon-search"></i></a>
+            </div>
+
+        </div>
+        <div class="toolbar tabbar tabbar-sc1rollable">
+            <div class="toolbar-inner">
+                <a id="t1" href="#tab1" class="tab-link  button"><span>offers</span></a>
+
+                <a id="t2" href="#tab3" class="tab-link  button"><span>Vendores</span></a>
+
+                <a id="t3" href="#tab2" class="tab-link active button"><span>Items</span></a>
+            </div>
+        </div>
+    </div>
+
+    {{/if}}
+    <!-- Scrollable page content-->
+    <div class="page-content infinite-scroll hide-bars-on-scroll">
+
+        <div class="cont1ent-block" style="margin-top:0px">
+            <div style="margin-top:-20px" class="tabs">
+                <!-- Tab 1, active by default -->
+                <div id="tab1" class="tab bundle andbundle">
+                    <div id="bundon">
+                        <div style="padding-top: 1%;" id="bundel"></div>
+                        <div style="padding-top: 0%;" >
+                            <div class="list-block">
+                                <ul id='offers109'>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div style="display:none; margin-top:60%; margin-left:20%; margin-right:20%" id="bundof" class="content-block">
+                        <div class="row">
+                            <div class="col-100">{{ThereisnoBundels}}</div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="popover popover-about">
+                    1-popover first promtion ghdeer 1.5 litter
+                    1-popover first promtion ghdeer 1.5 litter
+                    1-popover first promtion ghdeer 1.5 litter
+                </div>
+                <!-- Tab 2 -->
+                <div id="tab2" class="tab item active">
+                    <div class="cont1ent-block-inner">
+                        <div id="a" class="list-block list-block-search searchbar-found">
+                            <ul class="media-list" style="width:100% !important" id="itemlist"></ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab 3 -->
+                <div id="tab3" class="tab vendore">
+                    <div class="content-bloc1k">
+                        <div class="content-blo1ck-inner">
+
+                            <div class="list-block">
+                                <div id="vendores">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
