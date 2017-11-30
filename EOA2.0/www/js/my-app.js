@@ -201,14 +201,14 @@ $$(document).on('pageInit', function (e) {
     if (e.detail.page.url == "RE1T.html" || e.detail.page.url == "OrderStatus.html") {
 
         $$(".back").on('click', function () {
-            mainView.router.loadPage('about.html');
+            mainView.router.loadPage('home.html');
         });
 
 
     }
 
 
-    if (e.detail.page.url == "about.html") {
+    if (e.detail.page.url == "home.html") {
         $$("#homeicon").addClass('homaeactive');
         $$("#homeicon").removeClass('homedefult');
         $$("#searchicon").addClass('searchinactive');
@@ -244,9 +244,9 @@ $$(document).on('pageInit', function (e) {
     if (e.detail.page.url == "promo.html") {
 
         $$("#home").on('click', function () {
-            mainView.router.reloadPreviousPage({ url: 'about.html', force: true });
+            mainView.router.reloadPreviousPage({ url: 'home.html', force: true });
             mainView.router.back({
-                url: 'about.html'
+                url: 'home.html'
             });
 
         });

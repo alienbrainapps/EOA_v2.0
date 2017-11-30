@@ -25,20 +25,20 @@ function backKeyDown() {
       currentPage = $$('.view-main').data('page');
     switch (currentPage) {
             
-        case "about":
+        case "home":
             myApp.confirm('Are you sure you want to exit the app','EOA', function () {
            navigator.app.exitApp();
     });
        break;     
         case "orderhistory":
             mainView.router.loadPage({
-                url: "about.html",
+                url: "home.html",
                 force: true
             });
             break;
         case "trans":
             mainView.router.loadPage({
-                url: "about.html",
+                url: "home.html",
                 force: true
             });
             break;
@@ -50,12 +50,12 @@ function backKeyDown() {
         case "Returneditems":
             mainView.router.loadPage({
                 froce: true,
-                url: 'about.html'
+                url: 'home.html'
             });
             $$("#FinsihReturn").hide();
         case "ItemDE":
             mainView.router.loadPage({
-                url: "about.html",
+                url: "home.html",
                 force: true
             });
             break;
@@ -70,7 +70,7 @@ function backKeyDown() {
                 force: true
             })
         case "Nestle":
-            mainView.router.loadPage('about.html');
+            mainView.router.loadPage('home.html');
             $$(".vendore").show();
             $$(".bundle").hide();
             $$(".item").hide();
@@ -87,11 +87,11 @@ function backKeyDown() {
             }
             break;
         case "Setting":
-            mainView.router.loadPage('about.html');
+            mainView.router.loadPage('home.html');
             break;
         case "Qutaion":
             mainView.router.loadPage({
-                url: 'about.html',
+                url: 'home.html',
                 force: true
             });
             $$("#Orders").hide();
@@ -112,7 +112,7 @@ function backKeyDown() {
             myApp.confirm(string, 'EOA', function () {
                 //  mainView.router.back();
                 mainView.router.loadPage({
-                    url: 'about.html',
+                    url: 'home.html',
                     force: true
                 });
                 $$('.toolbar').show();
@@ -395,7 +395,7 @@ function barcodescan() {
             cordova.plugins.barcodeScanner.scan(
                 function (result) {
                     if (result.cancelled) {
-                            mainView.router.loadPage('about.html');
+                            mainView.router.loadPage('home.html');
                         return;
                     }
                     

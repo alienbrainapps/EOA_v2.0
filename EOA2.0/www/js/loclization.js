@@ -45,7 +45,7 @@ Form:'Forget password',
 'url:index.html':{
     index:'index'
 },   
-'url:about.html': {
+'url:home.html': {
      home:'Home',
      offers:'Offers',
      Items:'Items',
@@ -355,7 +355,7 @@ Form:'Forget password',
      Lessthan60days:'Less than 60 days',
      Morethan90days:'More than 90 days'
         },
-'url:about.html': {
+'url:home.html': {
      home:'Home',
      offers:'Offers',
      Items:'Items',
@@ -656,7 +656,7 @@ $$("#MainPanel").addClass('panel-right');
      Lessthan60days:'اقل من ٦٠ يوم',
      Morethan90days:'اكثر من ٩٠ يوم'
         }, 
-'url:about.html': {
+'url:home.html': {
      home:'الرئيسية',
      offers:'عروض',
      Items:'الاصناف',

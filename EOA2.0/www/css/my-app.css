@@ -7,7 +7,7 @@
 }
 
 .hidden_element {
-    display: none;
+    display: none !important;
 }
 .my_green {
     background-color: #1fb67b !important;

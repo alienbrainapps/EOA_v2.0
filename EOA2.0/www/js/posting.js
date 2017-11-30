@@ -645,7 +645,7 @@ $$('#Qut123').once('click',function(){
      localStorage.setItem('Qut',data);
      myApp.alert('your Order for Returning the Items was Successfuly Submited');
      
-    mainView.router.loadPage('about.html');
+    mainView.router.loadPage('home.html');
      $$("#FinsihReturn").hide();
         });
      

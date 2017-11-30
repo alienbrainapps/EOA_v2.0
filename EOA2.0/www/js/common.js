@@ -458,7 +458,7 @@ myApp.onPageInit('catg', function (page) {
     var stro = '';
 
     $$("#backOrder").on("click", function () {
-        mainView.router.loadPage({ url: 'about.html', force: true });
+        mainView.router.loadPage({ url: 'home.html', force: true });
     });
     for (var i = 0; i < vendoreinfo.length; i++) {
         var str = vendoreinfo[i].name;
@@ -1191,7 +1191,7 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
                 localStorage.setItem('Qut', data);
                 myApp.alert('your Order for Returning the Items was Successfuly Submited');
 
-                mainView.router.loadPage('about.html');
+                mainView.router.loadPage('home.html');
                 $$("#FinsihReturn").hide();
             });
 
@@ -1224,7 +1224,7 @@ myApp.onPageInit('Brand', function (page) {
     console.log(vendorearr);
 
     $$("#backbrand").on('click', function () {
-        mainView.router.loadPage({ url: "about.html", force: true });
+        mainView.router.loadPage({ url: "home.html", force: true });
         $$(".vendore").show();
         $$(".bundle").hide();
         $$(".item").hide();
@@ -1291,7 +1291,7 @@ myApp.onPageInit('orderhistory', function (page) {
     $$("#backhistory").on('click', function () {
 
         mainView.router.loadPage({
-            url: "about.html",
+            url: "home.html",
             force: true
         });
     });
@@ -1350,7 +1350,7 @@ myApp.onPageInit('trans', function (page) {
     $$("#total_note").html(nettottal_transctions + curencyTemp);
     $$("#backtransction").on('click', function () {
         mainView.router.loadPage({
-            url: "about.html",
+            url: "home.html",
             force: true
         });
     });
@@ -1498,7 +1498,7 @@ myApp.onPageInit('logout', function (page) {
             //        Refused:'Refused'
             //        
             //},
-            'url:about.html': {
+            'url:home.html': {
                 home: 'الرئيسية',
                 offers: 'عروض',
                 Items: 'الاصناف',
@@ -1710,7 +1710,7 @@ myApp.onPageInit('logout', function (page) {
             //        Refused:'Refused'
             //        
             //},
-            'url:about.html': {
+            'url:home.html': {
                 home: 'Home',
                 offers: 'Offers',
                 Items: 'Items',
@@ -2230,7 +2230,7 @@ myApp.onPageInit('Returneditems', function (page) {
 
         mainView.router.loadPage({
             froce: true,
-            url: 'about.html'
+            url: 'home.html'
         });
         $$("#FinsihReturn").hide();
     });
@@ -2427,7 +2427,7 @@ myApp.onPageInit('ItemDE', function (page) {
     AppenedSumm();
     $$("#Back1").on('click', function () {
         mainView.router.loadPage({
-            url: 'about.html',
+            url: 'home.html',
             force: true
         });
         $$(".toolbar").show();
@@ -2597,7 +2597,7 @@ myApp.onPageInit('ItemDE', function (page) {
 
         $$(".Orders").attr("id", "Orders");
         mainView.router.load({
-            url: 'about.html',
+            url: 'home.html',
             froce: true
         });
         //       myApp.showTab('#tab2');
@@ -2642,7 +2642,7 @@ myApp.onPageInit('ItemDE', function (page) {
 });
 
 myApp.onPageInit('Allitemdet', function (page) {
-    ;
+    
     var objclating = {
         "ItemID": localStorage.getItem("ItemIDV"),
         "ItemDescription": localStorage.getItem("ItemDescriptionV"),
@@ -3181,7 +3181,7 @@ myApp.onPageInit('orderlist', function (page) {
     mainView.showToolbar();
     $$("#reorderback").on('click', function () {
         mainView.router.loadPage({
-            url: 'about.html',
+            url: 'home.html',
             force: true
         });
     });
@@ -3191,7 +3191,7 @@ myApp.onPageInit('orderlist', function (page) {
 
 });
 
-myApp.onPageInit('Nestle', function (page) {
+myApp.onPageInit('allitem', function (page) {
 
     $$("#FinsihReturn").hide();
     AppendItemsVendore(vendorearr[guesswhat][0][bundre]);
@@ -3283,7 +3283,7 @@ myApp.onPageInit('Setting', function (page) {
     }
 
     $$("#backsetting").on('click', function () {
-        mainView.router.loadPage('about.html');
+        mainView.router.loadPage('home.html');
         AppendItems();
     });
 
@@ -3905,7 +3905,7 @@ myApp.onPageInit('Qutaion', function (page) {
     $$("#ordericon").removeClass('myorderinactive');
     $$("#bk").on('click', function () {
         mainView.router.loadPage({
-            url: 'about.html',
+            url: 'home.html',
             force: true
         });
         $$("#Orders").hide();
@@ -4488,7 +4488,7 @@ myApp.onPageInit('pro', function (page) {
             }
             console.log(vendoreorder[guessqout]);
             mainView.router.loadPage({
-                url: 'about.html',
+                url: 'home.html',
                 force: true
             });
             $$('.toolbar').show();
@@ -4987,7 +4987,7 @@ myApp.onPageInit('pro', function (page) {
                     }
                     localStorage.setItem("SentOrders", JSON.stringify(SentOrders));
                     mainView.router.loadPage({
-                        url: 'about.html',
+                        url: 'home.html',
                         force: true,
                         ignoreCache: true
                     });
