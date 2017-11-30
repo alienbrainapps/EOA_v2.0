@@ -281,7 +281,7 @@ function scan() {
             );
         }
     } catch (e) {
-        console.log(fName, "catch, failure");
+        console.log(fName, "catch, failure",e);
     }
 
     console.log(fName, "exit");
