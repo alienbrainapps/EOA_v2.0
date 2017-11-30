@@ -1822,7 +1822,7 @@ myApp.onPageInit('logout', function (page) {
                 Name: 'Name',
                 CommercialNumber: 'Commercial Number',
                 PhoneNumber: 'PhoneNumber',
-                Profile: 'Registration',
+                Profile: 'Sign up',
                 FirstName: 'First Name',
                 Phonenumber: 'Phone number',
                 Clear: 'Clear',
@@ -5387,11 +5387,11 @@ function PostRegstration(postData) {
         }
     });
 }
-function showSearch() {
-    $$('#search_on_all_items').addClass('hidden_element');
-    $$('#search_form').removeClass('hidden_element');
-}
-$$('.searchbar-cancel').on('click', function){
-    $$('#search_on_all_items').removeClass('hidden_element');
-    $$('#search_form').addClass('hidden_element');
-}
+//function showSearch() {
+//    $$('#search_on_all_items').addClass('hidden_element');
+//    $$('#search_form').removeClass('hidden_element');
+//}
+//$$('.searchbar-cancel').on('click', function () {
+//    $$('#search_on_all_items').removeClass('hidden_element');
+//    $$('#search_form').addClass('hidden_element');
+//});

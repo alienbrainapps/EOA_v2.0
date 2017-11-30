@@ -530,7 +530,7 @@ function Postlogin(postData) {
                         $$(".toolbar").show();
                         $$(".navbar").show();
 
-                        barcodescan();
+                       // barcodescan();
 
                     } else {
 

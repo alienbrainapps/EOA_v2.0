@@ -9,7 +9,10 @@
 .hidden_element {
     display: none;
 }
-
+.my_green {
+    background-color: #1fb67b !important;
+    color: #ffffff !important;
+}
 /*offer style card*/
 
 #offers109 .my_green {
@@ -213,11 +216,14 @@
         color: #1fb67b;
         text-transform: capitalize;
     }
-
-#itemlist li {
-    margin-top: 5px;
-    margin-bottom: 5px;
+.navbar .toolbar-inner {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
 }
+#itemlist li {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 
 .navbar .button {
     height: 32px !important;
