@@ -3206,7 +3206,7 @@ myApp.onPageInit('allitem', function (page) {
         }
     });
     $$('#nes').on('click', 'li', function () {
-        ;
+        
         var id = this.id;
         var packV = $$("#" + id).data('ItemID');
         var ItemIDV = $$("#" + id).data('ItemID');

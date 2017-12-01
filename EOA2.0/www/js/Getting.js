@@ -1893,8 +1893,37 @@ function AppendItemsVendore(arr23){
 Vendoreimage=GetImage(items[i].ItemID);
 		if(arritem[c]==items[i].ItemID){}else
 		if(items[i].Price==0){}else
-		html+='<li  class="item-conte1nt test" id="' + items[i].ItemID  + '" data-VendorName="'+items[i].VendorName+'" data-ItemCode="'+items[i].ItemCode+'" data-ItemBarcode="'+items[i].ItemBarcode+'" data-PackID="'+items[i].PackID+'" data-UOM="'+items[i].UOM+'" data-RequiredQuanity="'+items[i].RequiredQuanity+'" data-Price="'+items[i].Price+'" data-Tax="'+items[i].Tax+'" data-Discount="'+items[i].Discount+'" data-PiecesInPack="'+items[i].PiecesInPack+'" data-IsDefaultPack="'+items[i].IsDefaultPack+'" data-PackGroupID="'+items[i].PackGroupID+'" data-IsAdded="'+items[i].IsAdded+'" data-DiscountTypeID="'+items[i].DiscountTypeID+'" data-ItemID="'+items[i].ItemID+'" data-ItemDescription="'+items[i].ItemDescription+'" data-pack="'+items[i].PackTypeID+'"><a href="#" class="item-link item-content"><div class="item-media"style="width:40px; height:40px"><img class="Strechimage" src="'+Vendoreimage+'" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">'+items[i].ItemDescription +'</div><div class="item-after" style="padding-top: 1.5%;font-size: smaller;" >       </div></div><div class="item-subtitle">'+curency+items[i].Price+'</div></div></a></li>';
-		arritem.push(items[i].ItemID);
+            //Am there
+           // html += '<li  class="item-conte1nt test" id="' + items[i].ItemID + '" data-VendorName="' + items[i].VendorName + '" data-ItemCode="' + items[i].ItemCode + '" data-ItemBarcode="' + items[i].ItemBarcode + '" data-PackID="' + items[i].PackID + '" data-UOM="' + items[i].UOM + '" data-RequiredQuanity="' + items[i].RequiredQuanity + '" data-Price="' + items[i].Price + '" data-Tax="' + items[i].Tax + '" data-Discount="' + items[i].Discount + '" data-PiecesInPack="' + items[i].PiecesInPack + '" data-IsDefaultPack="' + items[i].IsDefaultPack + '" data-PackGroupID="' + items[i].PackGroupID + '" data-IsAdded="' + items[i].IsAdded + '" data-DiscountTypeID="' + items[i].DiscountTypeID + '" data-ItemID="' + items[i].ItemID + '" data-ItemDescription="' + items[i].ItemDescription + '" data-pack="' + items[i].PackTypeID + '"><a href="#" class="item-link item-content"><div class="item-media"style="width:40px; height:40px"><img class="Strechimage" src="' + Vendoreimage + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + items[i].ItemDescription + '</div><div class="item-after" style="padding-top: 1.5%;font-size: smaller;" >       </div></div><div class="item-subtitle">' + curency + items[i].Price + '</div></div></a></li>';
+            html += `
+                        <li class="item-conte1nt test" 
+		                         id="` + items[i].ItemID + `" 
+		                         data-VendorName="` + items[i].VendorName + `"
+		                         data-ItemCode="` + items[i].ItemCode + `" 
+		                         data-ItemBarcode="` + items[i].ItemBarcode + `" 
+		                         data-PackID="` + items[i].PackID + `" 
+		                         data-UOM="` + items[i].UOM + `" 
+		                         data-RequiredQuanity="` + items[i].RequiredQuanity + `" 
+		                         data-Price="` + items[i].Price + `" 
+		                         data-Tax="` + items[i].Tax + `" 
+		                         data-Discount="` + items[i].Discount + `" 
+		                         data-PiecesInPack="` + items[i].PiecesInPack + `" 
+		                         data-IsDefaultPack="` + items[i].IsDefaultPack + `" 
+		                         data-PackGroupID="` + items[i].PackGroupID + `" 
+		                         data-IsAdded="` + items[i].IsAdded + `" 
+		                         data-DiscountTypeID="` + items[i].DiscountTypeID + `" 
+		                         data-ItemID="` + items[i].ItemID + `" 
+		                         data-ItemDescription="` + items[i].ItemDescription + `" 
+		                         data-pack="` + items[i].PackTypeID + `">
+                         <a href="#" class="item-link item-content">
+                            <div class="item-media"><img src="`+ Vendoreimage + `" width="80"  /></div>
+                             <div class="item-inner">
+                              <div class="item-title">`+ items[i].ItemDescription + ` <br /><span class="green_text">` + curency + items[i].Price + `</span></div>
+                             </div>
+                          </a>
+                        </li>
+`
+        arritem.push(items[i].ItemID);
 	}  
 		$$('#nes').append(html);    
 	

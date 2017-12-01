@@ -5,7 +5,9 @@
     border: 1px solid rgba(0,0,0,0.12) !important;
     border-radius: 5px !important;
 }
-
+.green_text {
+    color: #1fb67b !important;
+}
 .hidden_element {
     display: none !important;
 }
@@ -183,8 +185,11 @@
 .page-allitem {
     background-color: #f7f7f7 !important;
 }
-
-    .navbar,
+    .page-allitem .content-block-in1ner {
+        padding-top: 10px;
+        padding-bottom:60px;
+    }
+.navbar,
     .home-page .toolbar {
         background-color: #ffffff !important;
     }
@@ -232,7 +237,10 @@
 .tab-link-highlight {
     height: 0px !important;
 }
-
+.page-allitem #nes li {
+background-color:#ffffff !important;
+}
+.page-allitem #nes .item-media,
 .home-page #tab2 .item-media {
     margin: 5px 10px;
     width: auto;
