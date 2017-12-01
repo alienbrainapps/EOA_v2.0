@@ -71,6 +71,11 @@ i {
     color: #c5c5c5;
     font-size: 25px;
 }
+.icon-my_order_active:before {
+    content: "\e900";
+    color: #1fb67b;
+    font-size: 28px;
+}
 
 .icon-search:before {
     content: "\e901";
@@ -96,11 +101,20 @@ i {
     color: #c5c5c5;
     font-size: 25px;
 }
-
+.icon-history-active:before {
+    content: "\e905";
+    color: #1fb67b;
+    font-size: 28px;
+}
 .icon-home:before {
     content: "\e906";
     color: #c5c5c5;
     font-size: 25px;
+}
+.icon-home-active:before {
+    content: "\e906";
+    color: #1fb67b;
+    font-size: 28px;
 }
 
 .icon-pass:before {

@@ -284,3 +284,28 @@ background-color:#ffffff !important;
 #vendores {
     padding-bottom: 60px;
 }
+#OrderButtonV {
+    padding: 0% 25%;
+    margin: 10% 0%;
+}
+    #OrderButtonV .my_green {
+    border-radius: 20px !important;
+    }
+.page-Allitemdet i.icon {
+    font-size: 25px !important;
+}
+
+#lengthon.badge {
+    position: absolute;
+    left: 60%;
+    margin-left: -10px;
+    top: 2px;
+    font-size: 12px;
+    line-height: 16px;
+    height: 16px;
+    border-radius: 16px;
+    padding: 0 4px;
+    min-width: 16px;
+    font-family: -apple-system,SF UI;
+    background-color: #fc9c4d;
+}

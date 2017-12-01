@@ -184,10 +184,10 @@ $$(document).on('pageInit', function (e) {
         //<a  id="search" onclick="we()"  href="#" class="link open-about "><i id="searchicon" class="icon searchinactive"></i><span >'+lag.Hint+'</span></a>
         //pagecounter();
         $$("#org").append(`<a id="home" href="home.html" class="link">
-<i  id="homeicon" class="icon-home"></i><span class="tab-link">` + lag.Home + `</span></a>
+<i id="homeicon" class="icon-home-active"></i><span class="tab-link">` + lag.Home + `</span></a>
 <a id="reorder" href="History.html" class="link">
 <i id="reordericon" class="icon-history"></i><span >`+ lag.Orderistory + `</span></a> 
-<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="icon-my_order"></i><span id="lengthon" class="badge  bg-red" style="position: absolute;left: 79%;margin-left: -10px; top: 2px; font-size: 10px; line-height: 16px; height: 16px; border-radius: 16px; padding: 0 4px; min-width: 16px; font-family: -apple-system,SF UI;">5</span><span >` + lag.MyOrder + `</span></a>
+<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="icon-my_order"></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
 <a id="scan" onclick="scan();" href="#" class="link"><i class="icon-scan"></i><span >` + lag.Scan + `</span></a>`);
         pagecounter();
 
@@ -209,14 +209,12 @@ $$(document).on('pageInit', function (e) {
 
 
     if (e.detail.page.url == "home.html") {
-        $$("#homeicon").addClass('homaeactive');
-        $$("#homeicon").removeClass('homedefult');
+        $$("#reordericon").removeClass('icon-history-active').addClass('icon-history');
+        $$("#ordericon").removeClass('icon-my_order_active').addClass('icon-my_order');
+        $$("#homeicon").removeClass('icon-home').addClass('icon-home-active');
         $$("#searchicon").addClass('searchinactive');
         $$("#searchicon").removeClass('searchactive');
-        $$("#reordericon").addClass('reorderinactive');
-        $$("#reordericon").removeClass('reorderactive');
-        $$("#ordericon").removeClass('myorderactive');
-        $$("#ordericon").addClass('myorderinactive');
+        
     }
     else if (e.detail.page.url == "Qutaion.html") {
 
@@ -231,15 +229,12 @@ $$(document).on('pageInit', function (e) {
 
 
 
-    } else {
-        $$("#homeicon").removeClass('homaeactive');
-        $$("#homeicon").addClass('homedefult');
+    } else if (e.detail.page.url == "catg.html"){
+        $$("#homeicon").removeClass('icon-home-active').addClass('icon-home');
+        $$("#reordericon").removeClass('icon-history-active').addClass('icon-history');
+        $$("#ordericon").removeClass('icon-my_order').addClass('icon-my_order_active');
         $$("#searchicon").addClass('searchinactive');
-        $$("#searchicon").removeClass('searchactive');
-        $$("#reordericon").addClass('reorderinactive');
-        $$("#reordericon").removeClass('reorderactive');
-        $$("#ordericon").removeClass('myorderactive');
-        $$("#ordericon").addClass('myorderinactive');
+        $$("#searchicon").removeClass('searchactive'); 
     }
     if (e.detail.page.url == "promo.html") {
 
@@ -253,14 +248,13 @@ $$(document).on('pageInit', function (e) {
     }
 
     if (e.detail.page.url == "History.html") {
-        $$("#homeicon").removeClass('homaeactive');
-        $$("#homeicon").addClass('homedefult');
+        $$("#ordericon").removeClass('icon-my_order_active').addClass('icon-my_order');
+        $$("#homeicon").removeClass('icon-home-active').addClass('icon-home');
+        $$("#reordericon").removeClass('icon-history').addClass('icon-history-active');
         $$("#searchicon").addClass('searchinactive');
         $$("#searchicon").removeClass('searchactive');
-        $$("#reordericon").removeClass('reorderinactive');
-        $$("#reordericon").addClass('reorderactive');
-        $$("#ordericon").addClass('myorderinactive');
-        $$("#ordericon").removeClass('myorderactive');
+       
+        
     }
 
 });

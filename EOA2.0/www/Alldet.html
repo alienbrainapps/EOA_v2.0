@@ -1,312 +1,265 @@
-
 <!-- We don't need full layout here, because this page will be parsed with Ajax-->
 <!-- Top Navbar-->
 {{#if @global.ios}}
 <div class="navbar">
-  <div class="navbar-inner">
-    <div class="left"><a id="Back1V" href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
-    <div class="center sliding">{{ItemDetails}}</div>
-    <div class="right">
-      <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+    <div class="navbar-inner">
+        <div class="left"><a id="Back1V" href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+        <div class="center sliding">{{ItemDetails}}</div>
+        <div class="right">
+            <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+        </div>
     </div>
-  </div>
 </div>{{/if}}
 <div class="pages">
-  <!-- Page, data-page contains page name-->
-  <div data-page="Allitemdet" class="page no-toolbar">
-      
-      <style>
-        
-        .picker-modal-inner{direction: ltr !important;}
-        
+    <!-- Page, data-page contains page name-->
+    <div data-page="Allitemdet" class="page page-Allitemdet no-toolbar">
+
+        <style>
+            .picker-modal-inner {
+                direction: ltr !important;
+            }
         </style>
-    <!-- Scrollable page content-->
-      <!-- Top Navbar-->
-{{#if @global.android}}
-<div class="navbar">
-  <div class="navbar-inner">
-    <div class="left"><a id="Back1V" href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
-    <div class="center sliding">{{ItemDetails}}</div>
-    <div class="right">
-      <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
-    </div>
-  </div>
-</div>{{/if}}
-    <div class="page-content" style="overflow-x: hidden;">
-      
-<div class="list-block">
-  {{#if @global.ios}}
-    <ul>
-     <li>
- <div class="contact-header" style="display:flex;">
- <div class="item-photo" style="width:50%" > <img id="imgdet" style="width: auto;
+        <!-- Scrollable page content-->
+        <!-- Top Navbar-->
+        {{#if @global.android}}
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left"><a id="Back1V" href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+                <div class="center sliding">{{ItemDetails}}</div>
+                <div class="right">
+                    <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
+                </div>
+            </div>
+        </div>{{/if}}
+        <div class="page-content" style="overflow-x: hidden;">
+
+            <div class="list-block">
+                {{#if @global.ios}}
+                <ul>
+                    <li>
+                        <div class="contact-header" style="display:flex;">
+                            <div class="item-photo" style="width:50%">
+                                <img id="imgdet" style="width: auto;
     height: auto;
     max-height: 150px;
-    max-width: 150px; 
-     
+    max-width: 150px;
+
     border-radius: 70%;
-    padding: 3% 3% 3%;" src="./images/icons/nes.jpg"> </div>
- <div class="header-text">
- <h3 id="ItemDetails">Water Bottle 1.5L</h3>
- <p id="vendorename">{{Nestle}}</p>
- </div>
- </div>
- </li>
-    </ul>
-        </div>
-  
-    <!-- Text inputs -->
-     <div class="content-block-title">{{Selingunite}}</div>
-          <div class="list-block">
-            <ul id="UOM">
-<!--
-              <li>
-                <label class="label-radio item-content">
-                <input type="radio" name="ks-radio" value="Books" checked>
-                <div class="item-inner">
-                  <div class="item-title">1 Bottle</div>
-                  <div class="item-after">JD 1.25</div>
-                </div>
-                </label>
-              </li>
-              <li>
-                <label class="label-radio item-content">
-                <input type="radio" name="ks-radio" value="Movies">
-                <div class="item-inner">
-                  <div class="item-title" selected>6 Pack</div>
-                  <div class="item-after">JD 5.50</div>
-                </div>
-                </label>
-              </li>
--->
-            </ul>
-        </div>
-        
-        
-        
-        <div class="list-block inset" style="padding-left:4%;">
-            <ul>
-              <li>
-                <div class="item-content">
-                <div class="item-inner">
-                  <div class="item-title label">{{Quntity}}</div>
-                  <div class="item-input">
-                    <input  pattern="[0-9]*" type="number"  id="QunV" >
-                  </div>
-                </div>
-                    </div>
-              </li>
-            </ul>
-        </div>
-        
-        
-         <div class="content-block-title">Price Details</div>
-          <div class="list-block">
-            <ul>
-              <li>
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title label">Gross</div>
-                    <div id="Pri1ce" class="item-after">JD 1.250</div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title label">{{Discount}}</div>
-                    <div id="Discount" class="item-after">10 %</div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title label">{{Tax}}</div>
-                    <div id="Tax"  class="item-after">JD 2.500</div>
-                  </div>
-                </div>
-              </li>
-              </ul>
-              </div>
-         <div class="content-block"></div>
-          <div class="list-block">
-          <ul>
-              <li>
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title label">{{TottalPrice}}</div>
-                    <div id="PriceV" class="item-after" style="color:blue;">
-JD 100.000                    </div>
-                  </div>
-                </div>
-              </li>
-              
-             
-            </ul>
-        </div>
-        <div class="content-block">
-            <div class="list-block inset">
-<ul>
-<li><a id="OrderButtonV" href="#" class="button button-round">{{Addtoorder}}</a></li>
-</ul>
-</div>
+    padding: 3% 3% 3%;" src="./images/icons/nes.jpg">
+                            </div>
+                            <div class="header-text">
+                                <h3 id="ItemDetails">Water Bottle 1.5L</h3>
+                                <p id="vendorename">{{Nestle}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        
-<!--    <li>-->
-<!--
-      <div class="item-content">
-               <i class="icon box margin"></i>
-         
-          <div style="margin-left:1px !important; margin-right:50% !important" id="ItemDetails" class="item-title label">{{Quntity}}</div>
-         
-    
-      </div>
-    </li>
-      <li class="item-divider">  </li>
-    <li>
-      <div class="item-content">
-       
-        <div class="item-inner">
-             <i class="icon vendore margin"></i>
-          <div class="item-title label">{{Vendore}}</div>
-          <div class="item-input">
-            <div id="vendorename" class="item-title label">{{Nestle}}</div>
-          </div>
-        </div>
-      </div>
-    </li>
-      
-       <li>
-      <div class="item-content">
-       
-        <div class="item-inner">
-             <i class="icon vendore margin"></i>
-          <div class="item-title label">{{Discount}}</div>
-          <div class="item-input">
-            <div id="Discount" class="item-title label">{{Nestle}}</div>
-          </div>
-        </div>
-      </div>
-    </li>
-      
-       <li>
-      <div class="item-content">
-       
-        <div class="item-inner">
-             <i class="icon vendore margin"></i>
-          <div class="item-title label">{{Tax}}</div>
-          <div class="item-input">
-            <div id="Tax" class="item-title label">{{Nestle}}</div>
-          </div>
-        </div>
-      </div>
-    </li>
-  
-   <li class="item-divider"></li>
-   
-    <li>
-      <div class="item-content">
-      
-        <div class="item-inner">
-             <i class="icon qun margin"></i>
-          <div class="item-title label">{{Quntity}}</div>
-          <div class="item-input">
-         <input style="direction:ltr" value="1" class="picker-device" type="tel"  id="Qun" >
-          </div>
-        </div> 
-      </div>
-    </li>
-        <li class="item-divider"></li>
-     
 
-     
-      <li > <div style="display:inline-block" class="content-block-title"><i class="icon unit margin"></i>{{Selingunite}}</div>
+            <!-- Text inputs -->
+            <div class="content-block-title">{{Selingunite}}</div>
+            <div class="list-block">
+                <ul id="UOM"></ul>
+            </div>
 
-      </li>
-       
-      <ul id="UOM">
-         
-    
-        </ul>
-       <li class="item-divider">       </li>
-      
-      
-      
-        <li>
-      <div class="item-content">
-        <div class="item-inner">
-             <i class="icon tottal margin"></i>
-          <div class="item-title label">{{TottalPrice}}</div>
-          <div class="item-input">
-            <div id="Price" class="item-title label">-----</div>
-          </div>
+
+
+            <div class="list-block inset" style="padding-left:4%;">
+                <ul class="card">
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{{Quntity}}</div>
+                                <div class="item-input item-after">
+                                    <input pattern="[0-9]*" type="number" id="QunV">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="content-block-title">Price Details</div>
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">Gross</div>
+                                <div id="Pri1ce" class="item-after">JD 1.250</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{{Discount}}</div>
+                                <div id="Discount" class="item-after">10 %</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{{Tax}}</div>
+                                <div id="Tax" class="item-after">JD 2.500</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block"></div>
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{{TottalPrice}}</div>
+                                <div id="PriceV" class="item-after" style="color:blue;">
+                                    JD 100.000
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="list-block inset">
+                    <ul>
+                        <li><a id="OrderButtonV" href="#" class="button button-round">{{Addtoorder}}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            {{/if}}
+            {{#if @global.android}}
+            <div class="card">
+                <div class="card-content">
+                    <div class="list-block" id="mylist">
+                        <ul>
+                            <li class="item-divider">Item Information</li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-package"></i></div>
+                                    <div class="item-inner">
+                                        <div id="ItemDetails" class="item-title">{{Quntity}}</div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-vendor"></i> </div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">{{Vendore}}</div>
+                                        <div class="item-after">
+                                            {{Nestle}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-quantity"></i> </div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">{{Quntity}}</div>
+                                        <div class="item-after item-input">
+                                            <input value="1" class="picker-device" type="tel" id="QunV" placeholder="1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-selling-unit"></i> </div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">{{Selingunite}}</div>
+                                        <div class="item-after item-input">
+                                            <input value="1" class="picker-device" type="tel" id="QunV" placeholder="1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">&nbsp;</div>
+                                        <div class="item-after">
+                                            <div id="UOM"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="content-block-title"><i class="icon icon-selling-unit"></i>{{Selingunite}}</div>-->
+
+                            </li>
+                        </ul>
+                        <ul id="UOM"></ul>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card">
+                <div class="card-content">
+                    <div class="list-block">
+                        <ul>
+                            <li class="item-divider">Price Information</li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Gross</div>
+                                        <div id="Pri1ce" class="item-after">JD 1.250</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">{{Discount}}</div>
+                                        <div id="Discount" class="item-after">10 %</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">{{Tax}}</div>
+                                        <div id="Tax" class="item-after">JD 2.500</div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-funds"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">{{TottalPrice}}</div>
+                                        <div id="PriceV" class="item-after">
+                                            JD 100.000
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p id="OrderButtonV" class="buttons-row">
+                <a s href="#" class="button button-round my_green">{{Addtoorder}}</a>
+            </p>
+            <!--<p  style="margin-left:30% !important; margin-right:30% !important; "></p>-->
+            {{/if}}
+
+
+
         </div>
-      </div>
-    </li>
-      
-    </ul>
--->
-    {{/if}}
-       {{#if @global.android}}
-<ul>
- <li>
-      <div class="item-content">
-        
-<!--        <div class="item-inner">-->
-          <div class="item-media" style="width:12%">
-               <i class="icon box margin"></i>
-          </div>
-          <div style="margin-left:1px !important; font-weight:bold; font-size:large; margin-right:50% !important" id="ItemDetails" class="item-title label">{{Quntity}}</div>
-         
-    
-      </div>
-    </li>    
-    
-<li class="item-divider"></li>
-    
-
-<li>
-<div class="item-content">
-<div class="item-media" style="width:12%"><i class="icon vendore margin"></i></div>
-<div class="item-inner">
-<div class="item-title"><div>{{Vendore}}</div>{{Nestle}}</div>
-</div>
-</div>
-</li>
-    
-<li class="item-divider"></li>
-    
-<li>
-<div class="item-content">
-<div class="item-media"><i class="icon qun margin"></i></div>
-<div class="item-inner">
-<div class="item-title label">{{Quntity}}</div>
-<div class="item-input item-input-field">
-<input value="1" class="picker-device" type="tel"  id="QunV"  placeholder="1">
-</div>
-</div>
-</div>
-</li>    
-    
-<li class="item-divider"></li>
-
-<li > <div style="display:inline-block" class="content-block-title"><i class="icon unit margin"></i>{{Selingunite}}</div>
-<!--      <div style="display:inline-block" class="item-after">Price</div>-->
-      </li>
-       
-      <ul id="UOM">
-         
-    
-        </ul>    
-    <li class="item-divider"></li>
-</ul>
-        <p id="OrderButtonV" style="margin-left:30% !important; margin-right:30% !important; "><a s href="#" class="button button-round">{{Addtoorder}}</a></p>
-{{/if}}
-   
-    
-    
     </div>
 </div>
-    </div>
-

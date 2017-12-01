@@ -2689,7 +2689,7 @@ myApp.onPageInit('Allitemdet', function (page) {
     var pickerCustomToolbar = myApp.picker({
         input: '.picker-device',
         rotateEffect: true,
-        toolbarTemplate: '<div style="background-color:#00695c" class="toolbar" style="direction:ltr">' +
+        toolbarTemplate: '<div style="background-color:#1fb67b" class="toolbar" style="direction:ltr">' +
         '<div class="toolbar-inner">' +
         '<div class="left">' +
         '<a href="#" class="link toolbar-randomize-link"></a>' +
@@ -2745,8 +2745,12 @@ myApp.onPageInit('Allitemdet', function (page) {
             });
         }
     });
-
-
+    //myShit
+    jQuery(document).ready(function () { 
+    
+        var x = $$("#mylist");
+        x.removeClass('inputs-list');
+    });
 
 
 
@@ -3796,10 +3800,10 @@ myApp.onPageInit('Setting', function (page) {
         $$("#org").html('');
 
         $$("#org").append(`<a id="home" href="home.html" class="link">
-<i style="width:60px !important" id="homeicon"class="icon-home"></i><span class="tab-link">` + lag.Home + `</span></a>
+<i style="width:60px !important" id="homeicon"class="icon-home-active"></i><span class="tab-link">` + lag.Home + `</span></a>
 <a id="reorder" href="History.html" class="link">
 <i id="reordericon" class="icon-history"></i><span >`+ lag.Orderistory + `</span></a> 
-<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="icon-history"></i><span id="lengthon" class="badge  bg-red" style="position: absolute;left: 79%;margin-left: -10px; top: 2px; font-size: 10px; line-height: 16px; height: 16px; border-radius: 16px; padding: 0 4px; min-width: 16px; font-family: -apple-system,SF UI;">5</span><span >` + lag.MyOrder + `</span></a>
+<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="icon-history"></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
 <a id="scan" onclick="scan();" href="#" class="link"><i class="icon-scan"></i><span  style="padding-top: 8p2x;">` + lag.Scan + `</span></a>`);
 
         pagecounter();
@@ -3856,10 +3860,10 @@ myApp.onPageInit('Setting', function (page) {
         $$("#org").html('');
 
         $$("#org").append(`<a id="home" href="home.html" class="link">
-<i style="width:60px !important" id="homeicon" style="font-size:8px" class="icon-home"></i><span style="font-size:10px" class="tab-link">` + lag.Home + `</span></a>
+<i style="width:60px !important" id="homeicon" style="font-size:8px" class="icon-home-active"></i><span style="font-size:10px" class="tab-link">` + lag.Home + `</span></a>
 <a id="reorder" href="History.html" class="link">
 <i id="reordericon" class="icon-history"></i><span >`+ lag.Orderistory + `</span></a> 
-<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="icon myorderinactive "></i><span id="lengthon" class="badge  bg-red" style="position: absolute;left: 79%;margin-left: -10px; top: 2px; font-size: 10px; line-height: 16px; height: 16px; border-radius: 16px; padding: 0 4px; min-width: 16px; font-family: -apple-system,SF UI;">5</span><span >` + lag.MyOrder + `</span></a>
+<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="icon myorderinactive "></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
 <a id="scan" onclick="scan();" href="#" class="link"><i class="icon-scan"></i><span  style="padding-top: 8p2x;">` + lag.Scan + `</span></a>
 <a  id="search" onclick="we()"  href="#" class="link open-about "><i id="searchicon" class="icon searchinactive"></i><span >` + lag.Hint + `</span></a>`);
 
