@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'icomoon';
-    src: url('../fonts/icomoon.eot?urmt1t');
-    src: url('../fonts/icomoon.eot?urmt1t#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?urmt1t') format('truetype'), url('../fonts/icomoon.woff?urmt1t') format('woff'), url('../fonts/icomoon.svg?urmt1t#icomoon') format('svg');
+    src: url('../fonts/icomoon.eot?o7omrk');
+    src: url('../fonts/icomoon.eot?o7omrk#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?o7omrk') format('truetype'), url('../fonts/icomoon.woff?o7omrk') format('woff'), url('../fonts/icomoon.svg?o7omrk#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -18,6 +18,31 @@ i {
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-quantity:before {
+    content: "\e90c";
+    color: #fc9c4d;
+}
+
+.icon-funds:before {
+    content: "\e90d";
+    color: #1fb67b;
+}
+
+.icon-vendor:before {
+    content: "\e90e";
+    color: #fc9c4d;
+}
+
+.icon-package:before {
+    content: "\e90f";
+    color: #fc9c4d;
+}
+
+.icon-selling-unit:before {
+    content: "\e910";
+    color: #fc9c4d;
 }
 
 .icon-next:before {
@@ -49,7 +74,6 @@ i {
 
 .icon-search:before {
     content: "\e901";
-    color: #1fb67b;
 }
 
 .icon-username:before {

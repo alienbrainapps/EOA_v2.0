@@ -279,3 +279,8 @@ background-color:#ffffff !important;
 .page-allitem .searchbar {
     background: #1fb67b;
 }
+#Brands,
+#nes,
+#vendores {
+    padding-bottom: 60px;
+}
