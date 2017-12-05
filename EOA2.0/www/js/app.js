@@ -1,24 +1,5 @@
-/*
- * Please see the included README.md file for license terms and conditions.
- */
-
-
-// This file is a suggested starting place for your code.
-// It is completely optional and not required.
-// Note the reference that includes it in the index.html file.
-
-
-/*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false app:false, dev:false, cordova:false */
-
-
-
-// This file contains your event handlers, the center of your application.
-// NOTE: see app.initEvents() in init-app.js for event handler initialization code.
-
-
-
-
+//To open a database:
+var db = null;
 
 function backKeyDown() {
   
@@ -143,6 +124,17 @@ function myEventHandler() {
 
     if (window.Cordova && dev.isDeviceReady.c_cordova_ready__) {
         str = "It worked! Cordova device ready detected at " + dev.isDeviceReady.c_cordova_ready__ + " milliseconds!";
+        db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function (db) {
+
+            //@prog create Tables
+            tx.executeSql('CREATE TABLE IF NOT EXISTS user (_id, email,password,name,mobilenumber,landline,retailer,commercilanumber,PhoneNumber,long,lat,Ordershistory)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS vendor (_id, name,Email,contact,input,IMG,URL,UniqeID)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS items (ItemID, ItemDescription,ItemCode,ItemBarcode,PackID,UOM,Price,Tax,Discount,PiecesInPack,IsDefaultPack,DiscountTypeID,ItemCategoryID,DivisionID,BrandID,ItemCategory,Division,Brand,PackTypeID,PromotedDiscount,CalculatedDiscount,RequiredQuanity,ItemImageName,VendorName,CurrencyName,VendorID)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS offers (PromotionID, Description,IsTaken,InputOptions,CalculatedOptions,VendorName,VendorID)');
+            console.log('data base opend');
+        }, function (error) {
+            console.log('Open database ERROR: ' + JSON.stringify(error));
+        });
     } else if (window.intel && intel.xdk && dev.isDeviceReady.d_xdk_ready______) {
         str = "It worked! Intel XDK device ready detected at " + dev.isDeviceReady.d_xdk_ready______ + " milliseconds!";
     } else {

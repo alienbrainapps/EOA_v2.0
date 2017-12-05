@@ -1,425 +1,9 @@
 var curencyTemp = "";
-var contactsCallback = myApp.onPageInit('home', function (page) {
+//var contactsCallback =
 
 
-    pagecounter();
 
-
-   
-    $$("#homeicon").addClass('homaeactive');
-    $$("#homeicon").removeClass('homedefult');
-    $$("#searchicon").addClass('searchinactive');
-    $$("#searchicon").removeClass('searchactive');
-    $$("#reordericon").addClass('reorderinactive');
-    $$("#reordericon").removeClass('reorderactive');
-    $$("#ordericon").addClass('myorderinactive');
-    $$("#ordericon").removeClass('myorderactive');
-
-
-    if (isIos) {
-        $$("#tab1").on('click', function () {
-
-            AppendOffers();
-            $$(".bundle").show();
-            $$(".item").hide();
-            $$(".vendore").hide();
-
-            $$("#tab1").addClass('active');
-            $$("#tab2").removeClass('active');
-            $$("#tab3").removeClass('active');
-        });
-        $$("#tab3").on('click', function () {
-
-            $$(".item").show();
-            $$(".bundle").hide();
-            $$(".vendore").hide();
-            $$("#tab3").addClass('active');
-            $$("#tab2").removeClass('active');
-            $$("#tab1").removeClass('active');
-
-        });
-        $$("#tab2").on('click', function () {
-
-
-            $$(".vendore").show();
-            $$(".bundle").hide();
-            $$(".item").hide();
-            $$("#tab2").addClass('active');
-            $$("#tab3").removeClass('active');
-            $$("#tab1").removeClass('active');
-        });
-
-    }
-
-    if (isAndroid) {
-        $$("#t1").on('click', function () {
-
-            AppendOffers();
-            $$(".tab-link-highlight").css('transform', 'translate3d(0%, 0px, 0px)');
-            if (localStorage.getItem('lang') != 1) {
-                $$(".tab-link-highlight").css('transform', 'translate3d(0%, 0px, 0px)');
-            }
-
-            $$(".bundle").show();
-            $$(".item").hide();
-            $$(".vendore").hide();
-
-            $$("#t1").addClass('active');
-            $$("#t2").removeClass('active');
-            $$("#t3").removeClass('active');
-        });
-        $$("#t3").on('click', function () {
-
-            $$(".item").show();
-            $$(".bundle").hide();
-            $$(".vendore").hide();
-            $$("#t3").addClass('active');
-            $$("#t2").removeClass('active');
-            $$("#t1").removeClass('active');
-            $$(".tab-link-highlight").css('transform', 'translate3d(200%, 0px, 0px)');
-
-            if (localStorage.getItem('lang') != 1) {
-                $$(".tab-link-highlight").css('transform', 'translate3d(-200%, 0px, 0px)');
-            }
-
-
-        });
-        $$("#t2").on('click', function () {
-
-
-            $$(".tab-link-highlight").css('transform', 'translate3d(100%, 0px, 0px)');
-            if (localStorage.getItem('lang') != 1) {
-                $$(".tab-link-highlight").css('transform', 'translate3d(-100%, 0px, 0px)');
-            }
-
-            $$(".vendore").show();
-            $$(".bundle").hide();
-            $$(".item").hide();
-            $$("#t2").addClass('active');
-            $$("#t3").removeClass('active');
-            $$("#t1").removeClass('active');
-        });
-
-    }
-
-
-    var li = '';
-    var catid = '';
-    //    if(! customerids.length){return}
-    if (typeof vendoreinfo == "undefined") { return }
-    console.log(customerids[vendoreinfo.input]);
-    //mahmoud saleh
-
-    ;
-
-    for (var i = 0; i < vendoreinfo.length; i++) {
-        if (typeof customerids["A" + vendoreinfo[i].input] == "undefined") {
-
-        } else {
-            catid = vendoreinfo[i].UniqeID;
-           // li += '<li id="' + vendoreinfo[i].UniqeID + '" >  <a href="Brands.html" class="item-link item-content">  <div class="item-media"><img src="' + vendoreinfo[i].IMG + '" width="50" height="50"></div><div class="item-inner">    <div class="item-title">' + vendoreinfo[i].name + '</div>   </div> </a></li>';
-            li += `<div class="item-content card like_li" id="` + vendoreinfo[i].UniqeID + `">
-                                        <div class="item-media"><img src="`+ vendoreinfo[i].IMG + `" width="80" /></div>
-                                        <div class="item-inner">
-                                            <div class="item-title">`+ vendoreinfo[i].name +`</div>
-                                        </div>
-                                        <div class="item-after">
-                                        <i class="icon icon-next"></i>
-                                        </div>
-                                    </div>`;
-        }
-    }
-    $$("#vendores").append(li);
-
-    $$("#vendores .like_li").on('click', function () {
-
-        groupingbrands = [];
-        vendorearr = [];
-        vendoreitems[this.id] = [];
-        guesswhat = this.id;
-        var local = localStorage.getItem('storeditem');
-        var localjson = JSON.parse(local);
-        ;
-        for (var z = 0; z < localjson.length; z++) {
-            if (this.id == "UNITR1") {
-                if (localjson[z].VendorName == "UNITR1") {
-                    vendoreitems[this.id].push(localjson[z]);
-                }
-
-                for (var f = 0; f < vendoreitems[this.id].length; f++) {
-
-                    FF = vendoreitems[this.id][f].Brand;
-                    if (FF == null) { FF = "Unitra other" }
-                    if (f == 0) {
-
-                        groupingbrands[FF] = [];
-                    } else
-                        if (vendoreitems[this.id][f].Brand != vendoreitems[this.id][f - 1].Brand) {
-                            groupingbrands[FF] = [];
-                        }
-                }
-                vendorearr[this.id] = [];
-                vendorearr[this.id].push(groupingbrands);
-
-            }
-            else if (this.id == "DELAM1") {
-                if (localjson[z].VendorName == "DELAM1") {
-                    vendoreitems[this.id].push(localjson[z]);
-                }
-                for (var f = 0; f < vendoreitems[this.id].length; f++) {
-
-                    FF = vendoreitems[this.id][f].Brand;
-                    if (FF == null) { FF = "Delmonti Other" }
-                    if (f == 0) {
-
-                        groupingbrands[FF] = [];
-                    } else
-                        if (vendoreitems[this.id][f].Brand != vendoreitems[this.id][f - 1].Brand) {
-                            groupingbrands[FF] = [];
-                        }
-                }
-                vendorearr[this.id] = [];
-                vendorearr[this.id].push(groupingbrands);
-
-
-            }
-            else if (this.id == "NESAM1") {
-                if (localjson[z].VendorName == "NESAM1") {
-                    vendoreitems[this.id].push(localjson[z]);
-                }
-                for (var f = 0; f < vendoreitems[this.id].length; f++) {
-
-                    FF = vendoreitems[this.id][f].Brand;
-                    if (FF == null) { FF = "Nestle Other" }
-                    if (f == 0) {
-                        groupingbrands[FF] = [];
-                    } else
-                        if (vendoreitems[this.id][f].Brand != vendoreitems[this.id][f - 1].Brand) {
-                            groupingbrands[FF] = [];
-                        }
-                }
-
-                vendorearr[this.id] = [];
-                vendorearr[this.id].push(groupingbrands);
-
-
-            }
-        }
-        console.log(vendoreitems);
-        console.log(groupingbrands);
-        console.log(vendorearr);
-
-        for (var key in vendorearr) {
-
-            arr = vendorearr[this.id];
-            arraz = arr[0];
-            for (var k in arr[0]) {
-                var iner = localStorage.getItem('storeditem');
-                var inerjson = JSON.parse(local);
-                //there is the problem 
-                for (var p = 0; p < inerjson.length; p++) {
-                    if (inerjson[p].Brand == null) {
-                        if (inerjson[p].VendorName == "UNITR1") {
-                            inerjson[p].Brand = "Unitra Brands";
-                        } else if (inerjson[p].VendorName == "NESAM1") {
-                            inerjson[p].Brand = "Nestle Other";
-                        } else if (inerjson[p].VendorName == "DELAM1") {
-                            inerjson[p].Brand = "Delmonti Other";
-                        }
-                        //else { inerjson[p].Brand = "Delmonti Other" }
-                    }
-                    if (inerjson[p].Brand == k) {
-                        vendorearr[this.id][0][k].push(inerjson[p]);
-                    }
-                }
-            }
-        }
-
-        console.log(vendorearr);
-        mainView.router.loadPage({ url: 'Brands.html', force: true });
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    AppendItems();
-
-    //////////////////////
-
-    $$("#addtag").on('click', function () {
-
-        var tag = $$('#tag').val();
-
-
-
-        var input, filter, ul, li, a, i;
-        input = tag;
-        filter = input.toUpperCase();
-        ul = document.getElementById("itemlist");
-        li = ul.getElementsByTagName('li');
-
-        // Loop through all list items, and hide those who don't match the search query
-        for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
-            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-    });
-
-
-
-    mainView.showNavbar();
-    mainView.showToolbar();
-
-    //    GetItems();
-
-    $$('#Orders22').on('click', function () {
-
-        mainView.router.loadPage({
-            url: 'Qutaion.html',
-            force: true
-        });
-
-    });
-
-
-    //  AppendItems();
-
-
-
-    if (localStorage.getItem('Bundless') == "null") {
-
-
-    } else {
-
-    }
-    //AppenedBundle();
-
-    $$('#search').change(function () {
-        /* 
-        var value=$$('#search').val();
-    $$('#change').append('<div class="chip"><div class="chip-label">'+value+'</div><a href="#"  class="chip-delete vr"></a></div>');
-        
-         $$('.chip-delete').on('click', function () {
-    
-    var chip = $$(this).parents('.chip');
-             chip.remove();
-   
-}); */
-
-    });
-
-    $$("#Done").on('click', function () {
-
-        var mySearchbar = myApp.searchbar('.searchbar', {
-            searchList: '.list-block-search',
-            searchIn: '.item-title',
-            found: '.searchbar-found'
-        });
-
-        var list = mySearchbar.query;
-        var para = mySearchbar.params;
-        var list2 = mySearchbar.searchList;
-        var list3 = mySearchbar.container;
-        var input = mySearchbar.found;
-        // var found =input[0].innerHTML;
-        var found1s = input.textContent;
-
-
-
-        //  $$("#itemlist").html(found);
-
-        console.log(list);
-        var mySearchbar = $$('.searchbar')[0].f7Searchbar;
-
-    });
-
-
-
-    $$('#itemlist').on('click', 'li .view_details_btn', function () {
-
-        var id = this.id;
-        var pack = $$(this).data('ItemID');
-        var ItemID = $$(this).data('ItemID');
-        var ItemDescription = $$(this).data('ItemDescription');
-        var ItemCode = $$(this).data('ItemCode');
-        var ItemBarcode = $$(".test2").data('ItemBarcode');
-        var UOM = $$(this).data('UOM');
-        var Tax = $$(this).data('Tax');
-        var VendorName = $$(this).data('VendorName');
-        var Discount = $$(this).data('Discount');
-        var PiecesInPack = $$(this).data('PiecesInPack');
-        var IsDefaultPack = $$(this).data('IsDefaultPack');
-        var PackGroupID = $$(this).data('PackGroupID');
-        var IsAdded = $$(this).data('IsAdded');
-        var DiscountTypeID = $$("#" + id).data('DiscountTypeID');
-        var price = $$(this).data("price");
-        var packid = $$(this).data('PackID');
-        var PackTypeID = $$(this).data('pack');
-        var RequiredQuanity = $$(this).data('RequiredQuanity');
-        if (RequiredQuanity == 0) {
-            RequiredQuanity = 1
-        }
-
-        if (DiscountTypeID == 2) {
-            var Discount = (Discount * 100) / price;
-            localStorage.setItem("Discount", Discount);
-        } else {
-            localStorage.setItem("Discount", Discount)
-        }
-
-        localStorage.setItem("PackTypeID", PackTypeID);
-        localStorage.setItem("packid", packid);
-        localStorage.setItem("pack", pack);
-        localStorage.setItem("ItemID", ItemID);
-        localStorage.setItem("ItemDescription", ItemDescription);
-        localStorage.setItem("ItemCode", ItemCode);
-        localStorage.setItem("ItemBarcode", ItemBarcode);
-        localStorage.setItem("UOM", UOM);
-        localStorage.setItem("Tax", Tax);
-        localStorage.setItem("VendorName", VendorName);
-
-        // localStorage.setItem("Discount",Discount);
-        localStorage.setItem("PiecesInPack", PiecesInPack);
-        localStorage.setItem("IsDefaultPack", IsDefaultPack);
-        localStorage.setItem("PackGroupID", PackGroupID);
-        localStorage.setItem("IsAdded", IsAdded);
-        localStorage.setItem("DiscountTypeID", 1);
-        localStorage.setItem("Price", price);
-        mainView.router.loadPage({
-            url: 'itemdet.html',
-            force: true
-        });
-    });
-
-
-
-
-
-
-});
-
-
-
-
-
+////khalaaaas hon
 
 $$("#prof").click(function () {
     mainView.router.loadPage({
@@ -1245,7 +829,7 @@ myApp.onPageInit('Brand', function (page) {
         for (var g in Brandsarr) {
             if (g == "null") { itemttitle = "Other" } else { itemttitle = g }
             //li += '<li id="' + g + '" ><a href="Brands.html" class="item-link item-content"><div class="item-media"><img src="' + imgsource + '" width="50" height="50"></div><div class="item-inner"><div class="item-title">' + itemttitle + '</div></div> </a></li>';
-            li += `<div class="item-content card like_li" id="` + g  + `">
+            li += `<div class="item-content card like_li" id="` + g + `">
                                         <div class="item-media"><img src="` + imgsource + `" width="80" /></div>
                                         <div class="item-inner">
                                             <div class="item-title">`+ itemttitle + `</div>
@@ -1415,40 +999,40 @@ myApp.onPageInit('logout', function (page) {
     $$("#sign").click(function () {
         mainView.router.loadPage('profile.html');
     });
+    //FK U
+    //$$("#lgn1").click(function () {
+    //    // GetItems();
+    //    var ValidationSucessVal = true;
+    //    var username = $$('#IPusn').val();
+    //    var password = $$('#IPpass').val();
+    //    username = username.toLowerCase();
+    //    var jas = {
+    //        "email": username,
+    //        "password": password
+    //    }
+    //    var jason = JSON.stringify(jas);
+    //    // Postlogin(jas);
 
-    $$("#lgn1").click(function () {
-        // GetItems();
-        var ValidationSucessVal = true;
-        var username = $$('#IPusn').val();
-        var password = $$('#IPpass').val();
-        username = username.toLowerCase();
-        var jas = {
-            "email": username,
-            "password": password
-        }
-        var jason = JSON.stringify(jas);
-        // Postlogin(jas);
 
 
+    //    Postlogin(jason);
 
-        Postlogin(jason);
+    //    /* var validationresult = Validatelogin(jas);
+    //     if (validationresult == ValidationSucessVal)
+    //     {
 
-        /* var validationresult = Validatelogin(jas);
-         if (validationresult == ValidationSucessVal)
-         {
+    //         localStorage.setItem("username", username);
+    //         localStorage.setItem("Password", password);
+    //       Postlogin(jas);
 
-             localStorage.setItem("username", username);
-             localStorage.setItem("Password", password);
-           Postlogin(jas);
-             
-         }
-         else
-         {
-             myApp.alert( "Alert plesse corrextct info");
-         }*/
+    //     }
+    //     else
+    //     {
+    //         myApp.alert( "Alert plesse corrextct info");
+    //     }*/
 
-        //$$(".modal-title").html('EOA');
-    });
+    //    //$$(".modal-title").html('EOA');
+    //});
 
     $$("#AR").on('click', function () {
         $$("body").css("direction", "rtl");
@@ -2642,7 +2226,7 @@ myApp.onPageInit('ItemDE', function (page) {
 });
 
 myApp.onPageInit('Allitemdet', function (page) {
-    
+
     var objclating = {
         "ItemID": localStorage.getItem("ItemIDV"),
         "ItemDescription": localStorage.getItem("ItemDescriptionV"),
@@ -2746,8 +2330,8 @@ myApp.onPageInit('Allitemdet', function (page) {
         }
     });
     //myShit
-    jQuery(document).ready(function () { 
-    
+    jQuery(document).ready(function () {
+
         var x = $$("#mylist");
         x.removeClass('inputs-list');
     });
@@ -3210,7 +2794,7 @@ myApp.onPageInit('allitem', function (page) {
         }
     });
     $$('#nes').on('click', 'li', function () {
-        
+
         var id = this.id;
         var packV = $$("#" + id).data('ItemID');
         var ItemIDV = $$("#" + id).data('ItemID');

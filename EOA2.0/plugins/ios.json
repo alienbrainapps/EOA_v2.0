@@ -31,6 +31,18 @@
         "phonegap-plugin-barcodescanner": {
             "CAMERA_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "io.cordova.myappae65e5"
+        },
+        "cordova-plugin-dbcopy": {
+            "PACKAGE_NAME": "io.cordova.myappae65e5"
+        },
+        "cordova-sqlite-evcore-extbuild-free": {
+            "PACKAGE_NAME": "io.cordova.myappae65e5"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "io.cordova.myappae65e5"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "io.cordova.myappae65e5"
         }
     },
     "dependent_plugins": {

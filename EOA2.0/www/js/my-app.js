@@ -143,6 +143,11 @@ Template7.global = {
 
 myApp.onPageInit('index', function (page) { });
 
+
+myApp.onPageInit('home', function (page) {
+    getItemByQuery();
+});
+
 $$(document).on("popover:closed", ".popover", function () {
 });
 $$(document).on('pageInit', function (e) {
@@ -214,7 +219,7 @@ $$(document).on('pageInit', function (e) {
         $$("#homeicon").removeClass('icon-home').addClass('icon-home-active');
         $$("#searchicon").addClass('searchinactive');
         $$("#searchicon").removeClass('searchactive');
-        
+
     }
     else if (e.detail.page.url == "Qutaion.html") {
 
@@ -229,12 +234,12 @@ $$(document).on('pageInit', function (e) {
 
 
 
-    } else if (e.detail.page.url == "catg.html"){
+    } else if (e.detail.page.url == "catg.html") {
         $$("#homeicon").removeClass('icon-home-active').addClass('icon-home');
         $$("#reordericon").removeClass('icon-history-active').addClass('icon-history');
         $$("#ordericon").removeClass('icon-my_order').addClass('icon-my_order_active');
         $$("#searchicon").addClass('searchinactive');
-        $$("#searchicon").removeClass('searchactive'); 
+        $$("#searchicon").removeClass('searchactive');
     }
     if (e.detail.page.url == "promo.html") {
 
@@ -253,8 +258,8 @@ $$(document).on('pageInit', function (e) {
         $$("#reordericon").removeClass('icon-history').addClass('icon-history-active');
         $$("#searchicon").addClass('searchinactive');
         $$("#searchicon").removeClass('searchactive');
-       
-        
+
+
     }
 
 });
@@ -298,6 +303,23 @@ $$('#Orders22').on('click', function () {
     mainView.router.loadPage({ url: 'Qutaion.html', force: true });
 
 });
+
+//@prog 
+$$("#ExportBtn").on("click", function () {
+    window.plugins.sqlDB.copyDbToStorage(
+        'Data.db',
+        0,
+        '/storage/emulated/0/Test/', true, function () {
+
+        }, function (error) {
+            console.log(JSON.stringify(error));
+        }
+
+    );
+});
+
+
+
 
 $$("#fgpass").on('click', function () {
     var string = '';
@@ -395,38 +417,13 @@ $$("#prof").click(function () {
     mainView.router.loadPage({ url: 'profile.html', force: true });
 });
 //log in ////////////////////////////////////
+//fku its Login function
 $$("#lgn1").click(function () {
     // GetItems();
     var ValidationSucessVal = true;
     var username = $$('#IPusn').val();
     var password = $$('#IPpass').val();
-    username = username.toLowerCase();
-    var jas = {
-        "email": username,
-        "password": password
-    }
-    var jason = JSON.stringify(jas);
-    // Postlogin(jas);
-
-
-
-    Postlogin(jason);
-
-    /* var validationresult = Validatelogin(jas);
-     if (validationresult == ValidationSucessVal)
-     {
-
-         localStorage.setItem("username", username);
-         localStorage.setItem("Password", password);
-       Postlogin(jas);
-         
-     }
-     else
-     {
-         myApp.alert( "Alert plesse corrextct info");
-     }*/
-
-    //$$(".modal-title").html('EOA');
+    ServerLogin(username.toLowerCase(), password);
 });
 
 $$("#catg").click(function () { mainView.router.loadPage({ url: 'catg.html', force: true }); });
