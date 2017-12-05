@@ -2,7 +2,7 @@
 var Html_EL='';
 
 function getItemByQuery() {
-    debugger;
+   
     db.transaction(function (tx) {
 
         var query = "SELECT * FROM items LIMIT " + offset + ", 25";
@@ -48,7 +48,10 @@ function getItemByQuery() {
                 
                 
             }
+           
             $$('#itemlist').html(Html_EL);
+            myApp.hidePreloader();
+           
         },
             function (tx, error) {
                 console.log('SELECT error: ' + error.message);

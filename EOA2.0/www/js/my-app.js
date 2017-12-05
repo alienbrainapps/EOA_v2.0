@@ -146,6 +146,7 @@ myApp.onPageInit('index', function (page) { });
 
 myApp.onPageInit('home', function (page) {
     getItemByQuery();
+
 });
 
 $$(document).on("popover:closed", ".popover", function () {
@@ -419,10 +420,9 @@ $$("#prof").click(function () {
 //log in ////////////////////////////////////
 //fku its Login function
 $$("#lgn1").click(function () {
-    // GetItems();
     var ValidationSucessVal = true;
-    var username = $$('#IPusn').val();
-    var password = $$('#IPpass').val();
+    var username = $$('#IPusn').val().trim();
+    var password = $$('#IPpass').val().trim();
     ServerLogin(username.toLowerCase(), password);
 });
 

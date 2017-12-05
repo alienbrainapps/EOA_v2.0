@@ -20,12 +20,10 @@ function GetVendores() {
             dataType: "json",
             success: function (data, status, xhr) {
                 vendoreinfo = data;
-
-                console.log("Vendore Information after Get sucsses " + vendoreinfo);
                 //@prog start insert vendor tabel after delet if exist 
                 db.transaction(function (tx) {
 
-                    var query = "DELETE  FROM vendor";
+                    var query = "DELETE FROM vendor";
 
                     tx.executeSql(query, [], function (tx, res) {
                         console.log("removeId: " + res.insertId);
@@ -42,7 +40,6 @@ function GetVendores() {
                     db.transaction(function (tx) {
                         for (var d = 0; d < vendoreinfo.length; d++) {
                             tx.executeSql('INSERT INTO vendor VALUES (?,?,?,?,?,?,?,?)', [vendoreinfo[d]._id, vendoreinfo[d].name, vendoreinfo[d].Email, vendoreinfo[d].contact, vendoreinfo[d].input, vendoreinfo[d].IMG, vendoreinfo[d].URL, vendoreinfo[d].UniqeID]);
-                            console.log('Populated database vendor recored OK' + vendoreinfo[d]._id, vendoreinfo[d].name, vendoreinfo[d].Email, vendoreinfo[d].contact, vendoreinfo[d].input, vendoreinfo[d].IMG, vendoreinfo[d].URL, vendoreinfo[d].UniqeID);
                         }
 
                     }, function (error) {
@@ -51,10 +48,8 @@ function GetVendores() {
                         console.log('Populated database vendor  OK');
                         // strat get items
                         var lang = localStorage.getItem('lang');
-                        //getItems(lang);
                         vendorData(lang);
-                        // GetItems(customerids, counter);
-                        //mainView.router.loadPage('home.html');
+                    
                     });
                 });
 
@@ -64,23 +59,24 @@ function GetVendores() {
 
 
                 //@prog ithink we dont need that any more -- we dont use uniqId any more 
-                for (var i = 0; i < vendoreinfo.length; i++) {
-                    vendoreorder[vendoreinfo[i].UniqeID] = [];
-                }
+                //for (var i = 0; i < vendoreinfo.length; i++) {
+                //    vendoreorder[vendoreinfo[i].UniqeID] = [];
+                //}
 
 
 
-                for (var i = 0; i < vendoreinfo.length; i++) {
-                    mybundle[vendoreinfo[i].UniqeID] = [];
-                }
+                //for (var i = 0; i < vendoreinfo.length; i++) {
+                //    mybundle[vendoreinfo[i].UniqeID] = [];
+                //}
 
-                for (var i = 0; i < vendoreinfo.length; i++) {
-                    vendorereturen[vendoreinfo[i].UniqeID] = [];
-                }
+                //for (var i = 0; i < vendoreinfo.length; i++) {
+                //    vendorereturen[vendoreinfo[i].UniqeID] = [];
+                //}
 
             },
             error: function (data, xhr) {
-
+                myApp.hidePreloader("Loading");
+                myApp.alert('field To load data ! Please check internet  connection ', 'Error');
             }
         });
 
@@ -88,9 +84,7 @@ function GetVendores() {
 function GetVendorItems() {
     lang = localStorage.getItem('lang');
     if (index >= vendors.length) {
-
         mainView.router.loadPage('home.html');
-       // AppendItems_z();
     }
     else {
 
@@ -111,34 +105,47 @@ function GetItems(url, custumerID, outletID, lang, input) {
 
             success: function (data, xhr) {
                 var itemsIs = JSON.parse(data);
-                //@prog time to insert item to item table
+
                 db.transaction(function (tx) {
-                    for (var d = 0; d < itemsIs.length; d++) {
-                        var query = "INSERT INTO items (ItemID, ItemDescription, ItemCode, ItemBarcode, PackID, UOM, Price, Tax, Discount, PiecesInPack, IsDefaultPack, DiscountTypeID, ItemCategoryID, DivisionID, BrandID, ItemCategory, Division, Brand, PackTypeID, PromotedDiscount, CalculatedDiscount, RequiredQuanity, ItemImageName, VendorName, CurrencyName, VendorID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
+                    var query = "DELETE  FROM items WHERE VendorID = ? ";
 
-                        tx.executeSql(query, [itemsIs[d].ItemID, itemsIs[d].ItemDescription, itemsIs[d].ItemCode, itemsIs[d].ItemBarcode, itemsIs[d].PackID, itemsIs[d].UOM, itemsIs[d].Price, itemsIs[d].Tax, itemsIs[d].Discount, itemsIs[d].PiecesInPack, itemsIs[d].IsDefaultPack, itemsIs[d].DiscountTypeID, itemsIs[d].ItemCategoryID, itemsIs[d].DivisionID, itemsIs[d].BrandID, itemsIs[d].ItemCategory, itemsIs[d].Division, itemsIs[d].Brand, itemsIs[d].PackTypeID, itemsIs[d].PromotedDiscount, itemsIs[d].CalculatedDiscount, itemsIs[d].RequiredQuanity, itemsIs[d].ItemImageName, itemsIs[d].VendorName, itemsIs[d].CurrencyName, input], function (tx, res) {
-                            console.log("insertId: " + res.insertId + " -- probably 1");
-                            console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-                        },
-                            function (tx, error) {
-                                console.log('INSERT error: ' + error.message);
-                            });
-                    }
-
+                    tx.executeSql(query, [input], function (tx, res) {
+                        console.log("removeId: " + res.insertId);
+                        console.log("rowsAffected: " + res.rowsAffected);
+                    },
+                        function (tx, error) {
+                            console.log('DELETE error: ' + error.message);
+                        });
                 }, function (error) {
                     console.log('transaction error: ' + error.message);
                 }, function () {
                     console.log('transaction ok');
-                    index++;
-                    GetVendorItems();
-                    return;
+                    //@prog time to insert item to item table
+                    db.transaction(function (tx) {
+                        for (var d = 0; d < itemsIs.length; d++) {
+                            var query = "INSERT INTO items (ItemID, ItemDescription, ItemCode, ItemBarcode, PackID, UOM, Price, Tax, Discount, PiecesInPack, IsDefaultPack, DiscountTypeID, ItemCategoryID, DivisionID, BrandID, ItemCategory, Division, Brand, PackTypeID, PromotedDiscount, CalculatedDiscount, RequiredQuanity, ItemImageName, VendorName, CurrencyName, VendorID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+
+                            tx.executeSql(query, [itemsIs[d].ItemID, itemsIs[d].ItemDescription, itemsIs[d].ItemCode, itemsIs[d].ItemBarcode, itemsIs[d].PackID, itemsIs[d].UOM, itemsIs[d].Price, itemsIs[d].Tax, itemsIs[d].Discount, itemsIs[d].PiecesInPack, itemsIs[d].IsDefaultPack, itemsIs[d].DiscountTypeID, itemsIs[d].ItemCategoryID, itemsIs[d].DivisionID, itemsIs[d].BrandID, itemsIs[d].ItemCategory, itemsIs[d].Division, itemsIs[d].Brand, itemsIs[d].PackTypeID, itemsIs[d].PromotedDiscount, itemsIs[d].CalculatedDiscount, itemsIs[d].RequiredQuanity, itemsIs[d].ItemImageName, itemsIs[d].VendorName, itemsIs[d].CurrencyName, input], function (tx, res) {
+                                console.log("insertId: " + res.insertId + " -- probably 1");
+                                console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                            },
+                                function (tx, error) {
+                                    console.log('INSERT error: ' + error.message);
+                                });
+                        }
+
+                    }, function (error) {
+                        console.log('transaction error: ' + error.message);
+                    }, function () {
+                        console.log('transaction ok');
+                        index++;
+                        GetVendorItems();
+                        return;
+                    });
+                    
                 });
-
-
-                console.log(data);
-                console.log(JSON.parse(data));
-
 
 
             },
@@ -174,9 +181,7 @@ function vendorData(lang) {
             for (var x = 0; x < resultSet.rows.length; x++) {
                 vendors.push(resultSet.rows.item(x));
             }
-            //vendors = resultSet.rows.items;
-
-            console.log('sss')
+            
         },
             function (tx, error) {
                 console.log('SELECT error: ' + error.message);

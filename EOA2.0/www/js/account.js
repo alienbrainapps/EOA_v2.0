@@ -1,7 +1,6 @@
 ﻿//mahmoud saleh
 
 function ServerLogin(username, Pass) {
-    createTabels();
     var jas = {
         "email": username,
         "password": Pass
@@ -28,10 +27,6 @@ function Postlogin(postData) {
             data: postData,
             dataType: "json",
             success: function (data, status, xhr) {
-                myApp.hidePreloader(loading);
-                console.log(postData);
-
-
                 if (data == null) {
                     var string = '';
                     var lang = localStorage.getItem('lang');
@@ -40,16 +35,6 @@ function Postlogin(postData) {
                     return;
                 }
                 else {
-                    //@prog place to add user table user info  data
-                    //db.transaction(function (tx) {
-
-                    //    tx.executeSql('INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', [data._id, data.email, data.password, data.name, data.mobilenumber, data.landline, data.retailer, data.commercilanumber, data.PhoneNumber, data.long, data.lat, data.Ordershistory]);
-                    //}, function (error) {
-                    //    console.log('Transaction ERROR: ' + error.message);
-                    //}, function () {
-                    //    console.log('Populated database OK');
-                    //});
-
                     //@prog Start create user table (keep it  json  user);
 
                     localStorage.setItem('username', JSON.stringify(data.email))
@@ -59,12 +44,6 @@ function Postlogin(postData) {
                     if (!data.regstrationcode.length) {
                         //@prog if is user dont have regstrationcode (vendor) , stored some variable as empty  and open barcode
 
-                        //localStorage.setItem("storeditem", '');
-                        //localStorage.setItem("Offers33", '');
-                        //localStorage.setItem("Transction", '');
-
-                        //$$('#itemlist').append('');
-                        //$$("#bundel").append('');
                         $$('.statusbar-overlay').css('background-color', '#00695c');
                         $$('.statusbar-overlay').css('color', '#fff');
 
