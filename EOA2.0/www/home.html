@@ -1,6 +1,11 @@
 ﻿<!-- We don't need full layout here, because this page will be parsed with Ajax-->
 <!-- Top Navbar-->
 {{#if @global.ios}}
+
+
+
+
+
 <div class="navbar">
     <div class="navbar-inner">
         <div class="left"></div>
@@ -46,8 +51,11 @@
     </div>
 
     {{/if}}
-    <!-- Scrollable page content-->
-    <div class="page-content infinite-scroll hide-bars-on-scroll" style="padding-bottom:60px">
+    <!--
+        hide-bars-on-scroll
+        Scrollable page content-->
+
+    <div class="page-content infinite-scroll  hide-toolbar-on-scroll" style="padding-bottom:60px" data-distance="100">
 
         <div class="cont1ent-block" style="margin-top:0px">
             <div style="margin-top:-20px" class="tabs">
@@ -84,8 +92,13 @@
                 <!-- Tab 2 -->
                 <div id="tab2" class="tab item active">
                     <div class="cont1ent-block-inner">
-                        <div id="a" class="list-block list-block-search searchbar-found">
+                        <div id="a" class="list-block media-list list-block-search searchbar-found">
                             <ul class="media-list" style="width:100% !important" id="itemlist"></ul>
+                            
+                        </div>
+                        <!-- Preloader -->
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
                         </div>
                     </div>
                 </div>
@@ -112,6 +125,10 @@
     </div>
 </div>
 <script>
+   
+
+
+
     function standby(id) {
         document.getElementById(id).src = 'https://www.google.com/images/srpr/logo11w.png';
     }

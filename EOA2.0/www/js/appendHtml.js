@@ -4,13 +4,27 @@ var offsetOffers = 0;
 var Html_EL = '';
 var vendor_EL = '';
 var offers_EL = '';
+var loading = false;
+
+// Last loaded index
+var lastIndex = $$('#itemlist li').length;
+
+// Max items to load
+var maxItems = $$('#itemlist').length;
+
+// Append items per load
+var itemsPerLoad = 20;
+
+
+
 
 function getItemByQuery() {
 
     db.transaction(function (tx) {
 
-        var query = "SELECT * FROM items LIMIT " + offset + ", 25";
+        var query = "SELECT items.* ,vendor.name  FROM items inner join vendor LIMIT " + offset + ", 25";
         tx.executeSql(query, [], function (tx, resultSet) {
+            console.log(resultSet.rows.item(r));
             $$('#itemlist').html('');
             for (var r = 0; r < resultSet.rows.length; r++) {
                 Html_EL += `<li class="card">
@@ -22,7 +36,7 @@ function getItemByQuery() {
 							<div class="card_list_content">
 								<div class="item-title-row">product name</div>
 								<div class="item-text">`+ resultSet.rows.item(r).ItemDescription + `</div>
-								<div class="item-title-row">`+ resultSet.rows.item(r).VendorName + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
+								<div class="item-title-row">`+ resultSet.rows.item(r).name + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
 							</div>
 						</div>
 				</div>
@@ -55,6 +69,23 @@ function getItemByQuery() {
 
             $$('#itemlist').html(Html_EL);
             myApp.hidePreloader();
+           
+            
+
+            // Attach 'infinite' event handler
+            $$('.infinite-scroll').on('infinite', function () {
+                lastIndex = $$('#itemlist li').length;
+                maxItems = $$('#itemlist').length;
+                // Exit, if loading in progress
+                if (loading) return;
+
+                // Set loading flag
+                loading = true;
+                
+                // Emulate 1s loading
+                getNextItemsSet();
+            });
+           
 
         },
             function (tx, error) {
@@ -65,6 +96,9 @@ function getItemByQuery() {
     }, function () {
         console.log('transaction ok');
         // Html_EL = html;
+
+
+
     });
 
 
@@ -75,20 +109,22 @@ function getNextItemsSet() {
     offset = offset + 25;
     db.transaction(function (tx) {
 
-        var query = "SELECT * FROM items LIMIT " + offset + ", 25";
+        var query = "SELECT items.* ,vendor.name  FROM items inner join vendor LIMIT " + offset + ", 25";
         tx.executeSql(query, [], function (tx, resultSet) {
-            Html_EL = '';
+            Html_EL_next = '';
+          
             for (var r = 0; r < resultSet.rows.length; r++) {
-                Html_EL += `<li class="card">
+                
+                Html_EL_next += `<li class="card">
 				<div class="card-content">
 						<div class="item-content" style="padding:6px">
 							<div class="item-media">
-								<img class="Strechimage" id="ii`+ resultSet.rows.item(r).iteItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `">
+								<img class="Strechimage" id="ii`+ resultSet.rows.item(r).ItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `" onerror="standby(ii`+resultSet.rows.item(r).ItemID+`)">
 							</div>
 							<div class="card_list_content">
 								<div class="item-title-row">product name</div>
 								<div class="item-text">`+ resultSet.rows.item(r).ItemDescription + `</div>
-								<div class="item-title-row">`+ resultSet.rows.item(r).VendorName + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
+								<div class="item-title-row">`+ resultSet.rows.item(r).name + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
 							</div>
 						</div>
 				</div>
@@ -117,7 +153,23 @@ function getNextItemsSet() {
 			</li>`;
             }
 
-            $$('#itemlist').html(Html_EL);
+            $$('#itemlist').append(Html_EL_next);
+            lastIndex = $$('#itemlist li').length;
+
+            //// Attach 'infinite' event handler
+            //$$('.infinite-scroll').on('infinite', function () {
+            //    lastIndex = $$('#itemlist li').length;
+            //    maxItems = $$('#itemlist').length;
+            //    // Exit, if loading in progress
+            //    if (loading) return;
+
+            //    // Set loading flag
+            //    loading = true;
+
+            //    // Emulate 1s loading
+            //    getNextItemsSet();
+            //});
+
             myApp.hidePreloader();
 
         },
@@ -127,8 +179,26 @@ function getNextItemsSet() {
     }, function (error) {
         console.log('transaction error: ' + error.message);
     }, function () {
-        console.log('transaction ok');
-        // Html_EL = html;
+        myApp.detachInfiniteScroll($$('.infinite-scroll'));
+        // Remove preloader
+        $$('.infinite-scroll-preloader').remove();
+        loading = false;
+        lastIndex = $$('#itemlist li').length;
+        // Attach 'infinite' event handler
+        $$('.infinite-scroll').on('infinite', function () {
+            lastIndex = $$('#itemlist li').length;
+            maxItems = $$('#itemlist').length;
+            // Exit, if loading in progress
+            if (loading) return;
+
+            // Set loading flag
+            loading = true;
+
+            // Emulate 1s loading
+            getNextItemsSet();
+        });
+
+
     });
 }
 
@@ -161,7 +231,7 @@ function getVendorByQuery() {
         $$('#vendores .like_li').on('click', function () {
             //@prog get on click vendors
         });
-            
+
     });
 
 }
@@ -228,39 +298,39 @@ function getOffersByQuery() {
 
 
 
-   // for (var i = 0; i < offers.length; i++) {
-        //for (var JJ = 0; JJ < vendoreinfo.length; JJ++) {
-        //    if (vendoreinfo[JJ].UniqeID == offers[i].VendorName) {
-        //        vendorRname = vendoreinfo[JJ].name;
-        //    }
-        //}
-        // li+='<div class="list-block inset"><ul><div  style="disp1lay:inline-block" id="" class="accordion-item inset cfd"><a href="#" class="item-content item-link"><div class="item-inner"><div class="item-title" style="font-size:89%;">'+offers[i].Description+'</div><div id="" style="color:#00695c;  font-size: 93%;" class"item-after"></div></div></a><div class="accordion-item-content"><div class="content-block"><ul><li><div class="item-content"><div class="item-inner"><div class="item-title">Offer Input</div><div class="item-after"></div></div></div></li></ul><div class="co1ntent-block ins1et"><ul id="off'+offers[i].PromotionID+'" ></ul><ul id="or'+offers[i].PromotionID+'"></ul><hr><div class="item-title" style="padding-left:5%">Offer Output</div><ul id="out'+offers[i].PromotionID+'" ></ul></div> </div></div><a href="#" style="color: #00695c; border:0px !important; border-bottom:1px #00695c !important; font-weight:bold"  class="" ></a></ul></div>';
-        //Offers there baby
-        //var shadow = '0 1px 2px rgba(0,0,0,.3);';
-       // if (isAndroid) { shadow = '0 1px 2px rgba(0,0,0,.3);'; } else { shadow = '0 1px 2px rgba(0,0,0,.3);'; }
-        //li+='<div class="list-block inset"><ul style="box-shadow:'+shadow+'"><div  style="disp1lay:inline-block" id="" class="accordion-item inset cfd"><a href="#" class="item-content item-link"><div class="item-inner"><div id="lo'+offers[i].PromotionID+'" class="item-title" style="font-size:89%;">'+vendorRname+' '+offers[i].Description+'</div><div id="" style="color:#00695c;  font-size: 93%;" class"item-after"></div></div></a><div class="accordion-item-content"><div class="content-block"><ul><li><div class="item-content"><div class="item-inner"><div class="item-title" style="    font-weight: bold; color:#00695c">If you buy </div><div class="item-after"></div></div></div></li></ul><div id="ot'+offers[i].PromotionID+'"></div><div class="co1ntent-block ins1et"><div class="item-title" style="padding-left:5%; color:#00695c; font-weight: bold;">You will get</div><ul id="out'+offers[i].PromotionID+'" ></ul></div> </div></div></ul></div>';    
-   //     li += `<li class="swipeout card" style="border-left: dashed 3px rgba(0,0,0,0.3) !important;">
-   //                                     <!-- Usual list element wrapped with "swipeout-content" -->
-   //                                     <div class="swipeout-content">
-   //                                         <!-- Your list element here -->
-   //                                         <div class="item-content">
-   //                                             <div class="item-media"><i class="icon icon-coupon"></i></div>
-   //                                             <div class="item-inner">`+ vendorRname + `-` + offers[i].Description + `</div>
-   //                                         </div>
+    // for (var i = 0; i < offers.length; i++) {
+    //for (var JJ = 0; JJ < vendoreinfo.length; JJ++) {
+    //    if (vendoreinfo[JJ].UniqeID == offers[i].VendorName) {
+    //        vendorRname = vendoreinfo[JJ].name;
+    //    }
+    //}
+    // li+='<div class="list-block inset"><ul><div  style="disp1lay:inline-block" id="" class="accordion-item inset cfd"><a href="#" class="item-content item-link"><div class="item-inner"><div class="item-title" style="font-size:89%;">'+offers[i].Description+'</div><div id="" style="color:#00695c;  font-size: 93%;" class"item-after"></div></div></a><div class="accordion-item-content"><div class="content-block"><ul><li><div class="item-content"><div class="item-inner"><div class="item-title">Offer Input</div><div class="item-after"></div></div></div></li></ul><div class="co1ntent-block ins1et"><ul id="off'+offers[i].PromotionID+'" ></ul><ul id="or'+offers[i].PromotionID+'"></ul><hr><div class="item-title" style="padding-left:5%">Offer Output</div><ul id="out'+offers[i].PromotionID+'" ></ul></div> </div></div><a href="#" style="color: #00695c; border:0px !important; border-bottom:1px #00695c !important; font-weight:bold"  class="" ></a></ul></div>';
+    //Offers there baby
+    //var shadow = '0 1px 2px rgba(0,0,0,.3);';
+    // if (isAndroid) { shadow = '0 1px 2px rgba(0,0,0,.3);'; } else { shadow = '0 1px 2px rgba(0,0,0,.3);'; }
+    //li+='<div class="list-block inset"><ul style="box-shadow:'+shadow+'"><div  style="disp1lay:inline-block" id="" class="accordion-item inset cfd"><a href="#" class="item-content item-link"><div class="item-inner"><div id="lo'+offers[i].PromotionID+'" class="item-title" style="font-size:89%;">'+vendorRname+' '+offers[i].Description+'</div><div id="" style="color:#00695c;  font-size: 93%;" class"item-after"></div></div></a><div class="accordion-item-content"><div class="content-block"><ul><li><div class="item-content"><div class="item-inner"><div class="item-title" style="    font-weight: bold; color:#00695c">If you buy </div><div class="item-after"></div></div></div></li></ul><div id="ot'+offers[i].PromotionID+'"></div><div class="co1ntent-block ins1et"><div class="item-title" style="padding-left:5%; color:#00695c; font-weight: bold;">You will get</div><ul id="out'+offers[i].PromotionID+'" ></ul></div> </div></div></ul></div>';    
+    //     li += `<li class="swipeout card" style="border-left: dashed 3px rgba(0,0,0,0.3) !important;">
+    //                                     <!-- Usual list element wrapped with "swipeout-content" -->
+    //                                     <div class="swipeout-content">
+    //                                         <!-- Your list element here -->
+    //                                         <div class="item-content">
+    //                                             <div class="item-media"><i class="icon icon-coupon"></i></div>
+    //                                             <div class="item-inner">`+ vendorRname + `-` + offers[i].Description + `</div>
+    //                                         </div>
 
-   //                                     </div>
-   //                                     <div class="swipeout-actions-right">
-   //                                         <!-- Swipeout actions links/buttons -->
+    //                                     </div>
+    //                                     <div class="swipeout-actions-right">
+    //                                         <!-- Swipeout actions links/buttons -->
 
-   //                                         <a id="`+ offers[i].PromotionID + `" class="swipeout-close my_green" href="#"><i class="icon-next"></i></a>
-   //                                     </div>
-   //                                     <div class="card-footer">
-   //                                         <a href="#" class="link">View Details</a>
-   //                                     </div>
-   //                                 </li>`;
-   //// }
-   // $$("#offers109").html('');
-   // $$("#offers109").append(li);
+    //                                         <a id="`+ offers[i].PromotionID + `" class="swipeout-close my_green" href="#"><i class="icon-next"></i></a>
+    //                                     </div>
+    //                                     <div class="card-footer">
+    //                                         <a href="#" class="link">View Details</a>
+    //                                     </div>
+    //                                 </li>`;
+    //// }
+    // $$("#offers109").html('');
+    // $$("#offers109").append(li);
     //<a href="#" style="color: #00695c; border:0px !important; border-bottom:1px #00695c !important; font-weight:bold" id="'+offers[i].PromotionID+'"  class="button offer" >'+string+'</a>
 
 
@@ -371,9 +441,18 @@ function getOffersByQuery() {
     //    }
     //    popover = string;
     //    popovertit = n;
-            
+
 
     //});
 
-   
+
 }
+
+
+
+
+
+
+
+
+

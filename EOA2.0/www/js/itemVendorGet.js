@@ -96,8 +96,6 @@ function GetVendorItems() {
 
 }
 function GetItems(url, custumerID, outletID, lang, input) {
-   
-    console.log(url, custumerID, outletID, lang, input);
 
     $$.ajax(
         {
@@ -196,8 +194,6 @@ function vendorData(lang) {
 
     });
 }
-
-
 function GetOffers(url, custumerID, outletID, lang, input) {
     console.log(url, custumerID, outletID, lang, input);
     $$.ajax(
@@ -252,3 +248,4 @@ function GetOffers(url, custumerID, outletID, lang, input) {
         });
 
 }
+
