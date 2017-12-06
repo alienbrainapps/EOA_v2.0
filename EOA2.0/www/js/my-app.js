@@ -192,7 +192,7 @@ myApp.onPageInit('home', function (page) {
     if (isAndroid) {
         $$("#t1").on('click', function () {
 
-            AppendOffers();
+            //AppendOffers();
             $$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
             if (localStorage.getItem('lang') != 1) {
                 $$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
@@ -243,6 +243,7 @@ myApp.onPageInit('home', function (page) {
 
     getItemByQuery();
     getVendorByQuery();
+    getOffersByQuery();
 
 });
 

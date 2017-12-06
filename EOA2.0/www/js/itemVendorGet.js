@@ -87,8 +87,9 @@ function GetVendorItems() {
         mainView.router.loadPage('home.html');
     }
     else {
-
+        GetOffers(vendors[index].URL, vendors[index].custumerID, vendors[index].outletID, lang, vendors[index].input);
         GetItems(vendors[index].URL, vendors[index].custumerID, vendors[index].outletID, lang, vendors[index].input);
+       
     }
 
 
@@ -194,4 +195,60 @@ function vendorData(lang) {
         GetVendorItems();
 
     });
+}
+
+
+function GetOffers(url, custumerID, outletID, lang, input) {
+    console.log(url, custumerID, outletID, lang, input);
+    $$.ajax(
+        {
+            url: "" + url + "/offers?customerID=" + custumerID + "&outletID=" + outletID + "&languageID=" + lang + "",
+            method: "Get",
+            success: function (data, xhr) {
+                var theOfferIs = JSON.parse(data);
+
+                db.transaction(function (tx) {
+
+                    var query = "DELETE  FROM offers WHERE VendorID = ? ";
+
+                    tx.executeSql(query, [input], function (tx, res) {
+                        console.log("removeId: " + res.insertId);
+                        console.log("rowsAffected: " + res.rowsAffected);
+                    },
+                        function (tx, error) {
+                            console.log('DELETE error: ' + error.message);
+                        });
+                }, function (error) {
+                    console.log('transaction error: ' + error.message);
+                }, function () {
+                    console.log('transaction ok');
+                    //@prog time to insert item to item table
+                    db.transaction(function (tx) {
+                        for (var d = 0; d < theOfferIs.length; d++) {
+                            var query = "INSERT INTO offers (PromotionID, Description,IsTaken,InputOptions,CalculatedOptions,VendorName,VendorID) VALUES (?,?,?,?,?,?,?)";
+
+
+                            tx.executeSql(query, [theOfferIs[d].PromotionID, theOfferIs[d].Description, theOfferIs[d].IsTaken, theOfferIs[d].InputOptions, theOfferIs[d].CalculatedOptions, theOfferIs[d].VendorName,input], function (tx, res) {
+                                console.log("insertId: " + res.insertId + " -- probably 1");
+                                console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                            },
+                                function (tx, error) {
+                                    console.log('INSERT error: ' + error.message);
+                                });
+                        }
+
+                    }, function (error) {
+                        console.log('transaction error: ' + error.message);
+                    }, function () {
+                        console.log('transaction ok');
+                       
+                    });
+
+                });
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+
+            }
+        });
+
 }
