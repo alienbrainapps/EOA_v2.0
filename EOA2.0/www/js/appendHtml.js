@@ -183,7 +183,7 @@ function getOffersByQuery() {
 
     db.transaction(function (tx) {
 
-        var query = "SELECT * FROM offers LIMIT " + offsetOffers + ", 25";
+        var query = "select * , vendor.name  from offers inner join vendor on vendor.input = offers.VendorID  LIMIT " + offsetOffers + ", 25";
         tx.executeSql(query, [], function (tx, resultSet) {
             $$('#offers109').html('');
             for (var r = 0; r < resultSet.rows.length; r++) {
@@ -193,7 +193,7 @@ function getOffersByQuery() {
                                             <!-- Your list element here -->
                                             <div class="item-content">
                                                 <div class="item-media"><i class="icon icon-coupon"></i></div>
-                                                <div class="item-inner">`+ resultSet.rows.item(r).VendorName + `<br>` + resultSet.rows.item(r).Description + `</div>
+                                                <div class="item-inner">`+ resultSet.rows.item(r).name + `<br>` + resultSet.rows.item(r).Description + `</div>
                                             </div>
 
                                         </div>

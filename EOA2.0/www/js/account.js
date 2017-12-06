@@ -117,6 +117,7 @@ function Postlogin(postData) {
             },
             error: function (data, xhr) {
                 myApp.hidePreloader("Loading");
+                myApp.alert('Please check your connection', 'Error');
                 var string = '';
                 var lang = localStorage.getItem('lang');
             }

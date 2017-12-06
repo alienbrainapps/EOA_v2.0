@@ -228,7 +228,7 @@ function GetOffers(url, custumerID, outletID, lang, input) {
                             var query = "INSERT INTO offers (PromotionID, Description,IsTaken,InputOptions,CalculatedOptions,VendorName,VendorID) VALUES (?,?,?,?,?,?,?)";
 
 
-                            tx.executeSql(query, [theOfferIs[d].PromotionID, theOfferIs[d].Description, theOfferIs[d].IsTaken, theOfferIs[d].InputOptions, theOfferIs[d].CalculatedOptions, theOfferIs[d].VendorName,input], function (tx, res) {
+                            tx.executeSql(query, [theOfferIs[d].PromotionID, theOfferIs[d].Description, theOfferIs[d].IsTaken, JSON.stringify(theOfferIs[d].InputOptions), JSON.stringify(theOfferIs[d].CalculatedOptions), theOfferIs[d].VendorName, input], function (tx, res) {
                                 console.log("insertId: " + res.insertId + " -- probably 1");
                                 console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
                             },
