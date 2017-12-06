@@ -3,8 +3,10 @@ var offsetVendor = 0;
 var offsetOffers = 0;
 var Html_EL = '';
 var vendor_EL = '';
+var brand_EL = '';
 var offers_EL = '';
 var loading = false;
+var vendorSelected = '';
 
 // Last loaded index
 var lastIndex = $$('#itemlist li').length;
@@ -218,8 +220,14 @@ function getVendorByQuery() {
                                          <i class="icon icon-next"></i>		
                                          </div>		
                                      </div>`;
+
+               
             }
             $$("#vendores").html(vendor_EL);
+            $$('#vendores .like_li').on('click', function () {
+                vendorSelected = this.id;
+                mainView.router.loadPage({ url: "Brands.html", force: true });
+            });
         },
             function (tx, error) {
                 console.log('SELECT error: ' + error.message);
@@ -449,7 +457,48 @@ function getOffersByQuery() {
 }
 
 
+function getBrand(id) {
+    console.log(id);
+    db.transaction(function (tx) {
+        var query = `select distinct ifnull(Brand,vendor.name||' Other') as brandName, vendor.IMG from items 
+                                    inner join vendor on items.vendorid = vendor.input
+                                    where vendorid = ?` ;
+        tx.executeSql(query, [id], function (tx, resultSet) {
+            brand_EL = '';
+            for (var r = 0; r < resultSet.rows.length; r++) {
+                //@prog append vendor
+                brand_EL += `<div class="item-content card like_li" id="` + resultSet.rows.item(r).brandName + `">
+                                        <div class="item-media"><img src="` + resultSet.rows.item(r).IMG + `" width="80" /></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">`+ resultSet.rows.item(r).brandName + `</div>
+                                        </div>
+                                        <div class="item-after">
+                                            <i class="icon icon-next"></i>
+                                        </div>
+                                    </div>`;
 
+
+            }
+           
+            $$("#Brands").append(brand_EL);
+            $$("#Brands .like_li").on('click', function () {
+                bundre = this.id;
+                mainView.router.loadPage({ url: "Allitems.html", force: true });
+            });
+        },
+            function (tx, error) {
+                console.log('SELECT error: ' + error.message);
+            });
+    }, function (error) {
+        console.log('transaction error: ' + error.message);
+    }, function () {
+        console.log('transaction ok');
+        $$('#vendores .like_li').on('click', function () {
+            //@prog get on click vendors
+        });
+
+    });
+}
 
 
 

@@ -798,14 +798,14 @@ myApp.onPageInit('selectstat', function (page) {
 });
 //mahmoud saleh
 myApp.onPageInit('Brand', function (page) {
-    var itemttitle = '';
-    var imgsource = '';
-    for (var t = 0; t < vendoreinfo.length; t++) {
-        if (vendoreinfo[t].UniqeID == guesswhat) {
-            imgsource = vendoreinfo[t].IMG;
-        }
-    }
-    console.log(vendorearr);
+    //var itemttitle = '';
+    //var imgsource = '';
+    //for (var t = 0; t < vendoreinfo.length; t++) {
+    //    if (vendoreinfo[t].UniqeID == guesswhat) {
+    //        imgsource = vendoreinfo[t].IMG;
+    //    }
+    //}
+    //console.log(vendorearr);
 
     $$("#backbrand").on('click', function () {
         mainView.router.loadPage({ url: "home.html", force: true });
@@ -821,31 +821,33 @@ myApp.onPageInit('Brand', function (page) {
 
 
     });
-    for (var k in vendorearr) {
-        li = '';
-        var arra = vendorearr[k];
-        console.log(arra[0]);
-        var Brandsarr = arra[0];
-        for (var g in Brandsarr) {
-            if (g == "null") { itemttitle = "Other" } else { itemttitle = g }
-            //li += '<li id="' + g + '" ><a href="Brands.html" class="item-link item-content"><div class="item-media"><img src="' + imgsource + '" width="50" height="50"></div><div class="item-inner"><div class="item-title">' + itemttitle + '</div></div> </a></li>';
-            li += `<div class="item-content card like_li" id="` + g + `">
-                                        <div class="item-media"><img src="` + imgsource + `" width="80" /></div>
-                                        <div class="item-inner">
-                                            <div class="item-title">`+ itemttitle + `</div>
-                                        </div>
-                                        <div class="item-after">
-                                            <i class="icon icon-next"></i>
-                                        </div>
-                                    </div>`;
-        }
-        $$("#Brands").append(li);
-    }
 
-    $$("#Brands .like_li").on('click', function () {
-        bundre = this.id;
-        mainView.router.loadPage({ url: "Allitems.html", force: true });
-    });
+    getBrand(vendorSelected);
+    //for (var k in vendorearr) {
+    //    li = '';
+    //    var arra = vendorearr[k];
+    //    console.log(arra[0]);
+    //    var Brandsarr = arra[0];
+    //    for (var g in Brandsarr) {
+    //        if (g == "null") { itemttitle = "Other" } else { itemttitle = g }
+    //        //li += '<li id="' + g + '" ><a href="Brands.html" class="item-link item-content"><div class="item-media"><img src="' + imgsource + '" width="50" height="50"></div><div class="item-inner"><div class="item-title">' + itemttitle + '</div></div> </a></li>';
+    //        li += `<div class="item-content card like_li" id="` + g + `">
+    //                                    <div class="item-media"><img src="` + imgsource + `" width="80" /></div>
+    //                                    <div class="item-inner">
+    //                                        <div class="item-title">`+ itemttitle + `</div>
+    //                                    </div>
+    //                                    <div class="item-after">
+    //                                        <i class="icon icon-next"></i>
+    //                                    </div>
+    //                                </div>`;
+    //    }
+    //    $$("#Brands").append(li);
+    //}
+
+    //$$("#Brands .like_li").on('click', function () {
+    //    bundre = this.id;
+    //    mainView.router.loadPage({ url: "Allitems.html", force: true });
+    //});
 
 });
 

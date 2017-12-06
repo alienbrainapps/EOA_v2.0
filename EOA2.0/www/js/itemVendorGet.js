@@ -26,8 +26,8 @@ function GetVendores() {
                     var query = "DELETE FROM vendor";
 
                     tx.executeSql(query, [], function (tx, res) {
-                        console.log("removeId: " + res.insertId);
-                        console.log("rowsAffected: " + res.rowsAffected);
+                        //console.log("removeId: " + res.insertId);
+                       // console.log("rowsAffected: " + res.rowsAffected);
                     },
                         function (tx, error) {
                             console.log('DELETE error: ' + error.message);
@@ -110,8 +110,8 @@ function GetItems(url, custumerID, outletID, lang, input) {
                     var query = "DELETE  FROM items WHERE VendorID = ? ";
 
                     tx.executeSql(query, [input], function (tx, res) {
-                        console.log("removeId: " + res.insertId);
-                        console.log("rowsAffected: " + res.rowsAffected);
+                        //console.log("removeId: " + res.insertId);
+                        //console.log("rowsAffected: " + res.rowsAffected);
                     },
                         function (tx, error) {
                             console.log('DELETE error: ' + error.message);
@@ -225,8 +225,8 @@ function GetOffers(url, custumerID, outletID, lang, input) {
 
 
                             tx.executeSql(query, [theOfferIs[d].PromotionID, theOfferIs[d].Description, theOfferIs[d].IsTaken, JSON.stringify(theOfferIs[d].InputOptions), JSON.stringify(theOfferIs[d].CalculatedOptions), theOfferIs[d].VendorName, input], function (tx, res) {
-                                console.log("insertId: " + res.insertId + " -- probably 1");
-                                console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                               // console.log("insertId: " + res.insertId + " -- probably 1");
+                              //  console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
                             },
                                 function (tx, error) {
                                     console.log('INSERT error: ' + error.message);
