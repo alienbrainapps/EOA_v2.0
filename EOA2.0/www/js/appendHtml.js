@@ -33,7 +33,7 @@ function getItemByQuery() {
 				<div class="card-content">
 						<div class="item-content" style="padding:6px">
 							<div class="item-media">
-								<img class="Strechimage" id="ii`+ resultSet.rows.item(r).iteItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `">
+								<img class="Strechimage" width="80" height="80" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
 							</div>
 							<div class="card_list_content">
 								<div class="item-title-row">product name</div>
@@ -111,7 +111,7 @@ function getNextItemsSet() {
     offset = offset + 25;
     db.transaction(function (tx) {
 
-        var query = "SELECT items.* ,vendor.name  FROM items inner join vendor LIMIT " + offset + ", 25";
+        var query = "SELECT items.* ,vendor.name   FROM items inner join vendor LIMIT " + offset + ", 25";
         tx.executeSql(query, [], function (tx, resultSet) {
             Html_EL_next = '';
           
@@ -121,7 +121,7 @@ function getNextItemsSet() {
 				<div class="card-content">
 						<div class="item-content" style="padding:6px">
 							<div class="item-media">
-								<img class="Strechimage" id="ii`+ resultSet.rows.item(r).ItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `" onerror="standby(ii`+resultSet.rows.item(r).ItemID+`)">
+								<img class="Strechimage" width="80" height="80" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
 							</div>
 							<div class="card_list_content">
 								<div class="item-title-row">product name</div>
@@ -499,7 +499,11 @@ function getBrand(id) {
 
     });
 }
+function standby() {
+   
 
+    $$(this).src = 'https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/source.gif';
+}
 
 
 

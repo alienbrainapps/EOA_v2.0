@@ -127,8 +127,8 @@ function GetItems(url, custumerID, outletID, lang, input) {
 
 
                             tx.executeSql(query, [itemsIs[d].ItemID, itemsIs[d].ItemDescription, itemsIs[d].ItemCode, itemsIs[d].ItemBarcode, itemsIs[d].PackID, itemsIs[d].UOM, itemsIs[d].Price, itemsIs[d].Tax, itemsIs[d].Discount, itemsIs[d].PiecesInPack, itemsIs[d].IsDefaultPack, itemsIs[d].DiscountTypeID, itemsIs[d].ItemCategoryID, itemsIs[d].DivisionID, itemsIs[d].BrandID, itemsIs[d].ItemCategory, itemsIs[d].Division, itemsIs[d].Brand, itemsIs[d].PackTypeID, itemsIs[d].PromotedDiscount, itemsIs[d].CalculatedDiscount, itemsIs[d].RequiredQuanity, itemsIs[d].ItemImageName, itemsIs[d].VendorName, itemsIs[d].CurrencyName, input], function (tx, res) {
-                                console.log("insertId: " + res.insertId + " -- probably 1");
-                                console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                                //console.log("insertId: " + res.insertId + " -- probably 1");
+                                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
                             },
                                 function (tx, error) {
                                     console.log('INSERT error: ' + error.message);
