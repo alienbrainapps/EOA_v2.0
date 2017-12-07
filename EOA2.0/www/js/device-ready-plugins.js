@@ -45,7 +45,7 @@ var app = {
 app.initialize();
 /*********Open database SQL Light********/
 function createTabels() {
-    console.log('i am call the db creat table')
+    
     db.transaction(function (tx) {
         //@prog create Tables
         tx.executeSql('CREATE TABLE IF NOT EXISTS user (_id, email,password,name,mobilenumber,landline,retailer,commercilanumber,PhoneNumber,long,lat,Ordershistory)');

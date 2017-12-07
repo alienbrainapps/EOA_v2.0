@@ -528,44 +528,7 @@ $$("#catg").click(function () { mainView.router.loadPage({ url: 'catg.html', for
 
 function Postlogin(postData) {
 
-    //      var a=  {
-    //        "_id": "5961dd0628ba930e13992aae",
-    //        "password": "newpass",
-    //        "email": "email22",
-    //        "retailer": "retailer",
-    //        "landline": 5666,
-    //        "mobilenumber": 100,
-    //        "name": "name",
-    //        "commercilanumber": 4000,
-    //        "PhoneNumber": 500,
-    //        "long": "long",
-    //        "lat": "lat",
-    //        "__v": 3,
-    //        "regstrationcode": [
-    //            [
-    //                [
-    //                    1,
-    //                    89,
-    //                    1
-    //                ]
-    //            ],
-    //            [
-    //                [
-    //                    2,
-    //                    89,
-    //                    1
-    //                ]
-    //            ],
-    //            [
-    //                [
-    //                   3,
-    //                    89,
-    //                    1
-    //                ]
-    //            ]
-    //        ]
-    //    }
-
+  
 
     console.log(customerids);
 

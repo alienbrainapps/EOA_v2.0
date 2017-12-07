@@ -28,6 +28,7 @@ function Postlogin(postData) {
             dataType: "json",
             success: function (data, status, xhr) {
                 if (data == null) {
+
                     var string = '';
                     var lang = localStorage.getItem('lang');
                     if (lang == 1) { string = 'Invalid username or password'; } else { string = 'خطاء في اسم المستخدم او كلمة السر '; }
@@ -40,7 +41,7 @@ function Postlogin(postData) {
                     localStorage.setItem('username', JSON.stringify(data.email))
                     localStorage.setItem('profile', JSON.stringify(data));
                     localStorage.setItem('userid', data._id);
-
+                    localStorage.setItem('pass', JSON.stringify(data.password))
                     if (!data.regstrationcode.length) {
                         //@prog if is user dont have regstrationcode (vendor) , stored some variable as empty  and open barcode
 
@@ -67,8 +68,8 @@ function Postlogin(postData) {
                             var query = "DELETE  FROM vendorCustumer";
 
                             tx.executeSql(query, [], function (tx, res) {
-                                console.log("removeId: " + res.insertId);
-                                console.log("rowsAffected: " + res.rowsAffected);
+                                //console.log("removeId: " + res.insertId);
+                                //console.log("rowsAffected: " + res.rowsAffected);
                             },
                                 function (tx, error) {
                                     console.log('DELETE error: ' + error.message);
@@ -116,10 +117,39 @@ function Postlogin(postData) {
                 }
             },
             error: function (data, xhr) {
-                myApp.hidePreloader("Loading");
-                myApp.alert('Please check your connection', 'Error');
-                var string = '';
-                var lang = localStorage.getItem('lang');
+
+                if (JSON.parse(localStorage.getItem('username')) != "" || JSON.parse(Storage.getItem('pass')) != undefined) {
+                    myApp.hidePreloader("Loading");
+                    myApp.alert(' Try offline Login ! check your connection to keep updated', 'Warning');
+                    console.log(JSON.parse(localStorage.getItem('username')));
+                    console.log(JSON.parse(localStorage.getItem('pass')));
+                    var offlineUser = JSON.parse(postData);
+                    if (offlineUser.email == JSON.parse(localStorage.getItem('username')) && offlineUser.password == JSON.parse(localStorage.getItem('pass'))) {
+                        myApp.hidePreloader("Loading");
+                        var lang = localStorage.getItem('lang');
+                        mainView.router.loadPage('home.html');
+
+                    } else {
+                        myApp.hidePreloader("Loading");
+                        var string = '';
+                        var lang = localStorage.getItem('lang');
+                        if (lang == 1) { string = 'Invalid username or password'; } else { string = 'خطاء في اسم المستخدم او كلمة السر '; }
+                        myApp.alert(string, 'EOA');
+                    }
+
+
+                } else {
+                    myApp.hidePreloader("Loading");
+                    var string = '';
+                    var lang = localStorage.getItem('lang');
+                    if (lang == 1) { string = 'Invalid username or password'; } else { string = 'خطاء في اسم المستخدم او كلمة السر '; }
+                    myApp.alert(string, 'EOA');
+                }
+              
+
+              
+
+
             }
         });
 }
