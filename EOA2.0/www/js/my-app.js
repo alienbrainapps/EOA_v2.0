@@ -191,12 +191,13 @@ myApp.onPageInit('home', function (page) {
 
     if (isAndroid) {
         $$("#t1").on('click', function () {
-
+            $$('#itemlist li:nth-child(n + 25)').remove();
+            lastIndex=$$('#itemlist li').length;
             //AppendOffers();
-            $$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
-            if (localStorage.getItem('lang') != 1) {
-                $$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
-            }
+            //$$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
+            //if (localStorage.getItem('lang') != 1) {
+            //    $$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
+            //}
 
             $$(".bundle").show();
             $$(".item").hide();
@@ -224,11 +225,12 @@ myApp.onPageInit('home', function (page) {
         });
         $$("#t2").on('click', function () {
 
-
-            $$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
-            if (localStorage.getItem('lang') != 1) {
-                $$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
-            }
+            $$('#itemlist li:nth-child(n + 50)').remove();
+            lastIndex=$$('#itemlist li').length;
+            //$$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
+            //if (localStorage.getItem('lang') != 1) {
+            //    $$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
+            //}
 
             $$(".vendore").show();
             $$(".bundle").hide();

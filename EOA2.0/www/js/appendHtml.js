@@ -11,29 +11,34 @@ var vendorSelected = '';
 // Last loaded index
 var lastIndex = $$('#itemlist li').length;
 
-// Max items to load
-var maxItems = $$('#itemlist').length;
-
-// Append items per load
-var itemsPerLoad = 20;
 
 
 
 
 function getItemByQuery() {
-
+    if (lastIndex > 24) {
+        offset = $$('#itemlist li').length;
+    } else {
+        offset = 0;
+        $$('#itemlist').html('');
+        // Attach 'infinite' event handler
+        $$('.infinite-scroll').on('infinite', function () {
+            scrollingItems();
+        });
+    }
     db.transaction(function (tx) {
 
         var query = "SELECT items.* ,vendor.name  FROM items inner join vendor LIMIT " + offset + ", 25";
         tx.executeSql(query, [], function (tx, resultSet) {
             console.log(resultSet.rows.item(r));
-            $$('#itemlist').html('');
+            //$$('#itemlist').html('');
+            if (resultSet.rows.length == 0) { return; }
             for (var r = 0; r < resultSet.rows.length; r++) {
-                Html_EL += `<li class="card">
+                Html_EL = `<li class="card">
 				<div class="card-content">
 						<div class="item-content" style="padding:6px">
 							<div class="item-media">
-								<img class="Strechimage" width="80" height="80" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
+								<img class="Strechimage" width="70" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
 							</div>
 							<div class="card_list_content">
 								<div class="item-title-row">product name</div>
@@ -65,29 +70,17 @@ function getItemByQuery() {
 					</a>
 				</div>
 			</li>`;
-
+                $$('#itemlist').append(Html_EL);
 
             }
 
-            $$('#itemlist').html(Html_EL);
+           
+            lastIndex = $$('#itemlist li').length;
             myApp.hidePreloader();
            
-            
 
-            // Attach 'infinite' event handler
-            $$('.infinite-scroll').on('infinite', function () {
-                lastIndex = $$('#itemlist li').length;
-                maxItems = $$('#itemlist').length;
-                // Exit, if loading in progress
-                if (loading) return;
-
-                // Set loading flag
-                loading = true;
-                
-                // Emulate 1s loading
-                getNextItemsSet();
-            });
-           
+            loading = false;
+        
 
         },
             function (tx, error) {
@@ -105,6 +98,7 @@ function getItemByQuery() {
 
 
 }
+
 
 
 function getNextItemsSet() {
@@ -157,7 +151,17 @@ function getNextItemsSet() {
 
             $$('#itemlist').append(Html_EL_next);
             lastIndex = $$('#itemlist li').length;
+            maxItems = lastIndex + 25;
+            if (lastIndex+1 >= maxItems) {
+                getNextItemsSet();
 
+            } else {
+                myApp.detachInfiniteScroll($$('.infinite-scroll'));
+                // Remove preloader
+                $$('.infinite-scroll-preloader').remove();
+                return;
+
+            }
             //// Attach 'infinite' event handler
             //$$('.infinite-scroll').on('infinite', function () {
             //    lastIndex = $$('#itemlist li').length;
@@ -181,26 +185,7 @@ function getNextItemsSet() {
     }, function (error) {
         console.log('transaction error: ' + error.message);
     }, function () {
-        myApp.detachInfiniteScroll($$('.infinite-scroll'));
-        // Remove preloader
-        $$('.infinite-scroll-preloader').remove();
-        loading = false;
-        lastIndex = $$('#itemlist li').length;
-        // Attach 'infinite' event handler
-        $$('.infinite-scroll').on('infinite', function () {
-            lastIndex = $$('#itemlist li').length;
-            maxItems = $$('#itemlist').length;
-            // Exit, if loading in progress
-            if (loading) return;
-
-            // Set loading flag
-            loading = true;
-
-            // Emulate 1s loading
-            getNextItemsSet();
-        });
-
-
+       
     });
 }
 
@@ -499,13 +484,18 @@ function getBrand(id) {
 
     });
 }
-function standby() {
+
+
+
+
+function scrollingItems(){
+    
+        // Exit, if loading in progress
+        if (loading) return;
+        // Set loading flag
+        loading = true;
+
+        // Emulate 1s loading
+        getItemByQuery();
    
-
-    $$(this).src = 'https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/source.gif';
 }
-
-
-
-
-
