@@ -101,7 +101,7 @@ function Postlogin(postData) {
                             });
                         });
 
-                        
+
                         //@prog check if user have order history and update on to user tabel 
                         statusstring = data.Ordershistory;
                         if (data.Ordershistory == "undefined") {
@@ -112,21 +112,18 @@ function Postlogin(postData) {
                         $$('.statusbar-overlay').css('color', '#fff');
                         $$(".toolbar").show();
                         $$(".navbar").show();
-                        
+
                     }
                 }
             },
             error: function (data, xhr) {
-
-                if (JSON.parse(localStorage.getItem('username')) != "" || JSON.parse(Storage.getItem('pass')) != undefined) {
-                    myApp.hidePreloader("Loading");
-                    myApp.alert(' Try offline Login ! check your connection to keep updated', 'Warning');
-                    console.log(JSON.parse(localStorage.getItem('username')));
-                    console.log(JSON.parse(localStorage.getItem('pass')));
+                myApp.hidePreloader("Loading");
+                myApp.confirm('connect to internt to keep updated and requset order and more ...','offline Login', function () {
+                    myApp.showPreloader("Loading");
                     var offlineUser = JSON.parse(postData);
                     if (offlineUser.email == JSON.parse(localStorage.getItem('username')) && offlineUser.password == JSON.parse(localStorage.getItem('pass'))) {
-                        myApp.hidePreloader("Loading");
                         var lang = localStorage.getItem('lang');
+                        myApp.hidePreloader("Loading");
                         mainView.router.loadPage('home.html');
 
                     } else {
@@ -136,18 +133,17 @@ function Postlogin(postData) {
                         if (lang == 1) { string = 'Invalid username or password'; } else { string = 'خطاء في اسم المستخدم او كلمة السر '; }
                         myApp.alert(string, 'EOA');
                     }
+                });
+
+                //myApp.hidePreloader("Loading");
+                //var string = '';
+                //var lang = localStorage.getItem('lang');
+                //if (lang == 1) { string = 'Invalid username or password'; } else { string = 'خطاء في اسم المستخدم او كلمة السر '; }
+                //myApp.alert(string, 'EOA');
 
 
-                } else {
-                    myApp.hidePreloader("Loading");
-                    var string = '';
-                    var lang = localStorage.getItem('lang');
-                    if (lang == 1) { string = 'Invalid username or password'; } else { string = 'خطاء في اسم المستخدم او كلمة السر '; }
-                    myApp.alert(string, 'EOA');
-                }
-              
 
-              
+
 
 
             }
