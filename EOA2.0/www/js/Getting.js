@@ -1200,7 +1200,7 @@ localStorage.setItem("Ret"+test2,String);
 }
 
 function AppenedSumm(){
-	
+	//@add radio buton for multi package ;
  
 	 var test = localStorage.getItem("ItemID");
 	if(test==''){return;}
@@ -1541,69 +1541,73 @@ $$('#itemlist').on('click','li .view_details_btn', function () {
 	 
 }
 
-function AppendItemsVendore(arr23){
+function AppendItemsVendore(arr23) {
+
+
+    //@prog this calculate area 
 	
-	var storeditem=localStorage.getItem("storeditem");
-	if(storeditem==""){return;}
-	var items=arr23;
+	//var storeditem=localStorage.getItem("storeditem");
+	//if(storeditem==""){return;}
+	//var items=arr23;
 		
-		  var arritem=[];
-	   //    (Price,Discount,Tax,Quntity,DiscountType)
-	  html='';
-	for (var i = 0; i <items.length; i++)
-	{
+	//	  var arritem=[];
+	//   //    (Price,Discount,Tax,Quntity,DiscountType)
+	//  html='';
+	//for (var i = 0; i <items.length; i++)
+	//{
 		
-		localStorage.setItem("bar"+items[i].ItemBarcode,items[i]);
-		var lang=localStorage.getItem('lang');
-		var nestle='';
-		if(lang==1){ nestle='Unitra';}else{nestle='نستله';}
-		var Q=1;
-		var Price= calcluteprice(items[i].Price,items[i].Discount,items[i].Tax,Q,items[i].DiscountTypeID); 
-		var truncated = Math.floor(Price * 100) / 100; 
-		var c=i-1;
-		gmg='';
-		for(var g=0;g<vendoreinfo.length;g++){
-			if(vendoreinfo[g].UniqeID==guesswhat)
-			 gmg =vendoreinfo[g].IMG;
-		}
+	//	localStorage.setItem("bar"+items[i].ItemBarcode,items[i]);
+	//	var lang=localStorage.getItem('lang');
+	//	var nestle='';
+	//	if(lang==1){ nestle='Unitra';}else{nestle='نستله';}
+	//	var Q=1;
+	//	var Price= calcluteprice(items[i].Price,items[i].Discount,items[i].Tax,Q,items[i].DiscountTypeID); 
+	//	var truncated = Math.floor(Price * 100) / 100; 
+	//	var c=i-1;
+	//	gmg='';
+	//	for(var g=0;g<vendoreinfo.length;g++){
+	//		if(vendoreinfo[g].UniqeID==guesswhat)
+	//		 gmg =vendoreinfo[g].IMG;
+	//	}
 		
 	 //    var vendorename=getnamevendore(items[i].VendorName);
-Vendoreimage=GetImage(items[i].ItemID);
-		if(arritem[c]==items[i].ItemID){}else
-		if(items[i].Price==0){}else
-            //Am there
+//Vendoreimage=GetImage(items[i].ItemID);
+		//if(arritem[c]==items[i].ItemID){}else
+		//if(items[i].Price==0){}else
+            //@prog this is item list area
+
            // html += '<li  class="item-conte1nt test" id="' + items[i].ItemID + '" data-VendorName="' + items[i].VendorName + '" data-ItemCode="' + items[i].ItemCode + '" data-ItemBarcode="' + items[i].ItemBarcode + '" data-PackID="' + items[i].PackID + '" data-UOM="' + items[i].UOM + '" data-RequiredQuanity="' + items[i].RequiredQuanity + '" data-Price="' + items[i].Price + '" data-Tax="' + items[i].Tax + '" data-Discount="' + items[i].Discount + '" data-PiecesInPack="' + items[i].PiecesInPack + '" data-IsDefaultPack="' + items[i].IsDefaultPack + '" data-PackGroupID="' + items[i].PackGroupID + '" data-IsAdded="' + items[i].IsAdded + '" data-DiscountTypeID="' + items[i].DiscountTypeID + '" data-ItemID="' + items[i].ItemID + '" data-ItemDescription="' + items[i].ItemDescription + '" data-pack="' + items[i].PackTypeID + '"><a href="#" class="item-link item-content"><div class="item-media"style="width:40px; height:40px"><img class="Strechimage" src="' + Vendoreimage + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + items[i].ItemDescription + '</div><div class="item-after" style="padding-top: 1.5%;font-size: smaller;" >       </div></div><div class="item-subtitle">' + curency + items[i].Price + '</div></div></a></li>';
-            html += `
-                        <li class="item-conte1nt test" 
-		                         id="` + items[i].ItemID + `" 
-		                         data-VendorName="` + items[i].VendorName + `"
-		                         data-ItemCode="` + items[i].ItemCode + `" 
-		                         data-ItemBarcode="` + items[i].ItemBarcode + `" 
-		                         data-PackID="` + items[i].PackID + `" 
-		                         data-UOM="` + items[i].UOM + `" 
-		                         data-RequiredQuanity="` + items[i].RequiredQuanity + `" 
-		                         data-Price="` + items[i].Price + `" 
-		                         data-Tax="` + items[i].Tax + `" 
-		                         data-Discount="` + items[i].Discount + `" 
-		                         data-PiecesInPack="` + items[i].PiecesInPack + `" 
-		                         data-IsDefaultPack="` + items[i].IsDefaultPack + `" 
-		                         data-PackGroupID="` + items[i].PackGroupID + `" 
-		                         data-IsAdded="` + items[i].IsAdded + `" 
-		                         data-DiscountTypeID="` + items[i].DiscountTypeID + `" 
-		                         data-ItemID="` + items[i].ItemID + `" 
-		                         data-ItemDescription="` + items[i].ItemDescription + `" 
-		                         data-pack="` + items[i].PackTypeID + `">
-                         <a href="#" class="item-link item-content">
-                            <div class="item-media"><img src="`+ Vendoreimage + `" width="80"  /></div>
-                             <div class="item-inner">
-                              <div class="item-title">`+ items[i].ItemDescription + ` <br /><span class="green_text">` + curency + items[i].Price + `</span></div>
-                             </div>
-                          </a>
-                        </li>
-`
-        arritem.push(items[i].ItemID);
-	}  
-		$$('#nes').append(html);    
+//            html += `
+//                        <li class="item-conte1nt test" 
+//		                         id="` + items[i].ItemID + `" 
+//		                         data-VendorName="` + items[i].VendorName + `"
+//		                         data-ItemCode="` + items[i].ItemCode + `" 
+//		                         data-ItemBarcode="` + items[i].ItemBarcode + `" 
+//		                         data-PackID="` + items[i].PackID + `" 
+//		                         data-UOM="` + items[i].UOM + `" 
+//		                         data-RequiredQuanity="` + items[i].RequiredQuanity + `" 
+//		                         data-Price="` + items[i].Price + `" 
+//		                         data-Tax="` + items[i].Tax + `" 
+//		                         data-Discount="` + items[i].Discount + `" 
+//		                         data-PiecesInPack="` + items[i].PiecesInPack + `" 
+//		                         data-IsDefaultPack="` + items[i].IsDefaultPack + `" 
+//		                         data-PackGroupID="` + items[i].PackGroupID + `" 
+//		                         data-IsAdded="` + items[i].IsAdded + `" 
+//		                         data-DiscountTypeID="` + items[i].DiscountTypeID + `" 
+//		                         data-ItemID="` + items[i].ItemID + `" 
+//		                         data-ItemDescription="` + items[i].ItemDescription + `" 
+//		                         data-pack="` + items[i].PackTypeID + `">
+//                         <a href="#" class="item-link item-content">
+//                            <div class="item-media"><img src="`+ Vendoreimage + `" width="80"  /></div>
+//                             <div class="item-inner">
+//                              <div class="item-title">`+ items[i].ItemDescription + ` <br /><span class="green_text">` + curency + items[i].Price + `</span></div>
+//                             </div>
+//                          </a>
+//                        </li>
+//`
+//        arritem.push(items[i].ItemID);
+//	}  
+//		$$('#nes').append(html);    
 	
 }
 

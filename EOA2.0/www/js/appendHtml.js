@@ -7,6 +7,11 @@ var brand_EL = '';
 var offers_EL = '';
 var loading = false;
 var vendorSelected = '';
+var brandId = '';
+var brandItem_EL = '';
+var brandsVendorName = '';
+var itemSelected = '';
+var itemDetails_EL = '';
 
 // Last loaded index
 var lastIndex = $$('#itemlist li').length;
@@ -28,7 +33,8 @@ function getItemByQuery() {
     }
     db.transaction(function (tx) {
 
-        var query = "SELECT items.* ,vendor.name  FROM items inner join vendor LIMIT " + offset + ", 25";
+        var query = "SELECT distinct items.* ,vendor.name  FROM items inner join vendor on vendor.input = items.VendorID where (items.IsDefaultPack='true' and itemid in (select itemid from items where  items.IsDefaultPack='true')) or packid in (select min(packID) from items where itemid not in (select itemid from items where  items.IsDefaultPack='true') group by itemid)LIMIT " + offset + ",25"
+        console.log('query', query);
         tx.executeSql(query, [], function (tx, resultSet) {
             console.log(resultSet.rows.item(r));
             //$$('#itemlist').html('');
@@ -41,9 +47,9 @@ function getItemByQuery() {
 								<img class="Strechimage" width="70" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
 							</div>
 							<div class="card_list_content">
-								<div class="item-title-row">product name</div>
-								<div class="item-text">`+ resultSet.rows.item(r).ItemDescription + `</div>
-								<div class="item-title-row">`+ resultSet.rows.item(r).name + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
+								<div class="item-title-row">`+ resultSet.rows.item(r).ItemDescription + `</div>
+								<div class="item-text">`+ resultSet.rows.item(r).UOM + `</div>
+								<div class="item-title-row">`+ resultSet.rows.item(r).name + `   ` + resultSet.rows.item(r).ItemCode + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
 							</div>
 						</div>
 				</div>
@@ -74,13 +80,13 @@ function getItemByQuery() {
 
             }
 
-           
+
             lastIndex = $$('#itemlist li').length;
             myApp.hidePreloader();
-           
+
 
             loading = false;
-        
+
 
         },
             function (tx, error) {
@@ -108,9 +114,9 @@ function getNextItemsSet() {
         var query = "SELECT items.* ,vendor.name   FROM items inner join vendor LIMIT " + offset + ", 25";
         tx.executeSql(query, [], function (tx, resultSet) {
             Html_EL_next = '';
-          
+
             for (var r = 0; r < resultSet.rows.length; r++) {
-                
+
                 Html_EL_next += `<li class="card">
 				<div class="card-content">
 						<div class="item-content" style="padding:6px">
@@ -152,7 +158,7 @@ function getNextItemsSet() {
             $$('#itemlist').append(Html_EL_next);
             lastIndex = $$('#itemlist li').length;
             maxItems = lastIndex + 25;
-            if (lastIndex+1 >= maxItems) {
+            if (lastIndex + 1 >= maxItems) {
                 getNextItemsSet();
 
             } else {
@@ -185,7 +191,7 @@ function getNextItemsSet() {
     }, function (error) {
         console.log('transaction error: ' + error.message);
     }, function () {
-       
+
     });
 }
 
@@ -206,7 +212,7 @@ function getVendorByQuery() {
                                          </div>		
                                      </div>`;
 
-               
+
             }
             $$("#vendores").html(vendor_EL);
             $$('#vendores .like_li').on('click', function () {
@@ -444,15 +450,17 @@ function getOffersByQuery() {
 
 function getBrand(id) {
     console.log(id);
+
     db.transaction(function (tx) {
-        var query = `select distinct ifnull(Brand,vendor.name||' Other') as brandName, vendor.IMG from items 
+        var query = `select distinct ifnull(Brand,vendor.name||' Other') as brandName, vendor.name, vendor.IMG , items.BrandID , items.VendorID from items 
                                     inner join vendor on items.vendorid = vendor.input
                                     where vendorid = ?` ;
         tx.executeSql(query, [id], function (tx, resultSet) {
+
             brand_EL = '';
             for (var r = 0; r < resultSet.rows.length; r++) {
                 //@prog append vendor
-                brand_EL += `<div class="item-content card like_li" id="` + resultSet.rows.item(r).brandName + `">
+                brand_EL += `<div class="item-content card like_li" data-vendorname="` + resultSet.rows.item(r).name + `"  id="` + resultSet.rows.item(r).BrandID + `">
                                         <div class="item-media"><img src="` + resultSet.rows.item(r).IMG + `" width="80" /></div>
                                         <div class="item-inner">
                                             <div class="item-title">`+ resultSet.rows.item(r).brandName + `</div>
@@ -464,10 +472,13 @@ function getBrand(id) {
 
 
             }
-           
+
             $$("#Brands").append(brand_EL);
             $$("#Brands .like_li").on('click', function () {
-                bundre = this.id;
+                
+                brandId = this.id;
+                brandsVendorName = $$(this).data("vendorname") + ' ' + 'items'; 
+
                 mainView.router.loadPage({ url: "Allitems.html", force: true });
             });
         },
@@ -485,17 +496,175 @@ function getBrand(id) {
     });
 }
 
+function getBrandItemList(Id,venID) {
+    console.log(venID);
+    Id = parseInt(Id);
+    console.log(Id);
+
+    db.transaction(function (tx) {
+        var query = `SELECT distinct items.* ,vendor.name  FROM items inner join vendor on vendor.input = items.VendorID 
+                     where
+                    ((items.IsDefaultPack="true" and itemid in (select itemid from items x where  x.IsDefaultPack="true"  and  vendorid='`+ venID +`'))
+					or packid in (select min(xx.packID) 
+                    from items xx where xx.itemid not in (select s.itemid from items s where  s.IsDefaultPack="true"  and  vendorid='`+ venID +`') and   xx.BrandID=`+ Id +` group by xx.itemid))
+					and items.BrandID=`+ Id +`
+					 and items.VendorID = '`+ venID +`' LIMIT 0,50000  `;
+        tx.executeSql(query, [], function (tx, resultSet) {
+            brand_EL = '';
+            console.log('this is my awsome',query);
+            for (var r = 0; r < resultSet.rows.length; r++) {
+                //@prog append vendor
+                //curency
+                brandItem_EL = `<li class="item-conte1nt test" 
+		                         id="` + resultSet.rows.item(r).ItemID + `" 
+		                         data-VendorName="` + resultSet.rows.item(r).name + `"
+		                         data-ItemCode="` + resultSet.rows.item(r).ItemCode + `" 
+		                         data-ItemBarcode="` + resultSet.rows.item(r).ItemBarcode + `" 
+		                         data-PackID="` + resultSet.rows.item(r).PackID + `" 
+		                         data-UOM="` + resultSet.rows.item(r).UOM + `" 
+		                         data-RequiredQuanity="` + resultSet.rows.item(r).RequiredQuanity + `" 
+		                         data-Price="` + resultSet.rows.item(r).Price + `" 
+		                         data-Tax="` + resultSet.rows.item(r).Tax + `" 
+		                         data-Discount="` + resultSet.rows.item(r).Discount + `" 
+		                         data-PiecesInPack="` + resultSet.rows.item(r).PiecesInPack + `" 
+		                         data-IsDefaultPack="` + resultSet.rows.item(r).IsDefaultPack + `" 
+		                         data-PackGroupID="` + resultSet.rows.item(r).PackGroupID + `" 
+		                         data-IsAdded="` + resultSet.rows.item(r).IsAdded + `" 
+		                         data-DiscountTypeID="` + resultSet.rows.item(r).DiscountTypeID + `" 
+		                         data-ItemID="` + resultSet.rows.item(r).ItemID + `" 
+		                         data-ItemDescription="` + resultSet.rows.item(r).ItemDescription + `" 
+		                         data-pack="` + resultSet.rows.item(r).PackTypeID + `">
+                         <a href="#" class="item-link item-content">
+                            <div class="item-media"><img src="`+ resultSet.rows.item(r).ItemImageName + `" width="80"  onerror="(this.src='images/no-image.svg')" /></div>
+                             <div class="item-inner">
+                              <div class="item-title">`+ resultSet.rows.item(r).ItemDescription + ` <br /><span class="green_text">` + resultSet.rows.item(r).Price + `</span></div>
+                             </div>
+                          </a>
+                        </li>`;
+
+                $$("#nes").append(brandItem_EL);
+                
+
+            }
+            $$("#nes li").on('click', function () {
+                     itemSelected = this.id;
+                    mainView.router.loadPage({ url: "Alldet.html", force: true });
+                });
+
+        },
+            function (tx, error) {
+                console.log('SELECT error: ' + error.message);
+            });
+    }, function (error) {
+        console.log('transaction error: ' + error.message);
+    }, function () {
+        console.log('transaction ok');
+
+    });
+
+}
 
 
+function getItemDetailsFromBrandList(venID, itemId) {
 
-function scrollingItems(){
-    
-        // Exit, if loading in progress
-        if (loading) return;
-        // Set loading flag
-        loading = true;
+    console.log(itemId, venID);
 
-        // Emulate 1s loading
-        getItemByQuery();
-   
+    db.transaction(function (tx) {
+        var query = `select items.*,vendor.name from items inner join vendor on items.VendorID=vendor.input where  vendorid='` + venID + `' and itemid=` + itemId +` order by IsDefaultPack,piecesinpack desc`;
+        tx.executeSql(query, [], function (tx, resultSet) {
+
+         
+            for (var r = 0; r < resultSet.rows.length; r++) {
+                //@prog append vendor
+                objclating = resultSet.rows.item(r);
+                itemDetails_EL = `
+                        <li class="item-divider"><i class="icon icon-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription +`</li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-vendor"></i> </div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">Vendor</div>
+                                        <div class="item-after">
+                                            `+ resultSet.rows.item(r).name +`
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-quantity"></i> </div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">Quntity</div>
+                                        <div class="item-after item-input">
+                                            <input value="1" class="picker-device" type="number" id="QunV" placeholder="1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-selling-unit"></i> </div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">Selingunite</div>
+                                        <div class="item-after item-input">
+                                            <input value="1" class="picker-device" type="number" id="QunV" placeholder="1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">&nbsp;</div>
+                                        <div class="item-after">
+                                            <div id="UOM"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </li>`;
+               
+                
+            }
+            $$('#item_information').html(itemDetails_EL);
+            getiteminfo(objclating);
+           console.log(JSON.stringify(objclating));
+
+            //get first calculation card on quantity 1
+
+
+            $$('#QunV').on('change', function () {
+                // get calculation card 
+                getiteminfo(objclating);
+            });
+           
+        },
+            function (tx, error) {
+                console.log('SELECT error: ' + error.message);
+            });
+    }, function (error) {
+        console.log('transaction error: ' + error.message);
+    }, function () {
+        console.log('transaction ok');
+        //$$('#vendores .like_li').on('click', function () {
+        //    //@prog get on click vendors
+        //    var itemdata = getiteminfo(objclating);
+        //});
+
+    });
+
+
+}
+
+function scrollingItems() {
+
+    // Exit, if loading in progress
+    if (loading) return;
+    // Set loading flag
+    loading = true;
+
+    // Emulate 1s loading
+    getItemByQuery();
+
 }

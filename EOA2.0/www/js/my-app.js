@@ -192,7 +192,8 @@ myApp.onPageInit('home', function (page) {
     if (isAndroid) {
         $$("#t1").on('click', function () {
             $$('#itemlist li:nth-child(n + 25)').remove();
-            lastIndex=$$('#itemlist li').length;
+            lastIndex = $$('#itemlist li').length;
+            offset = $$('#itemlist li').length;
             //AppendOffers();
             //$$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
             //if (localStorage.getItem('lang') != 1) {
@@ -208,7 +209,8 @@ myApp.onPageInit('home', function (page) {
             $$("#t3").removeClass('active');
         });
         $$("#t3").on('click', function () {
-
+            lastIndex = $$('#itemlist li').length;
+            offset = $$('#itemlist li').length;
             $$(".item").show();
             $$(".bundle").hide();
             $$(".vendore").hide();
@@ -225,8 +227,9 @@ myApp.onPageInit('home', function (page) {
         });
         $$("#t2").on('click', function () {
 
-            $$('#itemlist li:nth-child(n + 50)').remove();
-            lastIndex=$$('#itemlist li').length;
+            $$('#itemlist li:nth-child(n + 25)').remove();
+            lastIndex = $$('#itemlist li').length;
+            offset = $$('#itemlist li').length;
             //$$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
             //if (localStorage.getItem('lang') != 1) {
             //    $$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
@@ -2149,7 +2152,7 @@ function overallprice(arr, bundel) {
 }
 
 function getiteminfo(item) {
-
+    console.log(item);
     var obj = {
         "gross": 0.00,
         "nettotal": 0.00,
@@ -2161,16 +2164,18 @@ function getiteminfo(item) {
         "objun": ''
     }
 
+
+   
     //    for (var i=0; i< arr.length; i++){
     //        if(arr[i].PackID==packid){      
 
 
-    for (var i = 0; i < vendoreinfo.length; i++) {
-        if (vendoreinfo[i].UniqeID == item.VendorName) {
-            obj.itemname = vendoreinfo[i].name;
-            obj.itemimage = vendoreinfo[i].IMG;
-        }
-    }
+    //for (var i = 0; i < vendoreinfo.length; i++) {
+    //    if (vendoreinfo[i].UniqeID == item.VendorName) {
+    //        obj.itemname = vendoreinfo[i].name;
+    //        obj.itemimage = vendoreinfo[i].IMG;
+    //    }
+    //}
 
 
     var gross = 0.0;
@@ -2179,7 +2184,7 @@ function getiteminfo(item) {
     var discountperc = 0.0;
     var discountamt = 0.0;
     var prodiscountamt = 0.0;
-
+    item.RequiredQuanity = $$('#QunV').val();
     gross = item.Price * item.RequiredQuanity;
     if (item.DetailTypeID == 2) { discountperc = (item.Discount * 100) / gross } else { discountperc = item.Discount }
     discountamt = gross * (discountperc / 100);
@@ -2188,17 +2193,57 @@ function getiteminfo(item) {
     net = net - prodiscountamt;
     tax = net * (item.Tax / 100);
     net = net + tax;
-    obj.gross = obj.gross + gross;
-    obj.tax = obj.tax + tax;
-    obj.discount = obj.discount + discountamt;
-    obj.prodiscount = obj.prodiscount + prodiscountamt;
-    obj.nettotal = obj.nettotal + net;
+    //obj.gross = obj.gross + gross;
+    //obj.tax = obj.tax + tax;
+    //obj.discount = obj.discount + discountamt;
+    //obj.prodiscount = obj.prodiscount + prodiscountamt;
+    //obj.nettotal = obj.nettotal + net;
 
     //        }
     //        
     //    }
+    $$('#price_information').html(`
+<li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Gross</div>
+                                        <div id="Pri1ce" class="item-after">`+ gross+`</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Discount</div>
+                                        <div id="Discount" class="item-after">` + discountamt+ `</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Tax</div>
+                                        <div id="Tax" class="item-after">`+ tax+`</div>
+                                    </div>
+                                </div>
+                            </li>
 
-    return obj;
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-funds"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">Total Price</div>
+                                        <div id="PriceV" class="item-after">
+                                            `+ net+`
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+`);
+
+
+
+    //return obj;
 }
 
 function pagecounter() {

@@ -1,4 +1,6 @@
 var curencyTemp = "";
+var itemdata = {};
+var objclating = {};
 //var contactsCallback =
 
 
@@ -796,8 +798,9 @@ myApp.onPageInit('selectstat', function (page) {
         mainView.router.loadPage({ url: "trans.html", force: true });
     });
 });
-//mahmoud saleh
+//mahmoud saleh @prog
 myApp.onPageInit('Brand', function (page) {
+    $$('#Brands').html('');
     //var itemttitle = '';
     //var imgsource = '';
     //for (var t = 0; t < vendoreinfo.length; t++) {
@@ -2227,113 +2230,73 @@ myApp.onPageInit('ItemDE', function (page) {
 
 });
 
+//@prog start ss 
 myApp.onPageInit('Allitemdet', function (page) {
+    //@prog start get item list using qury 
+    
 
-    var objclating = {
-        "ItemID": localStorage.getItem("ItemIDV"),
-        "ItemDescription": localStorage.getItem("ItemDescriptionV"),
-        "ItemCode": localStorage.getItem("ItemCodeV"),
-        "ItemBarcode": localStorage.getItem("ItemBarcodeV"),
-        "PackID": localStorage.getItem("packidV"),
-        "UOM": localStorage.getItem("UOMV"),
-        "Price": localStorage.getItem("PriceV"),
-        "Tax": localStorage.getItem("TaxV"),
-        "VendorName": localStorage.getItem("VendorNameV"),
-        "Discount": localStorage.getItem("DiscountV"),
-        "PiecesInPack": localStorage.getItem("PiecesInPackV"),
-        "IsDefaultPack": localStorage.getItem("IsDefaultPackV"),
-        "PackGroupID": localStorage.getItem("PackGroupIDV"),
-        "DiscountTypeID": localStorage.getItem("DiscountTypeIDV"),
-        "ItemCategoryID": 2,
-        "DivisionID": 1,
-        "BrandID": -1,
-        "ItemCategory": "Small Format",
-        "Division": "Small Formats",
-        "Brand": null,
-        "RequiredQuanity": 1,
-        "PackTypeID": localStorage.getItem("PackTypeIDV"),
-        "PromotedDiscount": 0,
-        "CalculatedDiscount": 0,
-        "ItemPromotedDiscount": 0
-    }
+    getItemDetailsFromBrandList(vendorSelected, itemSelected);
+    jQuery(document).ready(function () {
+        var x = $$("#mylist");
+        x.removeClass('inputs-list');
+    });
 
-    var name = '';
-    var img = GetImage(localStorage.getItem("ItemID"));
-    var itemdata = getiteminfo(objclating);
-    localStorage.getItem("PriceV")
-    $$("#Pri1ce").html(curency + localStorage.getItem("PriceV"));
-    $$("#PriceV").html(curency + itemdata.nettotal.toFixed(3));
-    $$("#Gross").html(curency + itemdata.gross.toFixed(3));
-    $$("#Discount").html(curency + itemdata.discount.toFixed(3));
-    $$("#Tax").html(curency + itemdata.tax.toFixed(3));
-    $$("#vendorename").html(itemdata.itemname);
-    $$("#imgdet").attr("src", img);
-    $$("#ItemDetails").html(localStorage.getItem('ItemDescriptionV'));
+    
+
+
+    return;
+    //var objclating = {
+    //    "ItemID": localStorage.getItem("ItemIDV"),
+    //    "ItemDescription": localStorage.getItem("ItemDescriptionV"),
+    //    "ItemCode": localStorage.getItem("ItemCodeV"),
+    //    "ItemBarcode": localStorage.getItem("ItemBarcodeV"),
+    //    "PackID": localStorage.getItem("packidV"),
+    //    "UOM": localStorage.getItem("UOMV"),
+    //    "Price": localStorage.getItem("PriceV"),
+    //    "Tax": localStorage.getItem("TaxV"),
+    //    "VendorName": localStorage.getItem("VendorNameV"),
+    //    "Discount": localStorage.getItem("DiscountV"),
+    //    "PiecesInPack": localStorage.getItem("PiecesInPackV"),
+    //    "IsDefaultPack": localStorage.getItem("IsDefaultPackV"),
+    //    "PackGroupID": localStorage.getItem("PackGroupIDV"),
+    //    "DiscountTypeID": localStorage.getItem("DiscountTypeIDV"),
+    //    "ItemCategoryID": 2,
+    //    "DivisionID": 1,
+    //    "BrandID": -1,
+    //    "ItemCategory": "Small Format",
+    //    "Division": "Small Formats",
+    //    "Brand": null,
+    //    "RequiredQuanity": 1,
+    //    "PackTypeID": localStorage.getItem("PackTypeIDV"),
+    //    "PromotedDiscount": 0,
+    //    "CalculatedDiscount": 0,
+    //    "ItemPromotedDiscount": 0
+    //}
+
+    //var name = '';
+    //var img = GetImage(localStorage.getItem("ItemID"));
+
+    //@prog come from query
+    //var itemdata = getiteminfo(objclating);
+    //localStorage.getItem("PriceV")
+    //$$("#Pri1ce").html(curency + localStorage.getItem("PriceV"));
+    //$$("#PriceV").html(curency + itemdata.nettotal.toFixed(3));
+    //$$("#Gross").html(curency + itemdata.gross.toFixed(3));
+    //$$("#Discount").html(curency + itemdata.discount.toFixed(3));
+    //$$("#Tax").html(curency + itemdata.tax.toFixed(3));
+    //$$("#vendorename").html(itemdata.itemname);
+    //$$("#imgdet").attr("src", img);
+
+
+
+
+   // $$("#ItemDetails").html(localStorage.getItem('ItemDescriptionV'));
 
     //$$("#imgdet").attr("src"
 
-    var pickerCustomToolbar = myApp.picker({
-        input: '.picker-device',
-        rotateEffect: true,
-        toolbarTemplate: '<div style="background-color:#1fb67b" class="toolbar" style="direction:ltr">' +
-        '<div class="toolbar-inner">' +
-        '<div class="left">' +
-        '<a href="#" class="link toolbar-randomize-link"></a>' +
-        '</div>' +
-        '<div class="right">' +
-        '<a style="color:white" href="#" class="link close-picker">Done</a>' +
-        '</div>' +
-        '</div>' +
-        '</div>',
-        cols: [
-            {
-                values: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
-            },
-            {
-                textAlign: 'left',
-                values: ('0 1 2 3 4 5 6 7 8 9 0').split(' ')
-            },
-            {
-                values: ('0 1 2 3 4 5 6 7 8 9 0').split(' ')
-            },
-        ],
-        onOpen: function (picker) {
-            picker.container.find('.close-picker').on('click', function () {
-
-                //    console.log(parseInt($$('.picker-device').val()));
-
-
-                var str = $$('.picker-device').val()
-                str = str.replace(/\s/g, '');
-                var number = parseInt(str);
-                console.log(number);
-                $$("#QunV").val(number);
-
-
-                var QUNV = $$("#QunV").val();
-                var qunV = parseInt(QUNV);
-                objclating.RequiredQuanity = number;
-                var itemdata = getiteminfo(objclating);
-                var img = GetImage(localStorage.getItem("ItemID"));
-
-                $$("#PriceV").html(curency + itemdata.nettotal.toFixed(3));
-                $$("#Gross").html(curency + itemdata.gross.toFixed(3));
-                $$("#Discount").html(curency + itemdata.discount.toFixed(3));
-                $$("#Tax").html(curency + itemdata.tax.toFixed(3));
-                $$("#vendorename").html(itemdata.itemname);
-                $$("#itemimage").attr("src", img);
-                //                var price = calcluteprice(orderV.Price, orderV.Discount, orderV.Tax, qunV, orderV.DiscountTypeID);
-                //                var truncated1 = Math.floor(price * 100) / 100;
-                //    $$("#PriceV").html(truncated1);
-                //    localStorage.setItem("PriceV",price.toFixed(2));
-
-
-            });
-        }
-    });
+    
     //myShit
     jQuery(document).ready(function () {
-
         var x = $$("#mylist");
         x.removeClass('inputs-list');
     });
@@ -2372,9 +2335,9 @@ myApp.onPageInit('Allitemdet', function (page) {
         $$("#Tax").html(curency + itemdata.tax.toFixed(3));
         $$("#vendorename").html(itemdata.itemname);
         $$("#itemimage").attr("src", img);
-        localStorage.setItem("Price", priceV);
-        localStorage.setItem("PackTypeID", PackTypeIDV);
-        localStorage.setItem("packid", packidV);
+        //localStorage.setItem("Price", priceV);
+        //localStorage.setItem("PackTypeID", PackTypeIDV);
+        //localStorage.setItem("packid", packidV);
         $$("#Price").html(price);
     });
     //  mainView.hideToolbar();
@@ -2416,7 +2379,6 @@ myApp.onPageInit('Allitemdet', function (page) {
 
     $$("#OrderButtonV").on("click", function () {
         AppendItems();
-        ;
         var QUNV = $$("#QunV").val();
         var QUN2V = parseInt(QUNV);
         if (isNaN(QUN2V)) {
@@ -2781,19 +2743,23 @@ myApp.onPageInit('orderlist', function (page) {
 
 });
 
+//@prog  start brand list items
 myApp.onPageInit('allitem', function (page) {
 
+    $$('.vendorName').html(brandsVendorName);
+    getBrandItemList(brandId, vendorSelected);
+
+
+
     $$("#FinsihReturn").hide();
-    AppendItemsVendore(vendorearr[guesswhat][0][bundre]);
+   // AppendItemsVendore(vendorearr[guesswhat][0][bundre]);
     $$("#backbutt").on('click', function () {
-
         mainView.router.loadPage('Brands.html');
-
-
-        $$(".tab-link-highlight").css('transform', 'translate3d(100%, 0px, 0px)');
-        if (localStorage.getItem('lang') != 1) {
-            $$(".tab-link-highlight").css('transform', 'translate3d(-100%, 0px, 0px)');
-        }
+        
+        //$$(".tab-link-highlight").css('transform', 'translate3d(100%, 0px, 0px)');
+        //if (localStorage.getItem('lang') != 1) {
+        //    $$(".tab-link-highlight").css('transform', 'translate3d(-100%, 0px, 0px)');
+        //}
     });
     $$('#nes').on('click', 'li', function () {
 
@@ -2849,6 +2815,9 @@ myApp.onPageInit('allitem', function (page) {
             force: true
         });
     });
+
+
+
     var lang = localStorage.getItem('lang');
     if (lang == 1) {
         $$(".search").attr('placeholder', 'Search');
