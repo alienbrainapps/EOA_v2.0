@@ -1,6 +1,8 @@
 ﻿var vendors = [];
 var index = 0;
 var lang = "1";
+var vendoreorder = [];
+var vendoreinfo;
 function GetVendores() {
 
 
@@ -20,6 +22,13 @@ function GetVendores() {
             dataType: "json",
             success: function (data, status, xhr) {
                 vendoreinfo = data;
+                for (var i = 0; i < vendoreinfo.length; i++) {
+                    vendoreorder[vendoreinfo[i].input] = [];
+                    mybundle[vendoreinfo[i].input] = [];
+                    vendorereturen[vendoreinfo[i].input] = [];
+                }
+                console.log(vendoreorder);
+
                 //@prog start insert vendor tabel after delet if exist 
                 db.transaction(function (tx) {
 
@@ -27,7 +36,7 @@ function GetVendores() {
 
                     tx.executeSql(query, [], function (tx, res) {
                         //console.log("removeId: " + res.insertId);
-                       // console.log("rowsAffected: " + res.rowsAffected);
+                        // console.log("rowsAffected: " + res.rowsAffected);
                     },
                         function (tx, error) {
                             console.log('DELETE error: ' + error.message);
@@ -49,7 +58,7 @@ function GetVendores() {
                         // strat get items
                         var lang = localStorage.getItem('lang');
                         vendorData(lang);
-                    
+
                     });
                 });
 
@@ -89,7 +98,7 @@ function GetVendorItems() {
     else {
         GetOffers(vendors[index].URL, vendors[index].custumerID, vendors[index].outletID, lang, vendors[index].input);
         GetItems(vendors[index].URL, vendors[index].custumerID, vendors[index].outletID, lang, vendors[index].input);
-       
+
     }
 
 
@@ -143,7 +152,7 @@ function GetItems(url, custumerID, outletID, lang, input) {
                         GetVendorItems();
                         return;
                     });
-                    
+
                 });
 
 
@@ -180,7 +189,7 @@ function vendorData(lang) {
             for (var x = 0; x < resultSet.rows.length; x++) {
                 vendors.push(resultSet.rows.item(x));
             }
-            
+
         },
             function (tx, error) {
                 console.log('SELECT error: ' + error.message);
@@ -225,8 +234,8 @@ function GetOffers(url, custumerID, outletID, lang, input) {
 
 
                             tx.executeSql(query, [theOfferIs[d].PromotionID, theOfferIs[d].Description, theOfferIs[d].IsTaken, JSON.stringify(theOfferIs[d].InputOptions), JSON.stringify(theOfferIs[d].CalculatedOptions), theOfferIs[d].VendorName, input], function (tx, res) {
-                               // console.log("insertId: " + res.insertId + " -- probably 1");
-                              //  console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                                // console.log("insertId: " + res.insertId + " -- probably 1");
+                                //  console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
                             },
                                 function (tx, error) {
                                     console.log('INSERT error: ' + error.message);
@@ -237,7 +246,7 @@ function GetOffers(url, custumerID, outletID, lang, input) {
                         console.log('transaction error: ' + error.message);
                     }, function () {
                         console.log('transaction ok');
-                       
+
                     });
 
                 });
@@ -246,6 +255,71 @@ function GetOffers(url, custumerID, outletID, lang, input) {
 
             }
         });
+
+}
+
+
+
+
+function addToOrder() {
+    var itemOrderToSend = objclating;
+
+    var QUNV = $$("#QunV").val();
+    var QUN2V = parseInt(QUNV);
+    if (isNaN(QUN2V)) {
+        QUN2 = 1;
+    } else {
+        QUN2 = QUN2V
+    }
+    itemOrderToSend.RequiredQuanity = QUN2;
+    console.log(itemOrderToSend);
+    var gross = itemOrderToSend.Price * itemOrderToSend.RequiredQuanity;
+    var discountamount = gross * (itemOrderToSend.Discount / 100);
+    var PackNetTottal = gross - discountamount;
+
+    var Tax = PackNetTottal * (itemOrderToSend.Tax / 100);
+    var Net = PackNetTottal + Tax;
+    var calc = {
+        "Gross": gross,
+        "NetTottal": Net,
+        "Tax": Tax,
+        "Discount": discountamount
+    }
+    //localStorage.setItem(order1V.PackID, JSON.stringify(calc));
+
+    console.log(JSON.stringify(calc));
+    //localStorage.setItem('orderV', order1V);
+
+    var found = false;
+    console.log(itemOrderToSend.name);
+    console.log(vendoreorder);
+    console.log(vendoreorder[itemOrderToSend.VendorID].length);
+    var found = false;
+    if (vendoreorder[itemOrderToSend.VendorID].length) {
+        for (var i = 0; i < vendoreorder[itemOrderToSend.VendorID].length; i++) {
+            found = vendoreorder[itemOrderToSend.VendorID][i].PackID == itemOrderToSend.PackID;
+            if (found == true) {
+                vendoreorder[itemOrderToSend.VendorID][i].RequiredQuanity = itemOrderToSend.RequiredQuanity + vendoreorder[itemOrderToSend.VendorID][i].RequiredQuanity;
+                break;
+            }
+
+        }
+    }
+    if (!found) {
+        vendoreorder[itemOrderToSend.VendorID].push(itemOrderToSend);
+    }
+
+
+    console.log(OrderList);
+    localStorage.setItem('orderlist33', JSON.stringify(OrderList));
+
+
+    $$(".Orders").attr("id", "Orders");
+    mainView.router.load({
+        url: 'Allitems.html',
+        froce: true
+    });
+
 
 }
 

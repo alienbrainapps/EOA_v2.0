@@ -1,6 +1,7 @@
 var curencyTemp = "";
 var itemdata = {};
 var objclating = {};
+var QUN2 = "";
 //var contactsCallback =
 
 
@@ -26,7 +27,7 @@ myApp.onPageInit('join', function (page) {
     });
 
 });
-
+// @prog cat testo
 myApp.onPageInit('catg', function (page) {
 
     $$("li .bundaccord").on('click', function () {
@@ -46,10 +47,11 @@ myApp.onPageInit('catg', function (page) {
     $$("#backOrder").on("click", function () {
         mainView.router.loadPage({ url: 'home.html', force: true });
     });
+
     for (var i = 0; i < vendoreinfo.length; i++) {
         var str = vendoreinfo[i].name;
         str = str.replace(/\s+/g, '');
-        str = vendoreinfo[i].UniqeID;
+        str = vendoreinfo[i].input;
         var lag = {
             "NetTotal": "",
             "Gross": "",
@@ -69,7 +71,8 @@ myApp.onPageInit('catg', function (page) {
             lag.Request = "Request ََQoution";
             lag.Cancel = "Cancel Request";
             lag.Edit = "Edit";
-        } else {
+        }
+        else {
             lag.NetTotal = "المجموع الكلي";
             lag.Gross = "الصافي";
             lag.Bundels = "الحزم",
@@ -80,12 +83,53 @@ myApp.onPageInit('catg', function (page) {
             lag.Edit = "تعديل";
         }
 
-
-
-        if (!vendoreorder[vendoreinfo[i].UniqeID].length && jQuery.isEmptyObject(mybundle[vendoreinfo[i].UniqeID])) { } else {
-
+        if (!vendoreorder[vendoreinfo[i].input].length && jQuery.isEmptyObject(mybundle[vendoreinfo[i].input])) {
+            console.log('wish thaa');
+        }else {
             stro = vendoreinfo[i].name;
-            li += '<div id="pa' + vendoreinfo[i].UniqeID + '" style="overflow-x: scroll;" class="swiper-slide"><span>' + stro + '</span>  <div class="row">  <div class="col-80"></div> <div class="col-20" style="font-size: large; padding-left: 5%;" id="edit">' + lag.Edit + '</div> </div><div class="content-block-inner"><div style="padding-left:10%" class="co1ntent-block">      <div class="content-bl1ock-inner" style="padding-left:4%;"><div id="ce" style="display:none">   <div class="row no-gutter"><div style="font-size: large;"  class="col-50">' + lag.Gross + ' :</div><div style="font-size: large;" id="gro' + str + '" class="col-50">0.00</div></div><div class="row no-gutter"><div  style="font-size: large;"  class="col-50">' + lag.Discount + ' :</div><div style="font-size: large;" id="des' + str + '" class="col-50">0.00</div> </div>   <div class="row no-gutter">  <div style="font-size: large;"  class="col-50">' + lag.Tax + ' :</div>      <div style="font-size: large;" id="tax' + str + '"  class="col-50">0.00</div> </div> <div class="row no-gutter"><div style="font-size: large;" class="col-50">' + lag.Bundels + ' :</div><div style="font-size: large;"  id="bundlenettotal' + str + '" class="col-50">0.00</div> </div> </div>  <div style="margin-top:4%" class="row no-gutter"> <div style="font-size:large; color:#00695c; font-weight:bold;" class="col-50">' + lag.NetTotal + ' :</div><div style="font-size: large; color:#00695c; font-weight:bold; "  id="Net' + str + '" class="col-50">0.00</div></div> <div style="margin-top:9%" class="row">    <div style="padding-left:36%; padding-right:34%; margin-top:-6%; " id="itemarrowup"><i  class="icon Down col-100" ></i></div>   <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-6%; " id="itemarrowdown"><i  class="icon UP col-100" ></i> </div>    </div>   </div>   </div><div class="list-block" style="margin-bottom:0%;">  <ul class="Itema" id="' + vendoreinfo[i].name + '"> </ul></div><div class="list-block" style="margin-top:0%;">  <ul id="bundlelist' + vendoreinfo[i].name + '">  </ul>  <div id="' + vendoreinfo[i].UniqeID + '" class="col-50 Qut"><a href="#" id="' + vendoreinfo[i].UniqeID + '" class="button">' + lag.Request + '</a></div>  <div style="margin-top:3%" id="' + vendoreinfo[i].UniqeID + '" class="Cancel col-50"><a href="#"  class=" button">' + lag.Cancel + '</a></div></div></div></div>'
+            li += `<div id="pa` + vendoreinfo[i].input + `" style="overflow-x: scroll;" class="swiper-slide"><span>` + vendoreinfo[i].name + `</span>  
+                        <div class="row">
+                            <div class="col-80"></div>
+                            <div class="col-20" style="font-size: large; padding-left: 5%;" id="edit">` + lag.Edit + `</div>
+                        </div>
+                        <div class="content-block-inner">
+                            <div style="padding-left:10%" class="co1ntent-block">
+                            <div class="content-bl1ock-inner" style="padding-left:4%;">
+                            <div id="ce" style="display:none">
+                            <div class="row no-gutter">
+                            <div style="font-size: large;"  class="col-50">` + lag.Gross + ` :</div>
+                            <div style="font-size: large;" id="gro` + str + `" class="col-50">0.00</div>
+                            </div><div class="row no-gutter">
+                            <div  style="font-size: large;"  class="col-50">` + lag.Discount + ` :</div>
+                            <div style="font-size: large;" id="des` + str + `" class="col-50">0.00</div> 
+                            </div>   <div class="row no-gutter">
+                            <div style="font-size: large;"  class="col-50">` + lag.Tax + ` :</div> 
+                            <div style="font-size: large;" id="tax` + str + `"  class="col-50">0.00</div> 
+                        </div>
+                        <div class="row no-gutter">
+                            <div style="font-size: large;" class="col-50">` + lag.Bundels + ` :</div>\
+                            <div style="font-size: large;"  id="bundlenettotal` + str + `" class="col-50">0.00</div> 
+                          </div>
+                    </div>
+                    <div style="margin-top:4%" class="row no-gutter"> <div style="font-size:large; color:#00695c; font-weight:bold;" class="col-50">` + lag.NetTotal + ` :</div>
+                    <div style="font-size: large; color:#00695c; font-weight:bold; "  id="Net` + str + `" class="col-50">0.00</div></div> 
+                    <div style="margin-top:9%" class="row">    <div style="padding-left:36%; padding-right:34%; margin-top:-6%; " id="itemarrowup"><i  class="icon Down col-100" ></i></div>
+                    <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-6%; " id="itemarrowdown"><i  class="icon UP col-100" ></i>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="list-block" style="margin-bottom:0%;">
+                    <ul class="Itema" id="` + vendoreinfo[i].name + `"> 
+                    </ul></div><div class="list-block" style="margin-top:0%;">
+                    <ul id="bundlelist` + vendoreinfo[i].name + `">  </ul>  
+                    <div id="` + vendoreinfo[i].input + `" class="col-50 Qut"><a href="#" id="` + vendoreinfo[i].input + `" class="button">` + lag.Request + `</a></div>  
+                    <div style="margin-top:3%" id="` + vendoreinfo[i].input + `" class="Cancel col-50">
+                        <a href="#"  class=" button">` + lag.Cancel + `</a>
+                        </div>
+                        </div>
+                        </div>
+                        </div>`
         }
     }
     $$(".swiper-wrapper").append(li);
@@ -97,7 +141,7 @@ myApp.onPageInit('catg', function (page) {
     for (var e = 0; e < vendoreinfo.length; e++) {
 
         arr = '';
-        var y = mybundle[vendoreinfo[e].UniqeID];
+        var y = mybundle[vendoreinfo[e].input];
 
         if (jQuery.isEmptyObject(y) || typeof y == "undefined") { } else {
             //y=y[0];
@@ -121,12 +165,19 @@ myApp.onPageInit('catg', function (page) {
                         var quntitybundle = bundqun["Q" + string];
                         console.log(bundvalue["V" + string]);
                         pricinggg = bundvalue["V" + string] * parseInt(quntitybundle);
-                        var itmesprice = calclution_price(vendoreorder[vendoreinfo[e].UniqeID]);
+                        var itmesprice = calclution_price(vendoreorder[vendoreinfo[e].input]);
                         Bundle_price = pricinggg;//+itmesprice.nettotal;
                         // bundelprice22 = bundelprice22 + pricinggg;
 
-                        $$("#bundlenettotal" + vendoreinfo[e].UniqeID).html(curency + Bundle_price.toFixed(3));
-                        arr += '<li id="" class="accordion-item bundaccord"><a href="#" class="item-content item-link"><i id="' + vendoreinfo[e].UniqeID + '" data-price="' + pricinggg + '" style="margin-right:4%" class="li bundone icon none"></i> <div class="item-inner"> <div class="item-title" style="max-width: 60%; font-size:80%;">' + vendoreinfo[e].name + ' ' + t + '</div><div id="' + k + '" style="color:#00695c; font-size:89%" class"item-after">' + quntitybundle + '</div><div  style="color:#00695c;  font-size: 93%;" id="Pric1e' + k + '" class"item-after">' + pricinggg.toFixed(3) + '</div></div></a><div class="accordion-item-content"></ul><div class="content-block inset" style"    z-index: -100; pointer-events: none"><ul style="z-index=-999" id="AR' + k + '"></ul></div></div> </div></li>';
+                        $$("#bundlenettotal" + vendoreinfo[e].input).html(curency + Bundle_price.toFixed(3));
+                        arr += `<li id="" class="accordion-item bundaccord">
+                                <a href="#" class="item-content item-link">
+                                <i id="` + vendoreinfo[e].input + `" data-price="` + pricinggg + `" style="margin-right:4%" class="li bundone icon none"></i>
+                                <div class="item-inner"> <div class="item-title" style="max-width: 60%; font-size:80%;">` + vendoreinfo[e].name + ` ` + t + `</div>
+                                <div id="` + k + `" style="color:#00695c; font-size:89%" class"item-after">` + quntitybundle + `</div>
+                                <div  style="color:#00695c;  font-size: 93%;" id="Pric1e` + k + `" class"item-after">` + pricinggg.toFixed(3) + `</div></div></a>
+                                <div class="accordion-item-content"></ul><div class="content-block inset" style"    z-index: -100; pointer-events: none">
+                                <ul style="z-index=-999" id="AR` + k + `"></ul></div></div> </div></li>`;
 
 
 
@@ -139,7 +190,7 @@ myApp.onPageInit('catg', function (page) {
                     }
                 }
             }
-            $$("#bundlelist" + vendoreinfo[e].name).append(arr);
+            $$("#bundlelist" + vendoreinfo[e].input).append(arr);
 
 
 
@@ -184,19 +235,20 @@ myApp.onPageInit('catg', function (page) {
 
     for (var w = 0; w < vendoreinfo.length; w++) {
 
-        var strop = vendoreinfo[w].UniqeID;
+        var strop = vendoreinfo[w].input;
         //            strop = strop.replace(/\s+/g, '');
         //          strop=strop.replace('-', '');
         html = '';
         var IOAlist = [];
-        for (var i = 0; i < vendoreorder[vendoreinfo[w].UniqeID].length; i++) {
-            var IOAlist = vendoreorder[vendoreinfo[w].UniqeID];
+        //@prog faqaa3 hona
+        for (var i = 0; i < vendoreorder[vendoreinfo[w].input].length; i++) {
+            var IOAlist = vendoreorder[vendoreinfo[w].input];
             var string = '';
             var lang = localStorage.getItem('lang');
             if (lang == 1) { string = 'Quantity' } else { string = 'كمية' }
-            html += '<li  class="item-conte1nt test" id="' + IOAlist[i].ItemID + '"  data-ItemCode="' + IOAlist[i].ItemCode + '" data-ItemBarcode="' + IOAlist[i].ItemBarcode + '" data-PackID="' + IOAlist[i].PackID + '" data-UOM="' + IOAlist[i].UOM + '" data-RequiredQuanity="' + IOAlist[i].RequiredQuanity + '" data-Price="' + IOAlist[i].Price + '" data-Tax="' + IOAlist[i].Tax + '" data-Discount="' + IOAlist[i].Discount + '" data-PiecesInPack="' + IOAlist[i].PiecesInPack + '" data-IsDefaultPack="' + IOAlist[i].IsDefaultPack + '" data-PackGroupID="' + IOAlist[i].PackGroupID + '" data-IsAdded="' + IOAlist[i].IsAdded + '" data-DiscountTypeID="' + IOAlist[i].DiscountTypeID + '" data-ItemID="' + IOAlist[i].ItemID + '" data-ItemDescription="' + IOAlist[i].ItemDescription + '" data-pack="' + IOAlist[i].PackTypeID + '"><a href="#" style="color:black; padding-left:0% !important; " class="item-1link item-content"><i id="' + IOAlist[i].PackTypeID + '" style="margin-right:4%" data-info="' + vendoreinfo[w].UniqeID + '" class="li icon non"></i><div class="item-media"><img src="' + vendoreinfo[w].IMG + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + IOAlist[i].ItemDescription + '</div><div class="item-after">' + string + ': ' + IOAlist[i].RequiredQuanity + '</div></div><div class="item-sub1title">' + IOAlist[i].Price + '</div></div></a></li>';
+            html += '<li  class="item-conte1nt test" id="' + IOAlist[i].ItemID + '"  data-ItemCode="' + IOAlist[i].ItemCode + '" data-ItemBarcode="' + IOAlist[i].ItemBarcode + '" data-PackID="' + IOAlist[i].PackID + '" data-UOM="' + IOAlist[i].UOM + '" data-RequiredQuanity="' + IOAlist[i].RequiredQuanity + '" data-Price="' + IOAlist[i].Price + '" data-Tax="' + IOAlist[i].Tax + '" data-Discount="' + IOAlist[i].Discount + '" data-PiecesInPack="' + IOAlist[i].PiecesInPack + '" data-IsDefaultPack="' + IOAlist[i].IsDefaultPack + '" data-PackGroupID="' + IOAlist[i].PackGroupID + '" data-IsAdded="' + IOAlist[i].IsAdded + '" data-DiscountTypeID="' + IOAlist[i].DiscountTypeID + '" data-ItemID="' + IOAlist[i].ItemID + '" data-ItemDescription="' + IOAlist[i].ItemDescription + '" data-pack="' + IOAlist[i].PackTypeID + '"><a href="#" style="color:black; padding-left:0% !important; " class="item-1link item-content"><i id="' + IOAlist[i].PackTypeID + '" style="margin-right:4%" data-info="' + vendoreinfo[w].input + '" class="li icon non"></i><div class="item-media"><img src="' + vendoreinfo[w].IMG + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + IOAlist[i].ItemDescription + '</div><div class="item-after">' + string + ': ' + IOAlist[i].RequiredQuanity + '</div></div><div class="item-sub1title">' + IOAlist[i].Price + '</div></div></a></li>';
         }
-        $$("#" + vendoreinfo[w].name).append(html);
+        $$("#" + vendoreinfo[w].input).append(html);
 
         var j = {}
         j = calclution_price(IOAlist);
@@ -238,14 +290,8 @@ myApp.onPageInit('catg', function (page) {
         $$("#itemarrowup").show();
 
     });
-    //    $$(".bundaccord").on('click',function(){
-    //        
-    //     $$(".accordion-item").toggleClass('accordion-item-expanded');    
-    //        
-    //    });   
-
-
-    $$(' .Itema li i').on('click', function () {
+    
+    $$('.Itema li i').on('click', function () {
         var count = $$(".swiper-wrapper").children();
         console.log(count.length);
         var dd = 0.00;
@@ -324,7 +370,6 @@ myApp.onPageInit('catg', function (page) {
     });
 
     $$('.Qut').on('click', function () {
-        ;
         var idbund = localStorage.getItem('userid');
         var i1 = 1;
         var i2 = 1;
@@ -372,7 +417,7 @@ myApp.onPageInit('catg', function (page) {
         //    i2 = parseInt(i2);
         var count = 0;
         for (var i = 0; i < vendoreinfo.length; i++) {
-            if (Identfier == vendoreinfo[i].UniqeID) {
+            if (Identfier == vendoreinfo[i].input) {
                 count = vendoreinfo[i].input;
             }
         }
@@ -412,7 +457,7 @@ myApp.onPageInit('catg', function (page) {
         ;
 
         for (var i = 0; i < vendoreinfo.length; i++) {
-            if (vendoreinfo[i].UniqeID == Identfier) {
+            if (vendoreinfo[i].input == Identfier) {
                 var url = vendoreinfo[i].URL;
             }
         }
@@ -508,7 +553,7 @@ myApp.onPageInit('catg', function (page) {
                 var netbundle = 0.00;
                 var d = '';
                 for (var n = 0; n < vendoreinfo.length; n++) {
-                    if (vendoreinfo[n].UniqeID == key) {
+                    if (vendoreinfo[n].input == key) {
                         d = vendoreinfo[n].name;
                     }
                 }
@@ -559,11 +604,11 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
     for (var i = 0; i < vendoreinfo.length; i++) {
         var str = vendoreinfo[i].name;
         str = str.replace(/\s+/g, '');
-        str = vendoreinfo[i].UniqeID;
+        str = vendoreinfo[i].input;
         //alert(str);
-        if (!vendorereturen[vendoreinfo[i].UniqeID].length) { } else {
+        if (!vendorereturen[vendoreinfo[i].input].length) { } else {
             if (i == 0) { stro = "Nestle" } else { stro = "Delmonti" }
-            li += '<div class="swiper-slide"><span>' + stro + '</span>  <div class="row">  <div class="col-80"></div> <div class="col-20" style="font-size: large; padding-left: 5%;" id="edit">Edit</div> </div><div class="content-block-inner"><div style="padding-left:10%" class="co1ntent-block">      <div class="content-bl1ock-inner" style="padding-left:4%;"><div id="ce" style="display:none">   <div class="row no-gutter"><div style="font-size: large;"  class="col-50">Gross :</div><div style="font-size: large;" id="gro' + str + '" class="col-50">0.00</div></div><div class="row no-gutter"><div  style="font-size: large;"  class="col-50">Discount :</div><div style="font-size: large;" id="des' + str + '" class="col-50">0.00</div> </div>   <div class="row no-gutter">  <div style="font-size: large;"  class="col-50">Tax :</div>      <div style="font-size: large;" id="tax' + str + '"  class="col-50">0.00</div> </div> <div class="row no-gutter"><div style="font-size: large;" class="col-50">Bundles :</div><div style="font-size: large;" id="bundlenettotal" class="col-50">0.00</div> </div> </div>  <div style="margin-top:4%" class="row no-gutter"> <div style="font-size:large; color:#00695c; font-weight:bold;" class="col-50">NetTotal :</div><div style="font-size: large; color:#00695c; font-weight:bold; "  id="Net' + str + '" class="col-50">0.00</div></div> <div style="margin-top:9%" class="row">    <div style="padding-left:36%; padding-right:34%; margin-top:-6%; " id="itemarrowup"><i  class="icon Down col-100" ></i></div>   <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-6%; " id="itemarrowdown"><i  class="icon UP col-100" ></i> </div>    </div>   </div>   </div><div class="list-block blol" style="margin-bottom:0%;">  <ul id="' + vendoreinfo[i].name + '"> </ul></div><div class="list-block" style="margin-top:0%;">  <ul id="bundlelist">  </ul>  <div id="' + vendoreinfo[i].UniqeID + '" class="col-50 Qut123"><a href="#" id="' + vendoreinfo[i].UniqeID + '" class="button">Return items</a></div>  <div style="margin-top:3%" id="Cancel" class="col-50"><a href="#"  class="button">Cancel Request</a></div></div>              </div>    </div>   <div style="display:none" id="noorderinfo" class="content-block">      <div class="row">  <div class="col-100">{{YoudonthaveanyordersnorBundels}} </div></div>  </div></div>';
+            li += '<div class="swiper-slide"><span>' + stro + '</span>  <div class="row">  <div class="col-80"></div> <div class="col-20" style="font-size: large; padding-left: 5%;" id="edit">Edit</div> </div><div class="content-block-inner"><div style="padding-left:10%" class="co1ntent-block">      <div class="content-bl1ock-inner" style="padding-left:4%;"><div id="ce" style="display:none">   <div class="row no-gutter"><div style="font-size: large;"  class="col-50">Gross :</div><div style="font-size: large;" id="gro' + str + '" class="col-50">0.00</div></div><div class="row no-gutter"><div  style="font-size: large;"  class="col-50">Discount :</div><div style="font-size: large;" id="des' + str + '" class="col-50">0.00</div> </div>   <div class="row no-gutter">  <div style="font-size: large;"  class="col-50">Tax :</div>      <div style="font-size: large;" id="tax' + str + '"  class="col-50">0.00</div> </div> <div class="row no-gutter"><div style="font-size: large;" class="col-50">Bundles :</div><div style="font-size: large;" id="bundlenettotal" class="col-50">0.00</div> </div> </div>  <div style="margin-top:4%" class="row no-gutter"> <div style="font-size:large; color:#00695c; font-weight:bold;" class="col-50">NetTotal :</div><div style="font-size: large; color:#00695c; font-weight:bold; "  id="Net' + str + '" class="col-50">0.00</div></div> <div style="margin-top:9%" class="row">    <div style="padding-left:36%; padding-right:34%; margin-top:-6%; " id="itemarrowup"><i  class="icon Down col-100" ></i></div>   <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-6%; " id="itemarrowdown"><i  class="icon UP col-100" ></i> </div>    </div>   </div>   </div><div class="list-block blol" style="margin-bottom:0%;">  <ul id="' + vendoreinfo[i].name + '"> </ul></div><div class="list-block" style="margin-top:0%;">  <ul id="bundlelist">  </ul>  <div id="' + vendoreinfo[i].input + '" class="col-50 Qut123"><a href="#" id="' + vendoreinfo[i].input + '" class="button">Return items</a></div>  <div style="margin-top:3%" id="Cancel" class="col-50"><a href="#"  class="button">Cancel Request</a></div></div>              </div>    </div>   <div style="display:none" id="noorderinfo" class="content-block">      <div class="row">  <div class="col-100">{{YoudonthaveanyordersnorBundels}} </div></div>  </div></div>';
         }
     }
     $$(".swiper-wrapper").append(li);
@@ -572,17 +617,17 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
 
     for (var w = 0; w < vendoreinfo.length; w++) {
 
-        var strop = vendoreinfo[w].UniqeID;
+        var strop = vendoreinfo[w].input;
         //            strop = strop.replace(/\s+/g, '');
         //          strop=strop.replace('-', '');
         html = '';
         IOAlist = [];
-        for (var i = 0; i < vendorereturen[vendoreinfo[w].UniqeID].length; i++) {
-            var IOAlist = vendorereturen[vendoreinfo[w].UniqeID];
+        for (var i = 0; i < vendorereturen[vendoreinfo[w].input].length; i++) {
+            var IOAlist = vendorereturen[vendoreinfo[w].input];
             var string = '';
             var lang = localStorage.getItem('lang');
             if (lang == 1) { string = 'Quantity' } else { string = 'كمية' }
-            html += '<li  class="item-conte1nt test" id="' + IOAlist[i].ItemID + '"  data-ItemCode="' + IOAlist[i].ItemCode + '" data-ItemBarcode="' + IOAlist[i].ItemBarcode + '" data-PackID="' + IOAlist[i].PackID + '" data-UOM="' + IOAlist[i].UOM + '" data-RequiredQuanity="' + IOAlist[i].RequiredQuanity + '" data-Price="' + IOAlist[i].Price + '" data-Tax="' + IOAlist[i].Tax + '" data-Discount="' + IOAlist[i].Discount + '" data-PiecesInPack="' + IOAlist[i].PiecesInPack + '" data-IsDefaultPack="' + IOAlist[i].IsDefaultPack + '" data-PackGroupID="' + IOAlist[i].PackGroupID + '" data-IsAdded="' + IOAlist[i].IsAdded + '" data-DiscountTypeID="' + IOAlist[i].DiscountTypeID + '" data-ItemID="' + IOAlist[i].ItemID + '" data-ItemDescription="' + IOAlist[i].ItemDescription + '" data-pack="' + IOAlist[i].PackTypeID + '"><a href="#" style="color:black; padding-left:0% !important; " class="item-1link item-content"><i id="' + IOAlist[i].PackTypeID + '" style="margin-right:4%" data-info="' + vendoreinfo[w].UniqeID + '" class="li icon non"></i><div class="item-media"><img src="' + vendoreinfo[w].IMG + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + IOAlist[i].ItemDescription + '</div><div class="item-after">' + string + ': ' + IOAlist[i].RequiredQuanity + '</div></div><div class="item-sub1title">' + IOAlist[i].Price + '</div></div></a></li>';
+            html += '<li  class="item-conte1nt test" id="' + IOAlist[i].ItemID + '"  data-ItemCode="' + IOAlist[i].ItemCode + '" data-ItemBarcode="' + IOAlist[i].ItemBarcode + '" data-PackID="' + IOAlist[i].PackID + '" data-UOM="' + IOAlist[i].UOM + '" data-RequiredQuanity="' + IOAlist[i].RequiredQuanity + '" data-Price="' + IOAlist[i].Price + '" data-Tax="' + IOAlist[i].Tax + '" data-Discount="' + IOAlist[i].Discount + '" data-PiecesInPack="' + IOAlist[i].PiecesInPack + '" data-IsDefaultPack="' + IOAlist[i].IsDefaultPack + '" data-PackGroupID="' + IOAlist[i].PackGroupID + '" data-IsAdded="' + IOAlist[i].IsAdded + '" data-DiscountTypeID="' + IOAlist[i].DiscountTypeID + '" data-ItemID="' + IOAlist[i].ItemID + '" data-ItemDescription="' + IOAlist[i].ItemDescription + '" data-pack="' + IOAlist[i].PackTypeID + '"><a href="#" style="color:black; padding-left:0% !important; " class="item-1link item-content"><i id="' + IOAlist[i].PackTypeID + '" style="margin-right:4%" data-info="' + vendoreinfo[w].input + '" class="li icon non"></i><div class="item-media"><img src="' + vendoreinfo[w].IMG + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + IOAlist[i].ItemDescription + '</div><div class="item-after">' + string + ': ' + IOAlist[i].RequiredQuanity + '</div></div><div class="item-sub1title">' + IOAlist[i].Price + '</div></div></a></li>';
         }
         $$("#" + vendoreinfo[w].name).append(html);
 
@@ -758,7 +803,7 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
         // console.log(IOAlist);
         var trl = '';
         for (var t = 0; t < vendoreinfo.length; t++) {
-            if (vendoreinfo[t].UniqeID == guessqout) {
+            if (vendoreinfo[t].input == guessqout) {
                 trl = vendoreinfo[t].URL;
             }
         }
@@ -790,7 +835,7 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
 myApp.onPageInit('selectstat', function (page) {
     var li = '';
     for (var i = 0; i < vendoreinfo.length; i++) {
-        li += '<li id="' + vendoreinfo[i].UniqeID + '" ><a href="Brands.html" class="item-link item-content"><div class="item-media"><img src="' + vendoreinfo[i].IMG + '" width="50" height="50"></div><div class="item-inner"><div class="item-title">' + vendoreinfo[i].name + '</div></div> </a></li>';
+        li += '<li id="' + vendoreinfo[i].input + '" ><a href="Brands.html" class="item-link item-content"><div class="item-media"><img src="' + vendoreinfo[i].IMG + '" width="50" height="50"></div><div class="item-inner"><div class="item-title">' + vendoreinfo[i].name + '</div></div> </a></li>';
     }
     $$("#stat").append(li);
     $$("#stat li").on('click', function () {
@@ -804,7 +849,7 @@ myApp.onPageInit('Brand', function (page) {
     //var itemttitle = '';
     //var imgsource = '';
     //for (var t = 0; t < vendoreinfo.length; t++) {
-    //    if (vendoreinfo[t].UniqeID == guesswhat) {
+    //    if (vendoreinfo[t].input == guesswhat) {
     //        imgsource = vendoreinfo[t].IMG;
     //    }
     //}
@@ -2103,7 +2148,7 @@ myApp.onPageInit('ItemDE', function (page) {
         var QUN = $$("#Qun").val();
 
 
-        var QUN2 = parseInt(QUN);
+         QUN2 = parseInt(QUN);
         if (QUN2 == 0) {
             QUN2 = 1
         }
@@ -2378,98 +2423,8 @@ myApp.onPageInit('Allitemdet', function (page) {
     // $$("#Quntity").html(localStorage.getItem("PiecesInPack")); 
 
     $$("#OrderButtonV").on("click", function () {
-        AppendItems();
-        var QUNV = $$("#QunV").val();
-        var QUN2V = parseInt(QUNV);
-        if (isNaN(QUN2V)) {
-            QUN2 = 1;
-        } else {
-            QUN2 = QUN2V
-        }
-        var order1V = {
-            "ItemID": localStorage.getItem("ItemIDV"),
-            "ItemDescription": localStorage.getItem("ItemDescriptionV"),
-            "ItemCode": localStorage.getItem("ItemCodeV"),
-            "ItemBarcode": localStorage.getItem("ItemBarcodeV"),
-            "PackID": localStorage.getItem("packidV"),
-            "UOM": localStorage.getItem("UOMV"),
-            "Price": localStorage.getItem("PriceV"),
-            "VendorName": localStorage.getItem("VendorNameV"),
-            "Tax": localStorage.getItem("TaxV"),
-            "Discount": localStorage.getItem("DiscountV"),
-            "PiecesInPack": localStorage.getItem("PiecesInPackV"),
-            "IsDefaultPack": localStorage.getItem("IsDefaultPackV"),
-            "PackGroupID": localStorage.getItem("PackGroupIDV"),
-            "DiscountTypeID": localStorage.getItem("DiscountTypeIDV"),
-            "ItemCategoryID": 2,
-            "DivisionID": 1,
-            "BrandID": -1,
-            "ItemCategory": "Small Format",
-            "Division": "Small Formats",
-            "Brand": null,
-            "RequiredQuanity": QUN2,
-            "PackTypeID": localStorage.getItem("PackTypeIDV"),
-            "PromotedDiscount": 0,
-            "CalculatedDiscount": 0,
-            "ItemPromotedDiscount": 0
-        }
-        console.log(order1V);
-
-        var gross = order1V.Price * order1V.RequiredQuanity;
-        var discountamount = gross * (order1V.Discount / 100);
-        var PackNetTottal = gross - discountamount;
-
-        var Tax = PackNetTottal * (order1V.Tax / 100);
-        var Net = PackNetTottal + Tax;
-        var calc = {
-            "Gross": gross,
-            "NetTottal": Net,
-            "Tax": Tax,
-            "Discount": discountamount
-        }
-        localStorage.setItem(order1V.PackID, JSON.stringify(calc));
-
-        console.log(JSON.stringify(calc));
-        localStorage.setItem('orderV', order1V);
-
-        var found = false;
-        if (vendoreorder[localStorage.getItem("VendorNameV")].length) {
-            for (var i = 0; i < vendoreorder[localStorage.getItem("VendorNameV")].length; i++) {
-                found = vendoreorder[localStorage.getItem("VendorNameV")][i].PackID == order1V.PackID;
-                if (found == true) {
-                    vendoreorder[localStorage.getItem("VendorNameV")][i].RequiredQuanity = order1V.RequiredQuanity + vendoreorder[localStorage.getItem("VendorNameV")][i].RequiredQuanity;
-                    break;
-                }
-
-            }
-        }
-        if (!found) {
-            vendoreorder[localStorage.getItem("VendorNameV")].push(order1V);
-        }
-
-
-
-
-
-
-        //  console.log(OrderList); \
-        console.log(OrderList);
-        localStorage.setItem('orderlist33', JSON.stringify(OrderList));
-
-
-
-
-        /*OrderList.push(order1);
-        localStorage.setItem('orderlist33',JSON.stringify(OrderList));
-        console.log(OrderList);
-      */
-
-        $$(".Orders").attr("id", "Orders");
-        mainView.router.load({
-            url: 'Allitems.html',
-            froce: true
-        });
-        //         myApp.showTab('#tab2');
+        debugger;
+       
     });
 
 
@@ -4203,10 +4158,10 @@ myApp.onPageInit('pro', function (page) {
             var d = x[f].OptionID;
             var n = x[f].CalculatedPromotionDetails;
             var g = n[d];
-            var uniqeid = JSON.stringify(c) + JSON.stringify(d);
-            var unijson = JSON.parse(uniqeid);
+            var input = JSON.stringify(c) + JSON.stringify(d);
+            var unijson = JSON.parse(input);
 
-            detid += '<div><div id="' + uniqeid + '"></div></div>';
+            detid += '<div><div id="' + input + '"></div></div>';
         }
         $$("#" + pro[l].PromotionID).append(detid);
     }
@@ -4221,8 +4176,8 @@ myApp.onPageInit('pro', function (page) {
             var d = x[f].OptionID;
             var n = x[f].CalculatedPromotionDetails;
             var g = n[d];
-            var uniqeid = JSON.stringify(c) + JSON.stringify(d);
-            var unijson = JSON.parse(uniqeid);
+            var input = JSON.stringify(c) + JSON.stringify(d);
+            var unijson = JSON.parse(input);
 
             var qut77 = '';
 
@@ -4237,11 +4192,11 @@ myApp.onPageInit('pro', function (page) {
                 } else {
                     var92 = '0% !important;'
                 }
-                qut77 = ' <li id="' + g[m].DetailTypeID + '"> <label class="label-checkbox item-content"> <input class="value" type="radio" checked="checked" name="group' + l + '" value="' + uniqeid + '"><div class="item-media" style="padding-top:' + var92 + '"><i class="icon icon-form-checkbox"></i></div><div class="item-inner"><div class="item-title-row"> </div> <div class="item-text" style="margin-right:auto">' + desc + '</div>  </div> </label></li>';
+                qut77 = ' <li id="' + g[m].DetailTypeID + '"> <label class="label-checkbox item-content"> <input class="value" type="radio" checked="checked" name="group' + l + '" value="' + input + '"><div class="item-media" style="padding-top:' + var92 + '"><i class="icon icon-form-checkbox"></i></div><div class="item-inner"><div class="item-title-row"> </div> <div class="item-text" style="margin-right:auto">' + desc + '</div>  </div> </label></li>';
                 //radiocheck
-                localStorage.setItem(uniqeid, JSON.stringify(g[m]));
+                localStorage.setItem(input, JSON.stringify(g[m]));
             }
-            $$("#" + uniqeid).append(qut77);
+            $$("#" + input).append(qut77);
         }
 
     }
@@ -4279,7 +4234,7 @@ myApp.onPageInit('pro', function (page) {
         var getimage = '';
 
         for (var f = 0; f < vendoreinfo.length; f++) {
-            if (vendoreinfo[f].UniqeID == guessqout) {
+            if (vendoreinfo[f].input == guessqout) {
                 getimage = vendoreinfo[f].IMG;
 
             }
@@ -4362,7 +4317,7 @@ myApp.onPageInit('pro', function (page) {
         var getimage2 = '';
 
         for (var f = 0; f < vendoreinfo.length; f++) {
-            if (vendoreinfo[f].UniqeID == guessqout) {
+            if (vendoreinfo[f].input == guessqout) {
                 getimage2 = vendoreinfo[f].IMG;
 
             }
@@ -4458,7 +4413,7 @@ myApp.onPageInit('pro', function (page) {
 
             var trl = '';
             for (var t = 0; t < vendoreinfo.length; t++) {
-                if (vendoreinfo[t].UniqeID == guessqout) {
+                if (vendoreinfo[t].input == guessqout) {
                     trl = vendoreinfo[t].URL;
                 }
             }

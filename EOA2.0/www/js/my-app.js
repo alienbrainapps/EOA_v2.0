@@ -2203,7 +2203,7 @@ function getiteminfo(item) {
     //        
     //    }
     $$('#price_information').html(`
-<li>
+                            <li>
                                 <div class="item-content">
                                     <div class="item-inner">
                                         <div class="item-title label">Gross</div>
@@ -2238,8 +2238,7 @@ function getiteminfo(item) {
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-`);
+                            </li>`);
 
 
 
