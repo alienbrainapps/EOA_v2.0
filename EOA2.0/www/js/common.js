@@ -120,9 +120,9 @@ myApp.onPageInit('catg', function (page) {
                     </div>
                     </div>
                     <div class="list-block" style="margin-bottom:0%;">
-                    <ul class="Itema" id="` + vendoreinfo[i].name + `"> 
+                    <ul class="Itema" id="` + vendoreinfo[i].input + `"> 
                     </ul></div><div class="list-block" style="margin-top:0%;">
-                    <ul id="bundlelist` + vendoreinfo[i].name + `">  </ul>  
+                    <ul id="bundlelist` + vendoreinfo[i].input + `">  </ul>  
                     <div id="` + vendoreinfo[i].input + `" class="col-50 Qut"><a href="#" id="` + vendoreinfo[i].input + `" class="button">` + lag.Request + `</a></div>  
                     <div style="margin-top:3%" id="` + vendoreinfo[i].input + `" class="Cancel col-50">
                         <a href="#"  class=" button">` + lag.Cancel + `</a>
@@ -445,8 +445,8 @@ myApp.onPageInit('catg', function (page) {
                 "bundles": Restructofbundells
             }
         for (var i = 0; i < OrderJsonObject.ItemPacks.length; i++) {
-            OrderJsonObject.ItemPacks[i].PackID = parseInt(OrderJsonObject.ItemPacks[i].PackID.substring(6));
-            OrderJsonObject.ItemPacks[i].ItemID = parseInt(OrderJsonObject.ItemPacks[i].ItemID.substring(6));
+            OrderJsonObject.ItemPacks[i].PackID = OrderJsonObject.ItemPacks[i].PackID;
+            OrderJsonObject.ItemPacks[i].ItemID = OrderJsonObject.ItemPacks[i].ItemID;
 
         }
         myApp.showPreloader(loading);
@@ -454,7 +454,7 @@ myApp.onPageInit('catg', function (page) {
         // }
         ////     OrderJsonObject.ItemPacks.push.apply( OrderJsonObject.ItemPacks,IOAlist);
         localStorage.setItem('orderr', JSON.stringify(OrderJsonObject));
-        ;
+        
 
         for (var i = 0; i < vendoreinfo.length; i++) {
             if (vendoreinfo[i].input == Identfier) {
@@ -608,7 +608,7 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
         //alert(str);
         if (!vendorereturen[vendoreinfo[i].input].length) { } else {
             if (i == 0) { stro = "Nestle" } else { stro = "Delmonti" }
-            li += '<div class="swiper-slide"><span>' + stro + '</span>  <div class="row">  <div class="col-80"></div> <div class="col-20" style="font-size: large; padding-left: 5%;" id="edit">Edit</div> </div><div class="content-block-inner"><div style="padding-left:10%" class="co1ntent-block">      <div class="content-bl1ock-inner" style="padding-left:4%;"><div id="ce" style="display:none">   <div class="row no-gutter"><div style="font-size: large;"  class="col-50">Gross :</div><div style="font-size: large;" id="gro' + str + '" class="col-50">0.00</div></div><div class="row no-gutter"><div  style="font-size: large;"  class="col-50">Discount :</div><div style="font-size: large;" id="des' + str + '" class="col-50">0.00</div> </div>   <div class="row no-gutter">  <div style="font-size: large;"  class="col-50">Tax :</div>      <div style="font-size: large;" id="tax' + str + '"  class="col-50">0.00</div> </div> <div class="row no-gutter"><div style="font-size: large;" class="col-50">Bundles :</div><div style="font-size: large;" id="bundlenettotal" class="col-50">0.00</div> </div> </div>  <div style="margin-top:4%" class="row no-gutter"> <div style="font-size:large; color:#00695c; font-weight:bold;" class="col-50">NetTotal :</div><div style="font-size: large; color:#00695c; font-weight:bold; "  id="Net' + str + '" class="col-50">0.00</div></div> <div style="margin-top:9%" class="row">    <div style="padding-left:36%; padding-right:34%; margin-top:-6%; " id="itemarrowup"><i  class="icon Down col-100" ></i></div>   <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-6%; " id="itemarrowdown"><i  class="icon UP col-100" ></i> </div>    </div>   </div>   </div><div class="list-block blol" style="margin-bottom:0%;">  <ul id="' + vendoreinfo[i].name + '"> </ul></div><div class="list-block" style="margin-top:0%;">  <ul id="bundlelist">  </ul>  <div id="' + vendoreinfo[i].input + '" class="col-50 Qut123"><a href="#" id="' + vendoreinfo[i].input + '" class="button">Return items</a></div>  <div style="margin-top:3%" id="Cancel" class="col-50"><a href="#"  class="button">Cancel Request</a></div></div>              </div>    </div>   <div style="display:none" id="noorderinfo" class="content-block">      <div class="row">  <div class="col-100">{{YoudonthaveanyordersnorBundels}} </div></div>  </div></div>';
+            li += '<div class="swiper-slide"><span>' + stro + '</span>  <div class="row">  <div class="col-80"></div> <div class="col-20" style="font-size: large; padding-left: 5%;" id="edit">Edit</div> </div><div class="content-block-inner"><div style="padding-left:10%" class="co1ntent-block">      <div class="content-bl1ock-inner" style="padding-left:4%;"><div id="ce" style="display:none">   <div class="row no-gutter"><div style="font-size: large;"  class="col-50">Gross :</div><div style="font-size: large;" id="gro' + str + '" class="col-50">0.00</div></div><div class="row no-gutter"><div  style="font-size: large;"  class="col-50">Discount :</div><div style="font-size: large;" id="des' + str + '" class="col-50">0.00</div> </div>   <div class="row no-gutter">  <div style="font-size: large;"  class="col-50">Tax :</div>      <div style="font-size: large;" id="tax' + str + '"  class="col-50">0.00</div> </div> <div class="row no-gutter"><div style="font-size: large;" class="col-50">Bundles :</div><div style="font-size: large;" id="bundlenettotal" class="col-50">0.00</div> </div> </div>  <div style="margin-top:4%" class="row no-gutter"> <div style="font-size:large; color:#00695c; font-weight:bold;" class="col-50">NetTotal :</div><div style="font-size: large; color:#00695c; font-weight:bold; "  id="Net' + str + '" class="col-50">0.00</div></div> <div style="margin-top:9%" class="row">    <div style="padding-left:36%; padding-right:34%; margin-top:-6%; " id="itemarrowup"><i  class="icon Down col-100" ></i></div>   <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-6%; " id="itemarrowdown"><i  class="icon UP col-100" ></i> </div>    </div>   </div>   </div><div class="list-block blol" style="margin-bottom:0%;">  <ul id="' + vendoreinfo[i].input + '"> </ul></div><div class="list-block" style="margin-top:0%;">  <ul id="bundlelist">  </ul>  <div id="' + vendoreinfo[i].input + '" class="col-50 Qut123"><a href="#" id="' + vendoreinfo[i].input + '" class="button">Return items</a></div>  <div style="margin-top:3%" id="Cancel" class="col-50"><a href="#"  class="button">Cancel Request</a></div></div>              </div>    </div>   <div style="display:none" id="noorderinfo" class="content-block">      <div class="row">  <div class="col-100">{{YoudonthaveanyordersnorBundels}} </div></div>  </div></div>';
         }
     }
     $$(".swiper-wrapper").append(li);
