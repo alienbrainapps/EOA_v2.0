@@ -53,6 +53,9 @@
         width: 0 !important;
         height: 0 !important;
     }
+#offers109 .card {
+    border-left: dashed 3px rgba(0,0,0,0.3) !important;
+}
 
 #bundon .list-block {
 } 
@@ -308,4 +311,12 @@ background-color:#ffffff !important;
     min-width: 16px;
     font-family: -apple-system,SF UI;
     background-color: #fc9c4d;
+}
+
+
+.vendor-offer-name  h1{
+
+
+}
+.vendor-offer-name p {
 }
