@@ -55,10 +55,11 @@ function getItemByQuery() {
 						</div>
 				</div>
 				<div class="card-footer">
-					<a href="#" class="link">Add To Order</a>
+					<a href="#" class="link not-show">Add To Order</a>
 										<a href="#" class="link view_details_btn"
 						id="` + resultSet.rows.item(r).ItemID + `" 
 						data-VendorName="`+ resultSet.rows.item(r).VendorName + `" 
+                        data-VendorID="`+ resultSet.rows.item(r).VendorID + `"
 						data-ItemCode="`+ resultSet.rows.item(r).ItemCode + `" 
 						data-ItemBarcode="`+ resultSet.rows.item(r).ItemBarcode + `" 
 						data-PackID="`+ resultSet.rows.item(r).PackID + `" 
@@ -81,7 +82,11 @@ function getItemByQuery() {
 
             }
 
-
+            $$(".view_details_btn").on('click', function () {
+                itemSelected = this.id;
+                vendorSelected = $$(this).data('VendorID');
+                mainView.router.loadPage({ url: "Alldet.html", force: true });
+            });
             lastIndex = $$('#itemlist li').length;
             myApp.hidePreloader();
 
