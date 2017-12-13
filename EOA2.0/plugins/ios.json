@@ -7,47 +7,50 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
-        },
         "cordova-plugin-camera": {
             "CAMERA_USAGE_DESCRIPTION": " ",
             "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
         },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
+        "cordova-plugin-dbcopy": {
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
         },
         "cordova-plugin-geolocation": {
             "GEOLOCATION_USAGE_DESCRIPTION": " ",
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
         },
         "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
+        },
+        "cordova-sqlite-evcore-extbuild-free": {
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
         },
         "phonegap-plugin-barcodescanner": {
             "CAMERA_USAGE_DESCRIPTION": " ",
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
-        },
-        "cordova-plugin-dbcopy": {
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
-        },
-        "cordova-sqlite-evcore-extbuild-free": {
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "io.cordova.myappae65e5"
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
         }
     }
 }
