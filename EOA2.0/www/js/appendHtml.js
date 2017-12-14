@@ -581,7 +581,7 @@ function popUpOfferDet(offerId) {
             for (var r = 0; r < resultSet.rows.length; r++) {
                 promotionDetails = resultSet.rows.item(r)
             }
-            
+            console.log(promotionDetails);
             var popupHTML = `
             <div class="popup">
                 <div class="content-block">
@@ -618,7 +618,7 @@ function popUpOfferDet(offerId) {
         var inputOptionsObj = inputOptions[offerId];
         for (var m = 0; m < inputOptionsObj.length; m++) {
             if (m == 0) {
-                ul += `<ul id="AB` + promotionDetails.PromotionID + inputOptionsObj[m].OptionID + `"></ul>`;
+                ul += `<div class="content-block-title">if you buy</div><ul id="AB` + promotionDetails.PromotionID + inputOptionsObj[m].OptionID + `"></ul>`;
             }
             else
                 ul += `<span style="margin-left:5%">OR</span><ul id="AB` + promotionDetails.PromotionID + inputOptionsObj[m].OptionID + `"></ul>`;
@@ -634,7 +634,7 @@ function popUpOfferDet(offerId) {
                 liForselectorUlID += '<li class="item-content"><div class="item-i11nner VR"><div class="item-ti1tle">- ' + calutedoptions[ki].Description + '.</div></div></li>';
             }
             $$("#AB" + selectorUlID).html('');
-            $$("#AB" + selectorUlID).append(liForselectorUlID);
+            $$("#AB" + selectorUlID).append(liForselectorUlID + '<div class="content-block-title">you will get</div><div>' + promotionDetails.Description +'</div>');
             
 
         }
