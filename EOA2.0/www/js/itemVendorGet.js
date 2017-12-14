@@ -114,46 +114,47 @@ function GetItems(url, custumerID, outletID, lang, input) {
             success: function (data, xhr) {
                 var itemsIs = JSON.parse(data);
                 timeout: 6000,
-                db.transaction(function (tx) {
-
-                    var query = "DELETE  FROM items WHERE VendorID = ? ";
-
-                    tx.executeSql(query, [input], function (tx, res) {
-                        //console.log("removeId: " + res.insertId);
-                        //console.log("rowsAffected: " + res.rowsAffected);
-                    },
-                        function (tx, error) {
-                            console.log('DELETE error: ' + error.message);
-                        });
-                }, function (error) {
-                    console.log('transaction error: ' + error.message);
-                }, function () {
-                    console.log('transaction ok');
-                    //@prog time to insert item to item table
                     db.transaction(function (tx) {
-                        for (var d = 0; d < itemsIs.length; d++) {
-                            var query = "INSERT INTO items (ItemID, ItemDescription, ItemCode, ItemBarcode, PackID, UOM, Price, Tax, Discount, PiecesInPack, IsDefaultPack, DiscountTypeID, ItemCategoryID, DivisionID, BrandID, ItemCategory, Division, Brand, PackTypeID, PromotedDiscount, CalculatedDiscount, RequiredQuanity, ItemImageName, VendorName, CurrencyName, VendorID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
+                        var query = "DELETE  FROM items WHERE VendorID = ? ";
 
-                            tx.executeSql(query, [itemsIs[d].ItemID, itemsIs[d].ItemDescription, itemsIs[d].ItemCode, itemsIs[d].ItemBarcode, itemsIs[d].PackID, itemsIs[d].UOM, itemsIs[d].Price, itemsIs[d].Tax, itemsIs[d].Discount, itemsIs[d].PiecesInPack, itemsIs[d].IsDefaultPack, itemsIs[d].DiscountTypeID, itemsIs[d].ItemCategoryID, itemsIs[d].DivisionID, itemsIs[d].BrandID, itemsIs[d].ItemCategory, itemsIs[d].Division, itemsIs[d].Brand, itemsIs[d].PackTypeID, itemsIs[d].PromotedDiscount, itemsIs[d].CalculatedDiscount, itemsIs[d].RequiredQuanity, itemsIs[d].ItemImageName, itemsIs[d].VendorName, itemsIs[d].CurrencyName, input], function (tx, res) {
-                                //console.log("insertId: " + res.insertId + " -- probably 1");
-                                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-                            },
-                                function (tx, error) {
-                                    console.log('INSERT error: ' + error.message);
-                                });
-                        }
-
+                        tx.executeSql(query, [input], function (tx, res) {
+                            //console.log("removeId: " + res.insertId);
+                            //console.log("rowsAffected: " + res.rowsAffected);
+                        },
+                            function (tx, error) {
+                                console.log('DELETE error: ' + error.message);
+                            });
                     }, function (error) {
                         console.log('transaction error: ' + error.message);
                     }, function () {
                         console.log('transaction ok');
-                        index++;
-                        GetVendorItems();
-                        return;
-                    });
+                        //@prog time to insert item to item table
+                        db.transaction(function (tx) {
+                            if (itemsIs.length) {
+                                for (var d = 0; d < itemsIs.length; d++) {
+                                    var query = "INSERT INTO items (ItemID, ItemDescription, ItemCode, ItemBarcode, PackID, UOM, Price, Tax, Discount, PiecesInPack, IsDefaultPack, DiscountTypeID, ItemCategoryID, DivisionID, BrandID, ItemCategory, Division, Brand, PackTypeID, PromotedDiscount, CalculatedDiscount, RequiredQuanity, ItemImageName, VendorName, CurrencyName, VendorID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-                });
+
+                                    tx.executeSql(query, [itemsIs[d].ItemID, itemsIs[d].ItemDescription, itemsIs[d].ItemCode, itemsIs[d].ItemBarcode, itemsIs[d].PackID, itemsIs[d].UOM, itemsIs[d].Price, itemsIs[d].Tax, itemsIs[d].Discount, itemsIs[d].PiecesInPack, itemsIs[d].IsDefaultPack, itemsIs[d].DiscountTypeID, itemsIs[d].ItemCategoryID, itemsIs[d].DivisionID, itemsIs[d].BrandID, itemsIs[d].ItemCategory, itemsIs[d].Division, itemsIs[d].Brand, itemsIs[d].PackTypeID, itemsIs[d].PromotedDiscount, itemsIs[d].CalculatedDiscount, itemsIs[d].RequiredQuanity, itemsIs[d].ItemImageName, itemsIs[d].VendorName, itemsIs[d].CurrencyName, input], function (tx, res) {
+                                        //console.log("insertId: " + res.insertId + " -- probably 1");
+                                        //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                                    },
+                                        function (tx, error) {
+                                            console.log('INSERT error: ' + error.message);
+                                        });
+                                }
+                            }
+                        }, function (error) {
+                            console.log('transaction error: ' + error.message);
+                        }, function () {
+                            console.log('transaction ok');
+                            index++;
+                            GetVendorItems();
+                            return;
+                        });
+
+                    });
 
 
             },
@@ -294,33 +295,86 @@ function addToOrder() {
     var found = false;
     console.log(itemOrderToSend.name);
     console.log(vendoreorder);
-    console.log(vendoreorder[itemOrderToSend.VendorID].length);
-    var found = false;
-    if (vendoreorder[itemOrderToSend.VendorID].length) {
-        for (var i = 0; i < vendoreorder[itemOrderToSend.VendorID].length; i++) {
-            found = vendoreorder[itemOrderToSend.VendorID][i].PackID == itemOrderToSend.PackID;
-            if (found == true) {
-                vendoreorder[itemOrderToSend.VendorID][i].RequiredQuanity = itemOrderToSend.RequiredQuanity + vendoreorder[itemOrderToSend.VendorID][i].RequiredQuanity;
-                break;
+
+    //console.log(vendoreorder[itemOrderToSend.VendorID].length);
+    if (vendoreorder.length == 0) {
+        vendoreinfo = [];
+        db.transaction(function (tx) {
+
+            var query = "SELECT * FROM vendor";
+            console.log('query', query);
+            tx.executeSql(query, [], function (tx, resultSet) {
+                for (var x = 0; x < resultSet.rows.length; x++) {
+                    vendoreinfo.push(resultSet.rows.item(x));
+                }
+
+            },
+                function (tx, error) {
+                    console.log('SELECT error: ' + error.message);
+                });
+        }, function (error) {
+            console.log('transaction error: ' + error.message);
+        }, function () {
+            console.log('transaction ok');
+
+            for (var i = 0; i < vendoreinfo.length; i++) {
+                vendoreorder[vendoreinfo[i].input] = [];
+                mybundle[vendoreinfo[i].input] = [];
+                vendorereturen[vendoreinfo[i].input] = [];
             }
 
+            var found = false;
+            if (vendoreorder[itemOrderToSend.VendorID].length) {
+                for (var i = 0; i < vendoreorder[itemOrderToSend.VendorID].length; i++) {
+                    found = vendoreorder[itemOrderToSend.VendorID][i].PackID == itemOrderToSend.PackID;
+                    if (found == true) {
+                        vendoreorder[itemOrderToSend.VendorID][i].RequiredQuanity = itemOrderToSend.RequiredQuanity + vendoreorder[itemOrderToSend.VendorID][i].RequiredQuanity;
+                        break;
+                    }
+
+                }
+            }
+            if (!found) {
+                vendoreorder[itemOrderToSend.VendorID].push(itemOrderToSend);
+            }
+
+
+            console.log(OrderList);
+            localStorage.setItem('orderlist33', JSON.stringify(OrderList));
+
+
+            $$(".Orders").attr("id", "Orders");
+
+            mainView.router.back();
+
+        });
+    }
+
+    else {
+        var found = false;
+        if (vendoreorder[itemOrderToSend.VendorID].length) {
+            for (var i = 0; i < vendoreorder[itemOrderToSend.VendorID].length; i++) {
+                found = vendoreorder[itemOrderToSend.VendorID][i].PackID == itemOrderToSend.PackID;
+                if (found == true) {
+                    vendoreorder[itemOrderToSend.VendorID][i].RequiredQuanity = itemOrderToSend.RequiredQuanity + vendoreorder[itemOrderToSend.VendorID][i].RequiredQuanity;
+                    break;
+                }
+
+            }
         }
+        if (!found) {
+            vendoreorder[itemOrderToSend.VendorID].push(itemOrderToSend);
+        }
+
+
+        console.log(OrderList);
+        localStorage.setItem('orderlist33', JSON.stringify(OrderList));
+
+
+        $$(".Orders").attr("id", "Orders");
+
+        mainView.router.back();
     }
-    if (!found) {
-        vendoreorder[itemOrderToSend.VendorID].push(itemOrderToSend);
-    }
-
-
-    console.log(OrderList);
-    localStorage.setItem('orderlist33', JSON.stringify(OrderList));
-
-
-    $$(".Orders").attr("id", "Orders");
-    mainView.router.load({
-        url: 'Allitems.html',
-        froce: true
-    });
-
 
 }
 

@@ -13,6 +13,7 @@ var brandsVendorName = '';
 var itemSelected = '';
 var itemDetails_EL = '';
 var promotionDetails = ""; 
+var clikedFrom = "";
 
 // Last loaded index
 var lastIndex = $$('#itemlist li').length;
@@ -83,6 +84,7 @@ function getItemByQuery() {
             }
 
             $$(".view_details_btn").on('click', function () {
+                clikedFrom = $$('.view-main').data('page');
                 itemSelected = this.id;
                 vendorSelected = $$(this).data('VendorID');
                 mainView.router.loadPage({ url: "Alldet.html", force: true });
