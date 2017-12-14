@@ -2185,6 +2185,9 @@ function getiteminfo(item) {
     var discountamt = 0.0;
     var prodiscountamt = 0.0;
     item.RequiredQuanity = $$('#QunV').val();
+    if (item.RequiredQuanity == undefined) {
+        item.RequiredQuanity = 1;
+    }
     gross = item.Price * item.RequiredQuanity;
     if (item.DetailTypeID == 2) { discountperc = (item.Discount * 100) / gross } else { discountperc = item.Discount }
     discountamt = gross * (discountperc / 100);
@@ -2202,6 +2205,8 @@ function getiteminfo(item) {
     //        }
     //        
     //    }
+    $$('#price_information').html('');
+  
     $$('#price_information').html(`
                             <li>
                                 <div class="item-content">

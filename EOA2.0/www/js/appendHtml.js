@@ -59,7 +59,7 @@ function getItemByQuery() {
 					<a href="#" class="link not-show">Add To Order</a>
 										<a href="#" class="link view_details_btn"
 						id="` + resultSet.rows.item(r).ItemID + `" 
-						data-VendorName="`+ resultSet.rows.item(r).VendorName + `" 
+						
                         data-VendorID="`+ resultSet.rows.item(r).VendorID + `"
 						data-ItemCode="`+ resultSet.rows.item(r).ItemCode + `" 
 						data-ItemBarcode="`+ resultSet.rows.item(r).ItemBarcode + `" 
@@ -447,11 +447,11 @@ function getItemDetailsFromBrandList(venID, itemId) {
                 console.log('this is target item', JSON.stringify(objclating));
                
                 EL_UOM +=
-                    `<li id="` + resultSet.rows.item(r).PackID + `"  
+                    `<li id="selected` + resultSet.rows.item(r).PackID + `"  
 	                 data-pack="`+ resultSet.rows.item(r).PackTypeID + `" 
 	                 data-Discount="`+ resultSet.rows.item(r).Discount + `" 
 	                 data-Tax="`+ resultSet.rows.item(r).Tax + `" 
-	                 data-Price="`+ resultSet.rows.item(r).Price + `" 
+	                 data-price="`+ resultSet.rows.item(r).Price + `" 
 	                 data-PackID="`+ resultSet.rows.item(r).PackID + `">
       <label class="label-radio item-content">
         <input type="radio" name="my-radio" value="`+ resultSet.rows.item(r).Price + `"  checked="checked">
@@ -485,7 +485,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                     <div class="item-inner">
                                         <div class="item-title label">Quntity</div>
                                         <div class="item-after item-input">
-                                            <input value="1" class="picker-device" type="number" id="QunV" placeholder="1">
+                                            <input data-PackID="`+ resultSet.rows.item(r).PackID+`"; value="1" class="picker-device" type="number" id="QunV" placeholder="1">
                                         </div>
                                     </div>
                                 </div>
@@ -517,11 +517,26 @@ function getItemDetailsFromBrandList(venID, itemId) {
 
             $$('#QunV').on('change', function () {
                 // get calculation card 
+                var thePakageIS = $$(this).data('PackID');
+                
+                
+                var packid = $$('#' + thePakageIS).data('PackID');
+                var Discount = $$('#selected' + thePakageIS).data('Discount');
+                var Tax = $$('#selected' + thePakageIS).data('Tax');
+                var PackTypeID = $$('#selected' + thePakageIS).data('pack');
+                var price = $$('#selected' + thePakageIS).data("price");
+                objclating.PackID = packid;
+                objclating.Discount = Discount;
+                objclating.Tax = Tax;
+                objclating.Price = price;
                 getiteminfo(objclating);
+                
            });
             $$('#item_information').on('click', 'li', function () {
+                
                 var ids = this.id;
                 var packid = $$(this).data('PackID');
+                $$('#QunV').data('PackID', packid);
                 var Discount = $$(this).data('Discount');
                 var Tax = $$(this).data('Tax');
                 var PackTypeID = $$(this).data('pack');
@@ -634,8 +649,8 @@ function popUpOfferDet(offerId) {
                 liForselectorUlID += '<li class="item-content"><div class="item-i11nner VR"><div class="item-ti1tle">- ' + calutedoptions[ki].Description + '.</div></div></li>';
             }
             $$("#AB" + selectorUlID).html('');
-            $$("#AB" + selectorUlID).append(liForselectorUlID + '<div class="content-block-title">you will get</div><div>' + promotionDetails.Description +'</div>');
-            
+            $$("#AB" + selectorUlID).append(liForselectorUlID);
+            $$("#AB" + selectorUlID).append('<div class="content-block-title">you will get</div><div>' + promotionDetails.Description + '</div>');
 
         }
 
