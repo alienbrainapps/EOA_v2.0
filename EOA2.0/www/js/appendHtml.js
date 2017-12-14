@@ -440,10 +440,32 @@ function getItemDetailsFromBrandList(venID, itemId) {
         var query = `select items.*,vendor.name from items inner join vendor on items.VendorID=vendor.input where  vendorid='` + venID + `' and itemid=` + itemId +` order by IsDefaultPack,piecesinpack desc`;
         tx.executeSql(query, [], function (tx, resultSet) {
 
-         
+            var EL_UOM = "";
             for (var r = 0; r < resultSet.rows.length; r++) {
                 //@prog append vendor
                 objclating = resultSet.rows.item(r);
+                console.log('this is target item', JSON.stringify(objclating));
+               
+                EL_UOM +=
+                    `<li id="` + resultSet.rows.item(r).PackID + `"  
+	                 data-pack="`+ resultSet.rows.item(r).PackTypeID + `" 
+	                 data-Discount="`+ resultSet.rows.item(r).Discount + `" 
+	                 data-Tax="`+ resultSet.rows.item(r).Tax + `" 
+	                 data-Price="`+ resultSet.rows.item(r).Price + `" 
+	                 data-PackID="`+ resultSet.rows.item(r).PackID + `">
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" value="`+ resultSet.rows.item(r).Price + `"  checked="checked">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">`+ resultSet.rows.item(r).UOM + `</div >
+		  <div class="item-after">` + resultSet.rows.item(r).Price + `</div>
+        </div >
+      </label >
+    </li >`;
+
+
                 itemDetails_EL = `
                         <li class="item-divider"><i class="icon icon-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription +`</li>
                             <li>
@@ -473,28 +495,20 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                 <div class="item-content">
                                     <div class="item-media"><i class="icon icon-selling-unit"></i> </div>
                                     <div class="item-inner">
-                                        <div class="item-title label">Selingunite</div>
+                                        <div class="item-title label">Seling unite</div>
                                         <div class="item-after item-input">
                                             <input value="1" class="picker-device" type="number" id="QunV" placeholder="1">
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="item-content">
-                                    <div class="item-inner">
-                                        <div class="item-title label">&nbsp;</div>
-                                        <div class="item-after">
-                                            <div id="UOM"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </li>`;
+                            `;
                
                 
             }
+            
             $$('#item_information').html(itemDetails_EL);
+            $$("#item_information").append(EL_UOM);
             getiteminfo(objclating);
            console.log(JSON.stringify(objclating));
 
@@ -504,7 +518,28 @@ function getItemDetailsFromBrandList(venID, itemId) {
             $$('#QunV').on('change', function () {
                 // get calculation card 
                 getiteminfo(objclating);
+           });
+            $$('#item_information').on('click', 'li', function () {
+                var ids = this.id;
+                var packid = $$(this).data('PackID');
+                var Discount = $$(this).data('Discount');
+                var Tax = $$(this).data('Tax');
+                var PackTypeID = $$(this).data('pack');
+                var price = $$(this).data("Price");
+                objclating.PackID = packid;
+                objclating.Discount = Discount;
+                objclating.Tax = Tax;
+                objclating.Price = price;
+                getiteminfo(objclating);
+                
+                $$("#Price").html(curency + itemdata.nettotal.toFixed(3));
+                $$("#Gross").html(curency + itemdata.gross.toFixed(3));
+                $$("#Discount").html(curency + itemdata.discount.toFixed(3));
+                $$("#Tax").html(curency + itemdata.tax.toFixed(3));
+                $$("#vendorename").html(itemdata.itemname);
+               
             });
+
            
         },
             function (tx, error) {
