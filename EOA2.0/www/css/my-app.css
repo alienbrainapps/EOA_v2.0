@@ -3,6 +3,10 @@
 .not-show {
 display: none !important;
 }
+.subnavbar {
+background-color: #ffffff !important;
+
+}
 .card_list_content, .facebook-name {
     width: 100%;
     width: -webkit-fill-available;
@@ -48,12 +52,13 @@ display: none !important;
     font-size:17px;
 }
 #offers109 .card-footer {
-    text-align: center;
+    /*text-align: center;*/
     display: block;
     color: #1fb67b;
 }
     #offers109 .card-footer a.link {
         color: #1fb67b;
+        padding-left:40%;
     }
 #offers109 .card-footer:before,
     #offers109 .card-footer:after,
@@ -65,8 +70,7 @@ display: none !important;
     border-left: dashed 3px rgba(0,0,0,0.3) !important;
 }
 
-#bundon .list-block {
-} 
+
 
 .statusbar-overlay {
     background-color: #ffffff !important;
@@ -204,38 +208,45 @@ display: none !important;
     display:block;
     text-align: center;
     }
-    .navbar,
-    .home-page .toolbar {
-        background-color: #ffffff !important;
-    }
+.navbar,
+.toolbar,
+.home-page .toolbar {
+    background-color: #ffffff !important;
+}
 
         .navbar .left,
         .navbar .right {
             color: #1fb67b !important
         }
 
-    .home-page .tabbar a.tab-link.active,
-    html:not(.watch-active-state) .tabbar a.tab-link:active,
-    .home-page .tabbar a.tab-link.active-state {
-        color: #ffffff;
-        background-color: #1fb67b !important;
-        border-radius: 100px;
-        padding-bottom: 2px;
-        padding-top: 2px;
-        text-transform: capitalize;
-        border-bottom: 0 !important;
+.subnavbar .buttons-row a.tab-link.active,
+html:not(.watch-active-state) .subnavbar .buttons-row a.tab-link:active,
+.subnavbar .buttons-row a.tab-link.active-state,
+.tabbar a.tab-link.active,
+html:not(.watch-active-state) .tabbar a.tab-link:active,
+.tabbar a.tab-link.active-state {
+    color: #ffffff !important;
+    background-color: #1fb67b !important;
+    border-radius: 100px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    text-transform: capitalize;
+    border-bottom: 0 !important;
+}
+    .subnavbar .buttons-row a.tab-link.active:after,
+    html:not(.watch-active-state) .subnavbar .buttons-row a.tab-link:active :after,
+    .subnavbar .buttons-row a.tab-link.active-state:after ,
+    .tabbar a.tab-link.active:after,
+    html:not(.watch-active-state) .tabbar a.tab-link:active :after,
+    .tabbar a.tab-link.active-state:after {
+        border: 0 !important;
     }
-
-        .home-page .tabbar a.tab-link.active:after,
-        html:not(.watch-active-state) .tabbar a.tab-link:active :after,
-        .home-page .tabbar a.tab-link.active-state:after {
-            border: 0 !important;
-        }
-
-    .home-page .tabbar a.tab-link {
-        color: #1fb67b;
-        text-transform: capitalize;
-    }
+.subnavbar .buttons-row a.tab-link,
+.tabbar a.tab-link {
+    color: #1fb67b !important;
+    text-transform: capitalize;
+    border: 0 !important;
+}
 .navbar .toolbar-inner {
     padding-left: 10px !important;
     padding-right: 10px !important;

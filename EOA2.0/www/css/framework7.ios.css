@@ -2146,7 +2146,7 @@ i.icon {
   font-style: normal;
   position: relative;
 }
-i.icon.icon-back {
+/*i.icon.icon-back {
   width: 12px;
   height: 20px;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2012%2020'%3E%3Cpath%20d%3D'M10%2C0l2%2C2l-8%2C8l8%2C8l-2%2C2L0%2C10L10%2C0z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
@@ -2155,7 +2155,7 @@ i.icon.icon-forward {
   width: 12px;
   height: 20px;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2012%2020'%3E%3Cpath%20d%3D'M2%2C20l-2-2l8-8L0%2C2l2-2l10%2C10L2%2C20z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
-}
+}*/
 i.icon.icon-bars {
   width: 21px;
   height: 14px;
@@ -2178,7 +2178,7 @@ i.icon.icon-f7 {
   background-image: url("../img/i-f7-ios.png");
   border-radius: 6px;
 }
-i.icon.icon-next,
+/*i.icon.icon-next,
 i.icon.icon-prev {
   width: 15px;
   height: 15px;
@@ -2188,7 +2188,7 @@ i.icon.icon-next {
 }
 i.icon.icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2015%2015'%3E%3Cg%3E%3Cpath%20fill%3D'%23007aff'%20d%3D'M14%2C1.6v11.8L2.2%2C7.6L14%2C1.6%20M15%2C0L0%2C7.6L15%2C15V0L15%2C0z'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
-}
+}*/
 i.icon.icon-plus {
   width: 25px;
   height: 25px;
