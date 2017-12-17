@@ -89,7 +89,10 @@ myApp.onPageInit('catg', function (page) {
 
         if (!vendoreorder[vendoreinfo[i].input].length && jQuery.isEmptyObject(mybundle[vendoreinfo[i].input])) {
             console.log('wish thaa');
-        }else {
+        } else {
+            $$("#orderon").show();
+            $$("#noorderinfo").hide();
+
             //stro = vendoreinfo[i].name;
             //li += `<div id="pa` + vendoreinfo[i].input + `" style="overflow-x: scroll;" class="swiper-slide"><span>` + vendoreinfo[i].name + `</span>  
             //            <div class="row">
@@ -139,7 +142,8 @@ myApp.onPageInit('catg', function (page) {
     $$(".swiper-wrapper").append(li);
     var count = $$(".swiper-wrapper").children();
     if (count.length == 0) {
-        $$("#orderon").hide(); $$("#noorderinfo").show();
+        $$("#orderon").hide();
+        $$("#noorderinfo").show();
     }
 
     for (var e = 0; e < vendoreinfo.length; e++) {

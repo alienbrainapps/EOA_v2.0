@@ -496,9 +496,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                     <div class="item-media"><i class="icon icon-selling-unit"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Seling unite</div>
-                                        <div class="item-after item-input">
-                                            <input value="1" class="picker-device" type="number" id="QunV" placeholder="1">
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </li>

@@ -4,6 +4,16 @@
     display: none !important;
 }
 
+/*radio btn and check-box style*/
+label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio, label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio, label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio, label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio, label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio, label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio, .form-radio input[type="radio"]:checked ~ i {
+    border-color: #1fb67b !important;
+}
+
+
+    label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio:after, label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio:after, label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio:after, label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio:after, label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio:after, label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio:after, .form-radio input[type="radio"]:checked ~ i:after {
+        background-color: #1fb67b !important;
+    }
+
 .subnavbar {
     background-color: #ffffff !important;
 }
@@ -223,21 +233,34 @@
         padding-bottom: 60px;
     }
 
-    .home-page .card-footer {
-        display: block;
-        text-align: center;
-    }
+.page-Allitemdet .card .item-title.label {
+    width: auto !important;
+}
 
-    .navbar,
-    .toolbar,
-    .home-page .toolbar {
-        background-color: #ffffff !important;
-    }
+.page-Allitemdet .list-block .item-divider {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.12) !important;
+}
 
-        .navbar .left,
-        .navbar .right {
-            color: #1fb67b !important
-        }
+input#QunV {
+    text-align: end;
+}
+
+.home-page .card-footer {
+    display: block;
+    text-align: center;
+}
+
+.navbar,
+.toolbar,
+.home-page .toolbar {
+    background-color: #ffffff !important;
+}
+
+    .navbar .left,
+    .navbar .right {
+        color: #1fb67b !important
+    }
 
 .subnavbar .buttons-row a.tab-link.active,
 html:not(.watch-active-state) .subnavbar .buttons-row a.tab-link:active,
