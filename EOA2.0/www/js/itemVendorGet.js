@@ -336,14 +336,40 @@ function addToOrder() {
             }
             if (!found) {
                 vendoreorder[itemOrderToSend.VendorID].push(itemOrderToSend);
+                //@prog insert data to my cart table
+                //db.transaction(function (tx) {
+                //    if (vendoreorder.length) {
+                //        for (var d = 0; d < vendoreorder.length; d++) {
+                //            var query = "INSERT INTO cart (VendorID, cartID, cartObject) VALUES (?,?,?)";
+
+
+                //            tx.executeSql(query, [itemOrderToSend.VendorID, itemOrderToSend, d], function (tx, res) {
+                //                console.log("insertId: " + res.insertId + " -- probably 1");
+                //                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                //            },
+                //            function (tx, error) {
+                //                console.log('INSERT error: ' + error.message);
+                //            });
+                //        }
+                //    }
+                //}, function (error) {
+                //    console.log('transaction error: ' + error.message);
+                //}, function () {
+                //    console.log('transaction ok');
+                   
+                //});
             }
 
 
             console.log(OrderList);
-            localStorage.setItem('orderlist33', JSON.stringify(OrderList));
+            //localStorage.setItem('orderlist33', JSON.stringify(OrderList));
 
 
             $$(".Orders").attr("id", "Orders");
+
+            
+
+
 
             mainView.router.back();
 
@@ -364,11 +390,31 @@ function addToOrder() {
         }
         if (!found) {
             vendoreorder[itemOrderToSend.VendorID].push(itemOrderToSend);
+            //db.transaction(function (tx) {
+            //    if (vendoreorder.length) {
+            //        for (var d = 0; d < vendoreorder.length; d++) {
+            //            var query = "INSERT INTO cart (VendorID, cartID, cartObject) VALUES (?,?,?)";
+
+            //            tx.executeSql(query, [itemOrderToSend.VendorID, itemOrderToSend, d], function (tx, res) {
+            //                console.log("insertId: " + res.insertId + " -- probably 1");
+            //                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+            //            },
+            //                function (tx, error) {
+            //                    console.log('INSERT error: ' + error.message);
+            //                });
+            //        }
+            //    }
+            //}, function (error) {
+            //    console.log('transaction error: ' + error.message);
+            //}, function () {
+            //    console.log('transaction ok');
+
+            //});
         }
 
 
         console.log(OrderList);
-        localStorage.setItem('orderlist33', JSON.stringify(OrderList));
+        //localStorage.setItem('orderlist33', JSON.stringify(OrderList));
 
 
         $$(".Orders").attr("id", "Orders");

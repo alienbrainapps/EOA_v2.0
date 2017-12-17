@@ -43,6 +43,10 @@ myApp.onPageInit('catg', function (page) {
 
     var li = '';
     var stro = '';
+    
+    $$("#start_first_oredr_btn").on("click", function () {
+        mainView.router.loadPage({ url: 'home.html', force: true });
+    });
 
     $$("#backOrder").on("click", function () {
         mainView.router.loadPage({ url: 'home.html', force: true });
@@ -86,50 +90,50 @@ myApp.onPageInit('catg', function (page) {
         if (!vendoreorder[vendoreinfo[i].input].length && jQuery.isEmptyObject(mybundle[vendoreinfo[i].input])) {
             console.log('wish thaa');
         }else {
-            stro = vendoreinfo[i].name;
-            li += `<div id="pa` + vendoreinfo[i].input + `" style="overflow-x: scroll;" class="swiper-slide"><span>` + vendoreinfo[i].name + `</span>  
-                        <div class="row">
-                            <div class="col-80"></div>
-                            <div class="col-20" style="font-size: large; padding-left: 5%;" id="edit">` + lag.Edit + `</div>
-                        </div>
-                        <div class="content-block-inner">
-                            <div style="padding-left:10%" class="co1ntent-block">
-                            <div class="content-bl1ock-inner" style="padding-left:4%;">
-                            <div id="ce" style="display:none">
-                            <div class="row no-gutter">
-                            <div style="font-size: large;"  class="col-50">` + lag.Gross + ` :</div>
-                            <div style="font-size: large;" id="gro` + str + `" class="col-50">0.00</div>
-                            </div><div class="row no-gutter">
-                            <div  style="font-size: large;"  class="col-50">` + lag.Discount + ` :</div>
-                            <div style="font-size: large;" id="des` + str + `" class="col-50">0.00</div> 
-                            </div>   <div class="row no-gutter">
-                            <div style="font-size: large;"  class="col-50">` + lag.Tax + ` :</div> 
-                            <div style="font-size: large;" id="tax` + str + `"  class="col-50">0.00</div> 
-                        </div>
-                        <div class="row no-gutter">
-                            <div style="font-size: large;" class="col-50">` + lag.Bundels + ` :</div>\
-                            <div style="font-size: large;"  id="bundlenettotal` + str + `" class="col-50">0.00</div> 
-                          </div>
-                    </div>
-                    <div style="margin-top:4%" class="row no-gutter"> <div style="font-size:large; color:#00695c; font-weight:bold;" class="col-50">` + lag.NetTotal + ` :</div>
-                    <div style="font-size: large; color:#00695c; font-weight:bold; "  id="Net` + str + `" class="col-50">0.00</div></div> 
-                    <div style="margin-top:9%" class="row">    <div style="padding-left:36%; padding-right:34%; margin-top:-6%; " id="itemarrowup"><i  class="icon Down col-100" ></i></div>
-                    <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-6%; " id="itemarrowdown"><i  class="icon UP col-100" ></i>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="list-block" style="margin-bottom:0%;">
-                    <ul class="Itema" id="` + vendoreinfo[i].input + `"> 
-                    </ul></div><div class="list-block" style="margin-top:0%;">
-                    <ul id="bundlelist` + vendoreinfo[i].input + `">  </ul>  
-                    <div id="` + vendoreinfo[i].input + `" class="col-50 Qut"><a href="#" id="` + vendoreinfo[i].input + `" class="button">` + lag.Request + `</a></div>  
-                    <div style="margin-top:3%" id="` + vendoreinfo[i].input + `" class="Cancel col-50">
-                        <a href="#"  class=" button">` + lag.Cancel + `</a>
-                        </div>
-                        </div>
-                        </div>
-                        </div>`
+            //stro = vendoreinfo[i].name;
+            //li += `<div id="pa` + vendoreinfo[i].input + `" style="overflow-x: scroll;" class="swiper-slide"><span>` + vendoreinfo[i].name + `</span>  
+            //            <div class="row">
+            //                <div class="col-80"></div>
+            //                <div class="col-20" style="font-size: large; padding-left: 5%;" id="edit">` + lag.Edit + `</div>
+            //            </div>
+            //            <div class="content-block-inner">
+            //                <div style="padding-left:10%" class="co1ntent-block">
+            //                <div class="content-bl1ock-inner" style="padding-left:4%;">
+            //                <div id="ce" style="display:none">
+            //                <div class="row no-gutter">
+            //                <div style="font-size: large;"  class="col-50">` + lag.Gross + ` :</div>
+            //                <div style="font-size: large;" id="gro` + str + `" class="col-50">0.00</div>
+            //                </div><div class="row no-gutter">
+            //                <div  style="font-size: large;"  class="col-50">` + lag.Discount + ` :</div>
+            //                <div style="font-size: large;" id="des` + str + `" class="col-50">0.00</div> 
+            //                </div>   <div class="row no-gutter">
+            //                <div style="font-size: large;"  class="col-50">` + lag.Tax + ` :</div> 
+            //                <div style="font-size: large;" id="tax` + str + `"  class="col-50">0.00</div> 
+            //            </div>
+            //            <div class="row no-gutter">
+            //                <div style="font-size: large;" class="col-50">` + lag.Bundels + ` :</div>\
+            //                <div style="font-size: large;"  id="bundlenettotal` + str + `" class="col-50">0.00</div> 
+            //              </div>
+            //        </div>
+            //        <div style="margin-top:4%" class="row no-gutter"> <div style="font-size:large; color:#00695c; font-weight:bold;" class="col-50">` + lag.NetTotal + ` :</div>
+            //        <div style="font-size: large; color:#00695c; font-weight:bold; "  id="Net` + str + `" class="col-50">0.00</div></div> 
+            //        <div style="margin-top:9%" class="row">    <div style="padding-left:36%; padding-right:34%; margin-top:-6%; " id="itemarrowup"><i  class="icon Down col-100" ></i></div>
+            //        <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-6%; " id="itemarrowdown"><i  class="icon UP col-100" ></i>
+            //        </div>
+            //        </div>
+            //        </div>
+            //        </div>
+            //        <div class="list-block" style="margin-bottom:0%;">
+            //        <ul class="Itema" id="` + vendoreinfo[i].input + `"> 
+            //        </ul></div><div class="list-block" style="margin-top:0%;">
+            //        <ul id="bundlelist` + vendoreinfo[i].input + `">  </ul>  
+            //        <div id="` + vendoreinfo[i].input + `" class="col-50 Qut"><a href="#" id="` + vendoreinfo[i].input + `" class="button">` + lag.Request + `</a></div>  
+            //        <div style="margin-top:3%" id="` + vendoreinfo[i].input + `" class="Cancel col-50">
+            //            <a href="#"  class=" button">` + lag.Cancel + `</a>
+            //            </div>
+            //            </div>
+            //            </div>
+            //            </div>`
         }
     }
     $$(".swiper-wrapper").append(li);

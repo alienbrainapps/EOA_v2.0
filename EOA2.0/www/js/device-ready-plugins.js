@@ -53,6 +53,7 @@ function createTabels() {
         tx.executeSql('CREATE TABLE IF NOT EXISTS items (ItemID, ItemDescription,ItemCode,ItemBarcode,PackID,UOM,Price,Tax,Discount,PiecesInPack,IsDefaultPack,DiscountTypeID,ItemCategoryID,DivisionID,BrandID,ItemCategory,Division,Brand,PackTypeID,PromotedDiscount,CalculatedDiscount,RequiredQuanity,ItemImageName,VendorName,CurrencyName,VendorID)');
         tx.executeSql('CREATE TABLE IF NOT EXISTS offers (PromotionID, Description,IsTaken,InputOptions,CalculatedOptions,VendorName,VendorID)');
         tx.executeSql('CREATE TABLE IF NOT EXISTS vendorCustumer (custumerID, outletID , vendorID)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS cart (VendorID, cartID , cartObject)');
     }, function (error) {
         console.log('transaction error: ' + error.message);
     }, function () {

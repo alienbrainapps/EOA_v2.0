@@ -1,12 +1,13 @@
 
 /*shared style*/
 .not-show {
-display: none !important;
+    display: none !important;
 }
-.subnavbar {
-background-color: #ffffff !important;
 
+.subnavbar {
+    background-color: #ffffff !important;
 }
+
 .card_list_content, .facebook-name {
     width: 100%;
     width: -webkit-fill-available;
@@ -17,12 +18,15 @@ background-color: #ffffff !important;
     border: 1px solid rgba(0,0,0,0.12) !important;
     border-radius: 5px !important;
 }
+
 .green_text {
     color: #1fb67b !important;
 }
+
 .hidden_element {
     display: none !important;
 }
+
 .my_green {
     background-color: #1fb67b !important;
     color: #ffffff !important;
@@ -36,36 +40,44 @@ background-color: #ffffff !important;
 
     #offers109 .my_green .icon-next:before {
         color: #ffffff;
-        font-size:17px;
+        font-size: 17px;
     }
+
     #offers109 .my_green .icon-next {
         color: #ffffff;
         font-size: 17px;
     }
+
 #offers109 .item-media {
-    min-height:60px;
+    min-height: 60px;
 }
+
 #offers109 .icon-coupon {
     font-size: 30px;
 }
+
 #offers109 .item-inner {
-    font-size:17px;
+    font-size: 17px;
 }
+
 #offers109 .card-footer {
     /*text-align: center;*/
     display: block;
     color: #1fb67b;
 }
+
     #offers109 .card-footer a.link {
         color: #1fb67b;
-        padding-left:40%;
+        padding-left: 40%;
     }
-#offers109 .card-footer:before,
+
+    #offers109 .card-footer:before,
     #offers109 .card-footer:after,
     #offers109 item-inner :after {
         width: 0 !important;
         height: 0 !important;
     }
+
 #offers109 .card {
     border-left: dashed 3px rgba(0,0,0,0.3) !important;
 }
@@ -123,6 +135,11 @@ background-color: #ffffff !important;
     padding: 0 25%;
 }
 
+#start_first_oredr_btn {
+    padding: 5px 25% !important;
+}
+
+    #start_first_oredr_btn .button,
     .login-btn .button {
         background-color: #1fb67b !important;
         color: #ffffff;
@@ -200,19 +217,22 @@ background-color: #ffffff !important;
 .page-allitem {
     background-color: #f7f7f7 !important;
 }
+
     .page-allitem .content-block-in1ner {
         padding-top: 10px;
-        padding-bottom:60px;
+        padding-bottom: 60px;
     }
+
     .home-page .card-footer {
-    display:block;
-    text-align: center;
+        display: block;
+        text-align: center;
     }
-.navbar,
-.toolbar,
-.home-page .toolbar {
-    background-color: #ffffff !important;
-}
+
+    .navbar,
+    .toolbar,
+    .home-page .toolbar {
+        background-color: #ffffff !important;
+    }
 
         .navbar .left,
         .navbar .right {
@@ -233,28 +253,32 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
     text-transform: capitalize;
     border-bottom: 0 !important;
 }
+
     .subnavbar .buttons-row a.tab-link.active:after,
     html:not(.watch-active-state) .subnavbar .buttons-row a.tab-link:active :after,
-    .subnavbar .buttons-row a.tab-link.active-state:after ,
+    .subnavbar .buttons-row a.tab-link.active-state:after,
     .tabbar a.tab-link.active:after,
     html:not(.watch-active-state) .tabbar a.tab-link:active :after,
     .tabbar a.tab-link.active-state:after {
         border: 0 !important;
     }
+
 .subnavbar .buttons-row a.tab-link,
 .tabbar a.tab-link {
     color: #1fb67b !important;
     text-transform: capitalize;
     border: 0 !important;
 }
+
 .navbar .toolbar-inner {
     padding-left: 10px !important;
     padding-right: 10px !important;
 }
+
 #itemlist li {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
 .navbar .button {
     height: 32px !important;
@@ -263,9 +287,11 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 .tab-link-highlight {
     height: 0px !important;
 }
+
 .page-allitem #nes li {
-background-color:#ffffff !important;
+    background-color: #ffffff !important;
 }
+
 .page-allitem #nes .item-media,
 .home-page #tab2 .item-media {
     margin: 5px 10px;
@@ -305,18 +331,22 @@ background-color:#ffffff !important;
 .page-allitem .searchbar {
     background: #1fb67b;
 }
+
 #Brands,
 #nes,
 #vendores {
     padding-bottom: 60px;
 }
+
 #OrderButtonV {
     padding: 0% 25%;
     margin: 10% 0%;
 }
+
     #OrderButtonV .my_green {
-    border-radius: 20px !important;
+        border-radius: 20px !important;
     }
+
 .page-Allitemdet i.icon {
     font-size: 25px !important;
 }
@@ -337,9 +367,17 @@ background-color:#ffffff !important;
 }
 
 
-.vendor-offer-name  h1{
-
-
+.vendor-offer-name h1 {
 }
+
 .vendor-offer-name p {
 }
+
+#noorderinfo {
+    text-align: center !important;
+    padding-top: 35% !important;
+}
+
+    #noorderinfo .icon-my_order:before {
+        font-size: 75px !important;
+    }
