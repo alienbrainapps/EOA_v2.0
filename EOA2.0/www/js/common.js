@@ -29,7 +29,11 @@ myApp.onPageInit('join', function (page) {
 });
 // @prog cat testo
 myApp.onPageInit('catg', function (page) {
-
+    $$('.toolbar-bottom').hide();
+    $$('.back').on('click', function () {
+        $$('.toolbar-bottom').show();
+        mainView.router.load('home.html');
+    });
     $$("li .bundaccord").on('click', function () {
 
         $$(".accordion-item").toggleClass('accordion-item-expanded');

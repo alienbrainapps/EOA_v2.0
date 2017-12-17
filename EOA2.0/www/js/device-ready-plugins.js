@@ -32,6 +32,9 @@ var app = {
 
     onDeviceReady: function () {
         console.log('Device ready');
+        //db= window.openDatabase('my', "0.1", "My list", 200000);
+        //console.log('DB: WebSQL');
+        //createTabels() 
         db = window.sqlitePlugin.openDatabase({ name: 'Data.db', location: 'default' }, function (db) {
             createTabels() 
 

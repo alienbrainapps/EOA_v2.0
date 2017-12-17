@@ -13,7 +13,7 @@
 {{/if}}
 <div class="pages">
 
-    <div data-page="catg" class="page">
+    <div data-page="catg" class="page page-catg">
 
         {{#if @global.android}}
         <div class="navbar" style="background-color:#00695c">
@@ -29,27 +29,191 @@
 
         <!-- Scrollable page content-->
         <div class="page-content">
-            <div id="orderon" class="swiper-custom">
+            <div id="orderon" class="swiper-cusdtom">
                 <div class="swiper-container">
-                    <div class="swiper-pagination"></div>
+
                     <div class="swiper-wrapper">
-                        <p>ttettettetet</p>
+                        <div class=" swiper-slide">
+                            <div class="card">
+                                <div class="card-header custom-header-style"><span>Company name</span> <span class="button edit-btn">Edit</span></div>
+                                <div class="card-content">
+                                    <div class="card-content-inner">
+                                        <div class="list-block media-list">
+                                            <ul class="prices">
+                                                <li>
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media">Cross : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title bolder_text_xs">106.63</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media">Discount :</div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title bolder_text_xs">0.00</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media">Tax : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title bolder_text_xs">0.16</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="item-link item-content net_total_li">
+                                                        <div class="item-media">Net Total : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">127,6</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <ul class="itemsOrderList">
+                                                <li class="item-conte1nt test">
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media"><img src="images/Factory.png" width="50" /></div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">item name</div>
+                                                            <div class="item-subtitle"> quantity : 10 </div>
+                                                            
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="item-conte1nt test">
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media"><img src="images/Factory.png" width="50" /></div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">item name</div>
+                                                            <div class="item-subtitle"> quantity : 10 </div>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="buttons-row">
+                                <a href="#" class="button danger_btn"> Cancel Requset</a>
+                                <a href="#" class="button primary_btn">Requset Qoution</a>
+
+                            </p>
+                        </div>
+                        <div class=" swiper-slide">
+                            <div class="card">
+                                <div class="card-header custom-header-style"><span>Company name</span> <span class="button edit-btn">Edit</span></div>
+                                <div class="card-content">
+                                    <div class="card-content-inner">
+                                        <div class="list-block media-list">
+                                            <ul class="prices">
+                                                <li>
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media">Cross : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title bolder_text_xs">106.63</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media">Discount :</div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title bolder_text_xs">0.00</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media">Tax : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title bolder_text_xs">0.16</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="item-link item-content net_total_li">
+                                                        <div class="item-media">Net Total : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">127,6</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <ul class="itemsOrderList">
+                                                <li class="item-conte1nt test">
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media"><img src="images/Factory.png" width="50" /></div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">item name</div>
+                                                            <div class="item-subtitle"> quantity : 10 </div>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="item-conte1nt test">
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media"><img src="images/Factory.png" width="50" /></div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">item name</div>
+                                                            <div class="item-subtitle"> quantity : 10 </div>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="item-conte1nt test">
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media"><img src="images/Factory.png" width="50" /></div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">item name</div>
+                                                            <div class="item-subtitle"> quantity : 10 </div>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="item-conte1nt test">
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media"><img src="images/Factory.png" width="50" /></div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">item name</div>
+                                                            <div class="item-subtitle"> quantity : 10 </div>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="buttons-row">
+                                <a href="#" class="button danger_btn"> Cancel Requset</a>
+                                <a href="#" class="button primary_btn">Requset Qoution</a>
+                            </p>
+                        </div>
+
                     </div>
+
+                    <div class="swiper-pagination"></div>
+                    <!--<div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>-->
                 </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-            <div style="display:none" id="noorderinfo" class="content-block">
-                <div class="row">
-                    <div class="col-100">
-                        <i class="icon-my_order"></i><br />
-                        <p>You dont have any orders </p>
-                        <p id="start_first_oredr_btn" class="buttons-row">
-                            <a s href="#" class="button button-round my_green">Start Now</a>
-                        </p>
+                <div style="display:none" id="noorderinfo" class="content-block">
+                    <div class="row">
+                        <div class="col-100">
+                            <i class="icon-my_order"></i><br />
+                            <p>You dont have any orders </p>
+                            <p id="start_first_oredr_btn" class="buttons-row">
+                                <a s href="#" class="button button-round my_green">Start Now</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
