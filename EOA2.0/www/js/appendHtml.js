@@ -460,20 +460,20 @@ function getItemDetailsFromBrandList(venID, itemId) {
         </div>
         <div class="item-inner">
           <div class="item-title">`+ resultSet.rows.item(r).UOM + `</div >
-		  <div class="item-after">` + resultSet.rows.item(r).Price + `</div>
+		  <div class="item-after ">` + resultSet.rows.item(r).Price + `</div>
         </div >
       </label >
     </li >`;
 
 
                 itemDetails_EL = `
-                        <li class="item-divider"><i class="icon icon-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription +`</li>
+                        <li class="item-divider bolder_text"><i class="icon icon-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription +`</li>
                             <li>
                                 <div class="item-content">
                                     <div class="item-media"><i class="icon icon-vendor"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Vendor</div>
-                                        <div class="item-after">
+                                        <div class="item-after bolder_text">
                                             `+ resultSet.rows.item(r).name +`
                                         </div>
                                     </div>
@@ -485,7 +485,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                     <div class="item-inner">
                                         <div class="item-title label">Quntity</div>
                                         <div class="item-after item-input">
-                                            <input data-PackID="`+ resultSet.rows.item(r).PackID+`"; value="1" class="picker-device" type="number" id="QunV" placeholder="1">
+                                            <input data-PackID="`+ resultSet.rows.item(r).PackID +`"; value="1" class="picker-device" type="number" id="QunV" placeholder="1">
                                         </div>
                                     </div>
                                 </div>

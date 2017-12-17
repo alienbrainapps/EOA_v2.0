@@ -4,6 +4,9 @@
     display: none !important;
 }
 
+.bolder_text {
+    font-weight: 900 !important;
+}
 /*radio btn and check-box style*/
 label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio, label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio, label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio, label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio, label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio, label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio, .form-radio input[type="radio"]:checked ~ i {
     border-color: #1fb67b !important;
@@ -237,6 +240,10 @@ label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio
     width: auto !important;
 }
 
+.page-Allitemdet page-content {
+    background-color: #f7f7f7 !important;
+}
+
 .page-Allitemdet .list-block .item-divider {
     background-color: #fff;
     border-bottom: 1px solid rgba(0,0,0,0.12) !important;
@@ -363,12 +370,17 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 
 #OrderButtonV {
     padding: 0% 25%;
-    margin: 10% 0%;
+    /*margin: 10% 0%;*/
+    margin-bottom: 20%;
 }
 
     #OrderButtonV .my_green {
         border-radius: 20px !important;
     }
+
+.page-Allitemdet .list-block {
+    margin-top: 0px;
+}
 
 .page-Allitemdet i.icon {
     font-size: 25px !important;
