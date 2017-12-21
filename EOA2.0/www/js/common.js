@@ -29,7 +29,7 @@ myApp.onPageInit('join', function (page) {
 });
 // @prog cat testo
 myApp.onPageInit('catg', function (page) {
-    $$('.toolbar-bottom').hide();
+   
     $$('.back').on('click', function () {
         $$('.toolbar-bottom').show();
         mainView.router.load('home.html');
@@ -49,6 +49,7 @@ myApp.onPageInit('catg', function (page) {
     var stro = '';
     
     $$("#start_first_oredr_btn").on("click", function () {
+        $$('.toolbar-bottom').show();
         mainView.router.loadPage({ url: 'home.html', force: true });
     });
 
@@ -97,6 +98,64 @@ myApp.onPageInit('catg', function (page) {
             $$("#orderon").show();
             $$("#noorderinfo").hide();
 
+
+            li += `
+                <div class=" swiper-slide" id="pa` + vendoreinfo[i].input + `">
+                            <div class="card">
+                                <div class="card-header custom-header-style"><span>`+ vendoreinfo[i].name +`</span> <span class="button edit-btn"><i class="icon icon-compose"></i></span></div>
+                                <div class="card-content">
+                                    <div class="card-content-inner">
+                                        <div class="list-block media-list">
+                                            <ul class="prices">
+                                                <li>
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media">` + lag.Gross + `  : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title bolder_text_xs" id="gro` + str + `">106.63</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media">` + lag.Discount + ` : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title bolder_text_xs" id="des` + str + `" >0.00</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="item-link item-content">
+                                                        <div class="item-media">` + lag.Tax + ` : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title bolder_text_xs" id="tax` + str + `">0.16</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="item-link item-content net_total_li">
+                                                        <div class="item-media">` + lag.NetTotal + ` : </div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title" id="Net` + str + `">127,6</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <ul class="itemsOrderList" id="itemsOrderList`+ vendoreinfo[i].input+`">
+                                                
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <p class="buttons-row">
+                                <a href="#"  class="button danger_btn Cancel" id="` + vendoreinfo[i].input + `"> Cancel Requset</a>
+                                <a href="#"  class="button primary_btn Qut" id="` + vendoreinfo[i].input + `">Requset Qoution</a>
+
+                            </p>
+                        </div>`;
+
             //stro = vendoreinfo[i].name;
             //li += `<div id="pa` + vendoreinfo[i].input + `" style="overflow-x: scroll;" class="swiper-slide"><span>` + vendoreinfo[i].name + `</span>  
             //            <div class="row">
@@ -144,11 +203,15 @@ myApp.onPageInit('catg', function (page) {
         }
     }
     $$(".swiper-wrapper").append(li);
+    
     var count = $$(".swiper-wrapper").children();
     if (count.length == 0) {
         $$("#orderon").hide();
         $$("#noorderinfo").show();
     }
+    //else {
+    //    $$(".swiper-container").append('<div class="swiper-pagination"></div>');
+    //}
 
     for (var e = 0; e < vendoreinfo.length; e++) {
 
@@ -188,7 +251,7 @@ myApp.onPageInit('catg', function (page) {
                                 <div class="item-inner"> <div class="item-title" style="max-width: 60%; font-size:80%;">` + vendoreinfo[e].name + ` ` + t + `</div>
                                 <div id="` + k + `" style="color:#00695c; font-size:89%" class"item-after">` + quntitybundle + `</div>
                                 <div  style="color:#00695c;  font-size: 93%;" id="Pric1e` + k + `" class"item-after">` + pricinggg.toFixed(3) + `</div></div></a>
-                                <div class="accordion-item-content"></ul><div class="content-block inset" style"    z-index: -100; pointer-events: none">
+                                <div class="accordion-item-content"></ul><div class="content-block inset" style"z-index: -100; pointer-events: none">
                                 <ul style="z-index=-999" id="AR` + k + `"></ul></div></div> </div></li>`;
 
 
@@ -239,7 +302,7 @@ myApp.onPageInit('catg', function (page) {
 
         }
 
-
+       
 
     }
 
@@ -258,11 +321,41 @@ myApp.onPageInit('catg', function (page) {
             var string = '';
             var lang = localStorage.getItem('lang');
             if (lang == 1) { string = 'Quantity' } else { string = 'كمية' }
-            html += '<li  class="item-conte1nt test" id="' + IOAlist[i].ItemID + '"  data-ItemCode="' + IOAlist[i].ItemCode + '" data-ItemBarcode="' + IOAlist[i].ItemBarcode + '" data-PackID="' + IOAlist[i].PackID + '" data-UOM="' + IOAlist[i].UOM + '" data-RequiredQuanity="' + IOAlist[i].RequiredQuanity + '" data-Price="' + IOAlist[i].Price + '" data-Tax="' + IOAlist[i].Tax + '" data-Discount="' + IOAlist[i].Discount + '" data-PiecesInPack="' + IOAlist[i].PiecesInPack + '" data-IsDefaultPack="' + IOAlist[i].IsDefaultPack + '" data-PackGroupID="' + IOAlist[i].PackGroupID + '" data-IsAdded="' + IOAlist[i].IsAdded + '" data-DiscountTypeID="' + IOAlist[i].DiscountTypeID + '" data-ItemID="' + IOAlist[i].ItemID + '" data-ItemDescription="' + IOAlist[i].ItemDescription + '" data-pack="' + IOAlist[i].PackTypeID + '"><a href="#" style="color:black; padding-left:0% !important; " class="item-1link item-content"><i id="' + IOAlist[i].PackTypeID + '" style="margin-right:4%" data-info="' + vendoreinfo[w].input + '" class="li icon non"></i><div class="item-media"><img src="' + vendoreinfo[w].IMG + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + IOAlist[i].ItemDescription + '</div><div class="item-after">' + string + ': ' + IOAlist[i].RequiredQuanity + '</div></div><div class="item-sub1title">' + IOAlist[i].Price + '</div></div></a></li>';
+            html += `<li class="item-conte1nt test" 
+										id="` + IOAlist[i].ItemID + `"  
+										data-ItemCode="` + IOAlist[i].ItemCode + `"
+										data-ItemBarcode="` + IOAlist[i].ItemBarcode + `" 
+										data-PackID="` + IOAlist[i].PackID + `" 
+										data-UOM="` + IOAlist[i].UOM + `" 
+										data-RequiredQuanity="` + IOAlist[i].RequiredQuanity + `" 
+										data-Price="` + IOAlist[i].Price + `" 
+										data-Tax="` + IOAlist[i].Tax + `" 
+										data-Discount="` + IOAlist[i].Discount + `" 
+										data-PiecesInPack="` + IOAlist[i].PiecesInPack + `" 
+										data-IsDefaultPack="` + IOAlist[i].IsDefaultPack + `" 
+										data-PackGroupID="` + IOAlist[i].PackGroupID + `" 
+										data-IsAdded="` + IOAlist[i].IsAdded + `" 
+										data-DiscountTypeID="` + IOAlist[i].DiscountTypeID + `" 
+										data-ItemID="` + IOAlist[i].ItemID + `" 
+										data-ItemDescription="` + IOAlist[i].ItemDescription + `" 
+										data-pack="` + IOAlist[i].PackTypeID + `">
+                                                    <a href="#" class="item-link item-content"
+													id="` + IOAlist[i].PackTypeID + `"
+													data-info="` + vendoreinfo[w].input + `"
+													>
+                                                        <div class="item-media"><img src="` + vendoreinfo[w].IMG + `" width="50" /></div>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">` + IOAlist[i].ItemDescription + `</div>
+                                                            <div class="item-subtitle"> quantity : `+ IOAlist[i].RequiredQuanity + ` </div>
+
+                                                        </div>
+                                                    </a>
+                                        </li>`;
         }
-        $$("#" + vendoreinfo[w].input).append(html);
+        $$("#itemsOrderList" + vendoreinfo[w].input).append(html);
 
         var j = {}
+        console.log(IOAlist);
         j = calclution_price(IOAlist);
         Tottal_Price = j.nettotal + Bundle_price;
         $$("#gro" + strop).html(j.gross.toFixed(3) + curency);
@@ -270,7 +363,7 @@ myApp.onPageInit('catg', function (page) {
         $$("#des" + strop).html(j.discount.toFixed(3) + curency);
         $$("#Net" + strop).html(Tottal_Price.toFixed(3) + curency);
     }
-
+    $$('.toolbar-bottom').hide();
     $$("#edit").on("click", function () {
 
         $$(".li").toggleClass('non minus');
@@ -283,112 +376,14 @@ myApp.onPageInit('catg', function (page) {
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
     });
-
-    console.log($$(".swiper-wrapper").length);
-
-    $$("#itemarrowup").on('click', function () {
-
-
-        $("#ce").slideDown("slow");
-
-        $$(this).hide();
-        $$("#itemarrowdown").show();
-    });
-
-    $$("#itemarrowdown").on('click', function () {
-
-        $("#ce").slideUp("slow");
-        $$(this).hide();
-        $$("#itemarrowup").show();
-
-    });
-    
-    $$('.Itema li i').on('click', function () {
-        var count = $$(".swiper-wrapper").children();
-        console.log(count.length);
-        var dd = 0.00;
-        //     Tottal_Price=j.nettotal+Bundle_price;
-        var id = $$(this).parent();
-
-        var index = $$(this).parent().parent().index();
-        //var index=$$(this).parent().index();
-        var datainfo = $$(this).data('info');
-        var string = '';
-        console.log(vendoreorder[datainfo]);
-        var lang = localStorage.getItem('lang');
-        if (lang == 1) { string = 'Are you sure you want to delet the item'; } else { string = 'هل تريد حذف هذه السلعة'; }
-        myApp.confirm(string, 'EOA', function () {
-
-            $$(id).remove();
-            if (vendoreorder[datainfo].length == 1) {
-
-                $$("#pa" + datainfo).remove();
-
-                var count = $$(".swiper-wrapper").children();
-                if (count.length == 0) {
-                    $$("#orderon").hide(); $$("#noorderinfo").show();
-                }
-                var obj = calclution_price(vendoreorder[datainfo]);
-                localStorage.setItem('orderlist33', JSON.stringify(vendoreorder[datainfo]));
-
-                if (Tottal_Price == 0) { Tottal_Price = obj.nettotal } else
-                    Tottal_Price = Tottal_Price - obj.nettotal;
-                //            //      var tottla=overallprice(vendoreorder[datainfo],mybundle[datainfo]);
-                //    $$("#Net"+datainfo).html(curency+tottla.overallprice+"");
-                //    $$("#des"+datainfo).html(curency+"0.00"+"");
-                //    $$("#tax"+datainfo).html(curency+"0.00"+"");
-                //    $$("#gro"+datainfo).html(curency+"0.00"+"");  
-
-                vendoreorder[datainfo].splice(index, 1);
-
-            } else {
-                // dd=0;
-                vendoreorder[datainfo].splice(index, 1);
-
-                var obj = calclution_price(vendoreorder[datainfo]);
-                localStorage.setItem('orderlist33', JSON.stringify(vendoreorder[datainfo]));
-
-                if (Tottal_Price == 0) { Tottal_Price = obj.nettotal } else
-                    Tottal_Price = Tottal_Price - obj.nettotal;
-                var tottla = overallprice(vendoreorder[datainfo], mybundle[datainfo]);
-                $$("#Net" + datainfo).html(curencyTemp + obj.nettotal.toFixed(3) + "");
-                $$("#des" + datainfo).html(curencyTemp + obj.discount.toFixed(3) + "");
-                $$("#tax" + datainfo).html(curencyTemp + obj.tax.toFixed(3) + "");
-                $$("#gro" + datainfo).html(curencyTemp + obj.gross.toFixed(3) + "");
-            }
-            var string = '';
-            var lang = localStorage.getItem('lang');
-            if (lang == 1) { string = 'Item Removed'; } else { string = 'تم حذف الصنف'; }
-            myApp.alert(string, "EOA");
-
-
-            if (!vendoreorder[datainfo].length && jQuery.isEmptyObject(mybundle)) {
-                $$("#orderinfo").hide(); $$("#noorderinfo").show(); return;
-            }
-            var strop = datainfo;
-            strop = strop.replace(/\s+/g, '');
-            strop = strop.replace('-', '');
-
-
-            //     var obj= calclution_price(vendoreorder[datainfo]); 
-            //    $$("#Net"+strop).html(curencyTemp+dd.toFixed(3)+"");
-            //    $$("#des"+strop).html(curencyTemp+obj.discount.toFixed(3)+"");
-            //    $$("#tax"+strop).html(curencyTemp+obj.tax.toFixed(3)+"");
-            //    $$("#gro"+strop).html(curencyTemp+obj.gross.toFixed(3)+"");
-            //              
-            pagecounter();
-        });
-
-    });
-
     $$('.Qut').on('click', function () {
         var idbund = localStorage.getItem('userid');
         var i1 = 1;
         var i2 = 1;
-        //            var i1=localStorage.getItem("CU_id"+idbund);
-        //                var i2=localStorage.getItem("OUT_id"+idbund);
-        //                i1=parseInt(i1);
-        //                i2=parseInt(i2);
+        var i1 = localStorage.getItem("CU_id" + idbund);
+        var i2 = localStorage.getItem("OUT_id" + idbund);
+        i1 = parseInt(i1);
+        i2 = parseInt(i2);
 
         var Identfier = this.id;
         guessqout = this.id;
@@ -420,13 +415,13 @@ myApp.onPageInit('catg', function (page) {
             Restructofbundells = null;
         }
 
-        //         var idbund = localStorage.getItem('userid');
-        //    var i1 = 1;
-        //    var i2 = 1;
-        //    var i1 = localStorage.getItem("CU_id" + idbund);
-        //    var i2 = localStorage.getItem("OUT_id" + idbund);
-        //    i1 = parseInt(i1);
-        //    i2 = parseInt(i2);
+        var idbund = localStorage.getItem('userid');
+        var i1 = 1;
+        var i2 = 1;
+        var i1 = localStorage.getItem("CU_id" + idbund);
+        var i2 = localStorage.getItem("OUT_id" + idbund);
+        i1 = parseInt(i1);
+        i2 = parseInt(i2);
         var count = 0;
         for (var i = 0; i < vendoreinfo.length; i++) {
             if (Identfier == vendoreinfo[i].input) {
@@ -462,11 +457,11 @@ myApp.onPageInit('catg', function (page) {
 
         }
         myApp.showPreloader(loading);
-        // if(!vendoreorder[Identfier].length){OrderJsonObject.ItemPacks=null}else{  //OrderJsonObject.ItemPacks.push.apply( OrderJsonObject.ItemPacks,IOAlist);
-        // }
-        ////     OrderJsonObject.ItemPacks.push.apply( OrderJsonObject.ItemPacks,IOAlist);
+        if (!vendoreorder[Identfier].length) { OrderJsonObject.ItemPacks = null } else {  //OrderJsonObject.ItemPacks.push.apply( OrderJsonObject.ItemPacks,IOAlist);
+        }
+        OrderJsonObject.ItemPacks.push.apply(OrderJsonObject.ItemPacks, IOAlist);
         localStorage.setItem('orderr', JSON.stringify(OrderJsonObject));
-        
+
 
         for (var i = 0; i < vendoreinfo.length; i++) {
             if (vendoreinfo[i].input == Identfier) {
@@ -478,7 +473,11 @@ myApp.onPageInit('catg', function (page) {
             OrderJsonObject,
             function (data, status) {
 
-                if (data == "null") { myApp.hidePreloader(loading); myApp.alert('Network error please try again'); mainView.router.loadPage({ url: 'Qutaion.html', force: true }); return; }
+                if (data == "null") {
+                    myApp.hidePreloader(loading);
+                    myApp.alert('Network error please try again');
+                    mainView.router.loadPage({ url: 'Qutaion.html', force: true }); return;
+                }
                 ordertosvae = OrderJsonObject;
 
 
@@ -522,7 +521,8 @@ myApp.onPageInit('catg', function (page) {
                 $$("#pa" + id).remove();
                 var count = $$(".swiper-wrapper").children();
                 if (count.length == 0) {
-                    $$("#orderon").hide(); $$("#noorderinfo").show();
+                    $$("#orderon").hide();
+                    $$("#noorderinfo").show();
                 }
                 localStorage.setItem('orderlist33', JSON.stringify(OrderList));
                 $$("#" + name).empty();
@@ -537,6 +537,8 @@ myApp.onPageInit('catg', function (page) {
                 localStorage.setItem('orderlist33', '');
                 localStorage.setItem('mybundle', '');
                 pagecounter();
+                //mainView.router.back();
+                $$('.toolbar-bottom').show();
             },
             function () {
 
@@ -544,6 +546,105 @@ myApp.onPageInit('catg', function (page) {
         );
     });
 
+
+    //console.log($$(".swiper-wrapper").length);
+
+    //$$("#itemarrowup").on('click', function () {
+
+
+    //    $("#ce").slideDown("slow");
+
+    //    $$(this).hide();
+    //    $$("#itemarrowdown").show();
+    //});
+
+    //$$("#itemarrowdown").on('click', function () {
+
+    //    $("#ce").slideUp("slow");
+    //    $$(this).hide();
+    //    $$("#itemarrowup").show();
+
+    //});
+    
+    //$$('.Itema li i').on('click', function () {
+    //    var count = $$(".swiper-wrapper").children();
+    //    console.log(count.length);
+    //    var dd = 0.00;
+    //    //     Tottal_Price=j.nettotal+Bundle_price;
+    //    var id = $$(this).parent();
+
+    //    var index = $$(this).parent().parent().index();
+    //    //var index=$$(this).parent().index();
+    //    var datainfo = $$(this).data('info');
+    //    var string = '';
+    //    console.log(vendoreorder[datainfo]);
+    //    var lang = localStorage.getItem('lang');
+    //    if (lang == 1) { string = 'Are you sure you want to delet the item'; } else { string = 'هل تريد حذف هذه السلعة'; }
+    //    myApp.confirm(string, 'EOA', function () {
+
+    //        $$(id).remove();
+    //        if (vendoreorder[datainfo].length == 1) {
+
+    //            $$("#pa" + datainfo).remove();
+
+    //            var count = $$(".swiper-wrapper").children();
+    //            if (count.length == 0) {
+    //                $$("#orderon").hide(); $$("#noorderinfo").show();
+    //            }
+    //            var obj = calclution_price(vendoreorder[datainfo]);
+    //            localStorage.setItem('orderlist33', JSON.stringify(vendoreorder[datainfo]));
+
+    //            if (Tottal_Price == 0) { Tottal_Price = obj.nettotal } else
+    //                Tottal_Price = Tottal_Price - obj.nettotal;
+    //            //            //      var tottla=overallprice(vendoreorder[datainfo],mybundle[datainfo]);
+    //            //    $$("#Net"+datainfo).html(curency+tottla.overallprice+"");
+    //            //    $$("#des"+datainfo).html(curency+"0.00"+"");
+    //            //    $$("#tax"+datainfo).html(curency+"0.00"+"");
+    //            //    $$("#gro"+datainfo).html(curency+"0.00"+"");  
+
+    //            vendoreorder[datainfo].splice(index, 1);
+
+    //        } else {
+    //            // dd=0;
+    //            vendoreorder[datainfo].splice(index, 1);
+
+    //            var obj = calclution_price(vendoreorder[datainfo]);
+    //            localStorage.setItem('orderlist33', JSON.stringify(vendoreorder[datainfo]));
+
+    //            if (Tottal_Price == 0) { Tottal_Price = obj.nettotal } else
+    //                Tottal_Price = Tottal_Price - obj.nettotal;
+    //            var tottla = overallprice(vendoreorder[datainfo], mybundle[datainfo]);
+    //            $$("#Net" + datainfo).html(curencyTemp + obj.nettotal.toFixed(3) + "");
+    //            $$("#des" + datainfo).html(curencyTemp + obj.discount.toFixed(3) + "");
+    //            $$("#tax" + datainfo).html(curencyTemp + obj.tax.toFixed(3) + "");
+    //            $$("#gro" + datainfo).html(curencyTemp + obj.gross.toFixed(3) + "");
+    //        }
+    //        var string = '';
+    //        var lang = localStorage.getItem('lang');
+    //        if (lang == 1) { string = 'Item Removed'; } else { string = 'تم حذف الصنف'; }
+    //        myApp.alert(string, "EOA");
+
+
+    //        if (!vendoreorder[datainfo].length && jQuery.isEmptyObject(mybundle)) {
+    //            $$("#orderinfo").hide(); $$("#noorderinfo").show(); return;
+    //        }
+    //        var strop = datainfo;
+    //        strop = strop.replace(/\s+/g, '');
+    //        strop = strop.replace('-', '');
+
+
+    //        //     var obj= calclution_price(vendoreorder[datainfo]); 
+    //        //    $$("#Net"+strop).html(curencyTemp+dd.toFixed(3)+"");
+    //        //    $$("#des"+strop).html(curencyTemp+obj.discount.toFixed(3)+"");
+    //        //    $$("#tax"+strop).html(curencyTemp+obj.tax.toFixed(3)+"");
+    //        //    $$("#gro"+strop).html(curencyTemp+obj.gross.toFixed(3)+"");
+    //        //              
+    //        pagecounter();
+    //    });
+
+    //});
+
+   
 
 
     $$(".bundone").on('click', function () {

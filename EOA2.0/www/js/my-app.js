@@ -145,6 +145,7 @@ myApp.onPageInit('index', function (page) { });
 
 
 myApp.onPageInit('home', function (page) {
+    $$('.toolbar-bottom').show();
     $$("#homeicon").removeClass('homedefult');
     $$("#searchicon").addClass('searchinactive');
     $$("#searchicon").removeClass('searchactive');
