@@ -264,6 +264,7 @@ function GetOffers(url, custumerID, outletID, lang, input) {
 
 
 function addToOrder() {
+    $$('.toolbar-bottom').show();
     var itemOrderToSend = objclating;
 
     var QUNV = $$("#QunV").val();
@@ -369,7 +370,7 @@ function addToOrder() {
 
             
 
-
+            $$('.toolbar-bottom').show();
 
             mainView.router.back();
 
@@ -418,7 +419,7 @@ function addToOrder() {
 
 
         $$(".Orders").attr("id", "Orders");
-
+        $$('.toolbar-bottom').show();
         mainView.router.back();
     }
 

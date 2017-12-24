@@ -35,7 +35,7 @@ function getItemByQuery() {
     }
     db.transaction(function (tx) {
 
-        var query = "SELECT distinct items.* ,vendor.name  FROM items inner join vendor on vendor.input = items.VendorID where (items.IsDefaultPack='true' and itemid in (select itemid from items where  items.IsDefaultPack='true')) or packid in (select min(packID) from items where itemid not in (select itemid from items where  items.IsDefaultPack='true') group by itemid)LIMIT " + offset + ",25"
+        var query = "SELECT distinct items.* ,vendor.name  FROM items inner join vendor on vendor.input = items.VendorID where (items.Price > 0) and ((items.IsDefaultPack='true' and itemid in (select itemid from items where  items.IsDefaultPack='true'))or packid in (select min(packID)  from items where itemid not in (select itemid from items where  items.IsDefaultPack='true') group by itemid))LIMIT " + offset + ",25"
         console.log('query', query);
         tx.executeSql(query, [], function (tx, resultSet) {
             console.log(resultSet.rows.item(r));

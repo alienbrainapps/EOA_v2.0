@@ -258,6 +258,7 @@ padding : 0 10px ;
 /*Home Page*/
 .home-page,
 .brand-page,
+.page-promotions,
 .page-catg,
 .page-allitem {
     background-color: #f7f7f7 !important;
@@ -355,6 +356,7 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 }
 
 .page-allitem #nes .item-media,
+
 .home-page #tab2 .item-media {
     margin: 5px 10px;
     width: auto;
@@ -430,16 +432,29 @@ ul.itemsOrderList {
     border: 1px solid #d8cdcd !important;
     border-radius: 5px !important;
 }
+.page-promotions 
 .page-catg .list-block .prices {
     padding: 0 28px;
     font-size: 13px !important;
 }
+.page-promotions 
 .page-catg .list-block li:last-child .itemsOrderList .item-content {
     border-bottom: 1px solid #e6e6e6;
 }
+.page-promotions 
 .page-catg .swiper-container-horizontal > .swiper-pagination-bullets {
-top:5px !important;
-bottom:0;
+    top: 5px !important;
+}
+.page-promotions 
+.page-catg .swiper-pagination {
+    top: 10%;
+    left: 20%;
+    right: 20%;
+}
+
+.page-catg .swiper-pagination .swiper-pagination-bullet {
+    margin-right: 2px;
+    margin-left: 2px;
 }
 .page-catg .swiper-container.swiper-container-horizontal {
     padding-top: 20px;
@@ -447,28 +462,31 @@ bottom:0;
 /*.page-catg .list-block .itemsOrderList .item-content {
     border-bottom: 1px solid #e6e6e6;
 }*/
+.page-promotions .list-block .prices .item-inner:after ,
 .page-catg .list-block .prices .item-inner:after {
     background-color: #ffffff !important;
 }
-
-    .page-catg .list-block .prices .item-media {
-        min-width: 75px !important;
-    }
-
+.page-promotions .list-block .prices .item-media ,
+.page-catg .list-block .prices .item-media {
+    min-width: 75px !important;
+}
+page-promotions .list-block.media-list .prices .item-link .item-inner ,
 .page-catg .list-block.media-list .prices .item-link .item-inner {
     text-align: end !important;
 }
+.page-promotions .prices a ,
 .page-catg .prices a {
     height: 25px !important;
     min-height: 25px !important;
 }
-
+.page-promotions .prices .item-inner,
+.page-promotions .prices .item-media,
 .page-catg .prices .item-media,
 .page-catg .prices .item-inner {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
-
+.page-promotions a.item-link.item-content .prom_net_total_li,
 .page-catg a.item-link.item-content.net_total_li {
     border-top: 1px solid #d8d8d8;
     color: #1fb67b !important;

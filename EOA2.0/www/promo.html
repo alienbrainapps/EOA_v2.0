@@ -1,289 +1,232 @@
-<!--<div class="views">
-  <div class="view view-main">
+{{#if @global.ios}}
 <div class="navbar">
-  <div class="navbar-inner">
-    <div id="bk" class="left"><a class="backlink"> <i class="icon icon-back"></i><span>Back</span></a></div>
-    <div class="center sliding">promo</div>
-    <div class="right">
-    <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
-    </div>
-      <div class="subnavbar">
-        <div class="buttons-row">
-            <a href="#tab1" class="button active">Order</a>
-            <a href="#tab2" class="button">Promotions</a>
+    <div class="navbar-inner">
+        <div id="probk" class="left"><div href="#" class="back link"> <i class="icon backicon"></i></div></div>
+        <div class="center">{{Promotions}}</div>
+        <div class="right"></div>
+        <!-- Sub navbar -->
+        <div class="subnavbar">
+            <div class="buttons-row">
+                <a href="#tab1" class="button tab-link active">{{Promotionss}}</a>
+                <a href="#tab2" class="button tab-link">{{Order}}</a>
+
+            </div>
         </div>
     </div>
-  </div>
-    
-</div>
+</div>{{/if}}
 <div class="pages navbar-through">
-  <div data-page="pro" class="page with-subnavbar">
-    <div class="page-content">
-        <div class="tabs">
-            <div id="tab1" class="tab active">
-              <div class="list-block">
-                  <ul id='list90'>
-              </ul>
-              </div>
-            </div>
-            <div id="tab2" class="tab">
-          <div class="list-block accordikon-list">
-              <ul id='list92'>
-              </ul>
-          </div>
-            </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>-->
 
+    <div style="
+    overflow-x: hidden;" data-page="pro" class="page page-promotions  with-subnavbar">
 
+        {{#if @global.android}}
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div id="probk" class="left"><a href="#" class="link"> <i class="icon icon-back"></i></a></div>
+                <div class="center">{{Promotions}}</div>
+                <div class="right"></div>
+                <!-- Sub navbar -->
+                <!--<div class="subnavbar">
+                    <div class="buttons-row">
+                        <a href="#tab1" class="button tab-link active">{{Promotionss}}</a>
+                        <a href="#tab2" class="button tab-link">{{Order}}</a>
 
-
-
-       {{#if @global.ios}}
-    <div class="navbar">
-      <div class="navbar-inner">
-          <div id="probk" class="left"><div href="#" class="back link"> <i class="icon backicon"></i></div></div>
-        <div class="center">{{Promotions}}</div>
-        <div class="right"></div>
-        <!-- Sub navbar -->
-        <div class="subnavbar">
-          <div class="buttons-row">
-            <a href="#tab1" class="button tab-link active">{{Promotionss}}</a>
-            <a href="#tab2" class="button tab-link">{{Order}}</a>
-            
-          </div>
-        </div>
-      </div>
-    </div>{{/if}}
-    <div class="pages navbar-through">
-        
-      <div style="
-    overflow-x: hidden;" data-page="pro" class="page  with-subnavbar">
-          
-           {{#if @global.android}}
-         <div class="navbar" style="background-color:#00695c">
-      <div class="navbar-inner">
-          <div id="probk" class="left"><div href="#" class="back link"> <i class="icon backicon"></i></div></div>
-        <div class="center">{{Promotions}}</div>
-        <div class="right"></div>
-        <!-- Sub navbar -->
-<!--
-        <div class="subnavbar">
-          <div class="buttons-row">
-            <a href="#tab1" class="button tab-link active">{{Promotionss}}</a>
-            <a href="#tab2" class="button tab-link">{{Order}}</a>
-            
-          </div>
-        </div>
--->
-      </div>
-    </div>
-          
-<!--
-           <div class="toolbar tabbar tabbar-sc1rollable">
-    <div class="toolbar-inner" style="background-color:#00695c">
-     
- <a href="#tab1" class="button tab-link active">{{Promotionss}}</a>
-            <a href="#tab2" class="button tab-link">{{Order}}</a>
-      
-    </div>
-  </div>
-          
-          
--->
-<!--
-        <div class="subnavbar" style="background-color:#00695c">
-          <div class="buttons-row">
-            <a href="#tab1" class="button tab-link active">{{Promotionss}}</a>
-            <a href="#tab2" class="button tab-link">{{Order}}</a>
-            
-          </div>
-        </div>
--->
-          
-          
-           <div class="toolbar tabbar tabbar-sc1rollable">
-    <div class="toolbar-inner" style="background-color:#00695c">
-        
-     <a href="#tab1" class=" tab-link active">{{Promotionss}}</a>
-            <a href="#tab2" class=" tab-link">{{Order}}</a>
-
-      
-    </div>
-  </div>
-    {{/if}}
-          
-          
-        <div style="
-    overflow-x: hidden;"  class="page-content hide-bars-on-scroll">
-          <div class="tabs">
-            <div id="tab1" class="tab active">
-            
-                <div class="list-block" style="background-color:#e7e1e1 !important; margin-top:0% !important; ">
-                  <ul id="list92" style="background-color:rgb(239, 239, 244); !important"></ul>
-              </div>
-                
-            </div>
-            <div id="tab2" class="tab">
-<!--
-                <div class="content-block-inner">
-           <div id="ce1" style="display:none" class="list-block">
-               <ul>
-                    <li class=" itemtotla">
-             
-                         <div class="">
-                 <div id="proDiscount" class="content-block-title">Discount:------</div>
-                     <div id="promotedDiscount" class="content-block-title">Promoted Discount:------</div>
-                 <div id="proTax" class="content-block-title">Tax:-----------</div>
-                 <div id="proGross" class="content-block-title">Gross:---------</div>
-                        </div>  </li>
-               </ul>
-                </div>
-                <div style="padding-right:30%; padding-left:30%" class="item-inner">
-          <div id="protottal" class="content-block-title">Tottal:--------</div>
-        </div>
-            <div style="padding-left:45%; padding-right:45%; display:none" id="itemarrowup1"><i class="icon UP" ></i></div>
-            <div style="padding-left:45%; padding-right:45%" id="itemarrowdown1"><i class="icon Down" style="margin-top: -15%;"></i></div>
-                
-                </div>
--->
-                
-                <div class="content1-block" style="margin-top:0%">
-            <div class="content-block-inner" style="padding-left: 7%; width:63%;  padding: 0px 20% 0px 20%; ">
-            <div id="ce1" style="display:none">
-            <div class="row no-gutter">
-            <div style="font-size: large;"  class="col-50">{{Gross}}</div>
-            <div style="font-size: large;" id="proGross"class="col-50">0.00</div>
-            </div>
-            
-            <div class="row no-gutter">
-            <div  style="font-size: large;"  class="col-50">{{Discount}}:</div>
-            <div style="font-size: large;" id="proDiscount" class="col-50">0.00</div>
-            </div>
-            
-            <div class="row no-gutter">
-            <div style="font-size: large;"  class="col-50">{{Tax}}:</div>
-            <div style="font-size: large;" id="proTax"  class="col-50">0.00</div>
-            </div>
-                
-                <div class="row no-gutter">
-            <div style="font-size: large;"  class="col-50">{{Bundells}}:</div>
-            <div style="font-size: large;" id="probundells"  class="col-50">0.00</div>
-            </div>
-            
-            <div class="row no-gutter">
-            <div style="font-size: large;" class="col-50">{{PromotedDiscount}}:</div>
-            <div style="font-size: large;"  id="promotedDiscount" class="col-50">0.00</div>
-            </div>
-            </div>  
-            <div style="margin-top:0%" class="row no-gutter">
-            <div style="font-size: large; color:#00695c; font-weight:bold;" class="col-50">{{NetTotal}}:</div>
-            <div style="font-size:large; color:#00695c; font-weight:bold;"  id="protottal" class="col-50">0.00</div>
-            </div>
-            <div style="margin-top:9%" class="row">  
-             <div style="padding-left:36%; padding-right:34%; margin-top:-5%; " id="itemarrowup1"><i class="icon Down col-100" ></i></div>
-                
-            <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-5%; " id="itemarrowdown1"><i class="icon UP col-100" ></i>
-            </div>   
-            </div>  
-            </div>   </div>
-                
-                
-                
-<!--
-                  <div style="margin-bottom:;
-    font-size: large;
-    margin-left: %;" class="list-group-title">Your Order</div>
-                
--->
-             <div class="list-block contacts-block">
-                <div class="list-group">
-                    <ul><li class="item-divider">{{YourOrder}}</li></ul>
-              <ul id="listorder">
-              
-                    </ul>
-                    <ul id="sendbund"></ul> 
-                 
-                 
-                 </div>
-              </div>
-                
-                
-<!--
- <div class="list-block">
-  <ul>
-    <li>
-      <div href="#" id="FOC" class="item-li1nk item-content open-login-screen">
-    
-        <div class="item-inner">
-          <div class="item-title"></div>
-          <div class="item-after"></div>
-        </div>
-      </div>
-         
-      </li>
-     
-     </ul>
-         
-       </div>   
--->
-<!--
-           <div style="margin-bottom:;
-    font-size: large;
-    margin-left: 6%;" class="list-group-title">FOC</div>
--->
-                <div class="list-block contacts-block ">
-                    <div class="list-group">
-                      <ul> <li class="item-divider">{{FreeofChargeItems}}</li></ul>      
-  <ul id="FOCW" style="margin-top:;">
-
-     </ul>
-                       </div>
-       </div>   
-                 
-          
-          
-<!--
-                <div style="margin-bottom: ;
-    font-size: large;
-    margin-left: 6%;" class="list-group-title">Summation Over Group</div>
-               
--->
-             <div class="list-block list-group contacts-block">
-                 <div class="list-group">
-<!--             <ul><li class="item-divider">Summation Over Group</li></ul>-->
-  <ul id="Summ"   style="">
-      
-   
-     </ul>
-                 </div>
-       </div>      
-
-<!--
-                <div style="margin-bottom: ;
-    font-size: large;
-    margin-left: 6%;" class="list-group-title">Freeitem</div>
-                
--->
-                <div class="list-block contacts-block">
-                <div class="list-group">
-<!--                    <ul><li class="item-divider">Freeitem</li></ul>-->
-  <ul id="freeitem" style="margin-top">
-
-     </ul>
                     </div>
-       </div>      
-             
-                
-                <div class="content-block"><p><a id='button' href="#" class="button button-round">{{SendOrder}}</a></p></div>
+                </div>-->
             </div>
-           
-          </div>
+            <div class="toolbar tabbar tabbar-sc1rollable">
+                <div class="toolbar-inner">
+                    <a href="#tab1" class="button tab-link active">{{Promotionss}}</a>
+                    <a href="#tab2" class="button tab-link">{{Order}}</a>
+                </div>
+            </div>
         </div>
-      </div>
+        
+
+
+        <!--<div class="toolbar tabbar tabbar-sc1rollable">
+            <div class="toolbar-inner" style="background-color:#00695c">
+
+                <a href="#tab1" class=" tab-link active">{{Promotionss}}</a>
+                <a href="#tab2" class=" tab-link">{{Order}}</a>
+
+
+            </div>
+        </div>-->
+        {{/if}}
+
+
+        <div style=" overflow-x: hidden;" class="page-content hide-bars-on-scroll">
+            <div class="tabs">
+                <div id="tab1" class="tab active">
+
+                    <div class="list-block" style="background-color:#e7e1e1 !important; margin-top:0% !important; ">
+                        <ul id="list92" style="background-color:rgb(239, 239, 244); !important"></ul>
+                    </div>
+
+                </div>
+                <div id="tab2" class="tab">
+
+                    <div class="card">
+                        <div class="card-header custom-header-style"><span>vendor name</span></div>
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <div class="list-block media-list">
+                                    <ul class="prices">
+                                        <li>
+                                            <a href="#" class="item-link item-content">
+                                                <div class="item-media">{{Gross}} : </div>
+                                                <div class="item-inner">
+                                                    <div class="item-title bolder_text_xs"  id="proGross">106.63</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content">
+                                                <div class="item-media">{{Discount}}:</div>
+                                                <div class="item-inner">
+                                                    <div class="item-title bolder_text_xs" id="proDiscount">0.00</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content">
+                                                <div class="item-media">{{Tax}}: </div>
+                                                <div class="item-inner">
+                                                    <div class="item-title bolder_text_xs" id="proTax">0.16</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content">
+                                                <div class="item-media">{{Bundells}}: </div>
+                                                <div class="item-inner">
+                                                    <div class="item-title"  id="probundells">127,6</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content">
+                                                <div class="item-media">{{PromotedDiscount}}: </div>
+                                                <div class="item-inner">
+                                                    <div class="item-title"  id="promotedDiscount">127,6</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content prom_net_total_li">
+                                                <div class="item-media">{{NetTotal}}: </div>
+                                                <div class="item-inner">
+                                                    <div class="item-title" id="protottal">127,6</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul><li class="item-divider">{{YourOrder}}</li></ul>
+                                    <ul id="listorder"></ul>
+                                    <ul id="sendbund"></ul>
+                                    <ul> <li class="item-divider">{{FreeofChargeItems}}</li></ul>
+                                    <ul id="FOCW"></ul>
+                                    <ul id="Summ"></ul>
+                                    <ul id="freeitem"></ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p class="buttons-row">
+                        <a href="#" class="button primary_btn Qut" id='button'>{{SendOrder}}</a>
+                    </p>
+                </div>
+
+
+
+                    <!--start old style-->
+                    <!--<div class="content1-block" style="margin-top:0%">
+                        <div class="content-block-inner" style="padding-left: 7%; width:63%;  padding: 0px 20% 0px 20%; ">
+                            <div id="ce1" style="display:none">-->
+                                <!--<div class="row no-gutter">
+                                    <div style="font-size: large;" class="col-50">{{Gross}}</div>
+                                    <div style="font-size: large;" id="proGross" class="col-50">0.00</div>
+                                </div>
+
+                                <div class="row no-gutter">
+                                    <div style="font-size: large;" class="col-50">{{Discount}}:</div>
+                                    <div style="font-size: large;" id="proDiscount" class="col-50">0.00</div>
+                                </div>
+
+                                <div class="row no-gutter">
+                                    <div style="font-size: large;" class="col-50">{{Tax}}:</div>
+                                    <div style="font-size: large;" id="proTax" class="col-50">0.00</div>
+                                </div>
+
+                                <div class="row no-gutter">
+                                    <div style="font-size: large;" class="col-50">{{Bundells}}:</div>
+                                    <div style="font-size: large;" id="probundells" class="col-50">0.00</div>
+                                </div>
+                                
+                                <div class="row no-gutter">
+                                    <div style="font-size: large;" class="col-50">{{PromotedDiscount}}:</div>
+                                    <div style="font-size: large;" id="promotedDiscount" class="col-50">0.00</div>
+                                </div>
+                            </div>
+                            <div style="margin-top:0%" class="row no-gutter">
+                                <div style="font-size: large; color:#00695c; font-weight:bold;" class="col-50">{{NetTotal}}:</div>
+                                <div style="font-size:large; color:#00695c; font-weight:bold;" id="protottal" class="col-50">0.00</div>
+                            </div>
+                            <div style="margin-top:9%" class="row">
+                                <div style="padding-left:36%; padding-right:34%; margin-top:-5%; " id="itemarrowup1"><i class="icon Down col-100"></i></div>
+
+                                <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-5%; " id="itemarrowdown1">
+                                    <i class="icon UP col-100"></i>
+                                </div>
+                            </div>-->
+                        <!--</div>
+                    </div>-->
+
+                    <!--<div class="list-block contacts-block">
+                        <div class="list-group">
+                            <ul><li class="item-divider">{{YourOrder}}</li></ul>
+                            <ul id="listorder"></ul>
+                            <ul id="sendbund"></ul>
+
+
+                        </div>
+                    </div>-->
+
+
+
+                    <!--<div class="list-block contacts-block ">
+                        <div class="list-group">
+                            <ul> <li class="item-divider">{{FreeofChargeItems}}</li></ul>
+                            <ul id="FOCW" style="margin-top:;"></ul>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="list-block list-group contacts-block">
+                        <div class="list-group">
+                                         <ul><li class="item-divider">Summation Over Group</li></ul>
+                            <ul id="Summ" style=""></ul>
+                        </div>
+                    </div>
+
+
+                    <div class="list-block contacts-block">
+                        <div class="list-group">
+
+                            <ul id="freeitem" style="margin-top"></ul>
+                        </div>
+                    </div>
+
+
+                    <div class="content-block"><p><a id='button' href="#" class="button button-round">{{SendOrder}}</a></p></div>
+                </div>-->
+             
+               
+            </div>
+        </div>
     </div>
-       
+</div>

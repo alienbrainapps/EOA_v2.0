@@ -102,7 +102,7 @@ myApp.onPageInit('catg', function (page) {
             li += `
                 <div class=" swiper-slide" id="pa` + vendoreinfo[i].input + `">
                             <div class="card">
-                                <div class="card-header custom-header-style"><span>`+ vendoreinfo[i].name +`</span> <span class="button edit-btn"><i class="icon icon-compose"></i></span></div>
+                                <div class="card-header custom-header-style"><span>`+ vendoreinfo[i].name +`</span> <span class="button edit-btn">edit</span></div>
                                 <div class="card-content">
                                     <div class="card-content-inner">
                                         <div class="list-block media-list">
@@ -4090,7 +4090,7 @@ myApp.onPageInit('Qutaion', function (page) {
 
 
 });
-
+//@ testo2
 myApp.onPageInit('pro', function (page) {
 
 
@@ -4186,6 +4186,7 @@ myApp.onPageInit('pro', function (page) {
     var pro = qutJ.CalculatedPromotions;
 
     console.log(pro);
+    console.log(JSON.stringify(pro));
     qut45 = '';
 
     if (pro == null) {
