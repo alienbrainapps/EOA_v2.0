@@ -426,22 +426,23 @@ ul.itemsOrderList {
 .prices li:first-child {
     margin-top: 5px;
 }
+#listorder .item-media img ,
 .itemsOrderList .item-media img {
     padding: 5px !important;
     background-color: #f7f7f7 !important;
     border: 1px solid #d8cdcd !important;
     border-radius: 5px !important;
 }
-.page-promotions 
+.page-promotions .list-block .prices ,
 .page-catg .list-block .prices {
     padding: 0 28px;
     font-size: 13px !important;
 }
-.page-promotions 
+.page-promotions .list-block li:last-child .itemsOrderList .item-content,
 .page-catg .list-block li:last-child .itemsOrderList .item-content {
     border-bottom: 1px solid #e6e6e6;
 }
-.page-promotions 
+ 
 .page-catg .swiper-container-horizontal > .swiper-pagination-bullets {
     top: 5px !important;
 }
@@ -486,7 +487,7 @@ page-promotions .list-block.media-list .prices .item-link .item-inner ,
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
-.page-promotions a.item-link.item-content .prom_net_total_li,
+.page-promotions a.item-link.item-content.prom_net_total_li,
 .page-catg a.item-link.item-content.net_total_li {
     border-top: 1px solid #d8d8d8;
     color: #1fb67b !important;
@@ -541,4 +542,50 @@ span.button.edit-btn {
 
 .card-header.custom-header-style {
     padding: 0 0px 1px 15px !important;
+}
+.page-promotions .bendlist .item-media {
+    min-width: 20px !important;
+}
+
+.page-promotions .bendlist li {
+    padding-right: 20px !important;
+}
+
+.page-promotions .bendlist .item-inner {
+    padding-right: 0 !important;
+}
+
+.page-promotions .bendlist label.label-radio.item-content {
+    padding: 0 !important;
+}
+.coupon-end i.icon.icon-coupon:before {
+    font-size: 25px !important;
+}
+.coupon-end i.icon.icon-coupon {
+    font-size: 25px !important;
+}
+.page-promotions .bendlist .item-title {
+    white-space: pre-line !important;
+}
+.page-promotions #tab2 p.buttons-row {
+    padding: 0 25%;
+}
+.page-promotions #list92 .card {
+
+}
+span.arrow-btn {
+    position: absolute;
+    top: -14px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background-color: #fc9c4d;
+    left: 41%;
+    border-radius: 100%;
+    z-index: 1;
+    line-height: 2.5;
+}
+.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets {
+    top: 62px !important;
+    left: 47% !important;
 }

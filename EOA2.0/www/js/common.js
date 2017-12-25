@@ -132,6 +132,7 @@ myApp.onPageInit('catg', function (page) {
                                                     </a>
                                                 </li>
                                                 <li>
+                                                    <!-- <span class="arrow-btn"> <i class="fa fa-angle-up" aria-hidden="true"></i> </span> -->
                                                     <a href="#" class="item-link item-content net_total_li">
                                                         <div class="item-media">` + lag.NetTotal + ` : </div>
                                                         <div class="item-inner">
@@ -156,50 +157,7 @@ myApp.onPageInit('catg', function (page) {
                             </p>
                         </div>`;
 
-            //stro = vendoreinfo[i].name;
-            //li += `<div id="pa` + vendoreinfo[i].input + `" style="overflow-x: scroll;" class="swiper-slide"><span>` + vendoreinfo[i].name + `</span>  
-            //            <div class="row">
-            //                <div class="col-80"></div>
-            //                <div class="col-20" style="font-size: large; padding-left: 5%;" id="edit">` + lag.Edit + `</div>
-            //            </div>
-            //            <div class="content-block-inner">
-            //                <div style="padding-left:10%" class="co1ntent-block">
-            //                <div class="content-bl1ock-inner" style="padding-left:4%;">
-            //                <div id="ce" style="display:none">
-            //                <div class="row no-gutter">
-            //                <div style="font-size: large;"  class="col-50">` + lag.Gross + ` :</div>
-            //                <div style="font-size: large;" id="gro` + str + `" class="col-50">0.00</div>
-            //                </div><div class="row no-gutter">
-            //                <div  style="font-size: large;"  class="col-50">` + lag.Discount + ` :</div>
-            //                <div style="font-size: large;" id="des` + str + `" class="col-50">0.00</div> 
-            //                </div>   <div class="row no-gutter">
-            //                <div style="font-size: large;"  class="col-50">` + lag.Tax + ` :</div> 
-            //                <div style="font-size: large;" id="tax` + str + `"  class="col-50">0.00</div> 
-            //            </div>
-            //            <div class="row no-gutter">
-            //                <div style="font-size: large;" class="col-50">` + lag.Bundels + ` :</div>\
-            //                <div style="font-size: large;"  id="bundlenettotal` + str + `" class="col-50">0.00</div> 
-            //              </div>
-            //        </div>
-            //        <div style="margin-top:4%" class="row no-gutter"> <div style="font-size:large; color:#00695c; font-weight:bold;" class="col-50">` + lag.NetTotal + ` :</div>
-            //        <div style="font-size: large; color:#00695c; font-weight:bold; "  id="Net` + str + `" class="col-50">0.00</div></div> 
-            //        <div style="margin-top:9%" class="row">    <div style="padding-left:36%; padding-right:34%; margin-top:-6%; " id="itemarrowup"><i  class="icon Down col-100" ></i></div>
-            //        <div style="padding-left:36%; display:none; padding-right:34%; margin-top:-6%; " id="itemarrowdown"><i  class="icon UP col-100" ></i>
-            //        </div>
-            //        </div>
-            //        </div>
-            //        </div>
-            //        <div class="list-block" style="margin-bottom:0%;">
-            //        <ul class="Itema" id="` + vendoreinfo[i].input + `"> 
-            //        </ul></div><div class="list-block" style="margin-top:0%;">
-            //        <ul id="bundlelist` + vendoreinfo[i].input + `">  </ul>  
-            //        <div id="` + vendoreinfo[i].input + `" class="col-50 Qut"><a href="#" id="` + vendoreinfo[i].input + `" class="button">` + lag.Request + `</a></div>  
-            //        <div style="margin-top:3%" id="` + vendoreinfo[i].input + `" class="Cancel col-50">
-            //            <a href="#"  class=" button">` + lag.Cancel + `</a>
-            //            </div>
-            //            </div>
-            //            </div>
-            //            </div>`
+            
         }
     }
     $$(".swiper-wrapper").append(li);
@@ -345,9 +303,12 @@ myApp.onPageInit('catg', function (page) {
 													>
                                                         <div class="item-media"><img src="` + vendoreinfo[w].IMG + `" width="50" /></div>
                                                         <div class="item-inner">
-                                                            <div class="item-title">` + IOAlist[i].ItemDescription + `</div>
-                                                            <div class="item-subtitle"> quantity : `+ IOAlist[i].RequiredQuanity + ` </div>
-
+                                                           
+                                                                <div class="item-title">` + IOAlist[i].ItemDescription + `</div>
+                                                                 <div class="item-after">`+ IOAlist[i].Price + ` </div>
+                                                                
+                                                                 <div class="item-subtitle"> quantity : `+ IOAlist[i].RequiredQuanity + ` </div>
+                                                           
                                                         </div>
                                                     </a>
                                         </li>`;
@@ -4257,7 +4218,20 @@ myApp.onPageInit('pro', function (page) {
 
         var vendname = '';
         vendname = getnamevendore(guessqout);
-        qut45 += '<li class="item-divider">' + vendname + ' ' + descrption_string + ' (' + (i + 1) + ')</li><li><fieldset id="group' + i + '"><ul style="margin-left:0%" class="bendlist" id=' + pro[i].PromotionID + '></ul></fieldset></li>';
+        //qut45 += '<li class="item-divider">' + vendname + ' ' + descrption_string + ' (' + (i + 1) + ')</li><li><fieldset id="group' + i + '"><ul style="margin-left:0%" class="bendlist" id=' + pro[i].PromotionID + '></ul></fieldset></li>';
+        qut45 += `<div class="card">
+                        <div class="card-header">`+ vendname + ' ' + descrption_string + ' (' + (i + 1) +`) <span class="coupon-end"> <i class="icon icon-coupon"></i> </span></div>
+                           <div class="card-content">
+                            <div class="list-block media-list">
+ 
+								<div id="group` + i + `">
+								<ul style="margin-left:0%" class="bendlist" id=` + pro[i].PromotionID + `>
+ 
+								</ul>
+								</div>
+							</div>
+                           </div>
+                        </div>`;
     }
     $$("#list92").append(qut45);
 
@@ -4306,7 +4280,20 @@ myApp.onPageInit('pro', function (page) {
                 } else {
                     var92 = '0% !important;'
                 }
-                qut77 = ' <li id="' + g[m].DetailTypeID + '"> <label class="label-checkbox item-content"> <input class="value" type="radio" checked="checked" name="group' + l + '" value="' + input + '"><div class="item-media" style="padding-top:' + var92 + '"><i class="icon icon-form-checkbox"></i></div><div class="item-inner"><div class="item-title-row"> </div> <div class="item-text" style="margin-right:auto">' + desc + '</div>  </div> </label></li>';
+                //qut77 = ' <li id="' + g[m].DetailTypeID + '"> <label class="label-checkbox item-content"> <input class="value" type="radio" checked="checked" name="group' + l + '" value="' + input + '"><div class="item-media" style="padding-top:' + var92 + '"><i class="icon icon-form-checkbox"></i></div><div class="item-inner"><div class="item-title-row"> </div> <div class="item-text" style="margin-right:auto">' + desc + '</div>  </div> </label></li>';
+                qut77 = `<li class="item-content" id="` + g[m].DetailTypeID + `">
+                                          <div class="item-inner">
+										   <label class="label-radio item-content">
+												<input type="radio"  name="group` + l + `" value="` + input + `" checked>
+												<div class="item-media">
+												  <i class="icon icon-form-radio"></i>
+												</div>
+												<div class="item-inner">
+												  <div class="item-title">`+ desc + `</div>
+												</div>
+											 </label>
+                                          </div>
+                                        </li>`;
                 //radiocheck
                 localStorage.setItem(input, JSON.stringify(g[m]));
             }
@@ -4452,7 +4439,7 @@ myApp.onPageInit('pro', function (page) {
             } else {
                 string = 'كمية'
             }
-            orderlistwithpromotion += '<li  class="item-conte1nt test" id="' + proorder.ItemPacks[i].ItemID + '"><a href="#" style="color:black" class="item1-link item-content"><div class="item-media"><img src="' + getimage2 + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + proorder.ItemPacks[i].ItemDescription + '</div><div class="item-after">' + string + ':  ' + proorder.ItemPacks[i].RequiredQuanity + '</div></div><div class="item-subtitle">' + proorder.ItemPacks[i].Price + '</div></div></a></li>';
+            orderlistwithpromotion += '<li  class="item-conte1nt test" id="' + proorder.ItemPacks[i].ItemID + '"><a href="#" style="color:black" class="item1-link item-content"><div class="item-media"><img src="' + getimage2 + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + proorder.ItemPacks[i].ItemDescription + '</div><div class="item-after">' + proorder.ItemPacks[i].Price + '</div></div><div class="item-subtitle">' + string + ':  ' + proorder.ItemPacks[i].RequiredQuanity +  '</div></div></a></li>';
 
             proitemgross = proorder.ItemPacks[i].Price * proorder.ItemPacks[i].RequiredQuanity;
             if (proorder.ItemPacks[i].DiscountTypeID == 2) {
