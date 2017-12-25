@@ -4527,9 +4527,6 @@ myApp.onPageInit('pro', function (page) {
                     //                if(data=="Saving Failed"){
                     //                   
                     //                }
-
-
-                    ;
                     mybundle[guessqout] = [];
                     vendoreorder[guessqout] = [];
 
@@ -4606,7 +4603,7 @@ myApp.onPageInit('pro', function (page) {
                         force: true,
                         ignoreCache: true
                     });
-                    contactsCallback.trigger();
+                    //contactsCallback.trigger();
                     myApp.hidePreloader(loading);
 
                     console.log(status);
@@ -4628,15 +4625,17 @@ myApp.onPageInit('pro', function (page) {
                         var string2 = "";
                         if (localStorage.getItem("lang") == 1) {
                             string = "Order Saved Successfully";
-                            string2 = "Thanks for using EOA";
+                            string2 = "Thanks";
                         } else {
                             string = "تم حفظ الطلب بنجاح";
-                            string2 = "شكرا لاستخدام التطبيق";
+                            string2 = "شكرا لك";
 
                         }
-                        myApp.alert(string, "EOA");
-                        myApp.alert(string2, "EOA");
+                        myApp.alert(string, string2, "EOA");
+                        //myApp.alert(string2, "EOA");
                     }
+
+
 
                     $$(".toolbar").show();
                     if (isAndroid) {
