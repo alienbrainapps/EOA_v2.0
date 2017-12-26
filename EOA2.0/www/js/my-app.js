@@ -253,6 +253,9 @@ myApp.onPageInit('home', function (page) {
 
 });
 
+myApp.onPageReinit('home', function (page) {
+    ('.toolbar-bottom').show();
+});
 $$(document).on("popover:closed", ".popover", function () {
 });
 $$(document).on('pageInit', function (e) {

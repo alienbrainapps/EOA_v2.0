@@ -415,7 +415,7 @@ function addToOrder() {
 
 
         console.log(OrderList);
-        //localStorage.setItem('orderlist33', JSON.stringify(OrderList));
+        localStorage.setItem('orderlist33', JSON.stringify(OrderList));
 
 
         $$(".Orders").attr("id", "Orders");

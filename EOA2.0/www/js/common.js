@@ -54,6 +54,7 @@ myApp.onPageInit('catg', function (page) {
     });
 
     $$("#backOrder").on("click", function () {
+        $$('.toolbar-bottom').show();
         mainView.router.loadPage({ url: 'home.html', force: true });
     });
 
@@ -4636,7 +4637,7 @@ myApp.onPageInit('pro', function (page) {
                     }
 
 
-
+                    $$('.toolbar-bottom').show();
                     $$(".toolbar").show();
                     if (isAndroid) {
                         $$(".androidtool").show();

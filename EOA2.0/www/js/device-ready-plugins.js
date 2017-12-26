@@ -40,7 +40,8 @@ var app = {
 
         }, function (error) {
             console.log('Open database ERROR: ' + JSON.stringify(error));
-        });
+            });
+        CreateMediaFolder();
      
     },
 
@@ -537,3 +538,67 @@ function barcodescan() {
 }
 
 
+/*********Create Media Folder********/
+function CreateMediaFolder() {
+    window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, onFileSystemSuccess, onError);
+}
+function onError(e) {
+    console.log("onError for creat folder");
+};
+function onFileSystemSuccess(fileSystem) {
+
+    var entry = "";
+    entry = fileSystem;
+
+    entry.getDirectory("EAO.Images", {
+        create: true,
+        exclusive: false
+    }, onGetDirectorySuccess, onGetDirectoryFail);
+};
+function onGetDirectoryFail() {
+    console.log('Erorr get dir problem')
+}
+function onGetDirectorySuccess(dir) {
+    console.log('onGetDirectorySuccess')
+
+};
+
+/*********Move Media File********/
+function moveMediaFile(fileUri, TempMediaName) {
+    window.resolveLocalFileSystemURL(
+        fileUri,
+        function (fileEntry) {
+            newFileUri = cordova.file.externalRootDirectory + "InCubeDCMedia/";
+            oldFileUri = fileUri;
+
+            window.resolveLocalFileSystemURL(newFileUri,
+                function (dirEntry) {
+                    // move the file to a new directory and rename it
+                    fileEntry.moveTo(dirEntry, TempMediaName, successCallback, errorCallback);
+                },
+                errorCallback);
+        },
+        errorCallback);
+}
+function successCallback() {
+    //myApp.alert('sucsses');
+}
+function errorCallback() {
+    myApp.alert(error.code);
+}
+
+/******** try catch image online to offline *********/
+function storeIntelligrapeLogo(imageUrl) {
+  /*  var url = "http://www.intelligrape.com/images/logo.png";*/ // image url
+
+    var url = imageUrl;
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+        var imagePath = fs.root.fullPath + "/logo.png"; // full file path
+        var fileTransfer = new FileTransfer();
+        fileTransfer.download(url, imagePath, function (entry) {
+            console.log(entry.fullPath); // entry is fileEntry object
+        }, function (error) {
+            console.log("Some error");
+        });
+    })
+}
