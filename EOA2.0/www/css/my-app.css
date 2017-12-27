@@ -6,6 +6,9 @@
     border-radius: 25px !important;
     font-size : 12px;
 }
+#org i {
+    font-size: 25px !important;
+}
 .button.danger_btn {
     background-color: #ef3e57 !important;
     color: #fff !important;
@@ -87,7 +90,7 @@ padding : 0 10px ;
     min-height: 60px;
 }
 
-#offers109 .icon-coupon {
+#offers109 .myicon-eoa-coupon {
     font-size: 30px;
 }
 
@@ -103,7 +106,7 @@ padding : 0 10px ;
 
     #offers109 .card-footer a.link {
         color: #1fb67b;
-        padding-left: 40%;
+        
     }
 
     #offers109 .card-footer:before,
@@ -378,6 +381,7 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 .price_in_card {
     color: #1fb67b;
     float: right;
+    padding-right: 7px;
 }
 
     .price_in_card::after {
@@ -559,10 +563,10 @@ span.button.edit-btn {
 .page-promotions .bendlist label.label-radio.item-content {
     padding: 0 !important;
 }
-.coupon-end i.icon.icon-coupon:before {
+.coupon-end i.icon.myicon-eoa-coupon:before {
     font-size: 25px !important;
 }
-.coupon-end i.icon.icon-coupon {
+.coupon-end i.icon.myicon-eoa-coupon {
     font-size: 25px !important;
 }
 .page-promotions .bendlist .item-title {
@@ -590,7 +594,7 @@ span.arrow-btn {
     top: 62px !important;
     left: 47% !important;
 }
-i.icon.icon-coupon.coupon-offers-card {
+i.icon.myicon-eoa-coupon.coupon-offers-card {
 
     font-size: 65px !important;
     padding-top: 20px;
@@ -601,4 +605,25 @@ i.icon.icon-coupon.coupon-offers-card {
 }
 .iub li {
 list-style : none !important;
+}
+.card-footer {
+border-top: 1px solid #f7f7f7;
+}
+.login-page form i {
+    font-size: 25px !important;
+    font-weight: 100 !important;
+    color: #cecece !important;
+}
+.login-page form .item-media {
+padding-left : 10px !important;
+}
+#item_information i {
+    font-size: 24px !important;
+    vertical-align: middle !important;
+}
+#tab3 .like_li {
+    padding-right:5px;
+}
+#tab3 .list-block .item-inner:after {
+background-color : transparent !important;
 }

@@ -297,11 +297,11 @@ $$(document).on('pageInit', function (e) {
         //<a  id="search" onclick="we()"  href="#" class="link open-about "><i id="searchicon" class="icon searchinactive"></i><span >'+lag.Hint+'</span></a>
         //pagecounter();
         $$("#org").append(`<a id="home" href="home.html" class="link">
-<i id="homeicon" class="icon-home-active"></i><span class="tab-link">` + lag.Home + `</span></a>
+<i id="homeicon" class="myicon-eoa-home-active"></i><span class="tab-link">` + lag.Home + `</span></a>
 <a id="reorder" href="History.html" class="link">
-<i id="reordericon" class="icon-history"></i><span >`+ lag.Orderistory + `</span></a> 
-<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="icon-my_order"></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
-<a id="scan" onclick="scan();" href="#" class="link"><i class="icon-scan"></i><span >` + lag.Scan + `</span></a>`);
+<i id="reordericon" class="myicon-eoa-order-history"></i><span >`+ lag.Orderistory + `</span></a> 
+<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="myicon-eoa-my-order"></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
+<a id="scan" onclick="scan();" href="#" class="link"><i class="myicon-eoa-scan"></i><span >` + lag.Scan + `</span></a>`);
         pagecounter();
 
         //                    if(!OrderList.length && len==0){$$(".badge").hide();}else{
@@ -2239,7 +2239,7 @@ function getiteminfo(item) {
 
                             <li>
                                 <div class="item-content">
-                                    <div class="item-media"><i class="icon icon-funds"></i></div>
+                                    <div class="item-media"><i class="icon myicon-eoa-cash"></i></div>
                                     <div class="item-inner">
                                         <div class="item-title label">Total Price</div>
                                         <div id="PriceV" class="item-after">

@@ -3385,11 +3385,11 @@ myApp.onPageInit('Setting', function (page) {
         $$("#org").html('');
 
         $$("#org").append(`<a id="home" href="home.html" class="link">
-<i style="width:60px !important" id="homeicon"class="icon-home-active"></i><span class="tab-link">` + lag.Home + `</span></a>
+<i style="width:60px !important" id="homeicon" class="myicon-eoa-home-active"></i><span class="tab-link">` + lag.Home + `</span></a>
 <a id="reorder" href="History.html" class="link">
-<i id="reordericon" class="icon-history"></i><span >`+ lag.Orderistory + `</span></a> 
-<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="icon-history"></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
-<a id="scan" onclick="scan();" href="#" class="link"><i class="icon-scan"></i><span  style="padding-top: 8p2x;">` + lag.Scan + `</span></a>`);
+<i id="reordericon"  class="myicon-eoa-order-history"></i><span >`+ lag.Orderistory + `</span></a> 
+<a id="Orders22" href="catg.html" class="link"><i id="ordericon"  class="myicon-eoa-my-order"></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
+<a id="scan" onclick="scan();" href="#" class="link"><i class="myicon-eoa-scan"></i><span  style="padding-top: 8p2x;">` + lag.Scan + `</span></a>`);
 
         pagecounter();
 
@@ -3445,10 +3445,10 @@ myApp.onPageInit('Setting', function (page) {
         $$("#org").html('');
 
         $$("#org").append(`<a id="home" href="home.html" class="link">
-<i style="width:60px !important" id="homeicon" style="font-size:8px" class="icon-home-active"></i><span style="font-size:10px" class="tab-link">` + lag.Home + `</span></a>
+<i style="width:60px !important" id="homeicon" style="font-size:8px" class="icon-eoa-home-active"</i><span style="font-size:10px" class="tab-link">` + lag.Home + `</span></a>
 <a id="reorder" href="History.html" class="link">
-<i id="reordericon" class="icon-history"></i><span >`+ lag.Orderistory + `</span></a> 
-<a id="Orders22" href="catg.html" class="link"><i id="ordericon" class="icon myorderinactive "></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
+<i id="reordericon" class="icon-order-history"></i><span >`+ lag.Orderistory + `</span></a> 
+<a id="Orders22" href="catg.html" class="link"><i id="ordericon"  class="icon-eoa-my-order"></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
 <a id="scan" onclick="scan();" href="#" class="link"><i class="icon-scan"></i><span  style="padding-top: 8p2x;">` + lag.Scan + `</span></a>
 <a  id="search" onclick="we()"  href="#" class="link open-about "><i id="searchicon" class="icon searchinactive"></i><span >` + lag.Hint + `</span></a>`);
 
@@ -4221,7 +4221,7 @@ myApp.onPageInit('pro', function (page) {
         vendname = getnamevendore(guessqout);
         //qut45 += '<li class="item-divider">' + vendname + ' ' + descrption_string + ' (' + (i + 1) + ')</li><li><fieldset id="group' + i + '"><ul style="margin-left:0%" class="bendlist" id=' + pro[i].PromotionID + '></ul></fieldset></li>';
         qut45 += `<div class="card">
-                        <div class="card-header">`+ vendname + ' ' + descrption_string + ' (' + (i + 1) +`) <span class="coupon-end"> <i class="icon icon-coupon"></i> </span></div>
+                        <div class="card-header">`+ vendname + ' ' + descrption_string + ' (' + (i + 1) +`) <span class="coupon-end"> <i class="icon myicon-eoa-coupon"></i> </span></div>
                            <div class="card-content">
                             <div class="list-block media-list">
  

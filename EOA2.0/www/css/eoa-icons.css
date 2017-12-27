@@ -1,0 +1,152 @@
+@font-face {
+  font-family: 'eoa';
+  src:  url('../fonts/eoa.eot?ib19xg');
+  src:  url('../fonts/eoa.eot?ib19xg#iefix') format('embedded-opentype'),
+    url('../fonts/eoa.ttf?ib19xg') format('truetype'),
+    url('../fonts/eoa.woff?ib19xg') format('woff'),
+    url('../fonts/eoa.svg?ib19xg#eoa') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'eoa' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.myicon-eoa-arrow-down:before {
+  content: "\e905";
+}
+.myicon-eoa-close:before {
+  content: "\e906";
+}
+.myicon-eoa-time:before {
+  content: "\e911";
+}
+.myicon-eoa-empty-soa:before {
+  content: "\e912";
+  color: #959595;
+}
+.myicon-eoa-logo:before {
+  content: "\e913";
+}
+.myicon-eoa-eye:before {
+  content: "\e914";
+}
+.myicon-eoa-home-active:before {
+  content: "\e915";
+  color: #1eb57b;
+}
+.myicon-eoa-home-not-active:before {
+  content: "\e916";
+}
+.myicon-eoa-logout:before {
+  content: "\e917";
+}
+.myicon-eoa-my-order:before {
+  content: "\e918";
+  color: #b8b8b8;
+}
+.myicon-eoa-order-history:before {
+  content: "\e919";
+  color: #b8b8b8;
+}
+.myicon-eoa-my-order-empty:before {
+  content: "\e91a";
+}
+.myicon-eoa-edit:before {
+  content: "\e91b";
+}
+.myicon-eoa-add:before {
+  content: "\e91c";
+}
+.myicon-eoa-return-item:before {
+  content: "\e91d";
+  color: #474748;
+}
+.myicon-eoa-remove:before {
+  content: "\e91e";
+}
+.myicon-eoa-settings:before {
+  content: "\e91f";
+}
+.myicon-eoa-soa:before {
+  content: "\e920";
+}
+.myicon-eoa-checked:before {
+  content: "\e921";
+}
+.myicon-eoa-arrow-up:before {
+  content: "\e922";
+}
+.myicon-eoa-validation:before {
+  content: "\e923";
+}
+.myicon-eoa-trash:before {
+  content: "\e924";
+}
+.myicon-eoa-quantity:before {
+  content: "\e90c";
+  color: #fc9c4d;
+}
+.myicon-eoa-cash:before {
+  content: "\e90d";
+  color: #1fb67b;
+}
+.myicon-eoa-vendor:before {
+  content: "\e90e";
+  color: #fc9c4d;
+}
+.myicon-eoa-package:before {
+  content: "\e90f";
+  color: #fc9c4d;
+}
+.myicon-eoa-selling-unit:before {
+  content: "\e910";
+  color: #fc9c4d;
+}
+.myicon-eoa-next:before {
+  content: "\e90b";
+  color: #f7f7f7;
+}
+.myicon-eoa-back:before {
+  content: "\e90a";
+  color: #1fb67b;
+}
+.myicon-eoa-coupon:before {
+  content: "\e909";
+  color: #fc9c4d;
+}
+.myicon-eoa-menu:before {
+  content: "\e908";
+  color: #1fb67b;
+}
+.myicon-eoa-empty-my-order:before {
+  content: "\e900";
+  color: #cecece;
+}
+.myicon-eoa-search:before {
+    content: "\e901";
+    color: #1fb67b;
+}
+.myicon-eoa-username:before {
+  content: "\e902";
+}
+.myicon-eoa-scan:before {
+  content: "\e903";
+  color: #cecece;
+}
+.myicon-eoa-pass:before {
+  content: "\e907";
+  
+}

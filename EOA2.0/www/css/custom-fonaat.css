@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?o7omrk');
+    src: url('../fonts/icomoon.eot?o7omrk#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?o7omrk') format('truetype'), url('../fonts/icomoon.woff?o7omrk') format('woff'), url('../fonts/icomoon.svg?o7omrk#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+i {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-quantity:before {
+    content: "\e90c";
+    color: #fc9c4d;
+}
+
+.icon-funds:before {
+    content: "\e90d";
+    color: #1fb67b;
+}
+
+.icon-vendor:before {
+    content: "\e90e";
+    color: #fc9c4d;
+}
+
+.icon-package:before {
+    content: "\e90f";
+    color: #fc9c4d;
+}
+
+.icon-selling-unit:before {
+    content: "\e910";
+    color: #fc9c4d;
+}
+
+.icon-next:before {
+    content: "\e90b";
+    color: #757575;
+    font-size: 14px;
+}
+
+.icon-back:before {
+    content: "\e90a";
+    color: #1fb67b;
+}
+
+.icon-coupoCn:before {
+    content: "\e909";
+    color: #fc9c4d;
+}
+
+.icon-menu:before {
+    content: "\e908";
+    color: #1fb67b;
+}
+
+.icon-my_order:before {
+    content: "\e900";
+    color: #c5c5c5;
+    font-size: 25px;
+}
+.icon-my_order_active:before {
+    content: "\e900";
+    color: #1fb67b;
+    font-size: 28px;
+}
+
+.icon-search:before {
+    content: "\e901";
+}
+
+.icon-username:before {
+    content: "\e902";
+    color: #9c9c9c;
+}
+
+.icon-scan:before {
+    content: "\e903";
+    color: #c5c5c5;
+    font-size: 25px;
+}
+
+.icon-eye:before {
+    content: "\e904";
+}
+
+.icon-history:before {
+    content: "\e905";
+    color: #c5c5c5;
+    font-size: 25px;
+}
+.icon-history-active:before {
+    content: "\e905";
+    color: #1fb67b;
+    font-size: 28px;
+}
+.icon-home:before {
+    content: "\e906";
+    color: #c5c5c5;
+    font-size: 25px;
+}
+.icon-home-active:before {
+    content: "\e906";
+    color: #1fb67b;
+    font-size: 28px;
+}
+
+.icon-pass:before {
+    content: "\e907";
+    color: #9e9e9e;
+}

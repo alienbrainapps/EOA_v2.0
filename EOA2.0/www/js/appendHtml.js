@@ -53,7 +53,7 @@ function getItemByQuery() {
 							<div class="card_list_content">
 								<div class="item-title-row">`+ resultSet.rows.item(r).ItemDescription + `</div>
 								<div class="item-text">`+ resultSet.rows.item(r).UOM + `</div>
-								<div class="item-title-row">`+ resultSet.rows.item(r).name + `   ` + resultSet.rows.item(r).ItemCode + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
+								<div class="item-title-row">`+ resultSet.rows.item(r).name +`<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
 							</div>
 						</div>
 				</div>
@@ -212,14 +212,12 @@ function getVendorByQuery() {
             vendor_EL = '';
             for (var r = 0; r < resultSet.rows.length; r++) {
                 //@prog append vendor
-                vendor_EL += `<div class="item-content card like_li" id="` + resultSet.rows.item(r).input + `">		
+                vendor_EL += `<div class="item-content card like_li item-link" id="` + resultSet.rows.item(r).input + `">		
                                         <div class="item-media"><img src="`+ resultSet.rows.item(r).IMG + `" width="80" /></div>		
                                          <div class="item-inner">		
                                            <div class="item-title">`+ resultSet.rows.item(r).name + `</div>		
                                          </div>		
-                                         <div class="item-after">		
-                                         <i class="icon icon-next"></i>		
-                                         </div>		
+                                         		
                                      </div>`;
 
 
@@ -272,7 +270,7 @@ function getOffersByQuery() {
                                       <ul>
                                         <li class="item-content">
                                           <div class="item-media">
-                                            <i class="icon icon-coupon"></i>
+                                            <i class="icon myicon-eoa-coupon"></i>
                                           </div>
                                           <div class="item-inner">
                                             <div class="item-title-row">
@@ -469,10 +467,10 @@ function getItemDetailsFromBrandList(venID, itemId) {
 
 
                 itemDetails_EL = `
-                        <li class="item-divider bolder_text"><i class="icon icon-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription +`</li>
+                        <li class="item-divider bolder_text"><i class="myicon-eoa-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription +`</li>
                             <li>
                                 <div class="item-content">
-                                    <div class="item-media"><i class="icon icon-vendor"></i> </div>
+                                    <div class="item-media"><i class="myicon-eoa-vendor"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Vendor</div>
                                         <div class="item-after bolder_text">
@@ -483,7 +481,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                             </li>
                             <li>
                                 <div class="item-content">
-                                    <div class="item-media"><i class="icon icon-quantity"></i> </div>
+                                    <div class="item-media"><i class="myicon-eoa-quantity"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Quntity</div>
                                         <div class="item-after item-input">
@@ -495,7 +493,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
 
                             <li>
                                 <div class="item-content">
-                                    <div class="item-media"><i class="icon icon-selling-unit"></i> </div>
+                                    <div class="item-media"><i class="myicon-eoa-selling-unit"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Seling unite</div>
                                        
@@ -619,7 +617,7 @@ function popUpOfferDet(offerId) {
                         <div class="popup offers-modal">
                                     <div class="navbar">
                                         <div class="navbar-inner">
-                                            <div class="left close-popup"> <a href="#" class="link"><i class="icon icon-back"></i></a></div>
+                                            <div class="left close-popup"> <a href="#" class="link"><i class="icon myicon-eoa-back"></i></a></div>
                                             <div class="center">Offer Details</div>
                                             <div class="right"></div>
                                         </div>
@@ -629,7 +627,7 @@ function popUpOfferDet(offerId) {
                                                                padding-top: 7px;">
                                 <div class="card">
                                         <div style="text-align:center">
-                                        <i class="icon icon-coupon coupon-offers-card"></i>
+                                        <i class="icon myicon-eoa-coupon coupon-offers-card"></i>
                                          <p style="white-space: nowrap;
                                                     overflow: hidden;
                                                     text-overflow: ellipsis;
