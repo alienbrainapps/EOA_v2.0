@@ -591,5 +591,14 @@ span.arrow-btn {
     left: 47% !important;
 }
 i.icon.icon-coupon.coupon-offers-card {
-    font-size: 50px !important;
+
+    font-size: 65px !important;
+    padding-top: 20px;
+}
+.offers-modal .content-block-title {
+    text-transform: capitalize;
+    color: #1fb67b;
+}
+.iub li {
+list-style : none !important;
 }

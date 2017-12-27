@@ -610,26 +610,41 @@ function popUpOfferDet(offerId) {
             //          </div>
             //          <div class="card-footer no-border">
             //            <a href="#" class="link" style="color : #1fb67b">Add To Order</a>
-            //            <a href="#" class="link close-popup"  style="color : #ef3e57">Close</a>
+            //            <a href="#" class="link "  style="color : #ef3e57">Close</a>
             //          </div>
             //        </div>	
             //    </div>
             //    </div>`;
             var popupHTML = `
-                        <div class="popup">
-                            <div class="content-block">
+                        <div class="popup offers-modal">
+                                    <div class="navbar">
+                                        <div class="navbar-inner">
+                                            <div class="left close-popup"> <a href="#" class="link"><i class="icon icon-back"></i></a></div>
+                                            <div class="center">Offer Details</div>
+                                            <div class="right"></div>
+                                        </div>
+                                    </div>
+                            <div class="content-block" style="background-color: #f7f7f7;
+                                                               margin-top: 0;
+                                                               padding-top: 7px;">
                                 <div class="card">
                                         <div style="text-align:center">
                                         <i class="icon icon-coupon coupon-offers-card"></i>
                                          <p style="white-space: nowrap;
                                                     overflow: hidden;
-                                                    text-overflow: ellipsis;">
-                                                   <span style="font-size: 20px;font-weight: 600;">`+ promotionDetails.name + `</span>  ` + promotionDetails.Description +`</p>
+                                                    text-overflow: ellipsis;
+                                                    padding: 0 9px;">
+                                                   <span style="font-size: 20px;font-weight:400;">`+ promotionDetails.name + `</span>  ` + promotionDetails.Description +`</p>
                                         </div>
                                         <div class="card-content"  id="card-`+ promotionDetails.PromotionID +`">
                                         </div>
-                                        <div class="card-footer">
-                                        <a href="#" class="link" style="color : #1fb67b">Add To Order</a>
+                                        <div class="card-footer" style="padding: 19px 25%;">
+                                        <a href="#" class="link" disabled style="color: #fff;
+                                                                    background-color: #1fb67b;
+                                                                    border-radius: 25px;
+                                                                    text-align: center;
+                                                                    display: block;
+                                                                    padding: 0 20px;">Add To Order</a>
                                         </div>
                                     </div>
                          </div>
@@ -652,26 +667,31 @@ function popUpOfferDet(offerId) {
         var inputOptionsObj = inputOptions[offerId];
         for (var m = 0; m < inputOptionsObj.length; m++) {
             if (m == 0) {
-                ul += `<div class="content-block-title">if you buy</div><ul id="AB` + promotionDetails.PromotionID + inputOptionsObj[m].OptionID + `"></ul>`;
+                ul += `<div class="content-block-title">if you buy</div>
+                                <ul class="iub" id="AB` + promotionDetails.PromotionID + inputOptionsObj[m].OptionID + `"></ul>`;
             }
             else
-                ul += `<span style="margin-left:5%">OR</span><ul id="AB` + promotionDetails.PromotionID + inputOptionsObj[m].OptionID + `"></ul>`;
+                ul += `<span style="margin-left:5%">OR</span><ul class="iub"  id="AB` + promotionDetails.PromotionID + inputOptionsObj[m].OptionID + `"></ul>`;
 
         }
         $$('#card-' + promotionDetails.PromotionID).html(ul);
-
+        $$('#card-' + promotionDetails.PromotionID).append('<div class="content-block-title">you will get</div>');
+        $$('#card-' + promotionDetails.PromotionID).append(`<ul id="UWG` + promotionDetails.PromotionID + promotionDetails.VendorID + `"></ul>`);
+        var selectorUWG = promotionDetails.PromotionID.toString() + promotionDetails.VendorID.toString();
         for (var m = 0; m < inputOptionsObj.length; m++) {
             var liForselectorUlID = "";
             var calutedoptions = inputOptionsObj[m].CalculatedPromotionDetails[inputOptionsObj[m].OptionID];
             var selectorUlID = promotionDetails.PromotionID.toString() + inputOptionsObj[m].OptionID.toString();
+           
             for (var ki = 0; ki < calutedoptions.length; ki++) {
                 liForselectorUlID += '<li class="item-content"><div class="item-i11nner VR"><div class="item-ti1tle">- ' + calutedoptions[ki].Description + '.</div></div></li>';
             }
             $$("#AB" + selectorUlID).html('');
             $$("#AB" + selectorUlID).append(liForselectorUlID);
-            $$("#AB" + selectorUlID).append('<div class="content-block-title">you will get</div><div>' + promotionDetails.Description + '</div>');
+           
 
         }
+        $$("#UWG" + selectorUWG).append('<div>' + promotionDetails.Description + '</div>');
 
     });
 
