@@ -543,6 +543,8 @@ span.button.edit-btn {
     border-radius: 0px 4px 0px 6px !important;
     margin-top: -6px;
     margin-right: -1px;
+    padding: 5px 0 !important;
+    min-width: 45px !important;
 }
 
 .card-header.custom-header-style {

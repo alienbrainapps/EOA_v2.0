@@ -103,7 +103,7 @@ myApp.onPageInit('catg', function (page) {
             li += `
                 <div class=" swiper-slide" id="pa` + vendoreinfo[i].input + `">
                             <div class="card">
-                                <div class="card-header custom-header-style"><span>`+ vendoreinfo[i].name +`</span> <span class="button edit-btn">edit</span></div>
+                                <div class="card-header custom-header-style"><span>`+ vendoreinfo[i].name +`</span> <span class="button edit-btn"><i class="myicon-eoa-edit"></i></span></div>
                                 <div class="card-content">
                                     <div class="card-content-inner">
                                         <div class="list-block media-list">
