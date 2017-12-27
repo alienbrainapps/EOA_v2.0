@@ -35,18 +35,20 @@ function getItemByQuery() {
     }
     db.transaction(function (tx) {
 
-        var query = "SELECT distinct items.* ,vendor.name  FROM items inner join vendor on vendor.input = items.VendorID where (items.Price > 0) and ((items.IsDefaultPack='true' and itemid in (select itemid from items where  items.IsDefaultPack='true'))or packid in (select min(packID)  from items where itemid not in (select itemid from items where  items.IsDefaultPack='true') group by itemid))LIMIT " + offset + ",25"
+        var query = "SELECT distinct items.* ,vendor.name,vendor.URL  FROM items inner join vendor on vendor.input = items.VendorID where (items.Price > 0) and ((items.IsDefaultPack='true' and itemid in (select itemid from items where  items.IsDefaultPack='true'))or packid in (select min(packID)  from items where itemid not in (select itemid from items where  items.IsDefaultPack='true') group by itemid))LIMIT " + offset + ",25"
         console.log('query', query);
         tx.executeSql(query, [], function (tx, resultSet) {
             console.log(resultSet.rows.item(r));
             //$$('#itemlist').html('');
             if (resultSet.rows.length == 0) { return; }
+
             for (var r = 0; r < resultSet.rows.length; r++) {
+                console.log((resultSet.rows.item(r).URL).replace(`/api`, ``) + `/itemsimages/` + resultSet.rows.item(r).ItemImageName);
                 Html_EL = `<li class="card">
 				<div class="card-content">
 						<div class="item-content" style="padding:6px">
 							<div class="item-media">
-								<img class="Strechimage" width="70" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
+								<img class="Strechimage" width="70" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + (resultSet.rows.item(r).URL).replace(`/api`, ``) + `/itemsimages/` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
 							</div>
 							<div class="card_list_content">
 								<div class="item-title-row">`+ resultSet.rows.item(r).ItemDescription + `</div>
@@ -369,7 +371,7 @@ function getBrandItemList(Id,venID) {
     console.log(Id);
 
     db.transaction(function (tx) {
-        var query = `SELECT distinct items.* ,vendor.name  FROM items inner join vendor on vendor.input = items.VendorID 
+        var query = `SELECT distinct items.* ,vendor.name , vendor.url FROM items inner join vendor on vendor.input = items.VendorID 
                      where
                     ((items.IsDefaultPack="true" and itemid in (select itemid from items x where  x.IsDefaultPack="true"  and  vendorid='`+ venID +`'))
 					or packid in (select min(xx.packID) 
@@ -402,7 +404,7 @@ function getBrandItemList(Id,venID) {
 		                         data-ItemDescription="` + resultSet.rows.item(r).ItemDescription + `" 
 		                         data-pack="` + resultSet.rows.item(r).PackTypeID + `">
                          <a href="#" class="item-link item-content">
-                            <div class="item-media"><img src="`+ resultSet.rows.item(r).ItemImageName + `" width="80"  onerror="(this.src='images/no-image.svg')" /></div>
+                            <div class="item-media"><img src="` + (resultSet.rows.item(r).URL).replace(`/api`, ``) + `/itemsimages/` + resultSet.rows.item(r).ItemImageName + `" width="80" onerror="(this.src='images/no-image.svg')"  /></div>
                              <div class="item-inner">
                               <div class="item-title">`+ resultSet.rows.item(r).ItemDescription + ` <br /><span class="green_text">` + resultSet.rows.item(r).Price + `</span></div>
                              </div>
@@ -595,24 +597,43 @@ function popUpOfferDet(offerId) {
                 promotionDetails = resultSet.rows.item(r)
             }
             console.log(promotionDetails);
+            //var popupHTML = `
+            //<div class="popup">
+            //    <div class="content-block">
+            //    <div class="card facebook-card">
+            //          <div class="card-header no-border">
+            //            <div class="facebook-avatar"><img src="`+ promotionDetails.IMG + `" width="80" height="auto"></div>
+            //            <div class="facebook-name">`+ promotionDetails.name + `</div>
+            //          </div>
+            //          <div class="card-content" id="card-`+ promotionDetails.PromotionID +`">
+            //          kkooo
+            //          </div>
+            //          <div class="card-footer no-border">
+            //            <a href="#" class="link" style="color : #1fb67b">Add To Order</a>
+            //            <a href="#" class="link close-popup"  style="color : #ef3e57">Close</a>
+            //          </div>
+            //        </div>	
+            //    </div>
+            //    </div>`;
             var popupHTML = `
-            <div class="popup">
-                <div class="content-block">
-                <div class="card facebook-card">
-                      <div class="card-header no-border">
-                        <div class="facebook-avatar"><img src="`+ promotionDetails.IMG + `" width="80" height="auto"></div>
-                        <div class="facebook-name">`+ promotionDetails.name + `</div>
-                      </div>
-                      <div class="card-content" id="card-`+ promotionDetails.PromotionID +`">
-                      kkooo
-                      </div>
-                      <div class="card-footer no-border">
-                        <a href="#" class="link" style="color : #1fb67b">Add To Order</a>
-                        <a href="#" class="link close-popup"  style="color : #ef3e57">Close</a>
-                      </div>
-                    </div>	
-                </div>
-                </div>`;
+                        <div class="popup">
+                            <div class="content-block">
+                                <div class="card">
+                                        <div style="text-align:center">
+                                        <i class="icon icon-coupon coupon-offers-card"></i>
+                                         <p style="white-space: nowrap;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;">
+                                                   <span style="font-size: 20px;font-weight: 600;">`+ promotionDetails.name + `</span>  ` + promotionDetails.Description +`</p>
+                                        </div>
+                                        <div class="card-content"  id="card-`+ promotionDetails.PromotionID +`">
+                                        </div>
+                                        <div class="card-footer">
+                                        <a href="#" class="link" style="color : #1fb67b">Add To Order</a>
+                                        </div>
+                                    </div>
+                         </div>
+                            </div>`;
             
             myApp.popup(popupHTML, true);
 

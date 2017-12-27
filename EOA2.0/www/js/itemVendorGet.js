@@ -98,7 +98,7 @@ function GetVendorItems() {
     else {
         GetOffers(vendors[index].URL, vendors[index].custumerID, vendors[index].outletID, lang, vendors[index].input);
         GetItems(vendors[index].URL, vendors[index].custumerID, vendors[index].outletID, lang, vendors[index].input);
-
+        GetItemImages(vendors[index].URL);
     }
 
 
@@ -259,9 +259,6 @@ function GetOffers(url, custumerID, outletID, lang, input) {
         });
 
 }
-
-
-
 
 function addToOrder() {
     $$('.toolbar-bottom').show();
@@ -425,3 +422,24 @@ function addToOrder() {
 
 }
 
+
+function GetItemImages(vendorURL) {
+    console.log(vendorURL);
+    $$.ajax(
+        {
+            url: "" + vendorURL + "/GetItemsImages",
+            method: "Get",
+            timeout: 60000,
+            success: function (data, xhr) {
+                console.log(data);
+
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(textStatus);
+                return;
+
+
+            }
+           
+        });
+}

@@ -356,7 +356,6 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 }
 
 .page-allitem #nes .item-media,
-
 .home-page #tab2 .item-media {
     margin: 5px 10px;
     width: auto;
@@ -364,10 +363,12 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
     text-align: center;
     border-radius: 5px;
     border: 1px solid #e9e9e9;
+    padding: 9px !important;
 }
-
+    .page-allitem #nes .item-media img,
     .home-page #tab2 .item-media img {
-        width: 80px;
+        width: 70px;
+        height: 70px;
     }
 
 .home-page #tab2 .card-footer a {
@@ -588,4 +589,7 @@ span.arrow-btn {
 .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets {
     top: 62px !important;
     left: 47% !important;
+}
+i.icon.icon-coupon.coupon-offers-card {
+    font-size: 50px !important;
 }
