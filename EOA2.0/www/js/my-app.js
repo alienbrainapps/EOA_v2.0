@@ -2216,7 +2216,7 @@ function getiteminfo(item) {
                                 <div class="item-content">
                                     <div class="item-inner">
                                         <div class="item-title label">Gross</div>
-                                        <div id="Pri1ce" class="item-after">`+ gross+`</div>
+                                        <div id="Pri1ce" class="item-after">`+ gross.toFixed(3) +`</div>
                                     </div>
                                 </div>
                             </li>
@@ -2224,7 +2224,7 @@ function getiteminfo(item) {
                                 <div class="item-content">
                                     <div class="item-inner">
                                         <div class="item-title label">Discount</div>
-                                        <div id="Discount" class="item-after">` + discountamt+ `</div>
+                                        <div id="Discount" class="item-after">` + discountamt.toFixed(3) + `</div>
                                     </div>
                                 </div>
                             </li>
@@ -2232,7 +2232,7 @@ function getiteminfo(item) {
                                 <div class="item-content">
                                     <div class="item-inner">
                                         <div class="item-title label">Tax</div>
-                                        <div id="Tax" class="item-after">`+ tax+`</div>
+                                        <div id="Tax" class="item-after">`+ tax.toFixed(3) +`</div>
                                     </div>
                                 </div>
                             </li>
@@ -2243,7 +2243,7 @@ function getiteminfo(item) {
                                     <div class="item-inner">
                                         <div class="item-title label">Total Price</div>
                                         <div id="PriceV" class="item-after">
-                                            `+ net+`
+                                            `+ net.toFixed(3) +`
                                         </div>
                                     </div>
                                 </div>

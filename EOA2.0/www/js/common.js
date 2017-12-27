@@ -280,6 +280,11 @@ myApp.onPageInit('catg', function (page) {
             var string = '';
             var lang = localStorage.getItem('lang');
             if (lang == 1) { string = 'Quantity' } else { string = 'كمية' }
+            //console.log(IOAlist, 'this is IOA LIST');
+            console.log((vendoreinfo[w].URL).replace(`/api`, ``) + `/itemsimages/` + IOAlist[i].ItemImageName)
+            //console.log(vendoreorder, 'hi k7aaab');
+            //console.log(vendoreorder[vendoreinfo[w].input], 'its shit of vendor');
+            //console.log(vendoreinfo[w], 'its shit of vendor vendoreinfo[w]');
             html += `<li class="item-conte1nt test" 
 										id="` + IOAlist[i].ItemID + `"  
 										data-ItemCode="` + IOAlist[i].ItemCode + `"
@@ -302,7 +307,7 @@ myApp.onPageInit('catg', function (page) {
 													id="` + IOAlist[i].PackTypeID + `"
 													data-info="` + vendoreinfo[w].input + `"
 													>
-                                                        <div class="item-media"><img src="` + vendoreinfo[w].IMG + `" width="50" /></div>
+                                                        <div class="item-media"><img src="`+ (vendoreinfo[w].URL).replace(`/api`, ``) + `/itemsimages/` + IOAlist[i].ItemImageName +`" onerror="(this.src='images/no-image.svg')"  width="50" height="50" /></div>
                                                         <div class="item-inner">
                                                            
                                                                 <div class="item-title">` + IOAlist[i].ItemDescription + `</div>

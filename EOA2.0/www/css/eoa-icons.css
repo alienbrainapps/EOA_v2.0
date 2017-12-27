@@ -62,7 +62,8 @@ i {
   color: #b8b8b8;
 }
 .myicon-eoa-my-order-empty:before {
-  content: "\e91a";
+    content: "\e91a";
+    font-size: 90px;
 }
 .myicon-eoa-edit:before {
   content: "\e91b";

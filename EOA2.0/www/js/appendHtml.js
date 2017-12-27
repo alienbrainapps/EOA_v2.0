@@ -43,7 +43,6 @@ function getItemByQuery() {
             if (resultSet.rows.length == 0) { return; }
 
             for (var r = 0; r < resultSet.rows.length; r++) {
-                console.log((resultSet.rows.item(r).URL).replace(`/api`, ``) + `/itemsimages/` + resultSet.rows.item(r).ItemImageName);
                 Html_EL = `<li class="card">
 				<div class="card-content">
 						<div class="item-content" style="padding:6px">

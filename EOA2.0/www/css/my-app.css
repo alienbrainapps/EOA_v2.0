@@ -4,16 +4,18 @@
     background-color: #1fb67b !important;
     color: #fff !important;
     border-radius: 25px !important;
-    font-size : 12px;
+    font-size: 12px;
 }
+
 #org i {
     font-size: 25px !important;
 }
+
 .button.danger_btn {
     background-color: #ef3e57 !important;
     color: #fff !important;
     border-radius: 25px !important;
-    font-size : 12px;
+    font-size: 12px;
 }
 
 .not-show {
@@ -26,16 +28,18 @@ padding-top : 90px !important;
 .bolder_text {
     font-weight: 900 !important;
 }
+
 .swiper-wrapper .buttons-row {
-padding : 0 10px ;
-} 
+    padding: 0 10px;
+}
+
 .bolder_text_xs {
     font-weight: 600 !important;
 }
-    /*radio btn and check-box style*/
-    label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio, label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio, label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio, label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio, label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio, label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio, .form-radio input[type="radio"]:checked ~ i {
-        border-color: #1fb67b !important;
-    }
+/*radio btn and check-box style*/
+label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio, label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio, label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio, label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio, label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio, label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio, .form-radio input[type="radio"]:checked ~ i {
+    border-color: #1fb67b !important;
+}
 
 
     label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio:after, label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio:after, label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio:after, label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio:after, label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio:after, label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio:after, .form-radio input[type="radio"]:checked ~ i:after {
@@ -106,7 +110,6 @@ padding : 0 10px ;
 
     #offers109 .card-footer a.link {
         color: #1fb67b;
-        
     }
 
     #offers109 .card-footer:before,
@@ -368,6 +371,7 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
     border: 1px solid #e9e9e9;
     padding: 9px !important;
 }
+
     .page-allitem #nes .item-media img,
     .home-page #tab2 .item-media img {
         width: 70px;
@@ -428,31 +432,35 @@ ul.itemsOrderList {
 .page-Allitemdet .list-block {
     margin-top: 0px;
 }
+
 .prices li:first-child {
     margin-top: 5px;
 }
-#listorder .item-media img ,
+
+#listorder .item-media img,
 .itemsOrderList .item-media img {
     padding: 5px !important;
     background-color: #f7f7f7 !important;
     border: 1px solid #d8cdcd !important;
     border-radius: 5px !important;
 }
-.page-promotions .list-block .prices ,
+
+.page-promotions .list-block .prices,
 .page-catg .list-block .prices {
     padding: 0 28px;
     font-size: 13px !important;
 }
+
 .page-promotions .list-block li:last-child .itemsOrderList .item-content,
 .page-catg .list-block li:last-child .itemsOrderList .item-content {
     border-bottom: 1px solid #e6e6e6;
 }
- 
+
 .page-catg .swiper-container-horizontal > .swiper-pagination-bullets {
     top: 5px !important;
 }
-.page-promotions 
-.page-catg .swiper-pagination {
+
+.page-promotions .page-catg .swiper-pagination {
     top: 10%;
     left: 20%;
     right: 20%;
@@ -462,29 +470,34 @@ ul.itemsOrderList {
     margin-right: 2px;
     margin-left: 2px;
 }
+
 .page-catg .swiper-container.swiper-container-horizontal {
     padding-top: 20px;
 }
 /*.page-catg .list-block .itemsOrderList .item-content {
     border-bottom: 1px solid #e6e6e6;
 }*/
-.page-promotions .list-block .prices .item-inner:after ,
+.page-promotions .list-block .prices .item-inner:after,
 .page-catg .list-block .prices .item-inner:after {
     background-color: #ffffff !important;
 }
-.page-promotions .list-block .prices .item-media ,
+
+.page-promotions .list-block .prices .item-media,
 .page-catg .list-block .prices .item-media {
     min-width: 75px !important;
 }
-page-promotions .list-block.media-list .prices .item-link .item-inner ,
+
+page-promotions .list-block.media-list .prices .item-link .item-inner,
 .page-catg .list-block.media-list .prices .item-link .item-inner {
     text-align: end !important;
 }
-.page-promotions .prices a ,
+
+.page-promotions .prices a,
 .page-catg .prices a {
     height: 25px !important;
     min-height: 25px !important;
 }
+
 .page-promotions .prices .item-inner,
 .page-promotions .prices .item-media,
 .page-catg .prices .item-media,
@@ -492,6 +505,7 @@ page-promotions .list-block.media-list .prices .item-link .item-inner ,
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
+
 .page-promotions a.item-link.item-content.prom_net_total_li,
 .page-catg a.item-link.item-content.net_total_li {
     border-top: 1px solid #d8d8d8;
@@ -550,6 +564,7 @@ span.button.edit-btn {
 .card-header.custom-header-style {
     padding: 0 0px 1px 15px !important;
 }
+
 .page-promotions .bendlist .item-media {
     min-width: 20px !important;
 }
@@ -565,21 +580,26 @@ span.button.edit-btn {
 .page-promotions .bendlist label.label-radio.item-content {
     padding: 0 !important;
 }
+
 .coupon-end i.icon.myicon-eoa-coupon:before {
     font-size: 25px !important;
 }
+
 .coupon-end i.icon.myicon-eoa-coupon {
     font-size: 25px !important;
 }
+
 .page-promotions .bendlist .item-title {
     white-space: pre-line !important;
 }
+
 .page-promotions #tab2 p.buttons-row {
     padding: 0 25%;
 }
-.page-promotions #list92 .card {
 
+.page-promotions #list92 .card {
 }
+
 span.arrow-btn {
     position: absolute;
     top: -14px;
@@ -592,40 +612,84 @@ span.arrow-btn {
     z-index: 1;
     line-height: 2.5;
 }
+
 .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets {
     top: 62px !important;
     left: 47% !important;
 }
-i.icon.myicon-eoa-coupon.coupon-offers-card {
 
+i.icon.myicon-eoa-coupon.coupon-offers-card {
     font-size: 65px !important;
     padding-top: 20px;
 }
+
 .offers-modal .content-block-title {
     text-transform: capitalize;
     color: #1fb67b;
 }
+
 .iub li {
-list-style : none !important;
+    list-style: none !important;
 }
+
 .card-footer {
-border-top: 1px solid #f7f7f7;
+    border-top: 1px solid #f7f7f7;
 }
+
 .login-page form i {
     font-size: 25px !important;
     font-weight: 100 !important;
     color: #cecece !important;
 }
+
 .login-page form .item-media {
-padding-left : 10px !important;
+    padding-left: 10px !important;
 }
+
 #item_information i {
     font-size: 24px !important;
     vertical-align: middle !important;
 }
+
 #tab3 .like_li {
-    padding-right:5px;
+    padding-right: 5px;
 }
+
 #tab3 .list-block .item-inner:after {
-background-color : transparent !important;
+    background-color: transparent !important;
+}
+
+li#welcome {
+    font-size: 23px;
+    padding: 20px 0;
+}
+
+    li#welcome i {
+        font-size: 27px !important;
+        color: rgba(0,0,0,0.3) !important;
+    }
+
+    li#welcome .item-inner {
+        padding-right: 0px;
+    }
+
+
+#mynavigations li i, 
+#mynavigations li i:before {
+    color: #080808 !important;
+    font-size: 25px !important;
+}
+#mynavigations .myicon-eoa-order-history:before {
+    color: #080808 !important;
+    font-weight: 600;
+}
+#mynavigations li a {
+    padding-right: 2px;
+}
+
+#mynavigations .list-block .item-inner:after {
+    background-color: #ffffff !important;
+}
+.list-block li#welcome .item-inner:after {
+    background-color : #ffffff !important;
 }
