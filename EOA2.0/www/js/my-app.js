@@ -146,13 +146,13 @@ myApp.onPageInit('index', function (page) { });
 
 myApp.onPageInit('home', function (page) {
     $$('.toolbar-bottom').show();
-    $$("#homeicon").removeClass('homedefult');
+    $$("#homeicon").removeClass('myicon-eoa-home-not-active');
     $$("#searchicon").addClass('searchinactive');
     $$("#searchicon").removeClass('searchactive');
     $$("#reordericon").addClass('reorderinactive');
     $$("#reordericon").removeClass('reorderactive');
-    $$("#ordericon").addClass('myorderinactive');
-    $$("#ordericon").removeClass('myorderactive');
+    $$("#ordericon").addClass('myicon-eoa-my-order');
+    $$("#ordericon").removeClass('myicon-eoa-my-order-active');
 
 
     if (isIos) {
@@ -323,30 +323,30 @@ $$(document).on('pageInit', function (e) {
 
 
     if (e.detail.page.url == "home.html") {
-        $$("#reordericon").removeClass('icon-history-active').addClass('icon-history');
-        $$("#ordericon").removeClass('icon-my_order_active').addClass('icon-my_order');
-        $$("#homeicon").removeClass('icon-home').addClass('icon-home-active');
+        $$("#reordericon").removeClass('myicon-eoa-order-history-active').addClass('myicon-eoa-order-history');
+        $$("#ordericon").removeClass('myicon-eoa-my-order-active').addClass('myicon-eoa-my-order');
+        $$("#homeicon").removeClass('myicon-eoa-home-not-active').addClass('myicon-eoa-home-active');
         $$("#searchicon").addClass('searchinactive');
         $$("#searchicon").removeClass('searchactive');
 
     }
     else if (e.detail.page.url == "Qutaion.html") {
 
-        $$("#homeicon").removeClass('homaeactive');
-        $$("#homeicon").addClass('homedefult');
+        $$("#homeicon").removeClass('myicon-eoa-home-active');
+        $$("#homeicon").addClass('myicon-eoa-home-not-active');
         $$("#searchicon").addClass('searchinactive');
         $$("#searchicon").removeClass('searchactive');
         $$("#reordericon").addClass('reorderinactive');
         $$("#reordericon").removeClass('reorderactive');
-        $$("#ordericon").addClass('myorderactive');
-        $$("#ordericon").removeClass('myorderinactive');
+        $$("#ordericon").addClass('myicon-eoa-my-order-active');
+        $$("#ordericon").removeClass('myicon-eoa-my-order');
 
 
 
     } else if (e.detail.page.url == "catg.html") {
-        $$("#homeicon").removeClass('icon-home-active').addClass('icon-home');
-        $$("#reordericon").removeClass('icon-history-active').addClass('icon-history');
-        $$("#ordericon").removeClass('icon-my_order').addClass('icon-my_order_active');
+        $$("#homeicon").removeClass('myicon-eoa-home-active').addClass('myicon-eoa-home-not-active');
+        $$("#reordericon").removeClass('myicon-eoa-order-history-active').addClass('myicon-eoa-order-history');
+        $$("#ordericon").removeClass('myicon-eoa-my-order').addClass('myicon-eoa-my-order-active');
         $$("#searchicon").addClass('searchinactive');
         $$("#searchicon").removeClass('searchactive');
     }
@@ -362,9 +362,9 @@ $$(document).on('pageInit', function (e) {
     }
 
     if (e.detail.page.url == "History.html") {
-        $$("#ordericon").removeClass('icon-my_order_active').addClass('icon-my_order');
-        $$("#homeicon").removeClass('icon-home-active').addClass('icon-home');
-        $$("#reordericon").removeClass('icon-history').addClass('icon-history-active');
+        $$("#ordericon").removeClass('myicon-eoa-my-order-active').addClass('myicon-eoa-my-order');
+        $$("#homeicon").removeClass('myicon-eoa-home-active').addClass('myicon-eoa-home-not-active');
+        $$("#reordericon").removeClass('myicon-eoa-order-history').addClass('myicon-eoa-order-history-active');
         $$("#searchicon").addClass('searchinactive');
         $$("#searchicon").removeClass('searchactive');
 

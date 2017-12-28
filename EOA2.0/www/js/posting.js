@@ -492,14 +492,14 @@ function DiscountPercGroup(itempak,packids,discount,v){
 myApp.onPageInit('RET', function (page){
     
         $$("#FinsihReturn").hide();
-        $$("#homeicon").removeClass('homaeactive');
-        $$("#homeicon").addClass('homedefult');
+        $$("#homeicon").removeClass('myicon-eoa-home-active');
+        $$("#homeicon").addClass('myicon-eoa-home-not-active');
         $$("#searchicon").addClass('searchinactive');
         $$("#searchicon").removeClass('searchactive');
         $$("#reordericon").addClass('reorderinactive');
         $$("#reordericon").removeClass('reorderactive');
-        $$("#ordericon").addClass('myorderactive');
-        $$("#ordericon").removeClass('myorderinactive');
+        $$("#ordericon").addClass('myicon-eoa-my-order');
+        $$("#ordericon").removeClass('myicon-eoa-my-order');
     $$("#bk").on('click',function(){
         mainView.router.loadPage('Returnedi.html');
  $$("#FinsihReturn").show();

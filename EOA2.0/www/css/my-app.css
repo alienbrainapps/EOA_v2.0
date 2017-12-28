@@ -6,7 +6,9 @@
     border-radius: 25px !important;
     font-size: 12px;
 }
-
+.navbar-fixed .page-content.padding-top {
+    padding-top: 110px !important;
+}
 #org i {
     font-size: 25px !important;
 }
@@ -546,7 +548,7 @@ page-promotions .list-block.media-list .prices .item-link .item-inner,
     padding-top: 35% !important;
 }
 
-    #noorderinfo .icon-my_order:before {
+    #noorderinfo .myicon-eoa-my-order:before {
         font-size: 75px !important;
     }
 

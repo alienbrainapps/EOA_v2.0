@@ -43,10 +43,7 @@ i {
 .myicon-eoa-eye:before {
   content: "\e914";
 }
-.myicon-eoa-home-active:before {
-  content: "\e915";
-  color: #1eb57b;
-}
+
 .myicon-eoa-home-not-active:before {
   content: "\e916";
 }
@@ -57,10 +54,7 @@ i {
   content: "\e918";
   color: #b8b8b8;
 }
-.myicon-eoa-my-order-active:before {
-    content: "\e918";
-    color: #1eb57b;
-}
+
 
 .myicon-eoa-order-history:before {
   content: "\e919";
@@ -70,6 +64,9 @@ i {
     content: "\e91a";
     font-size: 90px;
 }
+
+
+
 .myicon-eoa-edit:before {
   content: "\e91b";
   font-size:20px;
@@ -153,11 +150,25 @@ i {
   content: "\e903";
   color: #cecece;
 }
-.myicon-eoa-scan:before {
-    content: "\e903";
-    color: #1fb67b;
-}
+
 .myicon-eoa-pass:before {
   content: "\e907";
   
+}
+/* Add active icon classes */
+.myicon-eoa-home-active:before {
+    content: "\e915";
+    color: #1eb57b;
+}
+.myicon-eoa-my-order-active:before {
+    content: "\e918";
+    color: #1eb57b;
+}
+.myicon-eoa-order-history-active:before {
+    content: "\e919";
+    color: #1eb57b;
+}
+.myicon-eoa-scan-active:before {
+    content: "\e903";
+    color: #1fb67b;
 }
