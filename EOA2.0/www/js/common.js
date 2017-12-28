@@ -485,7 +485,7 @@ myApp.onPageInit('catg', function (page) {
                 vendoreorder[id] = [];
                 mybundle[id] = [];
                 pagecounter();
-
+                ///backhere bro
                 $$("#pa" + id).remove();
                 var count = $$(".swiper-wrapper").children();
                 if (count.length == 0) {

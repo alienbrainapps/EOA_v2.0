@@ -452,17 +452,17 @@ function getItemDetailsFromBrandList(venID, itemId) {
 	                 data-Tax="`+ resultSet.rows.item(r).Tax + `" 
 	                 data-price="`+ resultSet.rows.item(r).Price + `" 
 	                 data-PackID="`+ resultSet.rows.item(r).PackID + `">
-      <label class="label-radio item-content">
-        <input type="radio" name="my-radio" value="`+ resultSet.rows.item(r).Price + `"  checked="checked">
-        <div class="item-media">
-          <i class="icon icon-form-radio"></i>
-        </div>
-        <div class="item-inner">
-          <div class="item-title">`+ resultSet.rows.item(r).UOM + `</div >
-		  <div class="item-after ">` + resultSet.rows.item(r).Price + `</div>
-        </div >
-      </label >
-    </li >`;
+                      <label class="label-radio item-content">
+                        <input type="radio" name="my-radio" value="`+ resultSet.rows.item(r).Price + `"  checked="checked">
+                        <div class="item-media">
+                          <i class="icon icon-form-radio"></i>
+                        </div>
+                        <div class="item-inner">
+                          <div class="item-title">`+ resultSet.rows.item(r).UOM + `</div >
+		                  <div class="item-after ">` + resultSet.rows.item(r).Price + `</div>
+                        </div >
+                      </label >
+                    </li >`;
 
 
                 itemDetails_EL = `
@@ -484,9 +484,10 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                     <div class="item-inner">
                                         <div class="item-title label">Quntity</div>
                                         <div class="item-after item-input qua-area">
-                                            <span class="inc-qua"><i class="myicon-eoa-add"></i></span>
+                                            
+                                            <span class="dec-qua"><i class="myicon-eoa-remove"></i></span> 
                                             <input disabled data-PackID="`+ resultSet.rows.item(r).PackID +`"; value="1" class="picker-device" type="number" id="QunV" placeholder="1">
-                                            <span class="dec-qua"><i class="myicon-eoa-remove"></i></span>                                        
+                                            <span class="inc-qua"><i class="myicon-eoa-add"></i></span>                                      
                                         </div>
                                     </div>
                                 </div>
@@ -513,22 +514,62 @@ function getItemDetailsFromBrandList(venID, itemId) {
 
             //get first calculation card on quantity 1
 
+            //start +/- btn 
+           $$('.inc-qua').on('click', function () {
+               var oldValue = $$('#QunV').val();
+               var newValue = parseInt(oldValue) + 1;
+               $$('#QunV').val(newValue);
+               getInfoafterChangeQuamtity();
+               //$$('#QunV').on('change', function () {
+               //    // get calculation card 
+               //    var thePakageIS = $$(this).data('PackID');
+               //    var packid = $$('#' + thePakageIS).data('PackID');
+               //    var Discount = $$('#selected' + thePakageIS).data('Discount');
+               //    var Tax = $$('#selected' + thePakageIS).data('Tax');
+               //    var PackTypeID = $$('#selected' + thePakageIS).data('pack');
+               //    var price = $$('#selected' + thePakageIS).data("price");
+               //    objclating.PackID = packid;
+               //    objclating.Discount = Discount;
+               //    objclating.Tax = Tax;
+               //    objclating.Price = price;
+               //    getiteminfo(objclating);
 
-            $$('#QunV').on('change', function () {
-                // get calculation card 
-                var thePakageIS = $$(this).data('PackID');
-                var packid = $$('#' + thePakageIS).data('PackID');
-                var Discount = $$('#selected' + thePakageIS).data('Discount');
-                var Tax = $$('#selected' + thePakageIS).data('Tax');
-                var PackTypeID = $$('#selected' + thePakageIS).data('pack');
-                var price = $$('#selected' + thePakageIS).data("price");
-                objclating.PackID = packid;
-                objclating.Discount = Discount;
-                objclating.Tax = Tax;
-                objclating.Price = price;
-                getiteminfo(objclating);
-                
+               //});
+
+
+
            });
+           $$('.dec-qua').on('click', function () {
+               var oldValue = $$('#QunV').val();
+               if (oldValue > 0) {
+                   var newValue = parseInt(oldValue) - 1;
+                   $$('#QunV').val(newValue);
+                   getInfoafterChangeQuamtity();
+                   //$$('#QunV').on('change', function () {
+                   //    // get calculation card 
+                   //    var thePakageIS = $$(this).data('PackID');
+                   //    var packid = $$('#' + thePakageIS).data('PackID');
+                   //    var Discount = $$('#selected' + thePakageIS).data('Discount');
+                   //    var Tax = $$('#selected' + thePakageIS).data('Tax');
+                   //    var PackTypeID = $$('#selected' + thePakageIS).data('pack');
+                   //    var price = $$('#selected' + thePakageIS).data("price");
+                   //    objclating.PackID = packid;
+                   //    objclating.Discount = Discount;
+                   //    objclating.Tax = Tax;
+                   //    objclating.Price = price;
+                   //    getiteminfo(objclating);
+
+                   //});
+                  
+
+               } else {
+                   return;
+               }
+
+           });
+
+
+            
             $$('#item_information .item-uom').on('click',function () {
                 
                 var ids = this.id;
@@ -694,4 +735,19 @@ function popUpOfferDet(offerId) {
 
 
 
+}
+
+function getInfoafterChangeQuamtity() {
+        // get calculation card 
+    var thePakageIS = $$('#QunV').data('PackID');
+        var packid = $$('#' + thePakageIS).data('PackID');
+        var Discount = $$('#selected' + thePakageIS).data('Discount');
+        var Tax = $$('#selected' + thePakageIS).data('Tax');
+        var PackTypeID = $$('#selected' + thePakageIS).data('pack');
+        var price = $$('#selected' + thePakageIS).data("price");
+        objclating.PackID = packid;
+        objclating.Discount = Discount;
+        objclating.Tax = Tax;
+        objclating.Price = price;
+        getiteminfo(objclating);
 }
