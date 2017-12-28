@@ -57,6 +57,11 @@ i {
   content: "\e918";
   color: #b8b8b8;
 }
+.myicon-eoa-my-order-active:before {
+    content: "\e918";
+    color: #1eb57b;
+}
+
 .myicon-eoa-order-history:before {
   content: "\e919";
   color: #b8b8b8;
@@ -147,6 +152,10 @@ i {
 .myicon-eoa-scan:before {
   content: "\e903";
   color: #cecece;
+}
+.myicon-eoa-scan:before {
+    content: "\e903";
+    color: #1fb67b;
 }
 .myicon-eoa-pass:before {
   content: "\e907";

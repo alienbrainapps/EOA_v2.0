@@ -294,6 +294,7 @@ $$(document).on('pageInit', function (e) {
             lag.Hint = "تنبيه";
         }
         $$("#org").html('');
+        //testo this is toolbar
         //<a  id="search" onclick="we()"  href="#" class="link open-about "><i id="searchicon" class="icon searchinactive"></i><span >'+lag.Hint+'</span></a>
         //pagecounter();
         $$("#org").append(`<a id="home" href="home.html" class="link">

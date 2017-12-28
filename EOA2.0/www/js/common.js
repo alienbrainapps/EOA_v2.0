@@ -3452,7 +3452,7 @@ myApp.onPageInit('Setting', function (page) {
         $$("#org").append(`<a id="home" href="home.html" class="link">
 <i style="width:60px !important" id="homeicon" style="font-size:8px" class="icon-eoa-home-active"</i><span style="font-size:10px" class="tab-link">` + lag.Home + `</span></a>
 <a id="reorder" href="History.html" class="link">
-<i id="reordericon" class="icon-order-history"></i><span >`+ lag.Orderistory + `</span></a> 
+<i id="reordericon" class="myicon-eoa-order-history"></i><span >`+ lag.Orderistory + `</span></a> 
 <a id="Orders22" href="catg.html" class="link"><i id="ordericon"  class="icon-eoa-my-order"></i><span id="lengthon" class="badge">5</span><span >` + lag.MyOrder + `</span></a>
 <a id="scan" onclick="scan();" href="#" class="link"><i class="icon-scan"></i><span  style="padding-top: 8p2x;">` + lag.Scan + `</span></a>
 <a  id="search" onclick="we()"  href="#" class="link open-about "><i id="searchicon" class="icon searchinactive"></i><span >` + lag.Hint + `</span></a>`);
