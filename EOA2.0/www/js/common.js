@@ -2,7 +2,7 @@ var curencyTemp = "";
 var itemdata = {};
 var objclating = {};
 var QUN2 = "";
-var EOA_URL = "https://eoamiddlewareservicedevelopment.azurewebsites.net/";
+
 //var contactsCallback =
 
 
@@ -2156,36 +2156,36 @@ myApp.onPageInit('ItemDE', function (page) {
     //     $$("#Price").html(localStorage.getItem("Price"));
     //    $$("#Discount").html(localStorage.getItem("Discount"));
     //    $$("#Tax").html(localStorage.getItem("Tax"));
-    //   
-    $$('#UOM').on('click', 'li', function () {
+    //   comeback teze
+    //$$('#UOM').on('click', 'li', function () {
 
-        var ids = this.id;
-        var packid = $$("#" + ids).data('PackID');
-        var Discount = $$("#" + ids).data('Discount');
-        var Tax = $$("#" + ids).data('Tax');
-        var PackTypeID = $$("#" + ids).data('pack');
-        var price = $$("#" + ids).data("Price");
-        objclating.PackID = packid;
-        objclating.Discount = Discount;
-        objclating.Tax = Tax;
-        objclating.Price = price;
-        var itemdata = getiteminfo(objclating);
-        var img = GetImage(localStorage.getItem("ItemID"));
+    //    var ids = this.id;
+    //    var packid = $$("#" + ids).data('PackID');
+    //    var Discount = $$("#" + ids).data('Discount');
+    //    var Tax = $$("#" + ids).data('Tax');
+    //    var PackTypeID = $$("#" + ids).data('pack');
+    //    var price = $$("#" + ids).data("Price");
+    //    objclating.PackID = packid;
+    //    objclating.Discount = Discount;
+    //    objclating.Tax = Tax;
+    //    objclating.Price = price;
+    //    var itemdata = getiteminfo(objclating);
+    //    var img = GetImage(localStorage.getItem("ItemID"));
 
-        $$("#Price").html(curency + itemdata.nettotal.toFixed(3));
-        $$("#Gross").html(curency + itemdata.gross.toFixed(3));
-        $$("#Discount").html(curency + itemdata.discount.toFixed(3));
-        $$("#Tax").html(curency + itemdata.tax.toFixed(3));
-        $$("#vendorename").html(itemdata.itemname);
-        $$("#itemimage").attr("src", img);
-        localStorage.setItem("Price", price);
-        localStorage.setItem("PackTypeID", PackTypeID);
-        localStorage.setItem("packid", packid);
+    //    $$("#Price").html(curency + itemdata.nettotal.toFixed(3));
+    //    $$("#Gross").html(curency + itemdata.gross.toFixed(3));
+    //    $$("#Discount").html(curency + itemdata.discount.toFixed(3));
+    //    $$("#Tax").html(curency + itemdata.tax.toFixed(3));
+    //    $$("#vendorename").html(itemdata.itemname);
+    //    $$("#itemimage").attr("src", img);
+    //    localStorage.setItem("Price", price);
+    //    localStorage.setItem("PackTypeID", PackTypeID);
+    //    localStorage.setItem("packid", packid);
         //$$("#Price").html(price);
         //        $$("#Discount").html(Discount);
         //        $$("#Tax").html(Tax);
         //        $$("#Gross").html(localStorage.getItem("Price"));
-    });
+    //});
     // mainView.hideToolbar();
     console.log(localStorage.getItem("PackTypeID"));
     console.log(localStorage.getItem("packid"));

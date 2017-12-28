@@ -446,7 +446,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                 console.log('this is target item', JSON.stringify(objclating));
                
                 EL_UOM +=
-                    `<li id="selected` + resultSet.rows.item(r).PackID + `"  
+                    `<li class="item-uom" id="selected` + resultSet.rows.item(r).PackID + `"  
 	                 data-pack="`+ resultSet.rows.item(r).PackTypeID + `" 
 	                 data-Discount="`+ resultSet.rows.item(r).Discount + `" 
 	                 data-Tax="`+ resultSet.rows.item(r).Tax + `" 
@@ -483,8 +483,10 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                     <div class="item-media"><i class="myicon-eoa-quantity"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Quntity</div>
-                                        <div class="item-after item-input">
-                                            <input data-PackID="`+ resultSet.rows.item(r).PackID +`"; value="1" class="picker-device" type="number" id="QunV" placeholder="1">
+                                        <div class="item-after item-input qua-area">
+                                            <span class="inc-qua"><i class="myicon-eoa-add"></i></span>
+                                            <input disabled data-PackID="`+ resultSet.rows.item(r).PackID +`"; value="1" class="picker-device" type="number" id="QunV" placeholder="1">
+                                            <span class="dec-qua"><i class="myicon-eoa-remove"></i></span>                                        
                                         </div>
                                     </div>
                                 </div>
@@ -515,8 +517,6 @@ function getItemDetailsFromBrandList(venID, itemId) {
             $$('#QunV').on('change', function () {
                 // get calculation card 
                 var thePakageIS = $$(this).data('PackID');
-                
-                
                 var packid = $$('#' + thePakageIS).data('PackID');
                 var Discount = $$('#selected' + thePakageIS).data('Discount');
                 var Tax = $$('#selected' + thePakageIS).data('Tax');
@@ -529,7 +529,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                 getiteminfo(objclating);
                 
            });
-            $$('#item_information').on('click', 'li', function () {
+            $$('#item_information .item-uom').on('click',function () {
                 
                 var ids = this.id;
                 var packid = $$(this).data('PackID');

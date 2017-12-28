@@ -291,7 +291,7 @@ label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio
 }
 
 input#QunV {
-    text-align: end;
+    text-align: center;
 }
 
 .home-page .card-footer {
@@ -657,6 +657,12 @@ i.icon.myicon-eoa-coupon.coupon-offers-card {
     padding-right: 5px;
 }
 
+#Brands .like_li .item-media img ,
+#tab3 .like_li .item-media img {
+    width: 70px;
+    height: 70px;
+}
+
 #tab3 .list-block .item-inner:after {
     background-color: transparent !important;
 }
@@ -676,14 +682,20 @@ li#welcome {
     }
 
 
-#mynavigations li i, 
+#mynavigations li i,
 #mynavigations li i:before {
-    color: #080808 !important;
+    color: #1fb67b !important;
     font-size: 25px !important;
+    background-color: #f7f7f7;
+    padding: 14px 7px;
+    border-radius: 100%;
 }
+    #mynavigations li i.myicon-eoa-close:before {
+        color: #ef3e57 !important;
+       
+    } 
 #mynavigations .myicon-eoa-order-history:before {
-    color: #080808 !important;
-    font-weight: 600;
+    color: #1fb67b !important;
 }
 #mynavigations li a {
     padding-right: 2px;
@@ -694,4 +706,25 @@ li#welcome {
 }
 .list-block li#welcome .item-inner:after {
     background-color : #ffffff !important;
+}
+
+#mynavigations li a span {
+    display: block;
+    font-size: 10px;
+    color: #fc9c4d;
+}
+.page-catg i.myicon-eoa-empty-my-order {
+    font-size: 100px !important;
+}
+
+.item-after.item-input.qua-area {
+    padding-left: 33%;
+}
+span.inc-qua {
+    padding-top: 8px;
+    color: #fc9c4d;
+}
+span.dec-qua {
+    padding-top: 8px;
+    color: #fc9c4d;
 }

@@ -7,11 +7,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>My App</title>
     <!-- Path to your custom app styles-->
-   
+
     <link href="css/eoa-icons.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="css/my-app.css">
-    <link href="css/font-awesome.css"  rel="stylesheet"/>
+    <link href="css/font-awesome.css" rel="stylesheet" />
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
 
@@ -24,19 +24,19 @@
     <div class="panel panel-left panel-cover">
         <div class="content-block" style="margin-top: 0px;padding:0">
             <div class="list-block" style="margin-top: 0px">
-                
+
 
                 <!--<div>
                     <span class="close-panel" style="font-size:20px; text-align: center; color:#000000; padding-right : 30px;">
                         <i class="myicon-eoa-close"></i>
                     </span>
-                    
+
                 <span style="font-size:20px; text-align: center; color:#000000;">Menu</span>
                 </div>-->
                 <ul id="mynavigations">
                     <li id='welcome'>
                         <a href="#" class="item-content">
-                            <div  class="item-media close-panel">
+                            <div class="item-media close-panel">
                                 <i class="myicon-eoa-close"></i>
                             </div>
                             <div class="item-inner">
@@ -44,18 +44,16 @@
                             </div>
                         </a>
                     </li>
+                    <li class="close-panel">
+                        <a href="home.html" class="item-content">
+                            <div class="item-media"><i class="icon myicon-eoa-home-not-active"></i></div>
+                            <div class="item-inner">
+                                <div style="color:#080808 " id='orderlist1' class="item-title">Home</div>
+                            </div>
+                        </a>
+                    </li>
 
-                    <!--<li id="profile">
-                        <div class="item-content">
-                            <img style="ma1rgin-left:20%; mar1gin-right:20%; mar1gin-bottom:20%; m1argin-top:20%; width: 90%;
-    height: 33%" src="Muser.svg">
-                        </div>
-                    </li>-->
-
-
-
-
-                    <li id='orderlist'>
+                    <li id='orderlist' class="close-panel" >
                         <a href="History.html" class="item-content">
                             <div class="item-media"><i class="icon myicon-eoa-order-history"></i></div>
                             <div class="item-inner">
@@ -64,21 +62,7 @@
                         </a>
                     </li>
 
-
-
-
-
-                    <!--<li id='orderstatus'>
-                        <a href="OrderStatus.html" class="item-link item-content">
-                            <div class="item-media"><i class="icon Mstat"></i></div>
-                            <div class="item-inner">
-                                <div style="color:#080808 " id='orderstatus1' class="item-title">Orders Status</div>
-                            </div>
-                        </a>
-                    </li>-->
-
-
-                    <li id='barcodereg'>
+                    <li id='barcodereg' class="close-panel">
                         <a href="" class="item-content">
                             <div class="item-media"><i class="icon myicon-eoa-validation"></i></div>
                             <div class="item-inner">
@@ -87,88 +71,52 @@
                         </a>
                     </li>
 
-
-
-
-                    <!-- <li id='t'>
-              <a href="freeitems.html" class="item-link item-content">
-                <div class="item-media"><i class="icon cart"></i></div>
-                <div class="item-inner">
-                  <div class="item-title">Free Quntity</div>
-                </div>
-              </a>
-            </li>-->
-                    <!--
-                <li id='join'>
-                  <a href="join.html" class="item-link item-content">
-                    <div class="item-media"><i class="icon reorderinactive"></i></div>
-                    <div class="item-inner">
-                      <div style="color:#080808 " id='orderlist1' class="item-title">Request to Join Vendore</div>
-                    </div>
-                  </a>
-                </li>
-            -->
-                
-                 <li id="returnitem">
-                  <a href="Returnedi.html" class="item-content">
-                    <div class="item-media"><i class="icon myicon-eoa-return-item"></i></div>
-                    <div class="item-inner">
-                      <div style="color:#080808 " id="returnitem1" class="item-title">Returned Items</div>
-                    </div>
-                  </a>
-                </li>
-
-                   <li>
-                  <a id="trans" href="trnas.html" class="item-content">
-                    <div class="item-media"><i class="icon myicon-eoa-soa"></i></div>
-                    <div class="item-inner">
-                      <div style="color:#080808 " id="trans1" class="itqem-title">Statement of Account</div>
-                    </div>
-                  </a>
-                </li>
-
-           
-
+                    <li id="returnitem">
+                        <a href="Returnedi.html" disabled class="item-content">
+                            <div class="item-media"><i class="icon myicon-eoa-return-item"></i></div>
+                            <div class="item-inner">
+                                <div style="color:#080808 " id="returnitem1" class="item-title">
+                                    <span>Soon</span>
+                                    Returned Items
+                                </div>
+                            </div>
+                        </a>
+                    </li>
 
                     <li>
-                        <a id="setting" href="setting.html" class="item-content">
+                        <a id="trans" href="trnas.html" class="item-content" disabled>
+                            <div class="item-media"><i class="icon myicon-eoa-soa"></i></div>
+                            <div class="item-inner">
+                                <div style="color:#080808 " id="trans1" class="itqem-title">
+                                    <span>Soon</span>
+                                    Statement of Account
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="setting" href="setting.html" class="item-content" disabled>
                             <div class="item-media"><i class="icon myicon-eoa-settings"></i></div>
                             <div class="item-inner">
-                                <div style="color:#080808 " id="Setting1" class="item-title">Settings</div>
+                                <div style="color:#080808 " id="Setting1" class="item-title">
+                                    <span>Soon</span>
+                                    Settings
+                                </div>
                             </div>
                         </a>
                     </li>
 
 
-
-
-                    <!--
-                   <li>
-                  <a   class="item-link item-content">
-                    <div class="item-media"><i class="icon MVendore"></i></div>
-                    <div class="item-inner">
-                      <div style="color:#080808 " id="Vendore"  class="item-title">Vendore Requsets</div>
-                    </div>
-                  </a>
-                </li>
-            -->
-
                     <li>
-                        <a id="logout" href="#" class="item-content">
+                        <a id="logout" href="#" class="item-content close-panel">
                             <div class="item-media"><i class="icon myicon-eoa-logout"></i></div>
                             <div class="item-inner">
                                 <div style="color:#080808 " id="logout1" class="item-title">Log out</div>
                             </div>
                         </a>
                     </li>
-                    <!-- <li> <a href="index.html" class="back"> Go back to home page </a>
-              <a href="FOCs.html" class="item-link item-content">
-                <div class="item-media"><i class="icon ret"></i></div>
-                <div class="item-inner">
-                  <div class="item-title">FOC's</div>
-                </div>
-              </a>
-            </li>-->
+
                 </ul>
 
             </div>
@@ -267,7 +215,7 @@
     <script type="text/javascript" src="js/device-ready-plugins.js"></script>
     <!-- Path to your js-->
     <script type="text/javascript" src="js/my-app.js"></script>
-   
+
     <!--<script  type="text/javascript" src="js/app.js"></script>-->
     <script type="text/javascript" src="js/Getting.js"></script>
     <script type="text/javascript" src="js/Validation.js"></script>

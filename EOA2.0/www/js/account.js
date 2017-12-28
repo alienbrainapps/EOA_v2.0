@@ -1,5 +1,6 @@
 ﻿//mahmoud saleh
 
+
 function ServerLogin(username, Pass) {
     var jas = {
         "email": username,
@@ -16,7 +17,7 @@ function Postlogin(postData) {
     //men when jaboo 
     console.log(customerids);
     myApp.showPreloader(loading);
-
+    console.log(EOA_URL, 'its the link' );
     var urlAjax = EOA_URL+"api/login";
     $$.ajax(
         {

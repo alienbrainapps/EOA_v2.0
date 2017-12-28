@@ -1,4 +1,4 @@
-﻿
+﻿var EOA_URL = "https://eoamiddlewareservicedevelopment.azurewebsites.net/";
 localStorage.setItem('lang', 1);
 var localitems = [];
 
