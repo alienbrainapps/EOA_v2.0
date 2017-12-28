@@ -17,7 +17,7 @@ function Postlogin(postData) {
     console.log(customerids);
     myApp.showPreloader(loading);
 
-    var urlAjax = "http://eoamiddlewareservice.azurewebsites.net/api/login";
+    var urlAjax = EOA_URL+"api/login";
     $$.ajax(
         {
 

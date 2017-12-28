@@ -2,6 +2,7 @@ var curencyTemp = "";
 var itemdata = {};
 var objclating = {};
 var QUN2 = "";
+var EOA_URL = "https://eoamiddlewareservicedevelopment.azurewebsites.net/";
 //var contactsCallback =
 
 
@@ -1106,7 +1107,7 @@ myApp.onPageInit('forget', function (page) {
                 "newpass": newpass,
 
             } //
-            $$.post("http://eoamiddlewareservice.azurewebsites.net/api/wrg",
+            $$.post(EOA_URL+"api/wrg",
                 jas,
                 function (data, status) {
 
@@ -4574,7 +4575,7 @@ myApp.onPageInit('pro', function (page) {
                         "_id": id,
                         "History": data
                     }
-                    var urlAjax = "http://eoamiddlewareservice.azurewebsites.net/api/History";
+                    var urlAjax = EOA_URL+"api/History";
                     $$.ajax({
                         method: "post",
                         url: urlAjax,
@@ -4968,7 +4969,7 @@ function calcluteprice(Price, Discount, Tax, Quntity, DiscountType) {
 function PostRegstration(postData) {
 
     myApp.showPreloader(loading);
-    var urlAjax = "http://eoamiddlewareservice.azurewebsites.net/api/reg";
+    var urlAjax = EOA_URL+"api/reg";
     $$.ajax({
         method: "post",
         url: urlAjax,

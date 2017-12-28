@@ -412,7 +412,7 @@ function barcodescan() {
                     console.log(pstbarcoe);
                     myApp.showPreloader("Loading");
                     
-                    var urlAjax = "http://eoamiddlewareservice.azurewebsites.net/api/barcode";
+                    var urlAjax = EOA_URL+"api/barcode";
                     $$.ajax({
                         method: "post",
                         url: urlAjax,

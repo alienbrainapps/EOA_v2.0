@@ -442,7 +442,7 @@ $$("#fgpass").on('click', function () {
             var jass = {
                 "email": value
             }
-            $$.post("http://eoamiddlewareservice.azurewebsites.net/api/frg",
+            $$.post(EOA_URL+"api/frg",
                 jass,
                 function (data, status) {
                     mainView.router.loadPage({ url: "forget.html", force: true });
@@ -546,7 +546,7 @@ function Postlogin(postData) {
 
     myApp.showPreloader(loading);
 
-    var urlAjax = "http://eoamiddlewareservice.azurewebsites.net/api/login";
+    var urlAjax = EOA_URL+"api/login";
     $$.ajax(
         {
 

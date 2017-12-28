@@ -10,7 +10,7 @@ function GetVendores() {
 
     var counter = 0;
 
-    var urlAjax = "http://eoamiddlewareservice.azurewebsites.net/api/geturls";
+    var urlAjax = EOA_URL+"api/geturls";
 
     $$.ajax(
         {

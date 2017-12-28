@@ -792,7 +792,7 @@ function getHist(){
 	var json={
 		"_id":id
 	}
-	 var urlAjax = "http://eoamiddlewareservice.azurewebsites.net/api/gteHistory";
+	 var urlAjax = EOA_URL+"api/gteHistory";
 	$$.ajax(
 	{
 		method: "post",
