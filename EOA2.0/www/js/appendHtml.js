@@ -212,7 +212,7 @@ function getVendorByQuery() {
             for (var r = 0; r < resultSet.rows.length; r++) {
                 //@prog append vendor
                 vendor_EL += `<div class="item-content card like_li item-link" id="` + resultSet.rows.item(r).input + `">		
-                                        <div class="item-media"><img src="`+ resultSet.rows.item(r).IMG + `" width="80" /></div>		
+                                        <div class="item-media"><img src="`+ resultSet.rows.item(r).IMG + `" width="80" onerror="(this.src='images/no-vendor-img.svg')" /></div>		
                                          <div class="item-inner">		
                                            <div class="item-title">`+ resultSet.rows.item(r).name + `</div>		
                                          </div>		
@@ -326,7 +326,9 @@ function getBrand(id) {
             brand_EL = '';
             for (var r = 0; r < resultSet.rows.length; r++) {
                 //@prog append vendor
-                brand_EL += `<div class="item-content card like_li" data-vendorname="` + resultSet.rows.item(r).name + `"  id="` + resultSet.rows.item(r).BrandID + `">
+                
+               
+                    brand_EL += `<div class="item-content card like_li" data-vendorname="` + resultSet.rows.item(r).name + `"  id="` + resultSet.rows.item(r).BrandID + `">
                                         <div class="item-media"><img src="` + resultSet.rows.item(r).IMG + `" width="80" /></div>
                                         <div class="item-inner">
                                             <div class="item-title">`+ resultSet.rows.item(r).brandName + `</div>
@@ -335,10 +337,20 @@ function getBrand(id) {
                                             <i class="icon icon-next"></i>
                                         </div>
                                     </div>`;
+                
+              
 
 
             }
-
+            if (resultSet.rows.length == 0) {
+                brand_EL = `
+                            <p class="no-item-brands">
+                                <i class="myicon-eoa-package"></i>
+                                <br>
+                                Sorry there is no item available 
+                            </p>
+                            `
+            }
             $$("#Brands").append(brand_EL);
             $$("#Brands .like_li").on('click', function () {
                 
@@ -370,11 +382,13 @@ function getBrandItemList(Id,venID) {
     db.transaction(function (tx) {
         var query = `SELECT distinct items.* ,vendor.name , vendor.url FROM items inner join vendor on vendor.input = items.VendorID 
                      where
-                    ((items.IsDefaultPack="true" and itemid in (select itemid from items x where  x.IsDefaultPack="true"  and  vendorid='`+ venID +`'))
+                    (items.Price > 0) and
+                    (((items.IsDefaultPack="true" and itemid in (select itemid from items x where  x.IsDefaultPack="true"  and  vendorid='`+ venID +`'))
 					or packid in (select min(xx.packID) 
                     from items xx where xx.itemid not in (select s.itemid from items s where  s.IsDefaultPack="true"  and  vendorid='`+ venID +`') and   xx.BrandID=`+ Id +` group by xx.itemid))
 					and items.BrandID=`+ Id +`
-					 and items.VendorID = '`+ venID +`' LIMIT 0,50000  `;
+					 and items.VendorID = '`+ venID + `') LIMIT 0,50000  `;
+        
         tx.executeSql(query, [], function (tx, resultSet) {
             brand_EL = '';
             console.log('this is my awsome',query);
@@ -409,9 +423,12 @@ function getBrandItemList(Id,venID) {
                         </li>`;
 
                 $$("#nes").append(brandItem_EL);
+
+                
                 
 
             }
+            console.log($$('#nes').children());
             $$("#nes li").on('click', function () {
                      itemSelected = this.id;
                     mainView.router.loadPage({ url: "Alldet.html", force: true });
@@ -750,4 +767,10 @@ function getInfoafterChangeQuamtity() {
         objclating.Tax = Tax;
         objclating.Price = price;
         getiteminfo(objclating);
+}
+
+function backToHome() {
+    $$('.toolbar-bottom').show();
+    mainView.router.back()
+    //mainView.router.loadPage({ url: "home.html", force: true });
 }

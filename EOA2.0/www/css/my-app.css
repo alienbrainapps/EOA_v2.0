@@ -728,3 +728,19 @@ span.dec-qua {
     padding-top: 8px;
     color: #fc9c4d;
 }
+p.no-item-brands {
+    text-align: -webkit-center;
+    padding-top: 40%;
+    font-size: 18px;
+    color: #aba5a5;
+}
+    p.no-item-brands i {
+        font-size: 70px !important;
+    }
+#noorderinfo p.buttons-row {
+    padding: 0 25%;
+    border-radius: 20px;
+}
+    #noorderinfo p.buttons-row .my_green {
+    border-radius : 20px ;
+    }

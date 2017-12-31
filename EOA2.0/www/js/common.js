@@ -58,53 +58,53 @@ myApp.onPageInit('catg', function (page) {
         $$('.toolbar-bottom').show();
         mainView.router.loadPage({ url: 'home.html', force: true });
     });
+    if (vendoreinfo != undefined) {
+        for (var i = 0; i < vendoreinfo.length; i++) {
+            var str = vendoreinfo[i].name;
+            str = str.replace(/\s+/g, '');
+            str = vendoreinfo[i].input;
+            var lag = {
+                "NetTotal": "",
+                "Gross": "",
+                "Tax": "",
+                "Request": "",
+                "Cancel": "",
+                "Edit": "",
+                "Discount": "Discount",
+                "Bundels": "Bundels"
+            }
+            if (localStorage.getItem("lang") == 1) {
+                lag.NetTotal = "NetTotal";
+                lag.Gross = "Gross";
+                lag.Tax = "Tax";
+                lag.Bundels = "Bundels";
+                lag.Discount = "Discount";
+                lag.Request = "Request ََQoution";
+                lag.Cancel = "Cancel Request";
+                lag.Edit = "Edit";
+            }
+            else {
+                lag.NetTotal = "المجموع الكلي";
+                lag.Gross = "الصافي";
+                lag.Bundels = "الحزم",
+                    lag.Discount = "الخصم"
+                lag.Tax = "الضريبة";
+                lag.Request = "طلب تخفيضات";
+                lag.Cancel = "الغاء";
+                lag.Edit = "تعديل";
+            }
 
-    for (var i = 0; i < vendoreinfo.length; i++) {
-        var str = vendoreinfo[i].name;
-        str = str.replace(/\s+/g, '');
-        str = vendoreinfo[i].input;
-        var lag = {
-            "NetTotal": "",
-            "Gross": "",
-            "Tax": "",
-            "Request": "",
-            "Cancel": "",
-            "Edit": "",
-            "Discount": "Discount",
-            "Bundels": "Bundels"
-        }
-        if (localStorage.getItem("lang") == 1) {
-            lag.NetTotal = "NetTotal";
-            lag.Gross = "Gross";
-            lag.Tax = "Tax";
-            lag.Bundels = "Bundels";
-            lag.Discount = "Discount";
-            lag.Request = "Request ََQoution";
-            lag.Cancel = "Cancel Request";
-            lag.Edit = "Edit";
-        }
-        else {
-            lag.NetTotal = "المجموع الكلي";
-            lag.Gross = "الصافي";
-            lag.Bundels = "الحزم",
-                lag.Discount = "الخصم"
-            lag.Tax = "الضريبة";
-            lag.Request = "طلب تخفيضات";
-            lag.Cancel = "الغاء";
-            lag.Edit = "تعديل";
-        }
-
-        if (!vendoreorder[vendoreinfo[i].input].length && jQuery.isEmptyObject(mybundle[vendoreinfo[i].input])) {
-            console.log('wish thaa');
-        } else {
-            $$("#orderon").show();
-            $$("#noorderinfo").hide();
+            if (!vendoreorder[vendoreinfo[i].input].length && jQuery.isEmptyObject(mybundle[vendoreinfo[i].input])) {
+                console.log('wish thaa');
+            } else {
+                $$("#orderon").show();
+                //$$("#noorderinfo").hide();
 
 
-            li += `
+                li += `
                 <div class=" swiper-slide" id="pa` + vendoreinfo[i].input + `">
                             <div class="card">
-                                <div class="card-header custom-header-style"><span>`+ vendoreinfo[i].name +`</span> <span class="button edit-btn"><i class="myicon-eoa-edit"></i></span></div>
+                                <div class="card-header custom-header-style"><span>`+ vendoreinfo[i].name + `</span> <span class="button edit-btn"><i class="myicon-eoa-edit"></i></span></div>
                                 <div class="card-content">
                                     <div class="card-content-inner">
                                         <div class="list-block media-list">
@@ -143,7 +143,7 @@ myApp.onPageInit('catg', function (page) {
                                                     </a>
                                                 </li>
                                             </ul>
-                                            <ul class="itemsOrderList" id="itemsOrderList`+ vendoreinfo[i].input+`">
+                                            <ul class="itemsOrderList" id="itemsOrderList`+ vendoreinfo[i].input + `">
                                                 
                                                 
                                             </ul>
@@ -159,53 +159,65 @@ myApp.onPageInit('catg', function (page) {
                             </p>
                         </div>`;
 
-            
+
+            }
         }
+        $$(".swiper-wrapper").append(li);
     }
-    $$(".swiper-wrapper").append(li);
-    
     var count = $$(".swiper-wrapper").children();
     if (count.length == 0) {
         $$("#orderon").hide();
-        $$("#noorderinfo").show();
+        $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
     }
-    //else {
-    //    $$(".swiper-container").append('<div class="swiper-pagination"></div>');
-    //}
+    $$("#start_first_oredr_btn").on("click", function () {
+        $$('.toolbar-bottom').show();
+        mainView.router.loadPage({ url: 'home.html', force: true });
+    });
 
-    for (var e = 0; e < vendoreinfo.length; e++) {
+    if (vendoreinfo != undefined) {
+        for (var e = 0; e < vendoreinfo.length; e++) {
 
-        arr = '';
-        var y = mybundle[vendoreinfo[e].input];
+            arr = '';
+            var y = mybundle[vendoreinfo[e].input];
 
-        if (jQuery.isEmptyObject(y) || typeof y == "undefined") { } else {
-            //y=y[0];
+            if (jQuery.isEmptyObject(y) || typeof y == "undefined") { } else {
+                //y=y[0];
 
-            for (var l = 0; l < y.length; l++) {
-                for (var k in y[l]) {
-                    if (y[l].hasOwnProperty(k)) {
+                for (var l = 0; l < y.length; l++) {
+                    for (var k in y[l]) {
+                        if (y[l].hasOwnProperty(k)) {
 
-                        var ordernum = i + 1;
-                        var t = '';
-                        for (var jo in bundellsname) {
-                            if (jo == k) {
-                                t = bundellsname[jo];
+                            var ordernum = i + 1;
+                            var t = '';
+                            for (var jo in bundellsname) {
+                                if (jo == k) {
+                                    t = bundellsname[jo];
+                                }
                             }
-                        }
-                        var pricinggg = 0.0;
-                        var string = k.substring(1, k.length);
-                        console.log("string");
-                        console.log(string);
-                        var quntitybundle = 1;
-                        var quntitybundle = bundqun["Q" + string];
-                        console.log(bundvalue["V" + string]);
-                        pricinggg = bundvalue["V" + string] * parseInt(quntitybundle);
-                        var itmesprice = calclution_price(vendoreorder[vendoreinfo[e].input]);
-                        Bundle_price = pricinggg;//+itmesprice.nettotal;
-                        // bundelprice22 = bundelprice22 + pricinggg;
+                            var pricinggg = 0.0;
+                            var string = k.substring(1, k.length);
+                            console.log("string");
+                            console.log(string);
+                            var quntitybundle = 1;
+                            var quntitybundle = bundqun["Q" + string];
+                            console.log(bundvalue["V" + string]);
+                            pricinggg = bundvalue["V" + string] * parseInt(quntitybundle);
+                            var itmesprice = calclution_price(vendoreorder[vendoreinfo[e].input]);
+                            Bundle_price = pricinggg;//+itmesprice.nettotal;
+                            // bundelprice22 = bundelprice22 + pricinggg;
 
-                        $$("#bundlenettotal" + vendoreinfo[e].input).html(curency + Bundle_price.toFixed(3));
-                        arr += `<li id="" class="accordion-item bundaccord">
+                            $$("#bundlenettotal" + vendoreinfo[e].input).html(curency + Bundle_price.toFixed(3));
+                            arr += `<li id="" class="accordion-item bundaccord">
                                 <a href="#" class="item-content item-link">
                                 <i id="` + vendoreinfo[e].input + `" data-price="` + pricinggg + `" style="margin-right:4%" class="li bundone icon none"></i>
                                 <div class="item-inner"> <div class="item-title" style="max-width: 60%; font-size:80%;">` + vendoreinfo[e].name + ` ` + t + `</div>
@@ -218,43 +230,57 @@ myApp.onPageInit('catg', function (page) {
 
 
 
-                    } else if (mybundle.hasOwnProperty(k) && !OrderList) {
-                        $$("#orderinfo").hide();
-                        $$("#noorderinfo").show();
-                        return;
+                        } else if (mybundle.hasOwnProperty(k) && !OrderList) {
+                            $$("#orderinfo").hide();
+                            $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
+                            return;
+                        }
                     }
                 }
-            }
-            $$("#bundlelist" + vendoreinfo[e].input).append(arr);
+                $$("#bundlelist" + vendoreinfo[e].input).append(arr);
 
 
 
 
 
-            for (var k in y[0]) {
+                for (var k in y[0]) {
 
-                if (y[0].hasOwnProperty(k)) {
-                    var bundleinner = y[0][k];
-                    var BUTAX = 0.0;
-                    var BUGROSS = 0.0;
-                    var BUDISCOUNT = 0.0;
-                    var BUNETTOTTAL = 0.0;
-                    var NetTottal = 0.0;
-                    var ite2ms = '';
-                    for (var i = 0; i < bundleinner.length; i++) {
-                        if (bundleinner[i] == null) {
-                            ite2ms += '<li class="item-content"><div class="item-media"><i class="icon icon-f7"></i></div><div class="item-inner"><div class="item-title">Out of Stock</div><div class="item-after"><span class="badge">1</span></div></div></li>';
-                        } else {
-                            var itemdesc = bundleinner[i].ItemDescription;
-                            ite2ms += '<li class="item-content"><div class="item-inner"><div class="item-title">' + itemdesc + '</div><div class="item-after"><span class="badge">' + bundleinner[i].RequiredQuanity + '</span></div></div></li>';
+                    if (y[0].hasOwnProperty(k)) {
+                        var bundleinner = y[0][k];
+                        var BUTAX = 0.0;
+                        var BUGROSS = 0.0;
+                        var BUDISCOUNT = 0.0;
+                        var BUNETTOTTAL = 0.0;
+                        var NetTottal = 0.0;
+                        var ite2ms = '';
+                        for (var i = 0; i < bundleinner.length; i++) {
+                            if (bundleinner[i] == null) {
+                                ite2ms += '<li class="item-content"><div class="item-media"><i class="icon icon-f7"></i></div><div class="item-inner"><div class="item-title">Out of Stock</div><div class="item-after"><span class="badge">1</span></div></div></li>';
+                            } else {
+                                var itemdesc = bundleinner[i].ItemDescription;
+                                ite2ms += '<li class="item-content"><div class="item-inner"><div class="item-title">' + itemdesc + '</div><div class="item-after"><span class="badge">' + bundleinner[i].RequiredQuanity + '</span></div></div></li>';
+                            }
+
                         }
 
                     }
+                    $$("#AR" + k).append(ite2ms);
+                    var d = JSON.stringify(ite2ms);
+                    console.log(d);
 
                 }
-                $$("#AR" + k).append(ite2ms);
-                var d = JSON.stringify(ite2ms);
-                console.log(d);
+
+
 
             }
 
@@ -262,31 +288,27 @@ myApp.onPageInit('catg', function (page) {
 
         }
 
-       
-
-    }
 
 
+        for (var w = 0; w < vendoreinfo.length; w++) {
 
-    for (var w = 0; w < vendoreinfo.length; w++) {
-
-        var strop = vendoreinfo[w].input;
-        //            strop = strop.replace(/\s+/g, '');
-        //          strop=strop.replace('-', '');
-        html = '';
-        var IOAlist = [];
-        //@prog faqaa3 hona
-        for (var i = 0; i < vendoreorder[vendoreinfo[w].input].length; i++) {
-            var IOAlist = vendoreorder[vendoreinfo[w].input];
-            var string = '';
-            var lang = localStorage.getItem('lang');
-            if (lang == 1) { string = 'Quantity' } else { string = 'كمية' }
-            //console.log(IOAlist, 'this is IOA LIST');
-            console.log((vendoreinfo[w].URL).replace(`/api`, ``) + `/itemsimages/` + IOAlist[i].ItemImageName)
-            //console.log(vendoreorder, 'hi k7aaab');
-            //console.log(vendoreorder[vendoreinfo[w].input], 'its shit of vendor');
-            //console.log(vendoreinfo[w], 'its shit of vendor vendoreinfo[w]');
-            html += `<li class="item-conte1nt test" 
+            var strop = vendoreinfo[w].input;
+            //            strop = strop.replace(/\s+/g, '');
+            //          strop=strop.replace('-', '');
+            html = '';
+            var IOAlist = [];
+            //@prog faqaa3 hona
+            for (var i = 0; i < vendoreorder[vendoreinfo[w].input].length; i++) {
+                var IOAlist = vendoreorder[vendoreinfo[w].input];
+                var string = '';
+                var lang = localStorage.getItem('lang');
+                if (lang == 1) { string = 'Quantity' } else { string = 'كمية' }
+                //console.log(IOAlist, 'this is IOA LIST');
+                console.log((vendoreinfo[w].URL).replace(`/api`, ``) + `/itemsimages/` + IOAlist[i].ItemImageName)
+                //console.log(vendoreorder, 'hi k7aaab');
+                //console.log(vendoreorder[vendoreinfo[w].input], 'its shit of vendor');
+                //console.log(vendoreinfo[w], 'its shit of vendor vendoreinfo[w]');
+                html += `<li class="item-conte1nt test" 
 										id="` + IOAlist[i].ItemID + `"  
 										data-ItemCode="` + IOAlist[i].ItemCode + `"
 										data-ItemBarcode="` + IOAlist[i].ItemBarcode + `" 
@@ -308,7 +330,7 @@ myApp.onPageInit('catg', function (page) {
 													id="` + IOAlist[i].PackTypeID + `"
 													data-info="` + vendoreinfo[w].input + `"
 													>
-                                                        <div class="item-media"><img src="`+ (vendoreinfo[w].URL).replace(`/api`, ``) + `/itemsimages/` + IOAlist[i].ItemImageName +`" onerror="(this.src='images/no-image.svg')"  width="50" height="50" /></div>
+                                                        <div class="item-media"><img src="`+ (vendoreinfo[w].URL).replace(`/api`, ``) + `/itemsimages/` + IOAlist[i].ItemImageName + `" onerror="(this.src='images/no-image.svg')"  width="50" height="50" /></div>
                                                         <div class="item-inner">
                                                            
                                                                 <div class="item-title">` + IOAlist[i].ItemDescription + `</div>
@@ -319,18 +341,24 @@ myApp.onPageInit('catg', function (page) {
                                                         </div>
                                                     </a>
                                         </li>`;
-        }
-        $$("#itemsOrderList" + vendoreinfo[w].input).append(html);
+            }
+            $$("#itemsOrderList" + vendoreinfo[w].input).append(html);
 
-        var j = {}
-        console.log(IOAlist);
-        j = calclution_price(IOAlist);
-        Tottal_Price = j.nettotal + Bundle_price;
-        $$("#gro" + strop).html(j.gross.toFixed(3) + curency);
-        $$("#tax" + strop).html(j.tax.toFixed(3) + curency);
-        $$("#des" + strop).html(j.discount.toFixed(3) + curency);
-        $$("#Net" + strop).html(Tottal_Price.toFixed(3) + curency);
+            var j = {}
+            console.log(IOAlist);
+            j = calclution_price(IOAlist);
+            Tottal_Price = j.nettotal + Bundle_price;
+            $$("#gro" + strop).html(j.gross.toFixed(3) + curency);
+            $$("#tax" + strop).html(j.tax.toFixed(3) + curency);
+            $$("#des" + strop).html(j.discount.toFixed(3) + curency);
+            $$("#Net" + strop).html(Tottal_Price.toFixed(3) + curency);
+        }
     }
+    //else {
+    //    $$(".swiper-container").append('<div class="swiper-pagination"></div>');
+    //}
+
+    
     $$('.toolbar-bottom').hide();
     $$("#edit").on("click", function () {
 
@@ -486,12 +514,51 @@ myApp.onPageInit('catg', function (page) {
                 mybundle[id] = [];
                 pagecounter();
                 ///backhere bro
-                $$("#pa" + id).remove();
+                
+                
                 var count = $$(".swiper-wrapper").children();
                 if (count.length == 0) {
                     $$("#orderon").hide();
-                    $$("#noorderinfo").show();
+                    $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
+                    $$('.toolbar-bottom').show();
+                } else {
+
+                    var mySwiper = $$('.swiper-container')[0].swiper;
+                    var currentIndexSwiper = mySwiper.activeIndex;
+                    mySwiper.removeSlide(currentIndexSwiper);
+                    mySwiper.update();
+                    count = $$(".swiper-wrapper").children();
+                    if (count.length == 0) {
+                        $$("#orderon").hide();
+                      
+                        $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
+                        $$('.toolbar-bottom').show();
+                    }
+
                 }
+               
+                //$$("#pa" + id).remove();
+               
                 localStorage.setItem('orderlist33', JSON.stringify(OrderList));
                 $$("#" + name).empty();
                 $$("#bundlelist" + name).empty();
@@ -501,12 +568,22 @@ myApp.onPageInit('catg', function (page) {
                 $$("#tax").html("0.00 ");
                 $$("#gro").html("0.00 ");
                 $$("#orderinfo").hide();
-                $$("#noorderinfo").show();
+                $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
                 localStorage.setItem('orderlist33', '');
                 localStorage.setItem('mybundle', '');
                 pagecounter();
                 //mainView.router.back();
-                $$('.toolbar-bottom').show();
+                
             },
             function () {
 
@@ -659,7 +736,17 @@ myApp.onPageInit('catg', function (page) {
 
                 if (!OrderList.length && jQuery.isEmptyObject(mybundle)) {
                     $$("#orderinfo").hide();
-                    $$("#noorderinfo").show();
+                    $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
                 }
                 console.log(mybundle);
                 pagecounter();
@@ -803,7 +890,17 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
 
 
             if (!vendorereturen[datainfo].length && jQuery.isEmptyObject(mybundle)) {
-                $$("#orderinfo").hide(); $$("#noorderinfo").show(); return;
+                $$("#orderinfo").hide(); $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `); return;
             }
             var strop = datainfo;
             strop = strop.replace(/\s+/g, '');
@@ -3543,7 +3640,17 @@ myApp.onPageInit('Qutaion', function (page) {
 
     if (!OrderList.length && jQuery.isEmptyObject(mybundle)) {
         $$("#orderinfo").hide();
-        $$("#noorderinfo").show();
+        $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
         return;
     }
 
@@ -3570,7 +3677,17 @@ myApp.onPageInit('Qutaion', function (page) {
                 $$("#tax").html("0.00 ");
                 $$("#gro").html("0.00 ");
                 $$("#orderinfo").hide();
-                $$("#noorderinfo").show();
+                $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
                 localStorage.setItem('orderlist33', '');
                 localStorage.setItem('mybundle', '');
             },
@@ -3661,7 +3778,17 @@ myApp.onPageInit('Qutaion', function (page) {
 
             } else if (mybundle.hasOwnProperty(k) && !OrderList) {
                 $$("#orderinfo").hide();
-                $$("#noorderinfo").show();
+                $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
                 return;
             }
         }
@@ -3736,7 +3863,17 @@ myApp.onPageInit('Qutaion', function (page) {
 
                     if (!OrderList.length && jQuery.isEmptyObject(mybundle)) {
                         $$("#orderinfo").hide();
-                        $$("#noorderinfo").show();
+                        $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
                     }
                     console.log(mybundle);
                 });
@@ -4021,7 +4158,17 @@ myApp.onPageInit('Qutaion', function (page) {
 
                 if (!OrderList.length && jQuery.isEmptyObject(mybundle)) {
                     $$("#orderinfo").hide();
-                    $$("#noorderinfo").show();
+                    $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
                 }
                 // console.log(mybundle);
                 //             });
@@ -4035,7 +4182,17 @@ myApp.onPageInit('Qutaion', function (page) {
 
 
                 $$("#orderinfo").hide();
-                $$("#noorderinfo").show();
+                $$("#noorderinfo").html(`
+                                <div class="row">
+                                    <div class="col-100">
+                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <p>You dont have any orders </p>
+                                        <p onclick ="backToHome()"; class="buttons-row">
+                                            <a s href="#" class="button button-round my_green">Start Now</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            `);
                 return;
             }
 
