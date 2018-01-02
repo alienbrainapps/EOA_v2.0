@@ -697,7 +697,7 @@ function popUpOfferDet(offerId) {
                                         </div>
                                         <div class="card-content"  id="card-`+ promotionDetails.PromotionID +`">
                                         </div>
-                                        <div class="card-footer" style="padding: 19px 25%;">
+                                        <div class="card-footer" style="padding: 19px 25%; display:none;">
                                         <a href="#" class="link" disabled style="color: #fff;
                                                                     background-color: #1fb67b;
                                                                     border-radius: 25px;

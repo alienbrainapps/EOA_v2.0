@@ -1,0 +1,33 @@
+﻿body {
+}
+.toolbar #org i {
+    padding-top : 5px !important;
+    font-size : 30px !important;
+}
+.page-Allitemdet .list-block #item_information .item-divider {
+    padding: 17px 14px !important;
+}
+.page-Allitemdet .list-block #item_information .item-divider {
+}
+.button.Qut {
+    border-color: #1fb67b !important;
+}
+.button.Cancel {
+    border-color: #ef3e57 !important;
+}
+.swiper-cusdtom .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets {
+    top: 50px !important;
+    left: 47% !important;
+}
+.button {
+    border-color: #1fb67b !important;
+}
+.panel-reveal {
+border-right: 1px solid #c4c4c4 !important;
+}
+.list-block .item-input {
+margin-bottom : 0 !important;
+}
+.card-content .page-promotions .bendlist .item-media {
+    min-width: 0px !important;
+}

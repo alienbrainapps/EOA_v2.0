@@ -20,7 +20,7 @@
     <div class="statusbar-overlay"></div>
     <div class="panel-overlay"></div>
     <!-- Left panel with reveal effect-->
-    <div class="panel panel-left panel-cover">
+    <div class="panel panel-left">
         <div class="content-block" style="margin-top: 0px;padding:0">
             <div class="list-block" style="margin-top: 0px">
 
@@ -227,12 +227,16 @@
                     '<link rel="stylesheet" href="css/framework7.material.css">' +
                     '<link rel="stylesheet" href="css/framework7.material.colors.css">'
                 );
+                Dom7('.panel.panel-left').addClass('panel-cover')
             }
             else {
                 Dom7('head').append(
                     '<link rel="stylesheet" href="css/framework7.ios.css">' +
-                    '<link rel="stylesheet" href="css/framework7.ios.colors.css">'
+                    '<link rel="stylesheet" href="css/framework7.ios.colors.css">' +
+                    '<link rel="stylesheet" href="css/ios-custom-style.css">'
                 );
+
+                Dom7('.panel.panel-left').addClass('panel-reveal');
             }
         })();
         if (isAndroid) {

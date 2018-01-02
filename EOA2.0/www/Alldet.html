@@ -35,7 +35,128 @@
 
             <div class="list-block">
                 {{#if @global.ios}}
-                <ul>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="list-block" id="mylist">
+                            <ul id="item_information">
+                                <li class="item-divider">Item Information</li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media"><i class="icon icon-package"></i></div>
+                                        <div class="item-inner">
+                                            <div id="ItemDetails" class="item-title">{{Quntity}}</div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media"><i class="icon icon-vendor"></i> </div>
+                                        <div class="item-inner">
+                                            <div class="item-title label">{{Vendore}}</div>
+                                            <div class="item-after">
+                                                {{Nestle}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media"><i class="icon icon-quantity"></i> </div>
+                                        <div class="item-inner">
+                                            <div class="item-title label">{{Quntity}}</div>
+                                            <div class="item-after item-input">
+                                                <input value="1" class="picker-device" type="tel" id="QunV" placeholder="1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media"><i class="icon icon-selling-unit"></i> </div>
+                                        <div class="item-inner">
+                                            <div class="item-title label">{{Selingunite}}</div>
+                                            <div class="item-after item-input">
+                                                <input value="1" class="picker-device" type="tel" id="QunV" placeholder="1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">&nbsp;</div>
+                                            <div class="item-after">
+                                                <div id="UOM"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="content-block-title"><i class="icon icon-selling-unit"></i>{{Selingunite}}</div>-->
+
+                                </li>
+                            </ul>
+                            <ul id="UOM"></ul>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="list-block">
+                            <ul id="price_information">
+                                <li class="item-divider">Price Information</li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Gross</div>
+                                            <div id="Pri1ce" class="item-after ">JD 1.250</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">{{Discount}}</div>
+                                            <div id="Discount" class="item-after ">10 %</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">{{Tax}}</div>
+                                            <div id="Tax" class="item-after ">JD 2.500</div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media"><i class="myicon-eoa-cash"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title label">{{TottalPrice}}</div>
+                                            <div id="PriceV" class="item-after bolder_text">
+                                                JD 100.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <p id="OrderButtonV" class="buttons-row" onclick="addToOrder()">
+                    <a s href="#" class="button button-round my_green">{{Addtoorder}}</a>
+                </p>
+                <!--<ul>
                     <li>
                         <div class="contact-header" style="display:flex;">
                             <div class="item-photo" style="width:50%">
@@ -53,18 +174,18 @@
                             </div>
                         </div>
                     </li>
-                </ul>
+                </ul>-->
             </div>
 
             <!-- Text inputs -->
-            <div class="content-block-title">{{Selingunite}}</div>
+            <!--<div class="content-block-title">{{Selingunite}}</div>
             <div class="list-block">
                 <ul id="UOM"></ul>
-            </div>
+            </div>-->
 
 
 
-            <div class="list-block inset" style="padding-left:4%;">
+            <!--<div class="list-block inset" style="padding-left:4%;">
                 <ul class="card">
                     <li>
                         <div class="item-content">
@@ -77,11 +198,11 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div>-->
 
 
-            <div class="content-block-title">Price Details</div>
-            <div class="list-block">
+            <!--<div class="content-block-title">Price Details</div>-->
+            <!--<div class="list-block">
                 <ul>
                     <li>
                         <div class="item-content">
@@ -132,7 +253,7 @@
                         <li><a id="OrderButtonV" href="#" class="button button-round">{{Addtoorder}}</a></li>
                     </ul>
                 </div>
-            </div>
+            </div>-->
 
             {{/if}}
             {{#if @global.android}}

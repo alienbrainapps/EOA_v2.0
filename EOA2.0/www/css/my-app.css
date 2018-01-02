@@ -74,6 +74,7 @@ label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio
 .my_green {
     background-color: #1fb67b !important;
     color: #ffffff !important;
+    border-color : #1fb67b !important;
 }
 /*offer style card*/
 
@@ -746,3 +747,6 @@ p.no-item-brands {
     #noorderinfo p.buttons-row .my_green {
     border-radius : 20px ;
     }
+.panel {
+background-color : #fff !important;
+}
