@@ -156,37 +156,91 @@ myApp.onPageInit('home', function (page) {
 
 
     if (isIos) {
-        $$("#tab1").on('click', function () {
+        $$("#t1").on('click', function () {
+            $$('#itemlist li:nth-child(n + 25)').remove();
+            lastIndex = $$('#itemlist li').length;
+            offset = $$('#itemlist li').length;
+            //AppendOffers();
+            //$$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
+            //if (localStorage.getItem('lang') != 1) {
+            //    $$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
+            //}
 
-            AppendOffers();
             $$(".bundle").show();
             $$(".item").hide();
             $$(".vendore").hide();
 
-            $$("#tab1").addClass('active');
-            $$("#tab2").removeClass('active');
-            $$("#tab3").removeClass('active');
+            $$("#t1").addClass('active');
+            $$("#t2").removeClass('active');
+            $$("#t3").removeClass('active');
         });
-        $$("#tab3").on('click', function () {
-
+        $$("#t3").on('click', function () {
+            lastIndex = $$('#itemlist li').length;
+            offset = $$('#itemlist li').length;
             $$(".item").show();
             $$(".bundle").hide();
             $$(".vendore").hide();
-            $$("#tab3").addClass('active');
-            $$("#tab2").removeClass('active');
-            $$("#tab1").removeClass('active');
+            $$("#t3").addClass('active');
+            $$("#t2").removeClass('active');
+            $$("#t1").removeClass('active');
+            $$(".tablinkhighlight").css('transform', 'translate3d(200%, 0px, 0px)');
+
+            if (localStorage.getItem('lang') != 1) {
+                $$(".tablinkhighlight").css('transform', 'translate3d(200%, 0px, 0px)');
+            }
+
 
         });
-        $$("#tab2").on('click', function () {
+        $$("#t2").on('click', function () {
 
+            $$('#itemlist li:nth-child(n + 25)').remove();
+            lastIndex = $$('#itemlist li').length;
+            offset = $$('#itemlist li').length;
+            //$$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
+            //if (localStorage.getItem('lang') != 1) {
+            //    $$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
+            //}
 
             $$(".vendore").show();
             $$(".bundle").hide();
             $$(".item").hide();
-            $$("#tab2").addClass('active');
-            $$("#tab3").removeClass('active');
-            $$("#tab1").removeClass('active');
+            $$("#t2").addClass('active');
+            $$("#t3").removeClass('active');
+            $$("#t1").removeClass('active');
         });
+
+
+        //$$("#tab1").on('click', function () {
+
+        //    AppendOffers();
+        //    $$(".bundle").show();
+        //    $$(".item").hide();
+        //    $$(".vendore").hide();
+
+        //    $$("#tab1").addClass('active');
+        //    $$("#tab2").removeClass('active');
+        //    $$("#tab3").removeClass('active');
+        //});
+        //$$("#tab3").on('click', function () {
+
+        //    $$(".item").show();
+        //    $$(".bundle").hide();
+        //    $$(".vendore").hide();
+        //    $$("#tab3").addClass('active');
+        //    $$("#tab2").removeClass('active');
+        //    $$("#tab1").removeClass('active');
+
+        //});
+        //$$("#tab2").on('click', function () {
+
+
+        //    $$(".vendore").show();
+        //    $$(".bundle").hide();
+        //    $$(".item").hide();
+        //    $$("#tab2").addClass('active');
+        //    $$("#tab3").removeClass('active');
+        //    $$("#tab1").removeClass('active');
+        //});
 
     }
 
@@ -265,37 +319,91 @@ myApp.onPageBack('home', function (page) {
 
 
     if (isIos) {
-        $$("#tab1").on('click', function () {
+        $$("#t1").on('click', function () {
+            $$('#itemlist li:nth-child(n + 25)').remove();
+            lastIndex = $$('#itemlist li').length;
+            offset = $$('#itemlist li').length;
+            //AppendOffers();
+            //$$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
+            //if (localStorage.getItem('lang') != 1) {
+            //    $$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
+            //}
 
-            AppendOffers();
             $$(".bundle").show();
             $$(".item").hide();
             $$(".vendore").hide();
 
-            $$("#tab1").addClass('active');
-            $$("#tab2").removeClass('active');
-            $$("#tab3").removeClass('active');
+            $$("#t1").addClass('active');
+            $$("#t2").removeClass('active');
+            $$("#t3").removeClass('active');
         });
-        $$("#tab3").on('click', function () {
-
+        $$("#t3").on('click', function () {
+            lastIndex = $$('#itemlist li').length;
+            offset = $$('#itemlist li').length;
             $$(".item").show();
             $$(".bundle").hide();
             $$(".vendore").hide();
-            $$("#tab3").addClass('active');
-            $$("#tab2").removeClass('active');
-            $$("#tab1").removeClass('active');
+            $$("#t3").addClass('active');
+            $$("#t2").removeClass('active');
+            $$("#t1").removeClass('active');
+            $$(".tablinkhighlight").css('transform', 'translate3d(200%, 0px, 0px)');
+
+            if (localStorage.getItem('lang') != 1) {
+                $$(".tablinkhighlight").css('transform', 'translate3d(200%, 0px, 0px)');
+            }
+
 
         });
-        $$("#tab2").on('click', function () {
+        $$("#t2").on('click', function () {
 
+            $$('#itemlist li:nth-child(n + 25)').remove();
+            lastIndex = $$('#itemlist li').length;
+            offset = $$('#itemlist li').length;
+            //$$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
+            //if (localStorage.getItem('lang') != 1) {
+            //    $$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
+            //}
 
             $$(".vendore").show();
             $$(".bundle").hide();
             $$(".item").hide();
-            $$("#tab2").addClass('active');
-            $$("#tab3").removeClass('active');
-            $$("#tab1").removeClass('active');
+            $$("#t2").addClass('active');
+            $$("#t3").removeClass('active');
+            $$("#t1").removeClass('active');
         });
+
+
+    //    $$("#tab1").on('click', function () {
+
+    //        AppendOffers();
+    //        $$(".bundle").show();
+    //        $$(".item").hide();
+    //        $$(".vendore").hide();
+
+    //        $$("#tab1").addClass('active');
+    //        $$("#tab2").removeClass('active');
+    //        $$("#tab3").removeClass('active');
+    //    });
+    //    $$("#tab3").on('click', function () {
+
+    //        $$(".item").show();
+    //        $$(".bundle").hide();
+    //        $$(".vendore").hide();
+    //        $$("#tab3").addClass('active');
+    //        $$("#tab2").removeClass('active');
+    //        $$("#tab1").removeClass('active');
+
+    //    });
+    //    $$("#tab2").on('click', function () {
+
+
+    //        $$(".vendore").show();
+    //        $$(".bundle").hide();
+    //        $$(".item").hide();
+    //        $$("#tab2").addClass('active');
+    //        $$("#tab3").removeClass('active');
+    //        $$("#tab1").removeClass('active');
+    //    });
 
     }
 
@@ -655,6 +763,7 @@ function Postlogin(postData) {
             contentType: 'application/json',
             data: postData,
             dataType: "json",
+            timeout: 15000,
             success: function (data, status, xhr) {
 
                 myApp.hidePreloader(loading);

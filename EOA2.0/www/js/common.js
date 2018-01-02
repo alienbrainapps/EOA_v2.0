@@ -293,8 +293,7 @@ myApp.onPageInit('catg', function (page) {
         for (var w = 0; w < vendoreinfo.length; w++) {
 
             var strop = vendoreinfo[w].input;
-            //            strop = strop.replace(/\s+/g, '');
-            //          strop=strop.replace('-', '');
+          
             html = '';
             var IOAlist = [];
             //@prog faqaa3 hona
@@ -303,11 +302,7 @@ myApp.onPageInit('catg', function (page) {
                 var string = '';
                 var lang = localStorage.getItem('lang');
                 if (lang == 1) { string = 'Quantity' } else { string = 'كمية' }
-                //console.log(IOAlist, 'this is IOA LIST');
-                console.log((vendoreinfo[w].URL).replace(`/api`, ``) + `/itemsimages/` + IOAlist[i].ItemImageName)
-                //console.log(vendoreorder, 'hi k7aaab');
-                //console.log(vendoreorder[vendoreinfo[w].input], 'its shit of vendor');
-                //console.log(vendoreinfo[w], 'its shit of vendor vendoreinfo[w]');
+                
                 html += `<li class="item-conte1nt test" 
 										id="` + IOAlist[i].ItemID + `"  
 										data-ItemCode="` + IOAlist[i].ItemCode + `"
@@ -328,7 +323,7 @@ myApp.onPageInit('catg', function (page) {
 										data-pack="` + IOAlist[i].PackTypeID + `">
                                                     <a href="#" class="item-link item-content"
 													id="` + IOAlist[i].PackTypeID + `"
-													data-info="` + vendoreinfo[w].input + `"
+													data-info="` + vendoreinfo[w].VendorID + `"
 													>
                                                         <div class="item-media"><img src="`+ (vendoreinfo[w].URL).replace(`/api`, ``) + `/itemsimages/` + IOAlist[i].ItemImageName + `" onerror="(this.src='images/no-image.svg')"  width="50" height="50" /></div>
                                                         <div class="item-inner">
@@ -757,7 +752,31 @@ myApp.onPageInit('catg', function (page) {
     });
 
 
+    $$('#item_information .item-uom').on('click', function () {
 
+        var ids = this.id;
+        var packid = $$(this).data('PackID');
+        console.log(parseInt(packid));
+        $$('#QunV').data('PackID', parseInt(packid));
+        $$('#QunV').attr('data-PackID', parseInt(packid));
+        //var packid = $$('#' + packid).data('PackID');
+        var Discount = $$('#selected' + packid).data('Discount');
+        var Tax = $$('#selected' + packid).data('Tax');
+        var PackTypeID = $$('#selected' + packid).data('pack');
+        var price = $$('#selected' + packid).data("price");
+        objclating.PackID = packid;
+        objclating.Discount = Discount;
+        objclating.Tax = Tax;
+        objclating.Price = price;
+        getiteminfo(objclating);
+
+        $$("#Price").html(curency + itemdata.nettotal.toFixed(3));
+        $$("#Gross").html(curency + itemdata.gross.toFixed(3));
+        $$("#Discount").html(curency + itemdata.discount.toFixed(3));
+        $$("#Tax").html(curency + itemdata.tax.toFixed(3));
+        $$("#vendorename").html(itemdata.itemname);
+
+    });
 
 
 
@@ -2209,6 +2228,7 @@ myApp.onPageInit('ItemDE', function (page) {
                 var qun = parseInt(QUN);
 
                 objclating.RequiredQuanity = qun;
+
                 var itemdata = getiteminfo(objclating);
                 var img = GetImage(localStorage.getItem("ItemID"));
 

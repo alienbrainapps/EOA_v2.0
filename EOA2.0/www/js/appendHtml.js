@@ -14,7 +14,7 @@ var itemSelected = '';
 var itemDetails_EL = '';
 var promotionDetails = ""; 
 var clikedFrom = "";
-
+var thePakageIS = "";
 // Last loaded index
 var lastIndex = $$('#itemlist li').length;
 
@@ -518,16 +518,15 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                        
                                     </div>
                                 </div>
-                            </li>
-                            `;
+                            </li>`;
                
-                
+                getiteminfo(objclating);
             }
             
             $$('#item_information').html(itemDetails_EL);
             $$("#item_information").append(EL_UOM);
-            getiteminfo(objclating);
-           console.log(JSON.stringify(objclating));
+            //getiteminfo(objclating);
+            //console.log(JSON.stringify(objclating));
 
             //get first calculation card on quantity 1
 
@@ -536,6 +535,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                var oldValue = $$('#QunV').val();
                var newValue = parseInt(oldValue) + 1;
                $$('#QunV').val(newValue);
+
                getInfoafterChangeQuamtity();
                //$$('#QunV').on('change', function () {
                //    // get calculation card 
@@ -587,15 +587,19 @@ function getItemDetailsFromBrandList(venID, itemId) {
 
 
             
-            $$('#item_information .item-uom').on('click',function () {
+          $$('#item_information .item-uom').on('click',function () {
                 
-                var ids = this.id;
-                var packid = $$(this).data('PackID');
-                $$('#QunV').data('PackID', packid);
-                var Discount = $$(this).data('Discount');
-                var Tax = $$(this).data('Tax');
-                var PackTypeID = $$(this).data('pack');
-                var price = $$(this).data("Price");
+              var ids = this.id;
+             
+              var packid = $$(this).data('PackID');
+              console.log(parseInt(packid));
+                $$('#QunV').data('PackID', parseInt(packid));
+                $$('#QunV').attr('data-PackID', parseInt(packid));
+                //var packid = $$('#' + packid).data('PackID');
+                var Discount = $$('#selected' + packid).data('Discount');
+                var Tax = $$('#selected' + packid).data('Tax');
+                var PackTypeID = $$('#selected' + packid).data('pack');
+                var price = $$('#selected' + packid).data("price");
                 objclating.PackID = packid;
                 objclating.Discount = Discount;
                 objclating.Tax = Tax;
@@ -756,7 +760,8 @@ function popUpOfferDet(offerId) {
 
 function getInfoafterChangeQuamtity() {
         // get calculation card 
-    var thePakageIS = $$('#QunV').data('PackID');
+            //var thePakageIS = $$('#QunV').attr('data-PackID');
+        var thePakageIS =  $$('#QunV').attr('data-PackID');
         var packid = $$('#' + thePakageIS).data('PackID');
         var Discount = $$('#selected' + thePakageIS).data('Discount');
         var Tax = $$('#selected' + thePakageIS).data('Tax');

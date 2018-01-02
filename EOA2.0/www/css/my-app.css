@@ -112,6 +112,7 @@ label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio
 
     #offers109 .card-footer a.link {
         color: #1fb67b;
+        justify-content : center !important;
     }
 
     #offers109 .card-footer:before,
@@ -337,8 +338,8 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 .subnavbar .buttons-row a.tab-link,
 .tabbar a.tab-link {
     color: #1fb67b !important;
-    text-transform: capitalize;
     border: 0 !important;
+    text-transform: uppercase;
 }
 
 .navbar .toolbar-inner {
@@ -382,6 +383,7 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 
 .home-page #tab2 .card-footer a {
     color: #1fb67b;
+    justify-content: center !important;
 }
 
 .price_in_card {
