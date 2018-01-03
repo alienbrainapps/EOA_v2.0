@@ -2410,11 +2410,11 @@ function getiteminfo(item) {
     net = net - prodiscountamt;
     tax = net * (item.Tax / 100);
     net = net + tax;
-    //obj.gross = obj.gross + gross;
-    //obj.tax = obj.tax + tax;
-    //obj.discount = obj.discount + discountamt;
-    //obj.prodiscount = obj.prodiscount + prodiscountamt;
-    //obj.nettotal = obj.nettotal + net;
+    obj.gross = obj.gross + gross;
+    obj.tax = obj.tax + tax;
+    obj.discount = obj.discount + discountamt;
+    obj.prodiscount = obj.prodiscount + prodiscountamt;
+    obj.nettotal = obj.nettotal + net;
 
     //        }
     //        
@@ -2461,7 +2461,7 @@ function getiteminfo(item) {
 
 
 
-    //return obj;
+    return obj;
 }
 
 function pagecounter() {

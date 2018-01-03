@@ -30,7 +30,7 @@ myApp.onPageInit('join', function (page) {
 });
 // @prog cat testo
 myApp.onPageInit('catg', function (page) {
-   
+
     $$('.back').on('click', function () {
         $$('.toolbar-bottom').show();
         mainView.router.load('home.html');
@@ -48,7 +48,7 @@ myApp.onPageInit('catg', function (page) {
 
     var li = '';
     var stro = '';
-    
+
     $$("#start_first_oredr_btn").on("click", function () {
         $$('.toolbar-bottom').show();
         mainView.router.loadPage({ url: 'home.html', force: true });
@@ -293,7 +293,7 @@ myApp.onPageInit('catg', function (page) {
         for (var w = 0; w < vendoreinfo.length; w++) {
 
             var strop = vendoreinfo[w].input;
-          
+
             html = '';
             var IOAlist = [];
             //@prog faqaa3 hona
@@ -302,7 +302,7 @@ myApp.onPageInit('catg', function (page) {
                 var string = '';
                 var lang = localStorage.getItem('lang');
                 if (lang == 1) { string = 'Quantity' } else { string = 'كمية' }
-                
+
                 html += `<li class="item-conte1nt test" 
 										id="` + IOAlist[i].ItemID + `"  
 										data-ItemCode="` + IOAlist[i].ItemCode + `"
@@ -353,7 +353,7 @@ myApp.onPageInit('catg', function (page) {
     //    $$(".swiper-container").append('<div class="swiper-pagination"></div>');
     //}
 
-    
+
     $$('.toolbar-bottom').hide();
     $$("#edit").on("click", function () {
 
@@ -448,8 +448,9 @@ myApp.onPageInit('catg', function (page) {
 
         }
         myApp.showPreloader(loading);
-        if (!vendoreorder[Identfier].length) { OrderJsonObject.ItemPacks = null } else {  //OrderJsonObject.ItemPacks.push.apply( OrderJsonObject.ItemPacks,IOAlist);
-        }
+        if (!vendoreorder[Identfier].length) { OrderJsonObject.ItemPacks = null }
+        //else{  //OrderJsonObject.ItemPacks.push.apply( OrderJsonObject.ItemPacks,IOAlist);
+        //}
         OrderJsonObject.ItemPacks.push.apply(OrderJsonObject.ItemPacks, IOAlist);
         localStorage.setItem('orderr', JSON.stringify(OrderJsonObject));
 
@@ -509,8 +510,8 @@ myApp.onPageInit('catg', function (page) {
                 mybundle[id] = [];
                 pagecounter();
                 ///backhere bro
-                
-                
+
+
                 var count = $$(".swiper-wrapper").children();
                 if (count.length == 0) {
                     $$("#orderon").hide();
@@ -535,7 +536,7 @@ myApp.onPageInit('catg', function (page) {
                     count = $$(".swiper-wrapper").children();
                     if (count.length == 0) {
                         $$("#orderon").hide();
-                      
+
                         $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
@@ -551,9 +552,9 @@ myApp.onPageInit('catg', function (page) {
                     }
 
                 }
-               
+
                 //$$("#pa" + id).remove();
-               
+
                 localStorage.setItem('orderlist33', JSON.stringify(OrderList));
                 $$("#" + name).empty();
                 $$("#bundlelist" + name).empty();
@@ -578,7 +579,7 @@ myApp.onPageInit('catg', function (page) {
                 localStorage.setItem('mybundle', '');
                 pagecounter();
                 //mainView.router.back();
-                
+
             },
             function () {
 
@@ -605,7 +606,7 @@ myApp.onPageInit('catg', function (page) {
     //    $$("#itemarrowup").show();
 
     //});
-    
+
     //$$('.Itema li i').on('click', function () {
     //    var count = $$(".swiper-wrapper").children();
     //    console.log(count.length);
@@ -684,7 +685,7 @@ myApp.onPageInit('catg', function (page) {
 
     //});
 
-   
+
 
 
     $$(".bundone").on('click', function () {
@@ -752,10 +753,10 @@ myApp.onPageInit('catg', function (page) {
     });
 
 
-    $$('#item_information .item-uom').on('click', function () {
+    $$('#item_information > .item-uom').on('click', function () {
 
         var ids = this.id;
-        var packid = $$(this).data('PackID');
+        var packid = $$(this).attr('data-packid');
         console.log(parseInt(packid));
         $$('#QunV').data('PackID', parseInt(packid));
         $$('#QunV').attr('data-PackID', parseInt(packid));
@@ -764,7 +765,7 @@ myApp.onPageInit('catg', function (page) {
         var Tax = $$('#selected' + packid).data('Tax');
         var PackTypeID = $$('#selected' + packid).data('pack');
         var price = $$('#selected' + packid).data("price");
-        objclating.PackID = packid;
+        objclating.PackID = parseInt(packid);
         objclating.Discount = Discount;
         objclating.Tax = Tax;
         objclating.Price = price;
@@ -1223,7 +1224,7 @@ myApp.onPageInit('forget', function (page) {
                 "newpass": newpass,
 
             } //
-            $$.post(EOA_URL+"api/wrg",
+            $$.post(EOA_URL + "api/wrg",
                 jas,
                 function (data, status) {
 
@@ -2298,10 +2299,10 @@ myApp.onPageInit('ItemDE', function (page) {
     //    localStorage.setItem("Price", price);
     //    localStorage.setItem("PackTypeID", PackTypeID);
     //    localStorage.setItem("packid", packid);
-        //$$("#Price").html(price);
-        //        $$("#Discount").html(Discount);
-        //        $$("#Tax").html(Tax);
-        //        $$("#Gross").html(localStorage.getItem("Price"));
+    //$$("#Price").html(price);
+    //        $$("#Discount").html(Discount);
+    //        $$("#Tax").html(Tax);
+    //        $$("#Gross").html(localStorage.getItem("Price"));
     //});
     // mainView.hideToolbar();
     console.log(localStorage.getItem("PackTypeID"));
@@ -2346,7 +2347,7 @@ myApp.onPageInit('ItemDE', function (page) {
         var QUN = $$("#Qun").val();
 
 
-         QUN2 = parseInt(QUN);
+        QUN2 = parseInt(QUN);
         if (QUN2 == 0) {
             QUN2 = 1
         }
@@ -2476,7 +2477,7 @@ myApp.onPageInit('ItemDE', function (page) {
 //@prog start ss 
 myApp.onPageInit('Allitemdet', function (page) {
     //@prog start get item list using qury 
-    
+
 
     getItemDetailsFromBrandList(vendorSelected, itemSelected);
     jQuery(document).ready(function () {
@@ -2484,7 +2485,7 @@ myApp.onPageInit('Allitemdet', function (page) {
         x.removeClass('inputs-list');
     });
 
-    
+
 
 
     return;
@@ -2533,11 +2534,11 @@ myApp.onPageInit('Allitemdet', function (page) {
 
 
 
-   // $$("#ItemDetails").html(localStorage.getItem('ItemDescriptionV'));
+    // $$("#ItemDetails").html(localStorage.getItem('ItemDescriptionV'));
 
     //$$("#imgdet").attr("src"
 
-    
+
     //myShit
     jQuery(document).ready(function () {
         var x = $$("#mylist");
@@ -2622,7 +2623,7 @@ myApp.onPageInit('Allitemdet', function (page) {
 
     $$("#OrderButtonV").on("click", function () {
         debugger;
-       
+
     });
 
 
@@ -2905,10 +2906,10 @@ myApp.onPageInit('allitem', function (page) {
 
 
     $$("#FinsihReturn").hide();
-   // AppendItemsVendore(vendorearr[guesswhat][0][bundre]);
+    // AppendItemsVendore(vendorearr[guesswhat][0][bundre]);
     $$("#backbutt").on('click', function () {
         mainView.router.loadPage('Brands.html');
-        
+
         //$$(".tab-link-highlight").css('transform', 'translate3d(100%, 0px, 0px)');
         //if (localStorage.getItem('lang') != 1) {
         //    $$(".tab-link-highlight").css('transform', 'translate3d(-100%, 0px, 0px)');
@@ -4404,7 +4405,7 @@ myApp.onPageInit('pro', function (page) {
         vendname = getnamevendore(guessqout);
         //qut45 += '<li class="item-divider">' + vendname + ' ' + descrption_string + ' (' + (i + 1) + ')</li><li><fieldset id="group' + i + '"><ul style="margin-left:0%" class="bendlist" id=' + pro[i].PromotionID + '></ul></fieldset></li>';
         qut45 += `<div class="card">
-                        <div class="card-header">`+ vendname + ' ' + descrption_string + ' (' + (i + 1) +`) <span class="coupon-end"> <i class="icon myicon-eoa-coupon"></i> </span></div>
+                        <div class="card-header">`+ vendname + ' ' + descrption_string + ' (' + (i + 1) + `) <span class="coupon-end"> <i class="icon myicon-eoa-coupon"></i> </span></div>
                            <div class="card-content">
                             <div class="list-block media-list">
  
@@ -4623,7 +4624,7 @@ myApp.onPageInit('pro', function (page) {
             } else {
                 string = 'كمية'
             }
-            orderlistwithpromotion += '<li  class="item-conte1nt test" id="' + proorder.ItemPacks[i].ItemID + '"><a href="#" style="color:black" class="item1-link item-content"><div class="item-media"><img src="' + getimage2 + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + proorder.ItemPacks[i].ItemDescription + '</div><div class="item-after">' + proorder.ItemPacks[i].Price + '</div></div><div class="item-subtitle">' + string + ':  ' + proorder.ItemPacks[i].RequiredQuanity +  '</div></div></a></li>';
+            orderlistwithpromotion += '<li  class="item-conte1nt test" id="' + proorder.ItemPacks[i].ItemID + '"><a href="#" style="color:black" class="item1-link item-content"><div class="item-media"><img src="' + getimage2 + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + proorder.ItemPacks[i].ItemDescription + '</div><div class="item-after">' + proorder.ItemPacks[i].Price + '</div></div><div class="item-subtitle">' + string + ':  ' + proorder.ItemPacks[i].RequiredQuanity + '</div></div></a></li>';
 
             proitemgross = proorder.ItemPacks[i].Price * proorder.ItemPacks[i].RequiredQuanity;
             if (proorder.ItemPacks[i].DiscountTypeID == 2) {
@@ -4752,7 +4753,7 @@ myApp.onPageInit('pro', function (page) {
                         "_id": id,
                         "History": data
                     }
-                    var urlAjax = EOA_URL+"api/History";
+                    var urlAjax = EOA_URL + "api/History";
                     $$.ajax({
                         method: "post",
                         url: urlAjax,
@@ -5146,7 +5147,7 @@ function calcluteprice(Price, Discount, Tax, Quntity, DiscountType) {
 function PostRegstration(postData) {
 
     myApp.showPreloader(loading);
-    var urlAjax = EOA_URL+"api/reg";
+    var urlAjax = EOA_URL + "api/reg";
     $$.ajax({
         method: "post",
         url: urlAjax,

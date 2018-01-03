@@ -12,7 +12,7 @@ var brandItem_EL = '';
 var brandsVendorName = '';
 var itemSelected = '';
 var itemDetails_EL = '';
-var promotionDetails = ""; 
+var promotionDetails = "";
 var clikedFrom = "";
 var thePakageIS = "";
 // Last loaded index
@@ -52,7 +52,7 @@ function getItemByQuery() {
 							<div class="card_list_content">
 								<div class="item-title-row">`+ resultSet.rows.item(r).ItemDescription + `</div>
 								<div class="item-text">`+ resultSet.rows.item(r).UOM + `</div>
-								<div class="item-title-row">`+ resultSet.rows.item(r).name +`<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
+								<div class="item-title-row">`+ resultSet.rows.item(r).name + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
 							</div>
 						</div>
 				</div>
@@ -283,7 +283,7 @@ function getOffersByQuery() {
                                   </div>
  
                                   <div class="card-footer">
-                                    <a href="#" class="link view-offers-det" id="`+ resultSet.rows.item(r).PromotionID+`">View Details</a>
+                                    <a href="#" class="link view-offers-det" id="`+ resultSet.rows.item(r).PromotionID + `">View Details</a>
                                 </div>
                                </div>`;
 
@@ -326,9 +326,9 @@ function getBrand(id) {
             brand_EL = '';
             for (var r = 0; r < resultSet.rows.length; r++) {
                 //@prog append vendor
-                
-               
-                    brand_EL += `<div class="item-content card like_li" data-vendorname="` + resultSet.rows.item(r).name + `"  id="` + resultSet.rows.item(r).BrandID + `">
+
+
+                brand_EL += `<div class="item-content card like_li" data-vendorname="` + resultSet.rows.item(r).name + `"  id="` + resultSet.rows.item(r).BrandID + `">
                                         <div class="item-media"><img src="` + resultSet.rows.item(r).IMG + `" width="80" /></div>
                                         <div class="item-inner">
                                             <div class="item-title">`+ resultSet.rows.item(r).brandName + `</div>
@@ -337,8 +337,8 @@ function getBrand(id) {
                                             <i class="icon icon-next"></i>
                                         </div>
                                     </div>`;
-                
-              
+
+
 
 
             }
@@ -353,9 +353,9 @@ function getBrand(id) {
             }
             $$("#Brands").append(brand_EL);
             $$("#Brands .like_li").on('click', function () {
-                
+
                 brandId = this.id;
-                brandsVendorName = $$(this).data("vendorname") + ' ' + 'items'; 
+                brandsVendorName = $$(this).data("vendorname") + ' ' + 'items';
 
                 mainView.router.loadPage({ url: "Allitems.html", force: true });
             });
@@ -374,7 +374,7 @@ function getBrand(id) {
     });
 }
 
-function getBrandItemList(Id,venID) {
+function getBrandItemList(Id, venID) {
     console.log(venID);
     Id = parseInt(Id);
     console.log(Id);
@@ -383,15 +383,15 @@ function getBrandItemList(Id,venID) {
         var query = `SELECT distinct items.* ,vendor.name , vendor.url FROM items inner join vendor on vendor.input = items.VendorID 
                      where
                     (items.Price > 0) and
-                    (((items.IsDefaultPack="true" and itemid in (select itemid from items x where  x.IsDefaultPack="true"  and  vendorid='`+ venID +`'))
+                    (((items.IsDefaultPack="true" and itemid in (select itemid from items x where  x.IsDefaultPack="true"  and  vendorid='`+ venID + `'))
 					or packid in (select min(xx.packID) 
-                    from items xx where xx.itemid not in (select s.itemid from items s where  s.IsDefaultPack="true"  and  vendorid='`+ venID +`') and   xx.BrandID=`+ Id +` group by xx.itemid))
-					and items.BrandID=`+ Id +`
+                    from items xx where xx.itemid not in (select s.itemid from items s where  s.IsDefaultPack="true"  and  vendorid='`+ venID + `') and   xx.BrandID=` + Id + ` group by xx.itemid))
+					and items.BrandID=`+ Id + `
 					 and items.VendorID = '`+ venID + `') LIMIT 0,50000  `;
-        
+
         tx.executeSql(query, [], function (tx, resultSet) {
             brand_EL = '';
-            console.log('this is my awsome',query);
+            console.log('this is my awsome', query);
             for (var r = 0; r < resultSet.rows.length; r++) {
                 //@prog append vendor
                 //curency
@@ -424,15 +424,15 @@ function getBrandItemList(Id,venID) {
 
                 $$("#nes").append(brandItem_EL);
 
-                
-                
+
+
 
             }
             console.log($$('#nes').children());
             $$("#nes li").on('click', function () {
-                     itemSelected = this.id;
-                    mainView.router.loadPage({ url: "Alldet.html", force: true });
-                });
+                itemSelected = this.id;
+                mainView.router.loadPage({ url: "Alldet.html", force: true });
+            });
 
         },
             function (tx, error) {
@@ -453,7 +453,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
     console.log(itemId, venID);
 
     db.transaction(function (tx) {
-        var query = `select items.*,vendor.name from items inner join vendor on items.VendorID=vendor.input where  vendorid='` + venID + `' and itemid=` + itemId +` order by IsDefaultPack,piecesinpack desc`;
+        var query = `select items.*,vendor.name from items inner join vendor on items.VendorID=vendor.input where  vendorid='` + venID + `' and itemid=` + itemId + ` order by IsDefaultPack,piecesinpack desc`;
         tx.executeSql(query, [], function (tx, resultSet) {
 
             var EL_UOM = "";
@@ -461,7 +461,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                 //@prog append vendor
                 objclating = resultSet.rows.item(r);
                 console.log('this is target item', JSON.stringify(objclating));
-               
+
                 EL_UOM +=
                     `<li class="item-uom" id="selected` + resultSet.rows.item(r).PackID + `"  
 	                 data-pack="`+ resultSet.rows.item(r).PackTypeID + `" 
@@ -483,14 +483,14 @@ function getItemDetailsFromBrandList(venID, itemId) {
 
 
                 itemDetails_EL = `
-                        <li class="item-divider bolder_text"><i class="myicon-eoa-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription +`</li>
+                        <li class="item-divider bolder_text"><i class="myicon-eoa-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription + `</li>
                             <li>
                                 <div class="item-content">
                                     <div class="item-media"><i class="myicon-eoa-vendor"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Vendor</div>
                                         <div class="item-after bolder_text">
-                                            `+ resultSet.rows.item(r).name +`
+                                            `+ resultSet.rows.item(r).name + `
                                         </div>
                                     </div>
                                 </div>
@@ -503,7 +503,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                         <div class="item-after item-input qua-area">
                                             
                                             <span class="dec-qua"><i class="myicon-eoa-remove"></i></span> 
-                                            <input disabled data-PackID="`+ resultSet.rows.item(r).PackID +`"; value="1" class="picker-device" type="number" id="QunV" placeholder="1">
+                                            <input disabled data-PackID="`+ resultSet.rows.item(r).PackID + `" value="1" class="picker-device" type="number" id="QunV" placeholder="1">
                                             <span class="inc-qua"><i class="myicon-eoa-add"></i></span>                                      
                                         </div>
                                     </div>
@@ -519,10 +519,10 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                     </div>
                                 </div>
                             </li>`;
-               
+
                 getiteminfo(objclating);
             }
-            
+
             $$('#item_information').html(itemDetails_EL);
             $$("#item_information").append(EL_UOM);
             //getiteminfo(objclating);
@@ -531,90 +531,57 @@ function getItemDetailsFromBrandList(venID, itemId) {
             //get first calculation card on quantity 1
 
             //start +/- btn 
-           $$('.inc-qua').on('click', function () {
-               var oldValue = $$('#QunV').val();
-               var newValue = parseInt(oldValue) + 1;
-               $$('#QunV').val(newValue);
+            $$('.inc-qua').on('click', function () {
+                var oldValue = $$('#QunV').val();
+                var newValue = parseInt(oldValue) + 1;
+                $$('#QunV').val(newValue);
 
-               getInfoafterChangeQuamtity();
-               //$$('#QunV').on('change', function () {
-               //    // get calculation card 
-               //    var thePakageIS = $$(this).data('PackID');
-               //    var packid = $$('#' + thePakageIS).data('PackID');
-               //    var Discount = $$('#selected' + thePakageIS).data('Discount');
-               //    var Tax = $$('#selected' + thePakageIS).data('Tax');
-               //    var PackTypeID = $$('#selected' + thePakageIS).data('pack');
-               //    var price = $$('#selected' + thePakageIS).data("price");
-               //    objclating.PackID = packid;
-               //    objclating.Discount = Discount;
-               //    objclating.Tax = Tax;
-               //    objclating.Price = price;
-               //    getiteminfo(objclating);
+                getInfoafterChangeQuamtity();
 
-               //});
+            });
+            $$('.dec-qua').on('click', function () {
+                var oldValue = $$('#QunV').val();
+                if (oldValue > 0) {
+                    var newValue = parseInt(oldValue) - 1;
+                    $$('#QunV').val(newValue);
+                    getInfoafterChangeQuamtity();
 
+                } else {
+                    return;
+                }
+
+            });
 
 
-           });
-           $$('.dec-qua').on('click', function () {
-               var oldValue = $$('#QunV').val();
-               if (oldValue > 0) {
-                   var newValue = parseInt(oldValue) - 1;
-                   $$('#QunV').val(newValue);
-                   getInfoafterChangeQuamtity();
-                   //$$('#QunV').on('change', function () {
-                   //    // get calculation card 
-                   //    var thePakageIS = $$(this).data('PackID');
-                   //    var packid = $$('#' + thePakageIS).data('PackID');
-                   //    var Discount = $$('#selected' + thePakageIS).data('Discount');
-                   //    var Tax = $$('#selected' + thePakageIS).data('Tax');
-                   //    var PackTypeID = $$('#selected' + thePakageIS).data('pack');
-                   //    var price = $$('#selected' + thePakageIS).data("price");
-                   //    objclating.PackID = packid;
-                   //    objclating.Discount = Discount;
-                   //    objclating.Tax = Tax;
-                   //    objclating.Price = price;
-                   //    getiteminfo(objclating);
 
-                   //});
-                  
+            $$('#item_information > .item-uom').on('click', function () {
 
-               } else {
-                   return;
-               }
-
-           });
-
-
-            
-          $$('#item_information .item-uom').on('click',function () {
-                
-              var ids = this.id;
-             
-              var packid = $$(this).data('PackID');
-              console.log(parseInt(packid));
-                $$('#QunV').data('PackID', parseInt(packid));
+                var ids = this.id;
+                var packid = $$(this).attr('data-packid');
+                console.log(parseInt(packid));
+                //$$('#QunV').data('PackID', parseInt(packid));
                 $$('#QunV').attr('data-PackID', parseInt(packid));
                 //var packid = $$('#' + packid).data('PackID');
                 var Discount = $$('#selected' + packid).data('Discount');
                 var Tax = $$('#selected' + packid).data('Tax');
                 var PackTypeID = $$('#selected' + packid).data('pack');
                 var price = $$('#selected' + packid).data("price");
-                objclating.PackID = packid;
+                objclating.PackID = parseInt(packid);
                 objclating.Discount = Discount;
                 objclating.Tax = Tax;
                 objclating.Price = price;
                 getiteminfo(objclating);
-                
-                $$("#Price").html(curency + itemdata.nettotal.toFixed(3));
-                $$("#Gross").html(curency + itemdata.gross.toFixed(3));
-                $$("#Discount").html(curency + itemdata.discount.toFixed(3));
-                $$("#Tax").html(curency + itemdata.tax.toFixed(3));
-                $$("#vendorename").html(itemdata.itemname);
-               
+                if (itemdata.nettotal != undefined) {
+                    $$("#Price").html(curency + itemdata.nettotal.toFixed(3));
+                    $$("#Gross").html(curency + itemdata.gross.toFixed(3));
+                    $$("#Discount").html(curency + itemdata.discount.toFixed(3));
+                    $$("#Tax").html(curency + itemdata.tax.toFixed(3));
+                    $$("#vendorename").html(itemdata.itemname);
+                }
+
             });
 
-           
+
         },
             function (tx, error) {
                 console.log('SELECT error: ' + error.message);
@@ -647,7 +614,7 @@ function scrollingItems() {
 
 function popUpOfferDet(offerId) {
     offerId = parseInt(offerId);
-    
+
     db.transaction(function (tx) {
 
         var query = `select offers.* , vendor.name , vendor.IMG from offers inner join vendor on vendor.input = offers.VendorID  where PromotionID = ?`;
@@ -693,9 +660,9 @@ function popUpOfferDet(offerId) {
                                                     overflow: hidden;
                                                     text-overflow: ellipsis;
                                                     padding: 0 9px;">
-                                                   <span style="font-size: 20px;font-weight:400;">`+ promotionDetails.name + `</span>  ` + promotionDetails.Description +`</p>
+                                                   <span style="font-size: 20px;font-weight:400;">`+ promotionDetails.name + `</span>  ` + promotionDetails.Description + `</p>
                                         </div>
-                                        <div class="card-content"  id="card-`+ promotionDetails.PromotionID +`">
+                                        <div class="card-content"  id="card-`+ promotionDetails.PromotionID + `">
                                         </div>
                                         <div class="card-footer" style="padding: 19px 25%; display:none;">
                                         <a href="#" class="link" disabled style="color: #fff;
@@ -708,10 +675,10 @@ function popUpOfferDet(offerId) {
                                     </div>
                          </div>
                             </div>`;
-            
+
             myApp.popup(popupHTML, true);
 
-            
+
         },
             function (tx, error) {
                 console.log('SELECT error: ' + error.message);
@@ -720,7 +687,7 @@ function popUpOfferDet(offerId) {
         console.log('transaction error: ' + error.message);
     }, function () {
         console.log('transaction ok');
-        
+
         var inputOptions = JSON.parse(promotionDetails.InputOptions)
         var ul = "";
         var inputOptionsObj = inputOptions[offerId];
@@ -741,13 +708,13 @@ function popUpOfferDet(offerId) {
             var liForselectorUlID = "";
             var calutedoptions = inputOptionsObj[m].CalculatedPromotionDetails[inputOptionsObj[m].OptionID];
             var selectorUlID = promotionDetails.PromotionID.toString() + inputOptionsObj[m].OptionID.toString();
-           
+
             for (var ki = 0; ki < calutedoptions.length; ki++) {
                 liForselectorUlID += '<li class="item-content"><div class="item-i11nner VR"><div class="item-ti1tle">- ' + calutedoptions[ki].Description + '.</div></div></li>';
             }
             $$("#AB" + selectorUlID).html('');
             $$("#AB" + selectorUlID).append(liForselectorUlID);
-           
+
 
         }
         $$("#UWG" + selectorUWG).append('<div>' + promotionDetails.Description + '</div>');
@@ -759,19 +726,19 @@ function popUpOfferDet(offerId) {
 }
 
 function getInfoafterChangeQuamtity() {
-        // get calculation card 
-            //var thePakageIS = $$('#QunV').attr('data-PackID');
-        var thePakageIS =  $$('#QunV').attr('data-PackID');
-        var packid = $$('#' + thePakageIS).data('PackID');
-        var Discount = $$('#selected' + thePakageIS).data('Discount');
-        var Tax = $$('#selected' + thePakageIS).data('Tax');
-        var PackTypeID = $$('#selected' + thePakageIS).data('pack');
-        var price = $$('#selected' + thePakageIS).data("price");
-        objclating.PackID = packid;
-        objclating.Discount = Discount;
-        objclating.Tax = Tax;
-        objclating.Price = price;
-        getiteminfo(objclating);
+    // get calculation card 
+    //var thePakageIS = $$('#QunV').attr('data-PackID');
+    var thePakageIS = $$('#QunV').attr('data-PackID');
+    var packid = $$('#QunV').attr('data-PackID');
+    var Discount = $$('#selected' + thePakageIS).data('Discount');
+    var Tax = $$('#selected' + thePakageIS).data('Tax');
+    var PackTypeID = $$('#selected' + thePakageIS).data('pack');
+    var price = $$('#selected' + thePakageIS).data("price");
+    objclating.PackID = parseInt(packid);
+    objclating.Discount = Discount;
+    objclating.Tax = Tax;
+    objclating.Price = price;
+    getiteminfo(objclating);
 }
 
 function backToHome() {
