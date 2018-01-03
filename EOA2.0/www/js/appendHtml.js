@@ -206,7 +206,9 @@ function getNextItemsSet() {
 
 function getVendorByQuery() {
     db.transaction(function (tx) {
-        var query = "SELECT * FROM vendor LIMIT " + offsetVendor + ", 25";
+
+       // var query = "SELECT * FROM vendor LIMIT " + offsetVendor + ", 25";
+        var query = "select * from vendor where trim(vendor.input)  in ( select trim(vendorid) from vendorCustumer)  LIMIT " + offsetVendor + ", 25 ";
         tx.executeSql(query, [], function (tx, resultSet) {
             vendor_EL = '';
             for (var r = 0; r < resultSet.rows.length; r++) {
