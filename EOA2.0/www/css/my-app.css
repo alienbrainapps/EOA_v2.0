@@ -750,3 +750,8 @@ p.no-item-brands {
 .panel {
 background-color : #fff !important;
 }
+div#PriceV {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 500;
+}

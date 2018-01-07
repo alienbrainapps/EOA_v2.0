@@ -1,11 +1,5 @@
-﻿<!-- We don't need full layout here, because this page will be parsed with Ajax-->
-<!-- Top Navbar-->
+﻿<!-- Top Navbar-->
 {{#if @global.ios}}
-
-
-
-
-
 <div class="navbar">
     <div class="navbar-inner">
         <div class="left">
@@ -21,7 +15,7 @@
 
                 <a id="t1" href="#tab1" class="tab-link  button"><span>offers</span></a>
 
-                <a id="t2" href="#tab3" class="tab-link  button"><span>Vendores</span></a>
+                <a id="t2" href="#tab3" class="tab-link  button"><span>Vendors</span></a>
 
                 <a id="t3" href="#tab2" class="tab-link active button"><span>Items</span></a>
             </div>
@@ -46,7 +40,7 @@
             <div class="toolbar-inner">
                 <a id="t1" href="#tab1" class="tab-link  button"><span>offers</span></a>
 
-                <a id="t2" href="#tab3" class="tab-link  button"><span>Vendores</span></a>
+                <a id="t2" href="#tab3" class="tab-link  button"><span>Vendors</span></a>
 
                 <a id="t3" href="#tab2" class="tab-link active button"><span>Items</span></a>
             </div>
@@ -54,15 +48,12 @@
     </div>
 
     {{/if}}
-    <!--
-        hide-bars-on-scroll
-        Scrollable page content-->
 
     <div class="page-content infinite-scroll  hide-toolbar-on-scroll padding-top" data-distance="400">
 
         <div class="cont1ent-block" style="margin-top:0px">
             <div style="margin-top:-20px" class="tabs">
-                <!-- Tab 1, active by default -->
+                <!-- Tab 1 -->
                 <div id="tab1" class="tab bundle andbundle">
                     <div id="bundon">
                         <div style="padding-top: 1%;" id="bundel"></div>

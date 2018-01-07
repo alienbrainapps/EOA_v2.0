@@ -501,7 +501,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                 <div class="item-content">
                                     <div class="item-media"><i class="myicon-eoa-quantity"></i> </div>
                                     <div class="item-inner">
-                                        <div class="item-title label">Quntity</div>
+                                        <div class="item-title label">Quantity</div>
                                         <div class="item-after item-input qua-area">
                                             
                                             <span class="dec-qua"><i class="myicon-eoa-remove"></i></span> 
@@ -516,7 +516,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                 <div class="item-content">
                                     <div class="item-media"><i class="myicon-eoa-selling-unit"></i> </div>
                                     <div class="item-inner">
-                                        <div class="item-title label">Seling unite</div>
+                                        <div class="item-title label">selling Unit</div>
                                        
                                     </div>
                                 </div>

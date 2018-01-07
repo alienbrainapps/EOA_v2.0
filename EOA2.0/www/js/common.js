@@ -518,7 +518,7 @@ myApp.onPageInit('catg', function (page) {
                     $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <i class="myicon-eoa-my-order"></i><br />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -586,107 +586,6 @@ myApp.onPageInit('catg', function (page) {
             }
         );
     });
-
-
-    //console.log($$(".swiper-wrapper").length);
-
-    //$$("#itemarrowup").on('click', function () {
-
-
-    //    $("#ce").slideDown("slow");
-
-    //    $$(this).hide();
-    //    $$("#itemarrowdown").show();
-    //});
-
-    //$$("#itemarrowdown").on('click', function () {
-
-    //    $("#ce").slideUp("slow");
-    //    $$(this).hide();
-    //    $$("#itemarrowup").show();
-
-    //});
-
-    //$$('.Itema li i').on('click', function () {
-    //    var count = $$(".swiper-wrapper").children();
-    //    console.log(count.length);
-    //    var dd = 0.00;
-    //    //     Tottal_Price=j.nettotal+Bundle_price;
-    //    var id = $$(this).parent();
-
-    //    var index = $$(this).parent().parent().index();
-    //    //var index=$$(this).parent().index();
-    //    var datainfo = $$(this).data('info');
-    //    var string = '';
-    //    console.log(vendoreorder[datainfo]);
-    //    var lang = localStorage.getItem('lang');
-    //    if (lang == 1) { string = 'Are you sure you want to delet the item'; } else { string = 'هل تريد حذف هذه السلعة'; }
-    //    myApp.confirm(string, 'EOA', function () {
-
-    //        $$(id).remove();
-    //        if (vendoreorder[datainfo].length == 1) {
-
-    //            $$("#pa" + datainfo).remove();
-
-    //            var count = $$(".swiper-wrapper").children();
-    //            if (count.length == 0) {
-    //                $$("#orderon").hide(); $$("#noorderinfo").show();
-    //            }
-    //            var obj = calclution_price(vendoreorder[datainfo]);
-    //            localStorage.setItem('orderlist33', JSON.stringify(vendoreorder[datainfo]));
-
-    //            if (Tottal_Price == 0) { Tottal_Price = obj.nettotal } else
-    //                Tottal_Price = Tottal_Price - obj.nettotal;
-    //            //            //      var tottla=overallprice(vendoreorder[datainfo],mybundle[datainfo]);
-    //            //    $$("#Net"+datainfo).html(curency+tottla.overallprice+"");
-    //            //    $$("#des"+datainfo).html(curency+"0.00"+"");
-    //            //    $$("#tax"+datainfo).html(curency+"0.00"+"");
-    //            //    $$("#gro"+datainfo).html(curency+"0.00"+"");  
-
-    //            vendoreorder[datainfo].splice(index, 1);
-
-    //        } else {
-    //            // dd=0;
-    //            vendoreorder[datainfo].splice(index, 1);
-
-    //            var obj = calclution_price(vendoreorder[datainfo]);
-    //            localStorage.setItem('orderlist33', JSON.stringify(vendoreorder[datainfo]));
-
-    //            if (Tottal_Price == 0) { Tottal_Price = obj.nettotal } else
-    //                Tottal_Price = Tottal_Price - obj.nettotal;
-    //            var tottla = overallprice(vendoreorder[datainfo], mybundle[datainfo]);
-    //            $$("#Net" + datainfo).html(curencyTemp + obj.nettotal.toFixed(3) + "");
-    //            $$("#des" + datainfo).html(curencyTemp + obj.discount.toFixed(3) + "");
-    //            $$("#tax" + datainfo).html(curencyTemp + obj.tax.toFixed(3) + "");
-    //            $$("#gro" + datainfo).html(curencyTemp + obj.gross.toFixed(3) + "");
-    //        }
-    //        var string = '';
-    //        var lang = localStorage.getItem('lang');
-    //        if (lang == 1) { string = 'Item Removed'; } else { string = 'تم حذف الصنف'; }
-    //        myApp.alert(string, "EOA");
-
-
-    //        if (!vendoreorder[datainfo].length && jQuery.isEmptyObject(mybundle)) {
-    //            $$("#orderinfo").hide(); $$("#noorderinfo").show(); return;
-    //        }
-    //        var strop = datainfo;
-    //        strop = strop.replace(/\s+/g, '');
-    //        strop = strop.replace('-', '');
-
-
-    //        //     var obj= calclution_price(vendoreorder[datainfo]); 
-    //        //    $$("#Net"+strop).html(curencyTemp+dd.toFixed(3)+"");
-    //        //    $$("#des"+strop).html(curencyTemp+obj.discount.toFixed(3)+"");
-    //        //    $$("#tax"+strop).html(curencyTemp+obj.tax.toFixed(3)+"");
-    //        //    $$("#gro"+strop).html(curencyTemp+obj.gross.toFixed(3)+"");
-    //        //              
-    //        pagecounter();
-    //    });
-
-    //});
-
-
-
 
     $$(".bundone").on('click', function () {
         var key = this.id;
