@@ -1,7 +1,7 @@
 {{#if @global.ios}}
 <div class="navbar">
     <div class="navbar-inner">
-        <div class="left"><a id="Back1V" href="#" class="back link"><i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+        <div class="left"><a id="Back1V" href="#" class="back link"><i class="icon myicon-eoa-back"></i><span style="color:#fff">{{Back}}</span></a></div>
         <div class="center sliding">Sign Up</div>
 
     </div>
@@ -9,13 +9,13 @@
 {{/if}}
 <div class="pages">
     <!-- Page, data-page contains page name-->
-    <div data-page="profile" class="page no-toolbar">
+    <div data-page="profile" class="page sign-up-page no-toolbar">
 
 
         {{#if @global.android}}
         <div class="navbar">
             <div class="navbar-inner">
-                <div class="left"><a id="Back1V" href="#" class="back link"> <i class="icon icon-back"></i><span style="color:#fff">{{Back}}</span></a></div>
+                <div class="left"><a id="Back1V" href="#" class="back link"><i class="icon myicon-eoa-back"></i><span style="color:#fff">{{Back}}</span></a></div>
                 <div class="center sliding">Sign Up</div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="list-block">
                 <ul>
                     <!-- Text inputs -->
-                    <li class="item-divider">{{Login_Info}}</li>
+                    <li class="item-divider"><img src="images/loginInfo.svg" width="30" height="30" />{{Login_Info}}</li>
 
                     <li>
 
@@ -72,7 +72,7 @@
 
 
 
-                    <li class="item-divider">{{PersonalInfo}}</li>
+                    <li class="item-divider"><img src="images/personalInfo.svg" />{{PersonalInfo}}</li>
                     <li>
                         <div class="item-content">
 
@@ -112,7 +112,7 @@
                     </li>
 
 
-                    <li class="item-divider">{{comercialInfo}}</li>
+                    <li class="item-divider"><img src="images/shop.svg" /> {{comercialInfo}}</li>
 
                     <li>
                         <div class="item-content">
@@ -137,7 +137,7 @@
                     <li>
                         <div class="item-content">
                             <div class="item-inner">
-                                <div style="padding-left:10%" class="item-input">
+                                <div class="item-input">
                                     <input id="phonenumber" pattern="[0-9]*" type="number" placeholder="Phone Number">
                                 </div>
                             </div>
@@ -145,7 +145,7 @@
                     </li>
 
                     <li>
-                        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                        <input id="pac-input" class="controls" type="text" placeholder=" Type your place">
                         <div id="map" style="width:100%;height: 250px;">
 
                         </div>
@@ -155,21 +155,15 @@
                 </ul>
 
 
-                <div class="content-block" style="margin-top:0%; margin-bottom:0%;">
-                    <div class="content-block-inner">
+               
+                    <div>
 
-                        <p><a id='submit' href="#" class="button button-round my_green"><span style="">{{Savenext}}</span></a></p>
-
-                        <!--<p>
-                            <a id='clear' href="#" style=" border-color: red !important;
-    background-color: red;
-    color: white !important;" class="button button "><span style="">{{Clear}}</span></a>
-                        </p>-->
-
+                        <p class="login-btn"><a id='submit' href="#" class="button button-round my_green"><span style="">{{Savenext}}</span></a></p>
 
                     </div>
-                </div>
+               
 
+                <p class="terms_note">Clicking Sign up means agreeing our <span class="green_note">Terms & Conditions</span></p>
             </div>
         </div>
     </div>

@@ -1662,8 +1662,8 @@ myApp.onPageInit('profile', function (page) {
 
     var mapCanvas = document.getElementById("map");
     var mapOptions = {
-        center: new google.maps.LatLng(51.508742, -0.120850),
-        zoom: 7,
+        center: new google.maps.LatLng(31.945367, 35.928372),
+        zoom: 4,
         disableDefaultUI: true
     };
     var map = new google.maps.Map(mapCanvas, mapOptions);
@@ -1763,17 +1763,15 @@ myApp.onPageInit('profile', function (page) {
     //});
 
     function initAutocomplete() {
-
+        var markers = [];
 
 
         var map, infoWindow;
 
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {
-                lat: -34.397,
-                lng: 150.644
-            },
-            zoom: 16
+            center: {lat: 31.945367,lng: 35.928372},
+            zoom: 4,
+            disableDefaultUI: true
         });
         infoWindow = new google.maps.InfoWindow;
 
@@ -1787,12 +1785,17 @@ myApp.onPageInit('profile', function (page) {
 
                 //  infoWindow.setPosition(pos);
 
-                var marker = new google.maps.Marker({
-                    position: pos,
+                //var marker = new google.maps.Marker({
+                //    position: pos,
+                //    map: map,
+
+                //});
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
                     map: map,
-
-                });
-
+                    icon: icon,
+                    position: pos 
+                }));
 
                 localStorage.setItem("pos", JSON.stringify(pos));
                 //infoWindow.setContent('');
@@ -1833,7 +1836,7 @@ myApp.onPageInit('profile', function (page) {
             searchBox.setBounds(map.getBounds());
         });
 
-        var markers = [];
+        
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
         searchBox.addListener('places_changed', function () {
@@ -1843,12 +1846,14 @@ myApp.onPageInit('profile', function (page) {
                 return;
             }
 
-            // Clear out the old markers.
+            
             markers.forEach(function (marker) {
-                marker.setMap(null);
+                setMapOnAll(null);
+                markers = [];
             });
-            markers = [];
-
+            
+          
+            
             // For each place, get the icon, name and location.
             var bounds = new google.maps.LatLngBounds();
             places.forEach(function (place) {
@@ -1881,9 +1886,11 @@ myApp.onPageInit('profile', function (page) {
             });
             map.fitBounds(bounds);
         });
+
     }
 
     initAutocomplete();
+    //testo signup
 
     $$("#submit").on("click", function () {
         var firstname = $$("#first").val();

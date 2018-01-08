@@ -452,9 +452,23 @@ function barcodescan() {
 
             cordova.plugins.barcodeScanner.scan(
                 function (result) {
+                    let userInfo = JSON.parse(localStorage.getItem('profile'));
                     if (result.cancelled) {
-                        mainView.router.loadPage('home.html');
-                        return;
+                        if (userInfo.regstrationcode.length > 0) {
+                            mainView.router.loadPage('home.html');
+                            return;
+                        }
+                        else {
+                            myApp.hidePreloader();
+                            //show toolbar and nav 
+                            $$(".toolbar").hide();
+                            $$(".navbar").hide();
+                            mainView.router.loadPage('no-vendor.html');
+                            return;
+                        }
+                       // mainView.router.back();
+                        //
+                       
                     }
 
                     var id = localStorage.getItem('userid');
@@ -462,7 +476,7 @@ function barcodescan() {
                     //   console.log(result);
                     //var res = result.substring(0, 2);
                     //                    if(res=="1,"){myApp.alert('Barcode not specified not for registration'); return;}
-                    var partsOfStr = result.text.split(',');
+                    var partsOfStr = result.text.split('-');
 
                     for (var i = 0; i < partsOfStr.length; i++) {
 
@@ -503,22 +517,77 @@ function barcodescan() {
                                 //                                localStorage.setItem('OUT_id' + id, JSON.stringify(arrr3));
                                 var array = data.message.regstrationcode;
 
-                                for (var d = 0; d < array.length; d++) {
-                                    var c = array[d][0][0];
-                                    var customerid = array[d][0][1];
-                                    var outletid = array[d][0][2];
-                                    customerids["A" + c] = [];
-                                    customerids["A" + c].push(customerid);
-                                    customerids["A" + c].push(outletid);
-                                }
-                                //   mainView.router.loadPage({url:'about.html',force:true});
-                                GetVendores();
+
+                                //@prog delet recored on vendorCustumer table if exsist
+
+                                db.transaction(function (tx) {
+
+                                    var query = "DELETE  FROM vendorCustumer";
+
+                                    tx.executeSql(query, [], function (tx, res) {
+                                        //console.log("removeId: " + res.insertId);
+                                        //console.log("rowsAffected: " + res.rowsAffected);
+                                    },
+                                        function (tx, error) {
+                                            console.log('DELETE error: ' + error.message);
+                                        });
+                                }, function (error) {
+                                    console.log('transaction error: ' + error.message);
+                                }, function () {
+                                    console.log('transaction ok');
+                                    //@prog place to add custmer-vendor recored if user have regstration code  
+                                    db.transaction(function (tx) {
+                                        for (var d = 0; d < array.length; d++) {
+                                            var vendorid = array[d][0][0];
+                                            var customerid = array[d][0][1];
+                                            var outletid = array[d][0][2];
+                                            //@prog bas 3shan ma yfqa3
+                                            customerids["A" + vendorid] = [];
+                                            customerids["A" + vendorid].push(customerid);
+                                            customerids["A" + vendorid].push(outletid);
+                                            tx.executeSql('INSERT INTO vendorCustumer VALUES (?,?,?)', [customerid, outletid, vendorid]);
+                                            console.log('Populated database VendorCusomer OK' + customerid, outletid, vendorid);
+                                        }
+
+                                    }, function (error) {
+                                        console.log('Transaction ERROR: ' + error.message);
+                                    }, function () {
+                                        console.log('Populated database VendorCusomer OK');
+                                        // strat get vendor 
+                                        GetVendores();
+                                    });
+                                });
+
+
+
+
+
+
+
+
+
+
+
+                                //old Code
+                                //for (var d = 0; d < array.length; d++) {
+                                //    var c = array[d][0][0];
+                                //    var customerid = array[d][0][1];
+                                //    var outletid = array[d][0][2];
+                                //    customerids["A" + c] = [];
+                                //    customerids["A" + c].push(customerid);
+                                //    customerids["A" + c].push(outletid);
+                                //}
+                                // @prog if user have regstrationcode;
+                                //ServerLogin(userInfo.email, userInfo.password);
+                                //GetVendores();
                             }
 
                         },
                         error: function (data, xhr) {
+                            $$(".toolbar").hide();
+                            $$(".navbar").hide();
                             myApp.hidePreloader("Loading");
-
+                           // mainView.router.loadPage('index.html');
                             myApp.alert('error in barcode scaning please try again later', 'EOA');
                         }
                     });
@@ -526,7 +595,8 @@ function barcodescan() {
 
                 },
                 function (error) {
-                    alert("Scanning failed: " + error);
+                    myApp.hidePreloader("Loading");
+                    myApp.alert.alert("Scanning failed: " + error);
                 }
             );
         }

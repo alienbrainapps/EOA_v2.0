@@ -1,0 +1,38 @@
+﻿<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+{{#if @global.ios}}
+<div class="navbar">
+    <div class="navbar-inner">
+        <div id="backbrand" class="left"></div>
+        <!--brands change name -->
+        <div class="center sliding">No vendor</div>
+        <div class="right"></div>
+    </div>
+</div>
+{{/if}}
+
+
+<div class="pages">
+
+    <div data-page="no-vendor" class="page no-vendor-page">
+
+        {{#if @global.android}}
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div  class="left"></div>
+                <div class="center sliding">No vendor</div>
+                <div class="right">
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="page-content">
+            <div class="list-block accordion-list">
+                <div id="no-vendor">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

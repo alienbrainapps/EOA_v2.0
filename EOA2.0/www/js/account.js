@@ -26,9 +26,9 @@ function Postlogin(postData) {
             url: urlAjax,
             contentType: 'application/json',
             data: postData,
-            dataType: "json",
+            
             timeout:15000,
-            success: function (data, status, xhr) {
+            success: function (data, status, xhr){
                 if (data == null) {
 
                     var string = '';
@@ -39,7 +39,7 @@ function Postlogin(postData) {
                 }
                 else {
                     //@prog Start create user table (keep it  json  user);
-
+                    data = JSON.parse(data);
                     localStorage.setItem('username', JSON.stringify(data.email))
                     localStorage.setItem('profile', JSON.stringify(data));
                     localStorage.setItem('userid', data._id);
@@ -52,11 +52,12 @@ function Postlogin(postData) {
 
                         //show toolbar and nav 
                         $$(".toolbar").show();
-                        $$(".navbar").show();
+                       // $$(".navbar").show();
                         // start scan barcode
-                        barcodescan();
+                        mainView.router.loadPage('no-vendor.html');
 
-                    } else {
+                    }
+                    else {
 
                         // @prog if user have regstrationcode;
 
@@ -118,11 +119,13 @@ function Postlogin(postData) {
                     }
                 }
             },
-            error: function (data, xhr) {
+            error: function (data, textStatus, xhr){
+                console.log(textStatus);
                 myApp.hidePreloader("Loading");
                 myApp.confirm('connect to internt to keep updated and requset order and more ...','offline Login', function () {
                     myApp.showPreloader("Loading");
-                    var offlineUser = JSON.parse(postData);
+                    var offlineUser = JSON.parse(localStorage.getItem('profile'));
+                    //var offlineUser = JSON.parse(postData);
                     if (offlineUser.email == JSON.parse(localStorage.getItem('username')) && offlineUser.password == JSON.parse(localStorage.getItem('pass'))) {
                         var lang = localStorage.getItem('lang');
                         myApp.hidePreloader("Loading");

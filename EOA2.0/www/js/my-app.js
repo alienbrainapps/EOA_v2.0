@@ -307,6 +307,18 @@ myApp.onPageInit('home', function (page) {
 
 });
 
+myApp.onPageInit('no-vendor', function (page) {
+    let userInfo = JSON.parse(localStorage.getItem('profile'));
+    if (userInfo.regstrationcode.length > 0 ) {
+        myApp.hidePreloader();
+        //show toolbar and nav 
+        $$(".toolbar").hide();
+        $$(".navbar").hide();
+    } else {
+        barcodescan();
+    }
+
+});
 myApp.onPageBack('home', function (page) {
     ('.toolbar-bottom').show();
     $$("#homeicon").removeClass('myicon-eoa-home-not-active');

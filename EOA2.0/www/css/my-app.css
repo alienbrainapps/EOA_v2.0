@@ -755,3 +755,55 @@ div#PriceV {
     font-size: 15px;
     font-weight: 500;
 }
+.green_note {
+    color: #1fb67b !important;
+    font-weight:500;
+}
+.terms_note {
+    font-size: 12px !important;
+    text-align: center !important;
+
+}
+.sign-up-page li.item-divider {
+    background-color: #fbfbfb !important;
+    color: #1fb67b !important;
+    font-size: 20px !important;
+    font-weight: 100;
+    height: 35px !important;
+}
+.sign-up-page .list-block {
+    margin : 17px !important;
+}
+.sign-up-page li.item-divider img {
+    width: 20px !important;
+    padding: 0px 3px 0 0px !important;
+    height: 20px !important;
+}
+div#map {
+    border: solid 1px #ababab;
+    margin: 13px 0;
+}
+input#pac-input {
+    background-color: #fff !important;
+    width: 98%;
+    margin: 2px 1%;
+    border: 1px solid #ccc5c5;
+    border-radius: 5px;
+}
+.sign-up-page .list-block input[type="text"],
+.sign-up-page .list-block input[type="password"],
+.sign-up-page .list-block input[type="search"],
+.sign-up-page .list-block input[type="email"],
+.sign-up-page .list-block input[type="tel"],
+.sign-up-page .list-block input[type="url"],
+.sign-up-page .list-block input[type="date"],
+.sign-up-page .list-block input[type="datetime-local"],
+.sign-up-page .list-block input[type="time"],
+.sign-up-page .list-block input[type="number"],
+.sign-up-page .list-block select,
+.sign-up-page .list-block textarea {
+    padding: 0 6px !important; 
+}
+/*.sign-up-page .item-inner {
+    background-color: #fbfbfb !important;
+}*/

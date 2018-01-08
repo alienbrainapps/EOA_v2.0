@@ -116,7 +116,7 @@ function GetItems(url, custumerID, outletID, lang, input) {
                 timeout: 6000,
                     db.transaction(function (tx) {
 
-                        var query = "DELETE  FROM items WHERE VendorID = ? ";
+                        var query = "DELETE FROM items WHERE VendorID = ? ";
 
                         tx.executeSql(query, [input], function (tx, res) {
                             //console.log("removeId: " + res.insertId);
