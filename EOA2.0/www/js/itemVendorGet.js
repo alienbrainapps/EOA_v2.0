@@ -213,7 +213,9 @@ function GetOffers(url, custumerID, outletID, lang, input) {
             timeout: 15000,
             success: function (data, xhr) {
                 var theOfferIs = JSON.parse(data);
-
+                if (theOfferIs == null || theOfferIs == undefined) {
+                    theOfferIs = [];
+                }
                 db.transaction(function (tx) {
 
                     var query = "DELETE  FROM offers WHERE VendorID = ? ";

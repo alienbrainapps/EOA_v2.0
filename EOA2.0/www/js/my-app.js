@@ -145,6 +145,7 @@ myApp.onPageInit('index', function (page) { });
 
 
 myApp.onPageInit('home', function (page) {
+    myApp.hidePreloader();
     $$('.toolbar-bottom').show();
     $$("#homeicon").removeClass('myicon-eoa-home-not-active');
     $$("#searchicon").addClass('searchinactive');

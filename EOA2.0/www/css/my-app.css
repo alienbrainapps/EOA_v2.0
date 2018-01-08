@@ -753,7 +753,7 @@ background-color : #fff !important;
 div#PriceV {
     color: #000000;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 900;
 }
 .green_note {
     color: #1fb67b !important;
@@ -807,3 +807,6 @@ input#pac-input {
 /*.sign-up-page .item-inner {
     background-color: #fbfbfb !important;
 }*/
+div#no-vendor {
+    text-align: center;
+}

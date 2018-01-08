@@ -491,7 +491,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                                     <div class="item-media"><i class="myicon-eoa-vendor"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Vendor</div>
-                                        <div class="item-after bolder_text">
+                                        <div class="item-after">
                                             `+ resultSet.rows.item(r).name + `
                                         </div>
                                     </div>

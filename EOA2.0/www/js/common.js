@@ -1654,244 +1654,29 @@ myApp.onPageInit('myprofile', function (page) {
 myApp.onPageInit('profile', function (page) {
     $$("#FinsihReturn").hide();
     $$("#navbar").show();
+    /******** set defult map ******/
 
-
-
-
-
-
-    var mapCanvas = document.getElementById("map");
-    var mapOptions = {
-        center: new google.maps.LatLng(31.945367, 35.928372),
-        zoom: 4,
-        disableDefaultUI: true
-    };
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-
-
-
-
-
-
-
-    /////////
-    //      var geocoder;
-    //
-    // var map;
-    //
-    // function initialize() {
-    //
-    //     geocoder = new google.maps.Geocoder();
-    //
-    //     var address = "new delhi";
-    //
-    //     geocoder.geocode({
-    //         'address': address
-    //     }, function (results, status) {
-    //
-    //         if (status == google.maps.GeocoderStatus.OK) {
-    //
-    //             var latitude = results[0].geometry.location.lat();
-    //
-    //             var longitude = results[0].geometry.location.lng();
-    //
-    //             alert(latitude);
-    //
-    //             alert(longitude);
-    //
-    //
-    //
-    //
-    //             var latlng = new google.maps.LatLng(latitude, longitude);
-    //
-    //             var mapOptions = {
-    //
-    //                 zoom: 8,
-    //
-    //                 center: latlng,
-    //
-    //                 mapTypeId: google.maps.MapTypeId.ROADMAP
-    //
-    //             }
-    //
-    //             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    //
-    //             var latlng = new google.maps.LatLng(latitude, longitude);
-    //             map.setCenter(latlng);
-    //
-    //             var marker = new google.maps.Marker({
-    //
-    //                 map: map,
-    //
-    //                 position: latlng,
-    //                 title: 'Hello World!'
-    //
-    //             });
-    //         }
-    //
-    //     });
-    // }
-    /////////
-
-
-
-
-
-
-
-
-
-    //    new GMaps({
-    //  div: '#map',
-    //  lat: -12.043333,
-    //  lng: -77.028333
-    //});
-    //    
-    //    GMaps.geolocate({
-    //  success: function(position) {
-    //    map.setCenter(latitude, position.coords.longitude);
-    //  },
-    //  error: function(error) {
-    //    alert('Geolocation failed: '+error.message);
-    //  },
-    //  not_supported: function() {
-    //    alert("Your browser does not support geolocation");
-    //  },
-    //  always: function() {
-    //    alert("Done!");
-    //  }
-    //});
-
-    function initAutocomplete() {
-        var markers = [];
-
-
-        var map, infoWindow;
-
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 31.945367,lng: 35.928372},
-            zoom: 4,
-            disableDefaultUI: true
-        });
-        infoWindow = new google.maps.InfoWindow;
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-
-                //  infoWindow.setPosition(pos);
-
-                //var marker = new google.maps.Marker({
-                //    position: pos,
-                //    map: map,
-
-                //});
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                    map: map,
-                    icon: icon,
-                    position: pos 
-                }));
-
-                localStorage.setItem("pos", JSON.stringify(pos));
-                //infoWindow.setContent('');
-                //  infoWindow.open(map);
-                //           map.setCenter(new google.maps.LatLng(latitude, longitude));
-            }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
-            });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-
-
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
-        }
-
-
-        //          
-        //        var map = new google.maps.Map(document.getElementById('map'), {
-        //          center: {lat: -33.8688, lng: 151.2195},
-        //          zoom: 13,
-        //          mapTypeId: 'roadmap'
-        //        });
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function () {
-            searchBox.setBounds(map.getBounds());
-        });
-
-        
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function () {
-            var places = searchBox.getPlaces();
-
-            if (places.length == 0) {
-                return;
-            }
-
-            
-            markers.forEach(function (marker) {
-                setMapOnAll(null);
-                markers = [];
-            });
-            
-          
-            
-            // For each place, get the icon, name and location.
-            var bounds = new google.maps.LatLngBounds();
-            places.forEach(function (place) {
-                if (!place.geometry) {
-                    console.log("Returned place contains no geometry");
-                    return;
-                }
-                var icon = {
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(25, 25)
-                };
-
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                    map: map,
-                    icon: icon,
-                    title: place.name,
-                    position: place.geometry.location
-                }));
-
-                if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
-                    bounds.union(place.geometry.viewport);
-                } else {
-                    bounds.extend(place.geometry.location);
-                }
-            });
-            map.fitBounds(bounds);
-        });
-
-    }
-
+    //var mapCanvas = document.getElementById("map");
+    //var mapOptions = {
+    //    center: new google.maps.LatLng(31.945367, 35.928372),
+    //    zoom: 4,
+    //    disableDefaultUI: true
+    //};
+    //map = new google.maps.Map(mapCanvas, mapOptions);
+    /******** Lessen to search box ******/
     initAutocomplete();
     //testo signup
-
+    /******** Lessen to get current postion ******/
+    $$('#myLoc').on('change', function () {
+        console.log(document.querySelector('input[name="myLoc"]:checked'));
+        if (document.querySelector('input[name="myLoc"]:checked')) {
+            getCurrentPostion();
+           // ('#myLoc').value = '0';
+        } else {
+            //('#myLoc').value = '1';
+            initAutocomplete();
+        }
+    });
     $$("#submit").on("click", function () {
         var firstname = $$("#first").val();
         var lastname = $$("#last").val();
@@ -1911,25 +1696,8 @@ myApp.onPageInit('profile', function (page) {
             $$("#cpass").hide();
         }
         email = email.toLowerCase();
-        var posion = localStorage.getItem('pos');
+        var posion = JSON.parse(localStorage.getItem('pos'));
         var jason = {
-            //  "firstname": firstname,
-            //  "lastname": lastname,
-            //  "PhoneNumber": number,
-            //  "email": email,
-            //  "password":password,
-            //  "buyerid": buyerid,
-            //  "Location" :"String",
-            //  "Address" :"String",
-            //  "commercilaname":name,
-            //  "commercilanumber":commercialnumber,
-            //  "country":"String",
-            //  "state":"String",
-            //  "city":"String",
-            //  "area":"String",
-            //  "pobox":"String",
-            //  "zipcode":"String"
-
             "password": password,
             "email": email,
             "retailer": firstname,
@@ -1938,8 +1706,8 @@ myApp.onPageInit('profile', function (page) {
             "name": name,
             "commercilanumber": commercialnumber,
             "PhoneNumber": phonenumber,
-            "long": posion,
-            "lat": posion
+            "long": posion.lng,
+            "lat": posion.lat
 
         }
 
@@ -1948,7 +1716,7 @@ myApp.onPageInit('profile', function (page) {
         if (validateresult == true) {
             localStorage.setItem("profile", jas);
             PostRegstration(jas);
-            mainView.router.back(); //({url:'index.html',force:true});
+            mainView.router.back(); 
         } else {
             //
         }
