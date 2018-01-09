@@ -4819,7 +4819,7 @@ function calcluteprice(Price, Discount, Tax, Quntity, DiscountType) {
 }
 
 function PostRegstration(postData) {
-
+    console.log(postData);
     myApp.showPreloader(loading);
     var urlAjax = EOA_URL + "api/reg";
     $$.ajax({
@@ -4855,7 +4855,7 @@ function PostRegstration(postData) {
             } else {
                 string = ' هناك خطاء خاول مرة اخرى'
             }
-
+            myApp.hidePreloader();
             myApp.alert(string, "EOA");
         }
     });

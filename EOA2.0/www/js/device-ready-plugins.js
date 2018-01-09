@@ -560,6 +560,7 @@ function barcodescan() {
                                         // strat get vendor 
                                         myApp.showPreloader('updating your data', 'EOA');
                                         GetVendores();
+                                        myApp.mainView.router.loadPage('home.html');
                                     });
                                 });
 
