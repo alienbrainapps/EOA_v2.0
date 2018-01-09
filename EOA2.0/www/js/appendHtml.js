@@ -50,9 +50,9 @@ function getItemByQuery() {
 								<img class="Strechimage" width="70" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + (resultSet.rows.item(r).URL).replace(`/api`, ``) + `/itemsimages/` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
 							</div>
 							<div class="card_list_content">
-								<div class="item-title-row">`+ resultSet.rows.item(r).ItemDescription + `</div>
-								<div class="item-text">`+ resultSet.rows.item(r).UOM + `</div>
-								<div class="item-title-row">`+ resultSet.rows.item(r).name + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
+								<div class="item-title-row searh-name">`+ resultSet.rows.item(r).ItemDescription + `</div>
+								<div class="item-text searh-name">`+ resultSet.rows.item(r).UOM + `</div>
+								<div class="item-title-row searh-name">`+ resultSet.rows.item(r).name + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
 							</div>
 						</div>
 				</div>
@@ -92,8 +92,6 @@ function getItemByQuery() {
             });
             lastIndex = $$('#itemlist li').length;
             myApp.hidePreloader();
-
-
             loading = false;
 
 
@@ -745,6 +743,36 @@ function getInfoafterChangeQuamtity() {
 
 function backToHome() {
     $$('.toolbar-bottom').show();
-    mainView.router.back()
+    mainView.router.loadPage({
+        url: 'home.html',
+        force: true
+    });
+    //mainView.router.back({force: true})
     //mainView.router.loadPage({ url: "home.html", force: true });
+}
+
+function searchItems() {
+    $$('.toolbar-bottom').hide();
+    lastIndex = $$('#itemlist li').length;
+    offset = $$('#itemlist li').length;
+    $$(".item").show();
+    $$(".bundle").hide();
+    $$(".vendore").hide();
+    $$("#t3").addClass('active');
+    $$("#t2").removeClass('active');
+    $$("#t1").removeClass('active');
+    $$(".tablinkhighlight").css('transform', 'translate3d(200%, 0px, 0px)');
+
+    if (localStorage.getItem('lang') != 1) {
+        $$(".tablinkhighlight").css('transform', 'translate3d(200%, 0px, 0px)');
+    }
+    $$('.normalNav').hide();
+    $$('.searchNav').show();
+
+
+}
+function closeSearch() {
+    $$('.toolbar-bottom').show();
+    $$('.normalNav').show();
+    $$('.searchNav').hide();
 }

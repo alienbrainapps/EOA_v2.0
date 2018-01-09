@@ -810,3 +810,8 @@ input#pac-input {
 div#no-vendor {
     text-align: center;
 }
+div#itemlist,
+div#vendores,
+div#offers109 {
+    padding-bottom: 100px;
+}

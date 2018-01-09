@@ -120,7 +120,10 @@ function backKeyDown(e) {
                 force: true
             })
         case "Nestle":
-            mainView.router.loadPage('home.html');
+            mainView.router.loadPage({
+                url: "home.html",
+                force: true
+            });
             $$(".vendore").show();
             $$(".bundle").hide();
             $$(".item").hide();
@@ -137,7 +140,10 @@ function backKeyDown(e) {
             }
             break;
         case "Setting":
-            mainView.router.loadPage('home.html');
+            mainView.router.loadPage({
+                url: "home.html",
+                force: true
+            });
             break;
         case "Qutaion":
             mainView.router.loadPage({
@@ -459,7 +465,10 @@ function barcodescan() {
                     let userInfo = JSON.parse(localStorage.getItem('profile'));
                     if (result.cancelled) {
                         if (userInfo.regstrationcode.length > 0) {
-                            mainView.router.loadPage('home.html');
+                            mainView.router.loadPage({
+                                url: "home.html",
+                                force: true
+                            });
                             return;
                         }
                         else {
@@ -467,7 +476,10 @@ function barcodescan() {
                             //show toolbar and nav 
                             $$(".toolbar").hide();
                             $$(".navbar").hide();
-                            mainView.router.loadPage('no-vendor.html');
+                            mainView.router.loadPage({
+                                url: "no-vendor.html",
+                                force: true
+                            });
                             return;
                         }
                        // mainView.router.back();
@@ -557,16 +569,55 @@ function barcodescan() {
                                         console.log('Transaction ERROR: ' + error.message);
                                     }, function () {
                                         console.log('Populated database VendorCusomer OK');
+                                        ////try To delet items///
+                                        db.transaction(function (tx) {
+
+                                            var query = "DELETE  FROM items";
+
+                                            tx.executeSql(query, [], function (tx, res) {
+                                                //console.log("removeId: " + res.insertId);
+                                                //console.log("rowsAffected: " + res.rowsAffected);
+                                            },
+                                                function (tx, error) {
+                                                    console.log('DELETE error: ' + error.message);
+                                                });
+                                        }, function (error) {
+                                            console.log('transaction error: ' + error.message);
+                                        }, function () {
+                                            console.log('transaction ok');
+                                          
+                                            ////try To delet offers///
+                                            db.transaction(function (tx) {
+
+                                                var query = "DELETE  FROM offers";
+
+                                                tx.executeSql(query, [], function (tx, res) {
+                                                    //console.log("removeId: " + res.insertId);
+                                                    //console.log("rowsAffected: " + res.rowsAffected);
+                                                },
+                                                    function (tx, error) {
+                                                        console.log('DELETE error: ' + error.message);
+                                                    });
+                                            }, function (error) {
+                                                console.log('transaction error: ' + error.message);
+                                            }, function () {
+                                                console.log('transaction ok');
+                                                //@prog place to add custmer-vendor recored if user have regstration code  
+                                                myApp.showPreloader('updating your data', 'EOA');
+                                                afterScan = true;
+                                                GetVendores();
+                                            });
+
+                                        });
                                         // strat get vendor 
-                                        myApp.showPreloader('updating your data', 'EOA');
-                                        GetVendores();
-                                        myApp.mainView.router.loadPage('home.html');
+                                       
+                                       // myApp.mainView.router.loadPage('home.html');
                                     });
                                 });
 
 
 
-
+                             
 
 
 

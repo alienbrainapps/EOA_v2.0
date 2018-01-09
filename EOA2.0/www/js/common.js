@@ -919,7 +919,7 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
                 localStorage.setItem('Qut', data);
                 myApp.alert('your Order for Returning the Items was Successfuly Submited');
 
-                mainView.router.loadPage('home.html');
+                mainView.router.loadPage({ url: "home.html", force: true });
                 $$("#FinsihReturn").hide();
             });
 
@@ -1144,7 +1144,7 @@ myApp.onPageInit('logout', function (page) {
         Eglish();
     } else { Arabice(); }
     $$("#sign").click(function () {
-        mainView.router.loadPage('profile.html');
+        mainView.router.loadPage({ url: "profile.html", force: true });
     });
     //FK U
     //$$("#lgn1").click(function () {
@@ -2670,12 +2670,12 @@ myApp.onPageInit('Setting', function (page) {
     }
 
     $$("#backsetting").on('click', function () {
-        mainView.router.loadPage('home.html');
+        mainView.router.loadPage({ url: "home.html", force: true });
         AppendItems();
     });
 
     $$("#about").on('click', function () {
-        mainView.router.loadPage('info.html');
+        mainView.router.loadPage({ url: "info.html", force: true });
     });
 
 

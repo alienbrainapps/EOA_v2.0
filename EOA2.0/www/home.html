@@ -27,11 +27,11 @@
 <div data-page="home" class="page home-page with-subnavbar">
 
     {{#if @global.android}}
-    <div class="navbar">
+    <div class="navbar normalNav">
         <div class="navbar-inner">
             <div class="left"><a href="#" class="link icon-only open-panel"><i class="myicon-eoa-menu"></i></a></div>
             <div class="center sliding">Home</div>
-            <div class="right">
+            <div class="right" onclick="searchItems()">
                 <a href="#" class="link icon-only"><i class="icon myicon-eoa-search"></i></a>
             </div>
 
@@ -46,12 +46,37 @@
             </div>
         </div>
     </div>
+    <div class="navbar searchNav" style="display:none">
+        <div class="navbar-inner">
+            <form data-search-list=".list-block-search" data-search-in=".searh-name"
+                  class="searchbar searchbar-init">
+                <div class="searchbar-input">
+                    <input type="search" placeholder="Search">
+                    <a href="#" onclick="closeSearch()" class="searchbar-clear"></a>
+                </div>
+                <a href="#" class="searchbar-cancel">Cancel</a>
+            </form>
+
+        </div>
+        <div class="toolbar tabbar tabbar-sc1rollable">
+            <div class="toolbar-inner">
+                <p style="text-align: center; color:gray">Type product name or vendor name </p>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
     {{/if}}
-
-    <div class="page-content infinite-scroll  hide-toolbar-on-scroll padding-top" data-distance="400">
-
+    <div class="searchbar-overlay searchbar-found"></div>
+    <div class="page-content  infinite-scroll  hide-toolbar-on-scroll padding-top" data-distance="400">
+        <div class="content-block searchbar-not-found">
+            <div class="content-block-inner">No element found...</div>
+        </div>
         <div class="cont1ent-block" style="margin-top:0px">
+           
             <div style="margin-top:-20px" class="tabs">
                 <!-- Tab 1 -->
                 <div id="tab1" class="tab bundle andbundle">
@@ -59,7 +84,7 @@
                         <div style="padding-top: 1%;" id="bundel"></div>
                         <div style="padding-top: 7%;">
                            
-                                <div id='offers109'>
+                                <div id='offers109' >
 
 
                                 </div>
@@ -89,9 +114,8 @@
                 <!-- Tab 2 -->
                 <div id="tab2" class="tab item active">
                     <div class="cont1ent-block-inner">
-                        <div id="a" class="list-block media-list list-block-search searchbar-found">
-                            <ul class="media-list" style="width:100% !important" id="itemlist"></ul>
-                            
+                        <div id="a" class="list-block media-list">
+                            <ul class="media-list list-block-search searchbar-found" style="width:100% !important" id="itemlist"></ul> 
                         </div>
                         <!-- Preloader -->
                         <div class="infinite-scroll-preloader">

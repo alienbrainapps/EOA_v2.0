@@ -27,7 +27,7 @@ function Postlogin(postData) {
             contentType: 'application/json',
             data: postData,
             
-            timeout:15000,
+            timeout:60000,
             success: function (data, status, xhr){
                 if (data == null) {
 
@@ -54,7 +54,8 @@ function Postlogin(postData) {
                         $$(".toolbar").show();
                        // $$(".navbar").show();
                         // start scan barcode
-                        mainView.router.loadPage('no-vendor.html');
+                        mainView.router.loadPage({ url: "no-vendor.html", force: true });
+                       
 
                     }
                     else {
@@ -129,7 +130,7 @@ function Postlogin(postData) {
                     if (offlineUser.email == JSON.parse(localStorage.getItem('username')) && offlineUser.password == JSON.parse(localStorage.getItem('pass'))) {
                         var lang = localStorage.getItem('lang');
                         myApp.hidePreloader("Loading");
-                        mainView.router.loadPage('home.html');
+                        mainView.router.loadPage({ url: "home.html", force: true });
 
                     } else {
                         myApp.hidePreloader("Loading");

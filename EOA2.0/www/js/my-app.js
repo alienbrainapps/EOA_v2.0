@@ -158,6 +158,9 @@ myApp.onPageInit('home', function (page) {
 
     if (isIos) {
         $$("#t1").on('click', function () {
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -193,7 +196,9 @@ myApp.onPageInit('home', function (page) {
 
         });
         $$("#t2").on('click', function () {
-
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -247,6 +252,9 @@ myApp.onPageInit('home', function (page) {
 
     if (isAndroid) {
         $$("#t1").on('click', function () {
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -282,7 +290,9 @@ myApp.onPageInit('home', function (page) {
 
         });
         $$("#t2").on('click', function () {
-
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -333,6 +343,9 @@ myApp.onPageBack('home', function (page) {
 
     if (isIos) {
         $$("#t1").on('click', function () {
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -368,7 +381,9 @@ myApp.onPageBack('home', function (page) {
 
         });
         $$("#t2").on('click', function () {
-
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -422,6 +437,9 @@ myApp.onPageBack('home', function (page) {
 
     if (isAndroid) {
         $$("#t1").on('click', function () {
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -457,7 +475,9 @@ myApp.onPageBack('home', function (page) {
 
         });
         $$("#t2").on('click', function () {
-
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
