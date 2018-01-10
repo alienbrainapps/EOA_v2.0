@@ -815,3 +815,60 @@ div#vendores,
 div#offers109 {
     padding-bottom: 100px;
 }
+/**Search bar style**/
+.searchbar .searchbar-input {
+    width: 100%;
+    height: 32px;
+    position: relative;
+    -webkit-box-flex: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex: 0 1 auto;
+    flex-shrink: 1;
+    background-color: #e8e8e8 !important;
+    border-radius: 25px !important;
+}
+.searchbar input[type="search"] {
+    box-sizing: border-box;
+    width: 100%;
+    height: 32px;
+    display: block;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    border-radius: 25px !important;
+    font-family: inherit;
+    color: #1fb67b !important;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0;
+    border: 1px solid rgba(31, 183, 125, 0.34) !important;
+    /* border-bottom: 1px solid #fff; */
+    height: 100%;
+    padding: 0 36px 0px 37px !important;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 8px center !important;
+    opacity: 0.6;
+    -webkit-background-size: 24px 24px;
+    background-size: 21px 24px;
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
+    background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20fill%3D'%23FFFFFF'%20height%3D'24…4z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E);
+}
+.searchbar {
+    height: 48px;
+    width: 100%;
+    background: rgba(33, 150, 243, 0) !important;
+}
+    .searchbar input[type="search"]::-webkit-input-placeholder {
+        color: #ada9a9 !important;
+        opacity: 1;
+    }
+    .searchbar input[type="search"] {
+    border-radius : 25px;
+    }
+    .searchbar .searchbar-clear {
+    right : -7px !important;
+    }
