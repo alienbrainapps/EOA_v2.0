@@ -1,0 +1,42 @@
+﻿<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+{{#if @global.ios}}
+<div class="navbar">
+    <div class="navbar-inner">
+        <div id="backbrand" class="left"></div>
+        <!--brands change name -->
+        <div class="center sliding">No vendor</div>
+        <div class="right"></div>
+    </div>
+</div>
+{{/if}}
+
+
+<div class="pages">
+
+    <div data-page="no-vendor" class="page no-vendor-page">
+
+        {{#if @global.android}}
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div  class="left"></div>
+                <div class="center sliding">No vendor</div>
+                <div class="right">
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="page-content">
+            <div class="list-block accordion-list">
+                <div id="no-vendor">
+                    <img src="images/no_vendor.svg" width="120" height="120" />
+                    <p>You dont have any vendor validate </p>
+                    <div class="login-btn">
+                        <p><a href="#" onclick="barcodescan();" class="button button-round">Scan Vendor</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

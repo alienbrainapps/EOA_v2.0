@@ -145,6 +145,7 @@ myApp.onPageInit('index', function (page) { });
 
 
 myApp.onPageInit('home', function (page) {
+    myApp.hidePreloader();
     $$('.toolbar-bottom').show();
     $$("#homeicon").removeClass('myicon-eoa-home-not-active');
     $$("#searchicon").addClass('searchinactive');
@@ -157,6 +158,9 @@ myApp.onPageInit('home', function (page) {
 
     if (isIos) {
         $$("#t1").on('click', function () {
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -192,7 +196,9 @@ myApp.onPageInit('home', function (page) {
 
         });
         $$("#t2").on('click', function () {
-
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -246,6 +252,9 @@ myApp.onPageInit('home', function (page) {
 
     if (isAndroid) {
         $$("#t1").on('click', function () {
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -281,7 +290,9 @@ myApp.onPageInit('home', function (page) {
 
         });
         $$("#t2").on('click', function () {
-
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -307,6 +318,18 @@ myApp.onPageInit('home', function (page) {
 
 });
 
+myApp.onPageInit('no-vendor', function (page) {
+    let userInfo = JSON.parse(localStorage.getItem('profile'));
+    if (userInfo.regstrationcode.length > 0 ) {
+        myApp.hidePreloader();
+        //show toolbar and nav 
+        $$(".toolbar").hide();
+        $$(".navbar").hide();
+    } else {
+        barcodescan();
+    }
+
+});
 myApp.onPageBack('home', function (page) {
     ('.toolbar-bottom').show();
     $$("#homeicon").removeClass('myicon-eoa-home-not-active');
@@ -320,6 +343,9 @@ myApp.onPageBack('home', function (page) {
 
     if (isIos) {
         $$("#t1").on('click', function () {
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -355,7 +381,9 @@ myApp.onPageBack('home', function (page) {
 
         });
         $$("#t2").on('click', function () {
-
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -409,6 +437,9 @@ myApp.onPageBack('home', function (page) {
 
     if (isAndroid) {
         $$("#t1").on('click', function () {
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -444,7 +475,9 @@ myApp.onPageBack('home', function (page) {
 
         });
         $$("#t2").on('click', function () {
-
+            $$('.toolbar-bottom').show();
+            $$('.normalNav').show();
+            $$('.searchNav').hide();
             $$('#itemlist li:nth-child(n + 25)').remove();
             lastIndex = $$('#itemlist li').length;
             offset = $$('#itemlist li').length;
@@ -2410,11 +2443,11 @@ function getiteminfo(item) {
     net = net - prodiscountamt;
     tax = net * (item.Tax / 100);
     net = net + tax;
-    //obj.gross = obj.gross + gross;
-    //obj.tax = obj.tax + tax;
-    //obj.discount = obj.discount + discountamt;
-    //obj.prodiscount = obj.prodiscount + prodiscountamt;
-    //obj.nettotal = obj.nettotal + net;
+    obj.gross = obj.gross + gross;
+    obj.tax = obj.tax + tax;
+    obj.discount = obj.discount + discountamt;
+    obj.prodiscount = obj.prodiscount + prodiscountamt;
+    obj.nettotal = obj.nettotal + net;
 
     //        }
     //        
@@ -2461,7 +2494,7 @@ function getiteminfo(item) {
 
 
 
-    //return obj;
+    return obj;
 }
 
 function pagecounter() {

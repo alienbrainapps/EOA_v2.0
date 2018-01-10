@@ -7,6 +7,10 @@ var audio_div = '';
 var audioDataId = '';
 var location_btn_clicked = '';
 var LocationValueId = '';
+var map = '';
+var input = document.getElementById('pac-input');
+var searchBox = '';
+var markers = [];
 
 //App Ready
 function onAppReady() {
@@ -18,6 +22,7 @@ document.addEventListener("app.Ready", onAppReady, false);
 
 //To open a database:
 var db = null;
+var runiOS = false;
 /*********initialize App********/
 var app = {
     initialize: function () {
@@ -35,13 +40,26 @@ var app = {
         //db= window.openDatabase('my', "0.1", "My list", 200000);
         //console.log('DB: WebSQL');
         //createTabels() 
-        db = window.sqlitePlugin.openDatabase({ name: 'Data.db', location: 'default' }, function (db) {
-            createTabels() 
+        //if (runiOS) {
+        //    db = window.sqlitePlugin.openDatabase({ name: 'Data.db', location: 'default' }, function (db) {
+        //        createTabels()
 
-        }, function (error) {
-            console.log('Open database ERROR: ' + JSON.stringify(error));
-            });
-        CreateMediaFolder();
+        //    }, function (error) {
+        //        console.log('Open database ERROR: ' + JSON.stringify(error));
+        //    });
+        //    CreateMediaFolder();
+        //}
+        //else {
+            //db = window.openDatabase('my', "0.1", "Data", 200000);
+            //console.log('DB: WebSQL');
+        //}
+        db = window.sqlitePlugin.openDatabase({ name: 'Data.db', location: 'default' }, function (db) {
+              createTabels()
+
+           }, function (error) {
+                console.log('Open database ERROR: ' + JSON.stringify(error));
+           });
+            CreateMediaFolder();
      
     },
 
@@ -116,7 +134,10 @@ function backKeyDown(e) {
                 force: true
             })
         case "Nestle":
-            mainView.router.loadPage('home.html');
+            mainView.router.loadPage({
+                url: "home.html",
+                force: true
+            });
             $$(".vendore").show();
             $$(".bundle").hide();
             $$(".item").hide();
@@ -133,7 +154,10 @@ function backKeyDown(e) {
             }
             break;
         case "Setting":
-            mainView.router.loadPage('home.html');
+            mainView.router.loadPage({
+                url: "home.html",
+                force: true
+            });
             break;
         case "Qutaion":
             mainView.router.loadPage({
@@ -452,9 +476,29 @@ function barcodescan() {
 
             cordova.plugins.barcodeScanner.scan(
                 function (result) {
+                    let userInfo = JSON.parse(localStorage.getItem('profile'));
                     if (result.cancelled) {
-                        mainView.router.loadPage('home.html');
-                        return;
+                        if (userInfo.regstrationcode.length > 0) {
+                            mainView.router.loadPage({
+                                url: "home.html",
+                                force: true
+                            });
+                            return;
+                        }
+                        else {
+                            myApp.hidePreloader();
+                            //show toolbar and nav 
+                            $$(".toolbar").hide();
+                            $$(".navbar").hide();
+                            mainView.router.loadPage({
+                                url: "no-vendor.html",
+                                force: true
+                            });
+                            return;
+                        }
+                       // mainView.router.back();
+                        //
+                       
                     }
 
                     var id = localStorage.getItem('userid');
@@ -503,22 +547,118 @@ function barcodescan() {
                                 //                                localStorage.setItem('OUT_id' + id, JSON.stringify(arrr3));
                                 var array = data.message.regstrationcode;
 
-                                for (var d = 0; d < array.length; d++) {
-                                    var c = array[d][0][0];
-                                    var customerid = array[d][0][1];
-                                    var outletid = array[d][0][2];
-                                    customerids["A" + c] = [];
-                                    customerids["A" + c].push(customerid);
-                                    customerids["A" + c].push(outletid);
-                                }
-                                //   mainView.router.loadPage({url:'about.html',force:true});
-                                GetVendores();
+
+                                //@prog delet recored on vendorCustumer table if exsist
+
+                                db.transaction(function (tx) {
+
+                                    var query = "DELETE  FROM vendorCustumer";
+
+                                    tx.executeSql(query, [], function (tx, res) {
+                                        //console.log("removeId: " + res.insertId);
+                                        //console.log("rowsAffected: " + res.rowsAffected);
+                                    },
+                                        function (tx, error) {
+                                            console.log('DELETE error: ' + error.message);
+                                        });
+                                }, function (error) {
+                                    console.log('transaction error: ' + error.message);
+                                }, function () {
+                                    console.log('transaction ok');
+                                    //@prog place to add custmer-vendor recored if user have regstration code  
+                                    db.transaction(function (tx) {
+                                        for (var d = 0; d < array.length; d++) {
+                                            var vendorid = array[d][0][0];
+                                            var customerid = array[d][0][1];
+                                            var outletid = array[d][0][2];
+                                            //@prog bas 3shan ma yfqa3
+                                            customerids["A" + vendorid] = [];
+                                            customerids["A" + vendorid].push(customerid);
+                                            customerids["A" + vendorid].push(outletid);
+                                            tx.executeSql('INSERT INTO vendorCustumer VALUES (?,?,?)', [customerid, outletid, vendorid]);
+                                            console.log('Populated database VendorCusomer OK' + customerid, outletid, vendorid);
+                                        }
+
+                                    }, function (error) {
+                                        console.log('Transaction ERROR: ' + error.message);
+                                    }, function () {
+                                        console.log('Populated database VendorCusomer OK');
+                                        ////try To delet items///
+                                        db.transaction(function (tx) {
+
+                                            var query = "DELETE  FROM items";
+
+                                            tx.executeSql(query, [], function (tx, res) {
+                                                //console.log("removeId: " + res.insertId);
+                                                //console.log("rowsAffected: " + res.rowsAffected);
+                                            },
+                                                function (tx, error) {
+                                                    console.log('DELETE error: ' + error.message);
+                                                });
+                                        }, function (error) {
+                                            console.log('transaction error: ' + error.message);
+                                        }, function () {
+                                            console.log('transaction ok');
+                                          
+                                            ////try To delet offers///
+                                            db.transaction(function (tx) {
+
+                                                var query = "DELETE  FROM offers";
+
+                                                tx.executeSql(query, [], function (tx, res) {
+                                                    //console.log("removeId: " + res.insertId);
+                                                    //console.log("rowsAffected: " + res.rowsAffected);
+                                                },
+                                                    function (tx, error) {
+                                                        console.log('DELETE error: ' + error.message);
+                                                    });
+                                            }, function (error) {
+                                                console.log('transaction error: ' + error.message);
+                                            }, function () {
+                                                console.log('transaction ok');
+                                                //@prog place to add custmer-vendor recored if user have regstration code  
+                                                myApp.showPreloader('updating your data', 'EOA');
+                                                afterScan = true;
+                                                GetVendores();
+                                            });
+
+                                        });
+                                        // strat get vendor 
+                                       
+                                       // myApp.mainView.router.loadPage('home.html');
+                                    });
+                                });
+
+
+
+                             
+
+
+
+
+
+
+
+                                //old Code
+                                //for (var d = 0; d < array.length; d++) {
+                                //    var c = array[d][0][0];
+                                //    var customerid = array[d][0][1];
+                                //    var outletid = array[d][0][2];
+                                //    customerids["A" + c] = [];
+                                //    customerids["A" + c].push(customerid);
+                                //    customerids["A" + c].push(outletid);
+                                //}
+                                // @prog if user have regstrationcode;
+                                //ServerLogin(userInfo.email, userInfo.password);
+                                //GetVendores();
                             }
 
                         },
                         error: function (data, xhr) {
+                            $$(".toolbar").hide();
+                            $$(".navbar").hide();
                             myApp.hidePreloader("Loading");
-
+                           // mainView.router.loadPage('index.html');
                             myApp.alert('error in barcode scaning please try again later', 'EOA');
                         }
                     });
@@ -526,7 +666,8 @@ function barcodescan() {
 
                 },
                 function (error) {
-                    alert("Scanning failed: " + error);
+                    myApp.hidePreloader("Loading");
+                    myApp.alert.alert("Scanning failed: " + error);
                 }
             );
         }
@@ -601,4 +742,121 @@ function storeIntelligrapeLogo(imageUrl) {
             console.log("Some error");
         });
     })
+}
+
+
+/******** Postion Function  *********/
+
+function initAutocomplete() {
+    $$('.lastLi').prepend('<input id="pac-input" class="controls" type="text" placeholder=" Type your place">');
+
+
+
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 31.945367, lng: 35.928372 },
+        zoom: 15,
+        mapTypeId: 'roadmap',
+        disableDefaultUI: true
+    });
+
+    // Create the search box and link it to the UI element.
+     input = document.getElementById('pac-input');
+     searchBox = new google.maps.places.SearchBox(input);
+     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function () {
+        searchBox.setBounds(map.getBounds());
+    });
+
+    markers = []; 
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function () {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+            return;
+        }
+
+        // Clear out the old markers.
+        markers.forEach(function (marker) {
+            marker.setMap(null);
+        });
+        markers = [];
+
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function (place) {
+            if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+            }
+            var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+                map: map,
+                title: place.name,
+                position: place.geometry.location,
+                disableDefaultUI: true
+            }));
+
+            if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+                
+            }
+            console.log(place.geometry.location);
+            localStorage.setItem('pos', JSON.stringify({ lat: place.geometry.location.lat, lng: place.geometry.location.lng }));
+
+        });
+        
+
+        //localStorage.setItem('pos', JSON.stringify(place.geometry.location));
+        map.fitBounds(bounds);
+    });
+}
+
+
+function getCurrentPostion(){
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+}
+
+var onSuccess = function (position) {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: position.coords.latitude, lng: position.coords.longitude },
+        zoom: 15,
+        mapTypeId: 'roadmap',
+        disableDefaultUI: true
+    });
+
+    markers.forEach(function (marker) {
+        marker.setMap(null);
+    });
+    markers = [];
+
+    // Create a marker for each place.
+    markers.push(new google.maps.Marker({
+        map: map,
+        position: { lat: position.coords.latitude, lng: position.coords.longitude },
+        center: { lat: position.coords.latitude, lng: position.coords.longitude },
+        zoom: 15
+    }));
+    console.log(position.coords);
+    localStorage.setItem('pos', JSON.stringify({ lat: position.coords.latitude, lng: position.coords.longitude }));
+    
+};
+// onError Callback receives a PositionError object
+function onError(error) {
+    alert('code: ' + error.code + '\n' +
+        'message: ' + error.message + '\n');
 }

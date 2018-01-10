@@ -31,3 +31,17 @@ margin-bottom : 0 !important;
 .card-content .page-promotions .bendlist .item-media {
     min-width: 0px !important;
 }
+.label-ios-search-note {
+    text-align: center !important;
+    
+    width: 100% !important;
+}
+.sign-up-page {
+background-color : #fff !important;
+}
+.sign-up-page .page-content {
+    background-color: #fff !important;
+}
+.page-catg .buttons-row a.button{
+    margin : 2px !important;
+}

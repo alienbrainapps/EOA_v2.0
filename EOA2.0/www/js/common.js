@@ -30,7 +30,7 @@ myApp.onPageInit('join', function (page) {
 });
 // @prog cat testo
 myApp.onPageInit('catg', function (page) {
-   
+    //$$('.toolbar-bottom').hide();
     $$('.back').on('click', function () {
         $$('.toolbar-bottom').show();
         mainView.router.load('home.html');
@@ -48,7 +48,7 @@ myApp.onPageInit('catg', function (page) {
 
     var li = '';
     var stro = '';
-    
+
     $$("#start_first_oredr_btn").on("click", function () {
         $$('.toolbar-bottom').show();
         mainView.router.loadPage({ url: 'home.html', force: true });
@@ -170,7 +170,7 @@ myApp.onPageInit('catg', function (page) {
         $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -235,7 +235,7 @@ myApp.onPageInit('catg', function (page) {
                             $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -293,7 +293,7 @@ myApp.onPageInit('catg', function (page) {
         for (var w = 0; w < vendoreinfo.length; w++) {
 
             var strop = vendoreinfo[w].input;
-          
+
             html = '';
             var IOAlist = [];
             //@prog faqaa3 hona
@@ -302,7 +302,7 @@ myApp.onPageInit('catg', function (page) {
                 var string = '';
                 var lang = localStorage.getItem('lang');
                 if (lang == 1) { string = 'Quantity' } else { string = 'كمية' }
-                
+
                 html += `<li class="item-conte1nt test" 
 										id="` + IOAlist[i].ItemID + `"  
 										data-ItemCode="` + IOAlist[i].ItemCode + `"
@@ -353,8 +353,8 @@ myApp.onPageInit('catg', function (page) {
     //    $$(".swiper-container").append('<div class="swiper-pagination"></div>');
     //}
 
-    
-    $$('.toolbar-bottom').hide();
+
+   
     $$("#edit").on("click", function () {
 
         $$(".li").toggleClass('non minus');
@@ -448,8 +448,9 @@ myApp.onPageInit('catg', function (page) {
 
         }
         myApp.showPreloader(loading);
-        if (!vendoreorder[Identfier].length) { OrderJsonObject.ItemPacks = null } else {  //OrderJsonObject.ItemPacks.push.apply( OrderJsonObject.ItemPacks,IOAlist);
-        }
+        if (!vendoreorder[Identfier].length) { OrderJsonObject.ItemPacks = null }
+        //else{  //OrderJsonObject.ItemPacks.push.apply( OrderJsonObject.ItemPacks,IOAlist);
+        //}
         OrderJsonObject.ItemPacks.push.apply(OrderJsonObject.ItemPacks, IOAlist);
         localStorage.setItem('orderr', JSON.stringify(OrderJsonObject));
 
@@ -509,15 +510,15 @@ myApp.onPageInit('catg', function (page) {
                 mybundle[id] = [];
                 pagecounter();
                 ///backhere bro
-                
-                
+
+
                 var count = $$(".swiper-wrapper").children();
                 if (count.length == 0) {
                     $$("#orderon").hide();
                     $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -535,11 +536,11 @@ myApp.onPageInit('catg', function (page) {
                     count = $$(".swiper-wrapper").children();
                     if (count.length == 0) {
                         $$("#orderon").hide();
-                      
+
                         $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -551,9 +552,9 @@ myApp.onPageInit('catg', function (page) {
                     }
 
                 }
-               
+
                 //$$("#pa" + id).remove();
-               
+
                 localStorage.setItem('orderlist33', JSON.stringify(OrderList));
                 $$("#" + name).empty();
                 $$("#bundlelist" + name).empty();
@@ -566,7 +567,7 @@ myApp.onPageInit('catg', function (page) {
                 $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -578,114 +579,13 @@ myApp.onPageInit('catg', function (page) {
                 localStorage.setItem('mybundle', '');
                 pagecounter();
                 //mainView.router.back();
-                
+
             },
             function () {
 
             }
         );
     });
-
-
-    //console.log($$(".swiper-wrapper").length);
-
-    //$$("#itemarrowup").on('click', function () {
-
-
-    //    $("#ce").slideDown("slow");
-
-    //    $$(this).hide();
-    //    $$("#itemarrowdown").show();
-    //});
-
-    //$$("#itemarrowdown").on('click', function () {
-
-    //    $("#ce").slideUp("slow");
-    //    $$(this).hide();
-    //    $$("#itemarrowup").show();
-
-    //});
-    
-    //$$('.Itema li i').on('click', function () {
-    //    var count = $$(".swiper-wrapper").children();
-    //    console.log(count.length);
-    //    var dd = 0.00;
-    //    //     Tottal_Price=j.nettotal+Bundle_price;
-    //    var id = $$(this).parent();
-
-    //    var index = $$(this).parent().parent().index();
-    //    //var index=$$(this).parent().index();
-    //    var datainfo = $$(this).data('info');
-    //    var string = '';
-    //    console.log(vendoreorder[datainfo]);
-    //    var lang = localStorage.getItem('lang');
-    //    if (lang == 1) { string = 'Are you sure you want to delet the item'; } else { string = 'هل تريد حذف هذه السلعة'; }
-    //    myApp.confirm(string, 'EOA', function () {
-
-    //        $$(id).remove();
-    //        if (vendoreorder[datainfo].length == 1) {
-
-    //            $$("#pa" + datainfo).remove();
-
-    //            var count = $$(".swiper-wrapper").children();
-    //            if (count.length == 0) {
-    //                $$("#orderon").hide(); $$("#noorderinfo").show();
-    //            }
-    //            var obj = calclution_price(vendoreorder[datainfo]);
-    //            localStorage.setItem('orderlist33', JSON.stringify(vendoreorder[datainfo]));
-
-    //            if (Tottal_Price == 0) { Tottal_Price = obj.nettotal } else
-    //                Tottal_Price = Tottal_Price - obj.nettotal;
-    //            //            //      var tottla=overallprice(vendoreorder[datainfo],mybundle[datainfo]);
-    //            //    $$("#Net"+datainfo).html(curency+tottla.overallprice+"");
-    //            //    $$("#des"+datainfo).html(curency+"0.00"+"");
-    //            //    $$("#tax"+datainfo).html(curency+"0.00"+"");
-    //            //    $$("#gro"+datainfo).html(curency+"0.00"+"");  
-
-    //            vendoreorder[datainfo].splice(index, 1);
-
-    //        } else {
-    //            // dd=0;
-    //            vendoreorder[datainfo].splice(index, 1);
-
-    //            var obj = calclution_price(vendoreorder[datainfo]);
-    //            localStorage.setItem('orderlist33', JSON.stringify(vendoreorder[datainfo]));
-
-    //            if (Tottal_Price == 0) { Tottal_Price = obj.nettotal } else
-    //                Tottal_Price = Tottal_Price - obj.nettotal;
-    //            var tottla = overallprice(vendoreorder[datainfo], mybundle[datainfo]);
-    //            $$("#Net" + datainfo).html(curencyTemp + obj.nettotal.toFixed(3) + "");
-    //            $$("#des" + datainfo).html(curencyTemp + obj.discount.toFixed(3) + "");
-    //            $$("#tax" + datainfo).html(curencyTemp + obj.tax.toFixed(3) + "");
-    //            $$("#gro" + datainfo).html(curencyTemp + obj.gross.toFixed(3) + "");
-    //        }
-    //        var string = '';
-    //        var lang = localStorage.getItem('lang');
-    //        if (lang == 1) { string = 'Item Removed'; } else { string = 'تم حذف الصنف'; }
-    //        myApp.alert(string, "EOA");
-
-
-    //        if (!vendoreorder[datainfo].length && jQuery.isEmptyObject(mybundle)) {
-    //            $$("#orderinfo").hide(); $$("#noorderinfo").show(); return;
-    //        }
-    //        var strop = datainfo;
-    //        strop = strop.replace(/\s+/g, '');
-    //        strop = strop.replace('-', '');
-
-
-    //        //     var obj= calclution_price(vendoreorder[datainfo]); 
-    //        //    $$("#Net"+strop).html(curencyTemp+dd.toFixed(3)+"");
-    //        //    $$("#des"+strop).html(curencyTemp+obj.discount.toFixed(3)+"");
-    //        //    $$("#tax"+strop).html(curencyTemp+obj.tax.toFixed(3)+"");
-    //        //    $$("#gro"+strop).html(curencyTemp+obj.gross.toFixed(3)+"");
-    //        //              
-    //        pagecounter();
-    //    });
-
-    //});
-
-   
-
 
     $$(".bundone").on('click', function () {
         var key = this.id;
@@ -734,7 +634,7 @@ myApp.onPageInit('catg', function (page) {
                     $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -752,10 +652,10 @@ myApp.onPageInit('catg', function (page) {
     });
 
 
-    $$('#item_information .item-uom').on('click', function () {
+    $$('#item_information > .item-uom').on('click', function () {
 
         var ids = this.id;
-        var packid = $$(this).data('PackID');
+        var packid = $$(this).attr('data-packid');
         console.log(parseInt(packid));
         $$('#QunV').data('PackID', parseInt(packid));
         $$('#QunV').attr('data-PackID', parseInt(packid));
@@ -764,7 +664,7 @@ myApp.onPageInit('catg', function (page) {
         var Tax = $$('#selected' + packid).data('Tax');
         var PackTypeID = $$('#selected' + packid).data('pack');
         var price = $$('#selected' + packid).data("price");
-        objclating.PackID = packid;
+        objclating.PackID = parseInt(packid);
         objclating.Discount = Discount;
         objclating.Tax = Tax;
         objclating.Price = price;
@@ -912,7 +812,7 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
                 $$("#orderinfo").hide(); $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -1019,7 +919,7 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
                 localStorage.setItem('Qut', data);
                 myApp.alert('your Order for Returning the Items was Successfuly Submited');
 
-                mainView.router.loadPage('home.html');
+                mainView.router.loadPage({ url: "home.html", force: true });
                 $$("#FinsihReturn").hide();
             });
 
@@ -1223,7 +1123,7 @@ myApp.onPageInit('forget', function (page) {
                 "newpass": newpass,
 
             } //
-            $$.post(EOA_URL+"api/wrg",
+            $$.post(EOA_URL + "api/wrg",
                 jas,
                 function (data, status) {
 
@@ -1244,7 +1144,7 @@ myApp.onPageInit('logout', function (page) {
         Eglish();
     } else { Arabice(); }
     $$("#sign").click(function () {
-        mainView.router.loadPage('profile.html');
+        mainView.router.loadPage({ url: "profile.html", force: true });
     });
     //FK U
     //$$("#lgn1").click(function () {
@@ -1754,237 +1654,29 @@ myApp.onPageInit('myprofile', function (page) {
 myApp.onPageInit('profile', function (page) {
     $$("#FinsihReturn").hide();
     $$("#navbar").show();
+    /******** set defult map ******/
 
-
-
-
-
-
-    var mapCanvas = document.getElementById("map");
-    var mapOptions = {
-        center: new google.maps.LatLng(51.508742, -0.120850),
-        zoom: 7,
-        disableDefaultUI: true
-    };
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-
-
-
-
-
-
-
-    /////////
-    //      var geocoder;
-    //
-    // var map;
-    //
-    // function initialize() {
-    //
-    //     geocoder = new google.maps.Geocoder();
-    //
-    //     var address = "new delhi";
-    //
-    //     geocoder.geocode({
-    //         'address': address
-    //     }, function (results, status) {
-    //
-    //         if (status == google.maps.GeocoderStatus.OK) {
-    //
-    //             var latitude = results[0].geometry.location.lat();
-    //
-    //             var longitude = results[0].geometry.location.lng();
-    //
-    //             alert(latitude);
-    //
-    //             alert(longitude);
-    //
-    //
-    //
-    //
-    //             var latlng = new google.maps.LatLng(latitude, longitude);
-    //
-    //             var mapOptions = {
-    //
-    //                 zoom: 8,
-    //
-    //                 center: latlng,
-    //
-    //                 mapTypeId: google.maps.MapTypeId.ROADMAP
-    //
-    //             }
-    //
-    //             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    //
-    //             var latlng = new google.maps.LatLng(latitude, longitude);
-    //             map.setCenter(latlng);
-    //
-    //             var marker = new google.maps.Marker({
-    //
-    //                 map: map,
-    //
-    //                 position: latlng,
-    //                 title: 'Hello World!'
-    //
-    //             });
-    //         }
-    //
-    //     });
-    // }
-    /////////
-
-
-
-
-
-
-
-
-
-    //    new GMaps({
-    //  div: '#map',
-    //  lat: -12.043333,
-    //  lng: -77.028333
-    //});
-    //    
-    //    GMaps.geolocate({
-    //  success: function(position) {
-    //    map.setCenter(latitude, position.coords.longitude);
-    //  },
-    //  error: function(error) {
-    //    alert('Geolocation failed: '+error.message);
-    //  },
-    //  not_supported: function() {
-    //    alert("Your browser does not support geolocation");
-    //  },
-    //  always: function() {
-    //    alert("Done!");
-    //  }
-    //});
-
-    function initAutocomplete() {
-
-
-
-        var map, infoWindow;
-
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {
-                lat: -34.397,
-                lng: 150.644
-            },
-            zoom: 16
-        });
-        infoWindow = new google.maps.InfoWindow;
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-
-                //  infoWindow.setPosition(pos);
-
-                var marker = new google.maps.Marker({
-                    position: pos,
-                    map: map,
-
-                });
-
-
-                localStorage.setItem("pos", JSON.stringify(pos));
-                //infoWindow.setContent('');
-                //  infoWindow.open(map);
-                //           map.setCenter(new google.maps.LatLng(latitude, longitude));
-            }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
-            });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-
-
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
-        }
-
-
-        //          
-        //        var map = new google.maps.Map(document.getElementById('map'), {
-        //          center: {lat: -33.8688, lng: 151.2195},
-        //          zoom: 13,
-        //          mapTypeId: 'roadmap'
-        //        });
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function () {
-            searchBox.setBounds(map.getBounds());
-        });
-
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function () {
-            var places = searchBox.getPlaces();
-
-            if (places.length == 0) {
-                return;
-            }
-
-            // Clear out the old markers.
-            markers.forEach(function (marker) {
-                marker.setMap(null);
-            });
-            markers = [];
-
-            // For each place, get the icon, name and location.
-            var bounds = new google.maps.LatLngBounds();
-            places.forEach(function (place) {
-                if (!place.geometry) {
-                    console.log("Returned place contains no geometry");
-                    return;
-                }
-                var icon = {
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(25, 25)
-                };
-
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                    map: map,
-                    icon: icon,
-                    title: place.name,
-                    position: place.geometry.location
-                }));
-
-                if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
-                    bounds.union(place.geometry.viewport);
-                } else {
-                    bounds.extend(place.geometry.location);
-                }
-            });
-            map.fitBounds(bounds);
-        });
-    }
-
+    //var mapCanvas = document.getElementById("map");
+    //var mapOptions = {
+    //    center: new google.maps.LatLng(31.945367, 35.928372),
+    //    zoom: 4,
+    //    disableDefaultUI: true
+    //};
+    //map = new google.maps.Map(mapCanvas, mapOptions);
+    /******** Lessen to search box ******/
     initAutocomplete();
-
+    //testo signup
+    /******** Lessen to get current postion ******/
+    $$('#myLoc').on('change', function () {
+        console.log(document.querySelector('input[name="myLoc"]:checked'));
+        if (document.querySelector('input[name="myLoc"]:checked')) {
+            getCurrentPostion();
+           // ('#myLoc').value = '0';
+        } else {
+            //('#myLoc').value = '1';
+            initAutocomplete();
+        }
+    });
     $$("#submit").on("click", function () {
         var firstname = $$("#first").val();
         var lastname = $$("#last").val();
@@ -2004,25 +1696,8 @@ myApp.onPageInit('profile', function (page) {
             $$("#cpass").hide();
         }
         email = email.toLowerCase();
-        var posion = localStorage.getItem('pos');
+        var posion = JSON.parse(localStorage.getItem('pos'));
         var jason = {
-            //  "firstname": firstname,
-            //  "lastname": lastname,
-            //  "PhoneNumber": number,
-            //  "email": email,
-            //  "password":password,
-            //  "buyerid": buyerid,
-            //  "Location" :"String",
-            //  "Address" :"String",
-            //  "commercilaname":name,
-            //  "commercilanumber":commercialnumber,
-            //  "country":"String",
-            //  "state":"String",
-            //  "city":"String",
-            //  "area":"String",
-            //  "pobox":"String",
-            //  "zipcode":"String"
-
             "password": password,
             "email": email,
             "retailer": firstname,
@@ -2031,8 +1706,8 @@ myApp.onPageInit('profile', function (page) {
             "name": name,
             "commercilanumber": commercialnumber,
             "PhoneNumber": phonenumber,
-            "long": posion,
-            "lat": posion
+            "long": posion.lng,
+            "lat": posion.lat
 
         }
 
@@ -2041,7 +1716,7 @@ myApp.onPageInit('profile', function (page) {
         if (validateresult == true) {
             localStorage.setItem("profile", jas);
             PostRegstration(jas);
-            mainView.router.back(); //({url:'index.html',force:true});
+            mainView.router.back(); 
         } else {
             //
         }
@@ -2298,10 +1973,10 @@ myApp.onPageInit('ItemDE', function (page) {
     //    localStorage.setItem("Price", price);
     //    localStorage.setItem("PackTypeID", PackTypeID);
     //    localStorage.setItem("packid", packid);
-        //$$("#Price").html(price);
-        //        $$("#Discount").html(Discount);
-        //        $$("#Tax").html(Tax);
-        //        $$("#Gross").html(localStorage.getItem("Price"));
+    //$$("#Price").html(price);
+    //        $$("#Discount").html(Discount);
+    //        $$("#Tax").html(Tax);
+    //        $$("#Gross").html(localStorage.getItem("Price"));
     //});
     // mainView.hideToolbar();
     console.log(localStorage.getItem("PackTypeID"));
@@ -2346,7 +2021,7 @@ myApp.onPageInit('ItemDE', function (page) {
         var QUN = $$("#Qun").val();
 
 
-         QUN2 = parseInt(QUN);
+        QUN2 = parseInt(QUN);
         if (QUN2 == 0) {
             QUN2 = 1
         }
@@ -2476,7 +2151,7 @@ myApp.onPageInit('ItemDE', function (page) {
 //@prog start ss 
 myApp.onPageInit('Allitemdet', function (page) {
     //@prog start get item list using qury 
-    
+
 
     getItemDetailsFromBrandList(vendorSelected, itemSelected);
     jQuery(document).ready(function () {
@@ -2484,7 +2159,7 @@ myApp.onPageInit('Allitemdet', function (page) {
         x.removeClass('inputs-list');
     });
 
-    
+
 
 
     return;
@@ -2533,11 +2208,11 @@ myApp.onPageInit('Allitemdet', function (page) {
 
 
 
-   // $$("#ItemDetails").html(localStorage.getItem('ItemDescriptionV'));
+    // $$("#ItemDetails").html(localStorage.getItem('ItemDescriptionV'));
 
     //$$("#imgdet").attr("src"
 
-    
+
     //myShit
     jQuery(document).ready(function () {
         var x = $$("#mylist");
@@ -2622,7 +2297,7 @@ myApp.onPageInit('Allitemdet', function (page) {
 
     $$("#OrderButtonV").on("click", function () {
         debugger;
-       
+
     });
 
 
@@ -2905,10 +2580,10 @@ myApp.onPageInit('allitem', function (page) {
 
 
     $$("#FinsihReturn").hide();
-   // AppendItemsVendore(vendorearr[guesswhat][0][bundre]);
+    // AppendItemsVendore(vendorearr[guesswhat][0][bundre]);
     $$("#backbutt").on('click', function () {
         mainView.router.loadPage('Brands.html');
-        
+
         //$$(".tab-link-highlight").css('transform', 'translate3d(100%, 0px, 0px)');
         //if (localStorage.getItem('lang') != 1) {
         //    $$(".tab-link-highlight").css('transform', 'translate3d(-100%, 0px, 0px)');
@@ -2995,12 +2670,12 @@ myApp.onPageInit('Setting', function (page) {
     }
 
     $$("#backsetting").on('click', function () {
-        mainView.router.loadPage('home.html');
+        mainView.router.loadPage({ url: "home.html", force: true });
         AppendItems();
     });
 
     $$("#about").on('click', function () {
-        mainView.router.loadPage('info.html');
+        mainView.router.loadPage({ url: "info.html", force: true });
     });
 
 
@@ -3663,7 +3338,7 @@ myApp.onPageInit('Qutaion', function (page) {
         $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -3700,7 +3375,7 @@ myApp.onPageInit('Qutaion', function (page) {
                 $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -3801,7 +3476,7 @@ myApp.onPageInit('Qutaion', function (page) {
                 $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -3886,7 +3561,7 @@ myApp.onPageInit('Qutaion', function (page) {
                         $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -4181,7 +3856,7 @@ myApp.onPageInit('Qutaion', function (page) {
                     $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -4205,7 +3880,7 @@ myApp.onPageInit('Qutaion', function (page) {
                 $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -4404,7 +4079,7 @@ myApp.onPageInit('pro', function (page) {
         vendname = getnamevendore(guessqout);
         //qut45 += '<li class="item-divider">' + vendname + ' ' + descrption_string + ' (' + (i + 1) + ')</li><li><fieldset id="group' + i + '"><ul style="margin-left:0%" class="bendlist" id=' + pro[i].PromotionID + '></ul></fieldset></li>';
         qut45 += `<div class="card">
-                        <div class="card-header">`+ vendname + ' ' + descrption_string + ' (' + (i + 1) +`) <span class="coupon-end"> <i class="icon myicon-eoa-coupon"></i> </span></div>
+                        <div class="card-header">`+ vendname + ' ' + descrption_string + ' (' + (i + 1) + `) <span class="coupon-end"> <i class="icon myicon-eoa-coupon"></i> </span></div>
                            <div class="card-content">
                             <div class="list-block media-list">
  
@@ -4623,7 +4298,7 @@ myApp.onPageInit('pro', function (page) {
             } else {
                 string = 'كمية'
             }
-            orderlistwithpromotion += '<li  class="item-conte1nt test" id="' + proorder.ItemPacks[i].ItemID + '"><a href="#" style="color:black" class="item1-link item-content"><div class="item-media"><img src="' + getimage2 + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + proorder.ItemPacks[i].ItemDescription + '</div><div class="item-after">' + proorder.ItemPacks[i].Price + '</div></div><div class="item-subtitle">' + string + ':  ' + proorder.ItemPacks[i].RequiredQuanity +  '</div></div></a></li>';
+            orderlistwithpromotion += '<li  class="item-conte1nt test" id="' + proorder.ItemPacks[i].ItemID + '"><a href="#" style="color:black" class="item1-link item-content"><div class="item-media"><img src="' + getimage2 + '" width="40"></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + proorder.ItemPacks[i].ItemDescription + '</div><div class="item-after">' + proorder.ItemPacks[i].Price + '</div></div><div class="item-subtitle">' + string + ':  ' + proorder.ItemPacks[i].RequiredQuanity + '</div></div></a></li>';
 
             proitemgross = proorder.ItemPacks[i].Price * proorder.ItemPacks[i].RequiredQuanity;
             if (proorder.ItemPacks[i].DiscountTypeID == 2) {
@@ -4752,7 +4427,7 @@ myApp.onPageInit('pro', function (page) {
                         "_id": id,
                         "History": data
                     }
-                    var urlAjax = EOA_URL+"api/History";
+                    var urlAjax = EOA_URL + "api/History";
                     $$.ajax({
                         method: "post",
                         url: urlAjax,
@@ -5144,9 +4819,9 @@ function calcluteprice(Price, Discount, Tax, Quntity, DiscountType) {
 }
 
 function PostRegstration(postData) {
-
+    console.log(postData);
     myApp.showPreloader(loading);
-    var urlAjax = EOA_URL+"api/reg";
+    var urlAjax = EOA_URL + "api/reg";
     $$.ajax({
         method: "post",
         url: urlAjax,
@@ -5180,7 +4855,7 @@ function PostRegstration(postData) {
             } else {
                 string = ' هناك خطاء خاول مرة اخرى'
             }
-
+            myApp.hidePreloader();
             myApp.alert(string, "EOA");
         }
     });
