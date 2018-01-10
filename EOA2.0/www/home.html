@@ -2,16 +2,28 @@
 {{#if @global.ios}}
 <div class="navbar">
     <div class="navbar-inner">
-        <div class="left">
-            <div class="left"><a href="#" class="link icon-only open-panel"><i class="myicon-eoa-menu"></i></a></div>
-        </div>
-        <div class="center sliding">Home</div>
-        <div class="right">
+        <div class="left normalNav"><a href="#" class="link icon-only open-panel"><i class="myicon-eoa-menu"></i></a></div>
+        <div class="center sliding normalNav">Home</div>
+        <div class="right normalNav" onclick="searchItems()">
             <a href="#" class="link icon-only"><i class="icon myicon-eoa-search"></i></a>
         </div>
-        
+
+
+        <div class="left searchNav" style="display:none" onclick="closeSearch()"><a href="#" class="link icon-only"><i class="icon myicon-eoa-back"></i></a></div>
+        <form data-search-list=".list-block-search" data-search-in=".searh-name"
+              class="searchbar searchbar-init searchNav" style="display:none">
+            <div class="searchbar-input">
+                <input type="search" placeholder="Search">
+                <a href="#" class="searchbar-clear"></a>
+            </div>
+            <a href="#" class="searchbar-cancel">Cancel</a>
+        </form>
+
+
+
+
         <div class="subnavbar">
-            <div class="buttons-row">
+            <div class="buttons-row normalNav">
 
                 <a id="t1" href="#tab1" class="tab-link  button"><span>offers</span></a>
 
@@ -19,9 +31,14 @@
 
                 <a id="t3" href="#tab2" class="tab-link active button"><span>Items</span></a>
             </div>
-
+            <div class="searchNav label-ios-search-note" style="display:none">
+                <p style="text-align: center; color:rgba(31, 183, 125, 0.34);">Type product name or vendor name </p>
+            </div>
 
         </div>
+
+
+
     </div>
 </div>
 <div data-page="home" class="page home-page with-subnavbar">
@@ -74,68 +91,74 @@
     <div class="searchbar-overlay searchbar-found"></div>
     <div class="page-content  infinite-scroll  hide-toolbar-on-scroll padding-top" data-distance="400">
         <div class="content-block searchbar-not-found">
-            <div class="content-block-inner">No element found...</div>
+            <div style="text-align:center">
+                <img src="images/search-results.svg" width="120" height="120" />
+                <p>No element found...</p>
+            </div>
         </div>
-        <div class="cont1ent-block" style="margin-top:0px">
-           
-            <div style="margin-top:-20px" class="tabs">
-                <!-- Tab 1 -->
-                <div id="tab1" class="tab bundle andbundle">
-                    <div id="bundon">
-                        <div style="padding-top: 1%;" id="bundel"></div>
-                        <div style="padding-top: 7%;">
-                           
-                                <div id='offers109' >
+          
+            <div class="cont1ent-block" style="margin-top:0px">
 
+                <div style="margin-top:-20px" class="tabs">
+                    <!-- Tab 1 -->
+                    <div id="tab1" class="tab bundle andbundle">
+                        <div id="bundon">
+                            <div style="padding-top: 1%;" id="bundel"></div>
+                            <div style="padding-top: 7%;">
 
-                                </div>
-                            
-                        </div>
+                                <div id='offers109'>
 
-                    </div>
-
-
-
-                    <div style="display:none; margin-top:60%; margin-left:20%; margin-right:20%" id="bundof" class="content-block">
-                        <div class="row">
-                            <div class="col-100">{{ThereisnoBundels}}</div>
-
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-                <div class="popover popover-about">
-                    1-popover first promtion ghdeer 1.5 litter
-                    1-popover first promtion ghdeer 1.5 litter
-                    1-popover first promtion ghdeer 1.5 litter
-                </div>
-                <!-- Tab 2 -->
-                <div id="tab2" class="tab item active">
-                    <div class="cont1ent-block-inner">
-                        <div id="a" class="list-block media-list">
-                            <ul class="media-list list-block-search searchbar-found" style="width:100% !important" id="itemlist"></ul> 
-                        </div>
-                        <!-- Preloader -->
-                        <div class="infinite-scroll-preloader">
-                            <div class="preloader"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tab 3 -->
-                <div id="tab3" class="tab vendore">
-                    <div class="content-bloc1k">
-                        <div class="content-blo1ck-inner">
-
-                            <div class="list-block">
-                                <div id="vendores">
 
                                 </div>
 
                             </div>
+
                         </div>
+
+
+
+                        <div style="display:none; margin-top:60%; margin-left:20%; margin-right:20%" id="bundof" class="content-block">
+                            <div class="row">
+                                <div class="col-100">{{ThereisnoBundels}}</div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="popover popover-about">
+                        1-popover first promtion ghdeer 1.5 litter
+                        1-popover first promtion ghdeer 1.5 litter
+                        1-popover first promtion ghdeer 1.5 litter
+                    </div>
+                    <!-- Tab 2 -->
+                    <div id="tab2" class="tab item active">
+                        <div class="cont1ent-block-inner">
+                            <div id="a" class="list-block media-list">
+                                <ul class="media-list list-block-search searchbar-found" style="width:100% !important" id="itemlist"></ul>
+                            </div>
+                            <!-- Preloader -->
+                            <div class="infinite-scroll-preloader">
+                                <div class="preloader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tab 3 -->
+                    <div id="tab3" class="tab vendore">
+                        <div class="content-bloc1k">
+                            <div class="content-blo1ck-inner">
+
+                                <div class="list-block">
+                                    <div id="vendores">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -143,6 +166,4 @@
             </div>
 
         </div>
-
-    </div>
 </div>

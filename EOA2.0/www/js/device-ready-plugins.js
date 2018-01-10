@@ -22,6 +22,7 @@ document.addEventListener("app.Ready", onAppReady, false);
 
 //To open a database:
 var db = null;
+var runiOS = false;
 /*********initialize App********/
 var app = {
     initialize: function () {
@@ -39,13 +40,26 @@ var app = {
         //db= window.openDatabase('my', "0.1", "My list", 200000);
         //console.log('DB: WebSQL');
         //createTabels() 
-        db = window.sqlitePlugin.openDatabase({ name: 'Data.db', location: 'default' }, function (db) {
-            createTabels() 
+        //if (runiOS) {
+        //    db = window.sqlitePlugin.openDatabase({ name: 'Data.db', location: 'default' }, function (db) {
+        //        createTabels()
 
-        }, function (error) {
-            console.log('Open database ERROR: ' + JSON.stringify(error));
-            });
-        CreateMediaFolder();
+        //    }, function (error) {
+        //        console.log('Open database ERROR: ' + JSON.stringify(error));
+        //    });
+        //    CreateMediaFolder();
+        //}
+        //else {
+            //db = window.openDatabase('my', "0.1", "Data", 200000);
+            //console.log('DB: WebSQL');
+        //}
+        db = window.sqlitePlugin.openDatabase({ name: 'Data.db', location: 'default' }, function (db) {
+              createTabels()
+
+           }, function (error) {
+                console.log('Open database ERROR: ' + JSON.stringify(error));
+           });
+            CreateMediaFolder();
      
     },
 

@@ -752,6 +752,7 @@ function backToHome() {
 }
 
 function searchItems() {
+    $$('.preloader').hide();
     $$('.toolbar-bottom').hide();
     lastIndex = $$('#itemlist li').length;
     offset = $$('#itemlist li').length;
@@ -772,6 +773,7 @@ function searchItems() {
 
 }
 function closeSearch() {
+    $$('.preloader').show();
     $$('.toolbar-bottom').show();
     $$('.normalNav').show();
     $$('.searchNav').hide();

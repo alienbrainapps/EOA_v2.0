@@ -442,6 +442,7 @@ function GetOffers(url, custumerID, outletID, lang, input) {
 }
 
 function addToOrder() {
+   
     $$('.toolbar-bottom').show();
     var itemOrderToSend = objclating;
 

@@ -69,8 +69,8 @@ i {
   color: #1eb57b;
 }
 .myicon-eoa-home-not-active:before {
-  content: "\e90b";
-  color: #474748;
+    content: "\e90b";
+    color: #b8b8b8;
 }
 .myicon-eoa-language:before {
   content: "\e90c";
@@ -87,9 +87,17 @@ i {
   content: "\e90f";
   color: #b8b8b8;
 }
+.myicon-eoa-my-order-active:before {
+    content: "\e90f";
+    color: #1fb67b;
+}
 .myicon-eoa-order-history:before {
   content: "\e910";
   color: #b8b8b8;
+}
+.myicon-eoa-order-history-active:before {
+    content: "\e910";
+    color: #1fb67b;
 }
 .myicon-eoa-package:before {
   content: "\e911";

@@ -30,7 +30,7 @@ myApp.onPageInit('join', function (page) {
 });
 // @prog cat testo
 myApp.onPageInit('catg', function (page) {
-
+    //$$('.toolbar-bottom').hide();
     $$('.back').on('click', function () {
         $$('.toolbar-bottom').show();
         mainView.router.load('home.html');
@@ -170,7 +170,7 @@ myApp.onPageInit('catg', function (page) {
         $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -235,7 +235,7 @@ myApp.onPageInit('catg', function (page) {
                             $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -354,7 +354,7 @@ myApp.onPageInit('catg', function (page) {
     //}
 
 
-    $$('.toolbar-bottom').hide();
+   
     $$("#edit").on("click", function () {
 
         $$(".li").toggleClass('non minus');
@@ -518,7 +518,7 @@ myApp.onPageInit('catg', function (page) {
                     $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -540,7 +540,7 @@ myApp.onPageInit('catg', function (page) {
                         $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -567,7 +567,7 @@ myApp.onPageInit('catg', function (page) {
                 $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -634,7 +634,7 @@ myApp.onPageInit('catg', function (page) {
                     $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -812,7 +812,7 @@ myApp.onPageInit('Returneditemsfinish', function (page) {
                 $$("#orderinfo").hide(); $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -3338,7 +3338,7 @@ myApp.onPageInit('Qutaion', function (page) {
         $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -3375,7 +3375,7 @@ myApp.onPageInit('Qutaion', function (page) {
                 $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -3476,7 +3476,7 @@ myApp.onPageInit('Qutaion', function (page) {
                 $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -3561,7 +3561,7 @@ myApp.onPageInit('Qutaion', function (page) {
                         $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                        <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -3856,7 +3856,7 @@ myApp.onPageInit('Qutaion', function (page) {
                     $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>
@@ -3880,7 +3880,7 @@ myApp.onPageInit('Qutaion', function (page) {
                 $$("#noorderinfo").html(`
                                 <div class="row">
                                     <div class="col-100">
-                                        <i class="myicon-eoa-empty-my-order"></i><br />
+                                         <img src="images/eoa-empty-my-order.svg" width="120" height="120"  />
                                         <p>You dont have any orders </p>
                                         <p onclick ="backToHome()"; class="buttons-row">
                                             <a s href="#" class="button button-round my_green">Start Now</a>

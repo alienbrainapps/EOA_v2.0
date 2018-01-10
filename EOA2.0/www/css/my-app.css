@@ -872,3 +872,9 @@ div#offers109 {
     .searchbar .searchbar-clear {
     right : -7px !important;
     }
+    .searchbar.searchbar-active .searchbar-cancel {
+        margin-left: 8px;
+        opacity: 1;
+        pointer-events: auto;
+        color: #21b77c;
+    }
