@@ -136,7 +136,7 @@ label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio
 
 .navbar .center {
     color: #222 !important;
-    text-transform: uppercase !important;
+    /*text-transform: uppercase !important;*/
 }
 
 .list-block ul:before,
@@ -290,6 +290,7 @@ label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio
 .page-Allitemdet .list-block .item-divider {
     background-color: #fff;
     border-bottom: 1px solid rgba(0,0,0,0.12) !important;
+    min-height: 95px;
 }
 
 input#QunV {
@@ -323,7 +324,7 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
     border-radius: 100px;
     padding-bottom: 2px;
     padding-top: 2px;
-    text-transform: uppercase;
+    text-transform: capitalize !important;
     border-bottom: 0 !important;
 }
 
@@ -340,7 +341,7 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 .tabbar a.tab-link {
     color: #1fb67b !important;
     border: 0 !important;
-    text-transform: uppercase;
+    text-transform: capitalize !important;
 }
 
 .navbar .toolbar-inner {
@@ -428,6 +429,7 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 
 ul.itemsOrderList {
     border-top: solid 1px #eaeaea !important;
+    padding-left: 0 !important;
 }
 
 #OrderButtonV .my_green {
@@ -513,11 +515,13 @@ page-promotions .list-block.media-list .prices .item-link .item-inner,
 
 .page-promotions a.item-link.item-content.prom_net_total_li,
 .page-catg a.item-link.item-content.net_total_li {
-    border-top: 1px solid #d8d8d8;
+    /*border-top: 1px solid #d8d8d8;*/
     color: #1fb67b !important;
     font-weight: 600;
-    margin: 12px 0px;
+    /*margin: 12px 0px;*/
     padding-top: 10px;
+    padding-left: 25% !important;
+    background-color: #fbfbfb;
 }
 
 .page-Allitemdet i.icon {
@@ -878,3 +882,17 @@ div#offers109 {
         pointer-events: auto;
         color: #21b77c;
     }
+/*span.item-name {
+    position: absolute;
+    overflow: initial;
+    white-space: pre-wrap;
+}*/
+.page-catg .list-block .net_total_li .item-inner:after {
+    background-color: transparent !important;
+}
+.itemsOrderList .list-block .item-subtitle {
+font-size : 12px;
+}
+.order-history-page .page-content {
+    padding : 0 !important;
+} 

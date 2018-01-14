@@ -9,7 +9,7 @@
         </div>
 
 
-        <div class="left searchNav" style="display:none" onclick="closeSearch()"><a href="#" class="link icon-only"><i class="icon myicon-eoa-back"></i></a></div>
+        <div class="left searchNav searchbar-clear" style="display:none" onclick="closeSearch()" ><a href="#" class="link icon-only"><i class="icon myicon-eoa-back"></i></a></div>
         <form data-search-list=".list-block-search" data-search-in=".searh-name"
               class="searchbar searchbar-init searchNav" style="display:none">
             <div class="searchbar-input">
@@ -29,7 +29,7 @@
 
                 <a id="t2" href="#tab3" class="tab-link  button"><span>Vendors</span></a>
 
-                <a id="t3" href="#tab2" class="tab-link active button"><span>Items</span></a>
+                <a id="t3" href="#tab2" class="tab-link active button"><span>All items</span></a>
             </div>
             <div class="searchNav label-ios-search-note" style="display:none">
                 <p style="text-align: center; color:rgba(31, 183, 125, 0.34);">Type product name or vendor name </p>
@@ -47,7 +47,7 @@
     <div class="navbar normalNav">
         <div class="navbar-inner">
             <div class="left"><a href="#" class="link icon-only open-panel"><i class="myicon-eoa-menu"></i></a></div>
-            <div class="center sliding">Home</div>
+            <div class="center sliding">EOA</div>
             <div class="right" onclick="searchItems()">
                 <a href="#" class="link icon-only"><i class="icon myicon-eoa-search"></i></a>
             </div>
@@ -59,13 +59,13 @@
 
                 <a id="t2" href="#tab3" class="tab-link  button"><span>Vendors</span></a>
 
-                <a id="t3" href="#tab2" class="tab-link active button"><span>Items</span></a>
+                <a id="t3" href="#tab2" class="tab-link active button"><span>All items</span></a>
             </div>
         </div>
     </div>
     <div class="navbar searchNav" style="display:none">
         <div class="navbar-inner">
-            <div class="left" onclick="closeSearch()"><a href="#" class="link icon-only"><i class="icon myicon-eoa-back"></i></a></div>
+            <div class="left searchbar-clear searchbar-cancel" onclick="closeSearch()"><a href="#" class="link icon-only "><i class="icon myicon-eoa-back"></i></a></div>
             <form data-search-list=".list-block-search" data-search-in=".searh-name"
                   class="searchbar searchbar-init">
                 <div class="searchbar-input">

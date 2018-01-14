@@ -50,9 +50,9 @@ function getItemByQuery() {
 								<img class="Strechimage" width="70" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + (resultSet.rows.item(r).URL).replace(`/api`, ``) + `/itemsimages/` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
 							</div>
 							<div class="card_list_content">
-								<div class="item-title-row searh-name">`+ resultSet.rows.item(r).ItemDescription + `</div>
-								<div class="item-text searh-name">`+ resultSet.rows.item(r).UOM + `</div>
-								<div class="item-title-row searh-name">`+ resultSet.rows.item(r).name + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
+								<div class="item-title-row searh-name bolder_text">`+ resultSet.rows.item(r).ItemDescription + `</div>
+								<div class="item-text searh-name" style="font-size:12px">`+ resultSet.rows.item(r).UOM + `</div>
+								<div class="item-title-row searh-name">`+ resultSet.rows.item(r).name + `<span class="price_in_card bolder_text">` + resultSet.rows.item(r).Price + `</span></div>
 							</div>
 						</div>
 				</div>
@@ -453,7 +453,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
     console.log(itemId, venID);
 
     db.transaction(function (tx) {
-        var query = `select items.*,vendor.name from items inner join vendor on items.VendorID=vendor.input where  vendorid='` + venID + `' and itemid=` + itemId + ` order by IsDefaultPack,piecesinpack desc`;
+        var query = `select items.*,vendor.name, vendor.url from items inner join vendor on items.VendorID=vendor.input where  vendorid='` + venID + `' and itemid=` + itemId + ` order by IsDefaultPack,piecesinpack desc`;
         tx.executeSql(query, [], function (tx, resultSet) {
 
             var EL_UOM = "";
@@ -481,9 +481,22 @@ function getItemDetailsFromBrandList(venID, itemId) {
                       </label >
                     </li >`;
 
-
+                var imageItem = (resultSet.rows.item(r).URL).replace(`/api`, ``) + `/itemsimages/` + resultSet.rows.item(r).ItemImageName;
                 itemDetails_EL = `
-                        <li class="item-divider bolder_text"><i class="myicon-eoa-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription + `</li>
+
+
+<li>
+                                <div class="item-content">
+                                    <div class="item-media"> <img class="Strechimage" width="70" src="` + imageItem + `" onerror="(this.src='images/no-image.svg')" width="80" height="70"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title item-name ">`+ resultSet.rows.item(r).ItemDescription +`</div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+                        
                             <li>
                                 <div class="item-content">
                                     <div class="item-media"><i class="myicon-eoa-vendor"></i> </div>
@@ -497,6 +510,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                             </li>
                             <li>
                                 <div class="item-content">
+
                                     <div class="item-media"><i class="myicon-eoa-quantity"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Quantity</div>
@@ -656,11 +670,10 @@ function popUpOfferDet(offerId) {
                                 <div class="card">
                                         <div style="text-align:center">
                                         <i class="icon myicon-eoa-coupon coupon-offers-card"></i>
-                                         <p style="white-space: nowrap;
-                                                    overflow: hidden;
+                                         <p style=" overflow: hidden;
                                                     text-overflow: ellipsis;
                                                     padding: 0 9px;">
-                                                   <span style="font-size: 20px;font-weight:400;">`+ promotionDetails.name + `</span>  ` + promotionDetails.Description + `</p>
+                                                   <span>`+ promotionDetails.name + `</span>  ` + promotionDetails.Description + `</p>
                                         </div>
                                         <div class="card-content"  id="card-`+ promotionDetails.PromotionID + `">
                                         </div>
@@ -777,4 +790,11 @@ function closeSearch() {
     $$('.toolbar-bottom').show();
     $$('.normalNav').show();
     $$('.searchNav').hide();
+}
+function getHistoryByQuery(orderByParam) {
+
+
+
+
+
 }

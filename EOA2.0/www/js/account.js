@@ -1,6 +1,6 @@
 ﻿//mahmoud saleh
 
-
+var orderHis_IDs
 function ServerLogin(username, Pass) {
     var jas = {
         "email": username,
@@ -64,7 +64,7 @@ function Postlogin(postData) {
 
                         var array = data.regstrationcode;
                         var userRegstrationCode = [];
-
+                        orderHis_IDs = data.Ordershistory;
                         //@prog delet recored on vendorCustumer table if exsist
 
                         db.transaction(function (tx) {
@@ -92,8 +92,8 @@ function Postlogin(postData) {
                                     customerids["A" + vendorid] = [];
                                     customerids["A" + vendorid].push(customerid);
                                     customerids["A" + vendorid].push(outletid);
-                                    tx.executeSql('INSERT INTO vendorCustumer VALUES (?,?,?)', [customerid, outletid, vendorid]);
-                                    console.log('Populated database VendorCusomer OK' + customerid, outletid, vendorid);
+                                    tx.executeSql('INSERT INTO vendorCustumer VALUES (?,?,?,?)', [customerid, outletid, vendorid, orderHis_IDs]);
+                                    console.log('Populated database VendorCusomer OK' + customerid, outletid, vendorid, orderHis_IDs);
                                 }
 
                             }, function (error) {
