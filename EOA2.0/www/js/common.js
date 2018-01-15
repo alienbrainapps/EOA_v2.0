@@ -1015,6 +1015,9 @@ myApp.onPageInit('orderhistory', function (page) {
     getHistoryByQuery('oh.orderdate');
     $$("#history").remove();
     $$("#history").hide();
+    $$('#byDate').addClass('active');
+    $$('#byStatus').removeClass('active');
+    $$('#byVendor').removeClass('active');
     $$("#homeicon").removeClass('myicon-eoa-home-active');
     $$("#backhistory").on('click', function () {
 

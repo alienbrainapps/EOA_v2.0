@@ -895,4 +895,57 @@ font-size : 12px;
 }
 /*.order-history-page .page-content {
     padding : 0 !important;
-}*/ 
+}*/
+.reorder-btn {
+    text-align: -webkit-center;
+    display: block;
+    width: 100%;
+}
+.time-dev {
+    font-size: 12px;
+    text-align: -webkit-right;
+}
+.label-status {
+    background-color: #ababab;
+    text-align: -webkit-center;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 13px;
+}
+.name-dev {
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+}
+.reorder-btn.card-footer {
+    text-align: center;
+    display: block;
+    line-height: 3;
+    text-transform: uppercase;
+}
+.badge-orange {
+    border-radius: 100% !important;
+    width: 20px !important;
+    height: 20px !important;
+    padding: 3px 3px !important;
+    font-size: 11px;
+    background-color: #fc9c4d !important;
+}
+.row.status2 {
+    border-bottom: 1px solid #ef3e57;
+}
+.status2.label-status {
+    border-bottom: 0;
+    background-color: #ef3e57;
+}
+.row.status1 {
+    border-bottom: 1px solid #1fb67b;
+}
+
+.status1.label-status {
+    border-bottom: 0;
+    background-color: #1fb67b;
+}
+.groupByHeader {
+text-align: center !important;
+}
