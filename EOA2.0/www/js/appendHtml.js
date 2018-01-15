@@ -823,7 +823,9 @@ function getHistoryByQuery(orderByParam) {
 
 function DrowHistory(data, orderby) {
     el_his = "";
+    var tempIdSelector= ""
     if (orderby == 'oh.orderdate') {
+        $$('#byDateComponent').html('');
         for (var b = 0; b < data.length; b++) {
             if (data[b].Status == 1) {
                 var status_label = "recieved"
@@ -838,7 +840,7 @@ function DrowHistory(data, orderby) {
 
                 } else {
                     el_his = `
-                <div class="content-block-title groupByHeader">`+ data[b].OrderDate.substring(0, 10) +`</div>
+                <div class="content-block-title groupByHeader"><span>`+ data[b].OrderDate.substring(0, 10) +`</span></div>
                     <div>
                 <div class="card">
                         <div class="card-header row status`+ data[b].Status + `">
@@ -864,15 +866,14 @@ function DrowHistory(data, orderby) {
                     </div>
 
                 `;
-                    $$('#byDateComponent').append(el_his);
-
+                    $$('#byDateComponent').append(el_his);  
 
                 }
 
             }
             else if (b==0){
                 el_his= `
-                <div class="content-block-title groupByHeader">`+data[b].OrderDate.substring(0,10)+`</div>
+                <div class="content-block-title groupByHeader"><span>`+data[b].OrderDate.substring(0,10)+`</span></div>
                 <div class="card">
                         <div class="card-header row status`+ data[b].Status + `">
                             <div class="col-30 label-status status`+ data[b].Status + `">` + status_label + `</div>
@@ -898,10 +899,22 @@ function DrowHistory(data, orderby) {
 
                 `;
                 $$('#byDateComponent').append(el_his);
+                //$$('#byDateComponent').append(el_his);
+                // tempIdSelector = $$(`#itemDate` + data[b].OrderID.replace(/ /g, ''));
             }
-                
+            
+            tempIdSelector = $$(`#itemDate` + data[b].OrderID.replace(/ /g, ''));
+            tempIdSelector.append(`
+                                        <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">`+ data[b].ItemDescription + `</div>
+                                                <div class="item-after"><span class="badge badge-orange">`+ data[b].ItemQun + `</span></div>
+                                            </div>
+                                        </li>
+                                    `);     
             
         }
+
         //$$('#byDateComponent').html(el_his);
         //appendLiItemsForOrder(data)
         $$('#byDateComponent').addClass('active');

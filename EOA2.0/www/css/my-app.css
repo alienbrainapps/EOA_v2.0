@@ -949,3 +949,14 @@ font-size : 12px;
 .groupByHeader {
 text-align: center !important;
 }
+    .groupByHeader span {
+        border: solid #e4e4e4 2px;
+        padding: 7px;
+        border-radius: 10px;
+    }
+.content-block-title.groupByHeader {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    min-height: 23px;
+}
