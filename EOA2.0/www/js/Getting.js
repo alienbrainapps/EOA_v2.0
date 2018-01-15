@@ -829,7 +829,7 @@ function GetOrderHistory(stringop, counturl) {
         $$("#on").hide();
         $$("#off").show();
     }
-    console.log(vendoreinfo);
+        console.log(vendoreinfo);
     if (counturl >= vendoreinfo.length) {
         return;
         //var jasond = JSON.parse(Histroydata.replace("][", ","));
@@ -890,8 +890,8 @@ function GetOrderHistory(stringop, counturl) {
 
 
 
-        return;
-    }
+    //return;
+    
     //count = 0;
     //count2 = 0;
 
@@ -902,26 +902,20 @@ function GetOrderHistory(stringop, counturl) {
     var i2 = localStorage.getItem("OUT_id" + idbund);
     i1 = parseInt(i1);
     i2 = parseInt(i2);
-
-    //select custmer Id and outlet Id 
-
-
-
-
     if (typeof customerids["A" + vendoreinfo[counturl].input] == "undefined") {
 
         counturl += 1;
         GetOrderHistory(stringop, counturl);
         return;
 
-    } else {
+    }
+    else {
         var CU_id = customerids["A" + vendoreinfo[counturl].input][0];
         var OUT_id = customerids["A" + vendoreinfo[counturl].input][1];
     }
     //testo get order history info 
     var string = localStorage.getItem('stat');
-    ////if cu == undefind or out return
-    var obj = {
+        var obj = {
         "CustomerID": CU_id,
         "OutletID": OUT_id,
         "StatusesFilter": "",
@@ -932,7 +926,8 @@ function GetOrderHistory(stringop, counturl) {
     if (stringop == null || stringop == "") {
         $$("#on").hide();
         $$("#off").show();
-    } else {
+    }
+    else {
         $$("#on").show();
         $$("#off").hide();
         

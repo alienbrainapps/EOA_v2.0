@@ -1012,7 +1012,7 @@ myApp.onPageInit('Brand', function (page) {
 //shit of history
 myApp.onPageInit('orderhistory', function (page) {
     getHist();
-
+    getHistoryByQuery('oh.orderdate');
     $$("#history").remove();
     $$("#history").hide();
     $$("#homeicon").removeClass('myicon-eoa-home-active');

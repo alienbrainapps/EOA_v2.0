@@ -17,7 +17,8 @@ var clikedFrom = "";
 var thePakageIS = "";
 // Last loaded index
 var lastIndex = $$('#itemlist li').length;
-
+var HistoryOrdereData = [];
+var el_his = "";
 
 
 
@@ -793,8 +794,92 @@ function closeSearch() {
 }
 function getHistoryByQuery(orderByParam) {
 
+    db.transaction(function (tx) {
+
+        var query = `select i.*,oh.OrderID,oh.OrderDate,oh.itemQun,oh.Status,v.name from items i inner join orderHistory oh on trim(i.packid)=trim(oh.itemid) and trim(i.vendorid)=trim(oh.vendorid)
+                                    inner join vendor v on trim(i.vendorid)=trim(v.input)
+                                    order by `+ orderByParam + ` desc , OrderID`;
+        console.log(query);
+        tx.executeSql(query, [], function (tx, resultSet) {
+            for (var r = 0; r < resultSet.rows.length; r++) {
+                HistoryOrdereData.push(resultSet.rows.item(r));
+                console.log(resultSet.rows.item(r));
+            }
+            console.log(JSON.stringify(HistoryOrdereData));
+        },
+            function (tx, error) {
+                console.log('SELECT error: ' + error.message);
+            });
+    }, function (error) {
+        console.log('transaction error: ' + error.message);
+    }, function () {
+        console.log('transaction ok');
+        DrowHistory(HistoryOrdereData, orderByParam);
+    });
 
 
 
+}
+
+function DrowHistory(data, orderby) {
+    el_his = "";
+    if (orderby == 'oh.orderdate') {
+        for (var b = 0; b < data.length; b++) {
+            el_his += `<p>` + data[b].VendorName + `</p>
+                        <br>
+                        <p>`+ data[b].OrderID + `</p>`;
+
+        }
+        $$('#byDateComponent').append(el_his);
+        $$('#byDate').addClass('active');
+        $$('#byStatus').removeClass('active');
+        $$('#byVendor').removeClass('active');
+    } else if (orderby == 'oh.Status') {
+        for (var b = 0; b < data.length; b++) {
+            el_his += `<p>` + data[b].VendorName + `</p>
+                        <br>
+                        <p>`+ data[b].OrderID + `</p>`;
+
+        }
+        $$('#byStatusComponent').append(el_his);
+        $$('#byDate').removeClass('active');
+        $$('#byStatus').addClass('active');
+        $$('#byVendor').removeClass('active');
+    } else if (orderby == 'v.name') {
+        for (var b = 0; b < data.length; b++) {
+            el_his += `<p>` + data[b].VendorName + `</p>
+                        <br>
+                        <p>`+ data[b].OrderID + `</p>`;
+
+        }
+        $$('#byVendorComponent').append(el_his);
+        $$('#byDate').removeClass('active');
+        $$('#byStatus').removeClass('active');
+        $$('#byVendor').addClass('active');
+    }
+
+    
+
+
+    $$('#byStatus').on('click', function () {
+        getHistoryByQuery('oh.Status');
+       // $$('#byStatusComponent').append('hi st');
+    });
+
+
+    $$('#byVendor').on('click', function () {
+        getHistoryByQuery('v.name');
+       // $$('#byVendorComponent').append('hi vemdore');
+    });
+    $$('#byDate').on('click', function () {
+
+        getHistoryByQuery('oh.orderdate');
+        
+       // $$('#byDateComponent').append('hi date');
+    });
+
+    
+
+   
 
 }
