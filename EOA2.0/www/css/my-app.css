@@ -925,11 +925,12 @@ font-size : 12px;
 }
 .badge-orange {
     border-radius: 100% !important;
-    width: 20px !important;
-    height: 20px !important;
-    padding: 3px 3px !important;
+    width: 25px !important;
+    height: 25px !important;
+    padding: 6px 3px !important;
     font-size: 11px;
     background-color: #fc9c4d !important;
+    text-align: center !important;
 }
 .row.status2 {
     border-bottom: 1px solid #ef3e57;
@@ -959,4 +960,7 @@ text-align: center !important;
     padding-top: 20px;
     padding-bottom: 5px;
     min-height: 23px;
+}
+.order-history-page .list-block .item-inner {
+    padding-right: 0px !important;
 }

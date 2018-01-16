@@ -432,6 +432,9 @@ myApp.onPageInit('catg', function (page) {
                 count = vendoreinfo[i].input;
             }
         }
+        ///testo faqa3 hoon
+        console.log(customerids);
+        
         var CU_id = customerids["A" + count][0];
         var OUT_id = customerids["A" + count][1];
 
@@ -474,10 +477,13 @@ myApp.onPageInit('catg', function (page) {
             }
         }
         console.log(JSON.stringify(OrderJsonObject));
-        $$.post("" + url + "/QuotationValidation",
-            OrderJsonObject,
-            function (data, status) {
-
+        //replace post with ajax call 
+        $$.ajax({
+            method: "post",
+            url: "" + url + "/QuotationValidation",
+            data: OrderJsonObject,
+            timeout: 5000,
+            success: function (data, status, xhr) {
                 if (data == "null") {
                     myApp.hidePreloader(loading);
                     myApp.alert('Network error please try again');
@@ -497,7 +503,40 @@ myApp.onPageInit('catg', function (page) {
                 localStorage.setItem('Qut', data);
 
                 mainView.router.loadPage({ url: 'promo.html', force: true });
-            });
+            },
+            error: function (data, textStatus, xhr) {
+                myApp.hidePreloader(loading);
+                myApp.alert('Please check your internet connection and try again !', 'EOA');
+            }
+        });
+
+
+
+
+        //$$.post("" + url + "/QuotationValidation",
+        //    OrderJsonObject,
+        //    function (data, status) {
+
+        //        if (data == "null") {
+        //            myApp.hidePreloader(loading);
+        //            myApp.alert('Network error please try again');
+        //            mainView.router.loadPage({ url: 'Qutaion.html', force: true }); return;
+        //        }
+        //        ordertosvae = OrderJsonObject;
+
+
+        //        myApp.hidePreloader(loading);
+        //        var krons = JSON.parse(data);
+
+        //        proorder = krons;
+        //        promotionnettotal = krons.NetTotal;
+        //        promotiondescount = krons.Discount;
+        //        promotiontax = krons.Tax;
+        //        promotiongross = krons.GrossTotal;
+        //        localStorage.setItem('Qut', data);
+
+        //        mainView.router.loadPage({ url: 'promo.html', force: true });
+        //    });
 
 
 
@@ -1013,6 +1052,31 @@ myApp.onPageInit('Brand', function (page) {
 myApp.onPageInit('orderhistory', function (page) {
     getHist();
     getHistoryByQuery('oh.orderdate');
+    $$('#byStatus').on('click', function () {
+        $$('#byVendorComponent').html('');
+        $$('#byDateComponent').html('');
+        $$('#byStatusComponent').html('');
+        getHistoryByQuery('oh.Status');
+        return;
+        // $$('#byStatusComponent').append('hi st');
+    });
+    $$('#byVendor').on('click', function () {
+        $$('#byVendorComponent').html('');
+        $$('#byDateComponent').html('');
+        $$('#byStatusComponent').html('');
+        getHistoryByQuery('v.name');
+        return;
+        // $$('#byVendorComponent').append('hi vemdore');
+    });
+    $$('#byDate').on('click', function () {
+        $$('#byVendorComponent').html('');
+        $$('#byDateComponent').html('');
+        $$('#byStatusComponent').html('');
+
+        getHistoryByQuery('oh.orderdate');
+        return;
+        // $$('#byDateComponent').append('hi date');
+    });
     $$("#history").remove();
     $$("#history").hide();
     $$('#byDate').addClass('active');

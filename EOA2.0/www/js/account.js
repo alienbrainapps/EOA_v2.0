@@ -123,9 +123,24 @@ function Postlogin(postData) {
             error: function (data, textStatus, xhr){
                 console.log(textStatus);
                 myApp.hidePreloader("Loading");
+                
                 myApp.confirm('connect to internt to keep updated and requset order and more ...','offline Login', function () {
                     myApp.showPreloader("Loading");
                     var offlineUser = JSON.parse(localStorage.getItem('profile'));
+                    //@prog push custumer Ids array on offline
+                    console.log(offlineUser, 'its offline user');
+                    var array = offlineUser.regstrationcode;
+                    var userRegstrationCode = [];
+                    for (var d = 0; d < array.length; d++) {
+                        var vendorid = array[d][0][0];
+                        var customerid = array[d][0][1];
+                        var outletid = array[d][0][2];
+                        //@prog bas 3shan ma yfqa3
+                        customerids["A" + vendorid] = [];
+                        customerids["A" + vendorid].push(customerid);
+                        customerids["A" + vendorid].push(outletid);
+                    }
+
                     //var offlineUser = JSON.parse(postData);
                     if (offlineUser.email == JSON.parse(localStorage.getItem('username')) && offlineUser.password == JSON.parse(localStorage.getItem('pass'))) {
                         var lang = localStorage.getItem('lang');
