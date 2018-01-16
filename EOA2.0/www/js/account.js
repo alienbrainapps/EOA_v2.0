@@ -27,7 +27,7 @@ function Postlogin(postData) {
             contentType: 'application/json',
             data: postData,
             
-            timeout:60000,
+            timeout: 5000,
             success: function (data, status, xhr){
                 if (data == null) {
 

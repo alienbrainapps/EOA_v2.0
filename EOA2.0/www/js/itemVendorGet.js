@@ -19,7 +19,7 @@ function GetVendores() {
             method: "post",
             url: urlAjax,
             contentType: 'application/json',
-            timeout: 15000,
+            timeout: 5000,
             dataType: "json",
             success: function (data, status, xhr) {
                 vendoreinfo = data;
@@ -244,7 +244,7 @@ function GetItems(url, custumerID, outletID, lang, input) {
         {
             url: "" + url + "/Items?customerID=" + custumerID + "&outletID=" + outletID + "&languageID=" + lang + "",
             method: "Get",
-            timeout: 60000,
+            timeout: 5000,
             success: function (data, xhr) {
                 var itemsIs = JSON.parse(data);
                 if (itemsIs == undefined || itemsIs == null) {
@@ -347,7 +347,7 @@ function GetOffers(url, custumerID, outletID, lang, input) {
         {
             url: "" + url + "/offers?customerID=" + custumerID + "&outletID=" + outletID + "&languageID=" + lang + "",
             method: "Get",
-            timeout: 15000,
+            timeout: 5000,
             success: function (data, xhr) {
                 var theOfferIs = JSON.parse(data);
                 if (theOfferIs == null || theOfferIs == undefined) {
