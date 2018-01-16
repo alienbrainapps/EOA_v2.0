@@ -823,6 +823,7 @@ function getHist() {
 }
 
 function GetOrderHistory(stringop, counturl) {
+    
     //select vendor depends on vendorCustmor table
   
     if (typeof vendoreinfo == "undefined") {
@@ -836,7 +837,7 @@ function GetOrderHistory(stringop, counturl) {
         //for (var re = 0; re < jasond.length; re++) {
         //    reorderarray = itembyid(jasond[re].OrderItems, jasond[re].OrderID, jasond[re].VendorName);
         }
-        status1(jasond);
+        //status1(jasond);
 
 
         console.log(reorderarray);

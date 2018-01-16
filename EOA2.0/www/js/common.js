@@ -1050,6 +1050,9 @@ myApp.onPageInit('Brand', function (page) {
 
 //shit of history
 myApp.onPageInit('orderhistory', function (page) {
+    $$('#byVendorComponent').html('');
+    $$('#byDateComponent').html('');
+    $$('#byStatusComponent').html('');
     getHist();
     getHistoryByQuery('oh.orderdate');
     $$('#byStatus').on('click', function () {
