@@ -5,7 +5,38 @@
     }
 </style>
 {{#if @global.ios}}
+
 <div class="navbar">
+    <div class="navbar-inner">
+        <div class="left"><a href="#" class="link icon-only open-panel"><i class="myicon-eoa-menu"></i></a></div>
+        <div class="center sliding ">{{OrdersHistory}}</div>
+        <div class="right">
+        </div>
+        
+        <div class="subnavbar">
+            <div class="buttons-row">
+                <a id="byDate" href="#byDateComponent" class="tab-link button"><span>{{byDate}}</span></a>
+
+                <a id="byStatus" href="#byStatusComponent" class="tab-link  button"><span>{{byStatus}}</span></a>
+
+                <a id="byVendor" href="#byVendorComponent" class="tab-link  button"><span>{{byVendore}}</span></a>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--<div class="navbar">
     <div class="navbar-inner">
         <div id="backhistory" class="left"><a href="#" class="back link"><i class="icon myicon-eoa-back"></i><span style="color:#fff">{{Back}}</span></a></div>
         <div class="center sliding">{{OrdersHistory}}</div>
@@ -13,7 +44,7 @@
             <a href="#" class="link icon-only open-panel"> <i class="icon menu"></i></a>
         </div>
     </div>
-</div>
+</div>-->
 {{/if}}
 <div class="pages">
 

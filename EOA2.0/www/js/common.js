@@ -482,7 +482,7 @@ myApp.onPageInit('catg', function (page) {
             method: "post",
             url: "" + url + "/QuotationValidation",
             data: OrderJsonObject,
-            timeout: 5000,
+            
             success: function (data, status, xhr) {
                 if (data == "null") {
                     myApp.hidePreloader(loading);

@@ -26,8 +26,7 @@ function Postlogin(postData) {
             url: urlAjax,
             contentType: 'application/json',
             data: postData,
-            
-            timeout: 5000,
+            cache: false,
             success: function (data, status, xhr){
                 if (data == null) {
 
