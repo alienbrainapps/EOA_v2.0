@@ -6,7 +6,7 @@
                 throw new TypeError(this + " cannot be bound as it is not a function");
             }
 
-            // bind() also permits prepending arguments to the call
+            // bind() also permits appending arguments to the call
             var preArgs = Array.prototype.slice.call(arguments, 1);
 
             // The actual function to bind the "this" value and arguments to

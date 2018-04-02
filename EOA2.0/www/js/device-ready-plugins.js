@@ -1,5 +1,6 @@
 ﻿var locationTologin = true;
 var deviceId = "";
+var deviceIdX = "";
 var messageBody = "hello from FO";
 var image_div = '';
 var image_value_id = '';
@@ -37,22 +38,22 @@ var app = {
 
     onDeviceReady: function () {
         console.log('Device ready');
-        //db= window.openDatabase('my', "0.1", "My list", 200000);
-        //console.log('DB: WebSQL');
-        //createTabels() 
-        //if (runiOS) {
-        //    db = window.sqlitePlugin.openDatabase({ name: 'Data.db', location: 'default' }, function (db) {
-        //        createTabels()
-
-        //    }, function (error) {
-        //        console.log('Open database ERROR: ' + JSON.stringify(error));
-        //    });
-        //    CreateMediaFolder();
-        //}
-        //else {
-            //db = window.openDatabase('my', "0.1", "Data", 200000);
-            //console.log('DB: WebSQL');
-        //}
+        
+        window.FirebasePlugin.getToken(function (token) {
+            //debugger;
+            // save this server-side and use it to push notifications to this device
+             //myApp.alert(token);
+            console.log(token);
+        }, function (error) {
+            console.error(error);
+        });
+        window.FirebasePlugin.onTokenRefresh(function (token) {
+            //debugger;
+            // save this server-side and use it to push notifications to this device
+            // myApp.alert(token);
+        }, function (error) {
+            console.error(error);
+        });   
         db = window.sqlitePlugin.openDatabase({ name: 'Data.db', location: 'default' }, function (db) {
               createTabels()
 
@@ -74,7 +75,8 @@ function createTabels() {
         tx.executeSql('CREATE TABLE IF NOT EXISTS vendor (_id, name,Email,contact,input,IMG,URL,UniqeID)');
         tx.executeSql('CREATE TABLE IF NOT EXISTS items (ItemID, ItemDescription,ItemCode,ItemBarcode,PackID,UOM,Price,Tax,Discount,PiecesInPack,IsDefaultPack,DiscountTypeID,ItemCategoryID,DivisionID,BrandID,ItemCategory,Division,Brand,PackTypeID,PromotedDiscount,CalculatedDiscount,RequiredQuanity,ItemImageName,VendorName,CurrencyName,VendorID)');
         tx.executeSql('CREATE TABLE IF NOT EXISTS offers (PromotionID, Description,IsTaken,InputOptions,CalculatedOptions,VendorName,VendorID)');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS vendorCustumer (custumerID, outletID , vendorID)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS vendorCustumer (custumerID, outletID , vendorID ,orderhistoryID)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS orderHistory(OrderDate ,OrderID,OrderItems,itemId,ItemQun,Status,VendorID)');
         tx.executeSql('CREATE TABLE IF NOT EXISTS cart (VendorID, cartID , cartObject)');
     }, function (error) {
         console.log('transaction error: ' + error.message);

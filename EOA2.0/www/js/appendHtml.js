@@ -17,7 +17,8 @@ var clikedFrom = "";
 var thePakageIS = "";
 // Last loaded index
 var lastIndex = $$('#itemlist li').length;
-
+var HistoryOrdereData = [];
+var el_his = "";
 
 
 
@@ -50,9 +51,9 @@ function getItemByQuery() {
 								<img class="Strechimage" width="70" data-selector="ii`+ resultSet.rows.item(r).ItemID + `" id="ii` + resultSet.rows.item(r).ItemID + `"  src="` + (resultSet.rows.item(r).URL).replace(`/api`, ``) + `/itemsimages/` + resultSet.rows.item(r).ItemImageName + `" onerror="(this.src='images/no-image.svg')">
 							</div>
 							<div class="card_list_content">
-								<div class="item-title-row searh-name">`+ resultSet.rows.item(r).ItemDescription + `</div>
-								<div class="item-text searh-name">`+ resultSet.rows.item(r).UOM + `</div>
-								<div class="item-title-row searh-name">`+ resultSet.rows.item(r).name + `<span class="price_in_card">` + resultSet.rows.item(r).Price + `</span></div>
+								<div class="item-title-row searh-name bolder_text">`+ resultSet.rows.item(r).ItemDescription + `</div>
+								<div class="item-text searh-name" style="font-size:12px">`+ resultSet.rows.item(r).UOM + `</div>
+								<div class="item-title-row searh-name">`+ resultSet.rows.item(r).name + `<span class="price_in_card bolder_text">` + resultSet.rows.item(r).Price + `</span></div>
 							</div>
 						</div>
 				</div>
@@ -205,7 +206,7 @@ function getNextItemsSet() {
 function getVendorByQuery() {
     db.transaction(function (tx) {
 
-       // var query = "SELECT * FROM vendor LIMIT " + offsetVendor + ", 25";
+        // var query = "SELECT * FROM vendor LIMIT " + offsetVendor + ", 25";
         var query = "select * from vendor where trim(vendor.input)  in ( select trim(vendorid) from vendorCustumer)  LIMIT " + offsetVendor + ", 25 ";
         tx.executeSql(query, [], function (tx, resultSet) {
             vendor_EL = '';
@@ -453,7 +454,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
     console.log(itemId, venID);
 
     db.transaction(function (tx) {
-        var query = `select items.*,vendor.name from items inner join vendor on items.VendorID=vendor.input where  vendorid='` + venID + `' and itemid=` + itemId + ` order by IsDefaultPack,piecesinpack desc`;
+        var query = `select items.*,vendor.name, vendor.url from items inner join vendor on items.VendorID=vendor.input where  vendorid='` + venID + `' and itemid=` + itemId + ` order by IsDefaultPack,piecesinpack desc`;
         tx.executeSql(query, [], function (tx, resultSet) {
 
             var EL_UOM = "";
@@ -481,9 +482,22 @@ function getItemDetailsFromBrandList(venID, itemId) {
                       </label >
                     </li >`;
 
-
+                var imageItem = (resultSet.rows.item(r).URL).replace(`/api`, ``) + `/itemsimages/` + resultSet.rows.item(r).ItemImageName;
                 itemDetails_EL = `
-                        <li class="item-divider bolder_text"><i class="myicon-eoa-package"></i> &nbsp;`+ resultSet.rows.item(r).ItemDescription + `</li>
+
+
+<li>
+                                <div class="item-content">
+                                    <div class="item-media"> <img class="Strechimage" width="70" src="` + imageItem + `" onerror="(this.src='images/no-image.svg')" width="80" height="70"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title item-name ">`+ resultSet.rows.item(r).ItemDescription + `</div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+                        
                             <li>
                                 <div class="item-content">
                                     <div class="item-media"><i class="myicon-eoa-vendor"></i> </div>
@@ -497,6 +511,7 @@ function getItemDetailsFromBrandList(venID, itemId) {
                             </li>
                             <li>
                                 <div class="item-content">
+
                                     <div class="item-media"><i class="myicon-eoa-quantity"></i> </div>
                                     <div class="item-inner">
                                         <div class="item-title label">Quantity</div>
@@ -656,11 +671,10 @@ function popUpOfferDet(offerId) {
                                 <div class="card">
                                         <div style="text-align:center">
                                         <i class="icon myicon-eoa-coupon coupon-offers-card"></i>
-                                         <p style="white-space: nowrap;
-                                                    overflow: hidden;
+                                         <p style=" overflow: hidden;
                                                     text-overflow: ellipsis;
                                                     padding: 0 9px;">
-                                                   <span style="font-size: 20px;font-weight:400;">`+ promotionDetails.name + `</span>  ` + promotionDetails.Description + `</p>
+                                                   <span>`+ promotionDetails.name + `</span>  ` + promotionDetails.Description + `</p>
                                         </div>
                                         <div class="card-content"  id="card-`+ promotionDetails.PromotionID + `">
                                         </div>
@@ -777,4 +791,364 @@ function closeSearch() {
     $$('.toolbar-bottom').show();
     $$('.normalNav').show();
     $$('.searchNav').hide();
+}
+function getHistoryByQuery(orderByParam) {
+    HistoryOrdereData = [];
+    db.transaction(function (tx) {
+
+        var query = `select i.*,oh.OrderID,oh.OrderDate,oh.itemQun,oh.Status,v.name from items i inner join orderHistory oh on trim(i.packid)=trim(oh.itemid) and trim(i.vendorid)=trim(oh.vendorid)
+                                    inner join vendor v on trim(i.vendorid)=trim(v.input)
+                                    order by `+ orderByParam + ` desc , OrderID`;
+        console.log(query);
+        tx.executeSql(query, [], function (tx, resultSet) {
+            for (var r = 0; r < resultSet.rows.length; r++) {
+                HistoryOrdereData.push(resultSet.rows.item(r));
+                console.log(resultSet.rows.item(r));
+            }
+            console.log(JSON.stringify(HistoryOrdereData));
+        },
+            function (tx, error) {
+                console.log('SELECT error: ' + error.message);
+            });
+    }, function (error) {
+        console.log('transaction error: ' + error.message);
+    }, function () {
+        console.log('transaction ok');
+        DrowHistory(HistoryOrdereData, orderByParam);
+    });
+
+
+
+}
+
+function DrowHistory(data, orderby) {
+    $$('#byVendorComponent').html('');
+    $$('#byDateComponent').html('');
+    $$('#byStatusComponent').html('');
+    el_his = "";
+    var tempIdSelector= ""
+    if (orderby == 'oh.orderdate') {
+        $$('#byVendorComponent').html('');
+        $$('#byDateComponent').html('');
+        $$('#byStatusComponent').html('');
+        for (var b = 0; b < data.length; b++) {
+            if (data[b].Status == 1) {
+                var status_label = "recieved"
+            }
+            var OrderDateDe = new Date(data[b].OrderDate);
+            var order_date = OrderDateDe.getHours("HH") + " : " + OrderDateDe.getMinutes("MM");
+            var dateToday = OrderDateDe.getMonth() + "-" + OrderDateDe.getFullYear();
+            console.log('itemDate' + data[b].VendorID + data[b].OrderDate + data[b].ItemID.toString());
+            if (b > 0) {
+                var newB = b - 1; 
+                if (data[b].OrderID == data[newB].OrderID) {
+
+                } else {
+                    el_his = `
+                <div class="content-block-title groupByHeader"><span>`+ data[b].OrderDate.substring(0, 10) +`</span></div>
+                    <div>
+                <div class="card">
+                        <div class="card-header row status`+ data[b].Status + `">
+                            <div class="col-30 label-status status`+ data[b].Status + `">` + status_label + `</div>
+                            <div class="col-45 name-dev">`+ data[b].name + `</div>
+                            <div class="col-25 time-dev"><i class="myicon-eoa-time"></i> `+ order_date + ` </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <div class="list-block">
+                                    <ul id="itemDate`+ data[b].OrderID.replace(/ /g, '') + `">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="card-footer">
+                            
+                                        <a href="#" class="item-link list-button reorder-btn"  style="color:#1fb67b">REORDER</a>
+                                  
+                            </div>
+                        </div>
+                    </div>
+
+                `;
+                    $$('#byDateComponent').append(el_his);  
+
+                }
+
+            }
+            else if (b==0){
+                el_his= `
+                <div class="content-block-title groupByHeader"><span>`+data[b].OrderDate.substring(0,10)+`</span></div>
+                <div class="card">
+                        <div class="card-header row status`+ data[b].Status + `">
+                            <div class="col-30 label-status status`+ data[b].Status + `">` + status_label + `</div>
+                            <div class="col-45 name-dev">`+ data[b].name + `</div>
+                            <div class="col-25 time-dev"><i class="myicon-eoa-time"></i> `+ order_date + ` </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <div class="list-block">
+                                    <ul id="itemDate`+ data[b].OrderID.replace(/ /g, '') + `">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="card-footer">
+                            
+                                        <a href="#" class="item-link list-button reorder-btn"  style="color:#1fb67b">REORDER</a>
+                                  
+                            </div>
+                        </div>
+                    </div>
+
+                `;
+                $$('#byDateComponent').append(el_his);
+                //$$('#byDateComponent').append(el_his);
+                // tempIdSelector = $$(`#itemDate` + data[b].OrderID.replace(/ /g, ''));
+            }
+            
+            tempIdSelector = $$(`#itemDate` + data[b].OrderID.replace(/ /g, ''));
+            tempIdSelector.append(`
+                                        <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">`+ data[b].ItemDescription + `</div>
+                                                <div class="item-after"><span class="badge badge-orange">`+ data[b].ItemQun + `</span></div>
+                                            </div>
+                                        </li>
+                                    `);     
+            
+        }
+
+        //$$('#byDateComponent').html(el_his);
+        //appendLiItemsForOrder(data)
+        $$('#byDateComponent').addClass('active');
+        $$('#byDate').addClass('active');
+        $$('#byStatus').removeClass('active');
+        $$('#byVendor').removeClass('active');
+    }
+    else if (orderby == 'oh.Status') {
+        $$('#byVendorComponent').html('');
+        $$('#byDateComponent').html('');
+        $$('#byStatusComponent').html('');
+        for (var b = 0; b < data.length; b++) {
+            if (data[b].Status == 1) {
+                var status_label = "recieved"
+            }
+            var OrderDateDe = new Date(data[b].OrderDate);
+            var order_date = OrderDateDe.getHours("HH") + " : " + OrderDateDe.getMinutes("MM");
+            var dateToday = OrderDateDe.getMonth() + "-" + OrderDateDe.getFullYear();
+            console.log('itemDate' + data[b].VendorID + data[b].OrderDate + data[b].ItemID.toString());
+            if (b > 0) {
+                var newB = b - 1;
+                if (data[b].OrderID == data[newB].OrderID) {
+
+                }
+                else {
+                    el_his = `
+                <div class="content-block-title groupByHeader"><span>`+ data[b].OrderDate.substring(0, 10) + `</span></div>
+                    <div>
+                <div class="card">
+                        <div class="card-header row status`+ data[b].Status + `">
+                            <div class="col-30 label-status status`+ data[b].Status + `">` + status_label + `</div>
+                            <div class="col-45 name-dev">`+ data[b].name + `</div>
+                            <div class="col-25 time-dev"><i class="myicon-eoa-time"></i> `+ order_date + ` </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <div class="list-block">
+                                    <ul id="itemStat`+ data[b].OrderID.replace(/ /g, '') + `">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="card-footer">
+                            
+                                        <a href="#" class="item-link list-button reorder-btn"  style="color:#1fb67b">REORDER</a>
+                                  
+                            </div>
+                        </div>
+                    </div>
+
+                `;
+                    $$('#byStatusComponent').append(el_his);
+
+                }
+
+            }
+            else if (b == 0) {
+                el_his = `
+                <div class="content-block-title groupByHeader"><span>`+ data[b].OrderDate.substring(0, 10) + `</span></div>
+                <div class="card">
+                        <div class="card-header row status`+ data[b].Status + `">
+                            <div class="col-30 label-status status`+ data[b].Status + `">` + status_label + `</div>
+                            <div class="col-45 name-dev">`+ data[b].name + `</div>
+                            <div class="col-25 time-dev"><i class="myicon-eoa-time"></i> `+ order_date + ` </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <div class="list-block">
+                                    <ul id="itemStat`+ data[b].OrderID.replace(/ /g, '') + `">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="card-footer">
+                            
+                                        <a href="#" class="item-link list-button reorder-btn"  style="color:#1fb67b">REORDER</a>
+                                  
+                            </div>
+                        </div>
+                    </div>
+
+                `;
+                $$('#byStatusComponent').append(el_his);
+                //$$('#byDateComponent').append(el_his);
+                // tempIdSelector = $$(`#itemDate` + data[b].OrderID.replace(/ /g, ''));
+            }
+
+            tempIdSelector = $$(`#itemStat` + data[b].OrderID.replace(/ /g, ''));
+            tempIdSelector.append(`
+                                        <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">`+ data[b].ItemDescription + `</div>
+                                                <div class="item-after"><span class="badge badge-orange">`+ data[b].ItemQun + `</span></div>
+                                            </div>
+                                        </li>
+                                    `);
+
+        }
+
+        
+        //$$('#byStatusComponent').html(el_his);
+        //$$('#byStatusComponent').append(el_his);
+        $$('#byDate').removeClass('active');
+        $$('#byStatus').addClass('active');
+        $$('#byVendor').removeClass('active');
+    }
+    else if (orderby == 'v.name') {
+        $$('#byVendorComponent').html('');
+        $$('#byDateComponent').html('');
+        $$('#byStatusComponent').html('');
+        for (var b = 0; b < data.length; b++) {
+            if (data[b].Status == 1) {
+                var status_label = "recieved"
+            }
+            var OrderDateDe = new Date(data[b].OrderDate);
+            var order_date = OrderDateDe.getHours("HH") + " : " + OrderDateDe.getMinutes("MM");
+            var dateToday = OrderDateDe.getMonth() + "-" + OrderDateDe.getFullYear();
+            console.log('itemDate' + data[b].VendorID + data[b].OrderDate + data[b].ItemID.toString());
+            if (b > 0) {
+                var newB = b - 1;
+                if (data[b].OrderID == data[newB].OrderID) {
+
+                } else {
+                    el_his = `
+                <div class="content-block-title groupByHeader"><span>`+ data[b].OrderDate.substring(0, 10) + `</span></div>
+                    <div>
+                <div class="card">
+                        <div class="card-header row status`+ data[b].Status + `">
+                            <div class="col-30 label-status status`+ data[b].Status + `">` + status_label + `</div>
+                            <div class="col-45 name-dev">`+ data[b].name + `</div>
+                            <div class="col-25 time-dev"><i class="myicon-eoa-time"></i> `+ order_date + ` </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <div class="list-block">
+                                    <ul id="itemVen`+ data[b].OrderID.replace(/ /g, '') + `">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="card-footer">
+                            
+                                        <a href="#" class="item-link list-button reorder-btn"  style="color:#1fb67b">REORDER</a>
+                                  
+                            </div>
+                        </div>
+                    </div>
+
+                `;
+                    $$('#byVendorComponent').append(el_his);
+
+                }
+
+            }
+            else if (b == 0) {
+                el_his = `
+                <div class="content-block-title groupByHeader"><span>`+ data[b].OrderDate.substring(0, 10) + `</span></div>
+                <div class="card">
+                        <div class="card-header row status`+ data[b].Status + `">
+                            <div class="col-30 label-status status`+ data[b].Status + `">` + status_label + `</div>
+                            <div class="col-45 name-dev">`+ data[b].name + `</div>
+                            <div class="col-25 time-dev"><i class="myicon-eoa-time"></i> `+ order_date + ` </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <div class="list-block">
+                                    <ul id="itemVen`+ data[b].OrderID.replace(/ /g, '') + `">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="card-footer">
+                            
+                                        <a href="#" class="item-link list-button reorder-btn"  style="color:#1fb67b">REORDER</a>
+                                  
+                            </div>
+                        </div>
+                    </div>
+
+                `;
+                $$('#byVendorComponent').append(el_his);
+                //$$('#byDateComponent').append(el_his);
+                // tempIdSelector = $$(`#itemDate` + data[b].OrderID.replace(/ /g, ''));
+            }
+
+            tempIdSelector = $$(`#itemVen` + data[b].OrderID.replace(/ /g, ''));
+            tempIdSelector.append(`
+                                        <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">`+ data[b].ItemDescription + `</div>
+                                                <div class="item-after"><span class="badge badge-orange">`+ data[b].ItemQun + `</span></div>
+                                            </div>
+                                        </li>
+                                    `);
+
+        }
+        
+        $$('#byDate').removeClass('active');
+        $$('#byStatus').removeClass('active');
+        $$('#byVendor').addClass('active');
+    }
+
+
+
+
+   
+
+
+
+
+
+}
+
+function appendLiItemsForOrder(data) {
+
+    for (var it = 0; it < data.length; it++) {
+        $$('#itemDate' + data[it].OrderID.replace(/ /g, ''));
+        //if (data[it].OrderID.replace(/ /g, '') == ){ }
+        $$(`#itemDate` + data[it].VendorID + data[it].OrderDate + data[it].ItemID.toString()).append(`
+                                            <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">`+ data[it].ItemDescription + `</div>
+                                                <div class="item-after"><span class="badge badge-orange">`+ data[it].ItemQun + `</span></div>
+                                            </div>
+                                        </li>
+                                        `);
+    }
 }

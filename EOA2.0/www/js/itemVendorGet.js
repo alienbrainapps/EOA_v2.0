@@ -19,7 +19,7 @@ function GetVendores() {
             method: "post",
             url: urlAjax,
             contentType: 'application/json',
-            timeout: 15000,
+            
             dataType: "json",
             success: function (data, status, xhr) {
                 vendoreinfo = data;
@@ -165,39 +165,6 @@ function GetVendorItems() {
                     $$("#t1").removeClass('active');
                 });
 
-
-                //$$("#tab1").on('click', function () {
-
-                //    AppendOffers();
-                //    $$(".bundle").show();
-                //    $$(".item").hide();
-                //    $$(".vendore").hide();
-
-                //    $$("#tab1").addClass('active');
-                //    $$("#tab2").removeClass('active');
-                //    $$("#tab3").removeClass('active');
-                //});
-                //$$("#tab3").on('click', function () {
-
-                //    $$(".item").show();
-                //    $$(".bundle").hide();
-                //    $$(".vendore").hide();
-                //    $$("#tab3").addClass('active');
-                //    $$("#tab2").removeClass('active');
-                //    $$("#tab1").removeClass('active');
-
-                //});
-                //$$("#tab2").on('click', function () {
-
-
-                //    $$(".vendore").show();
-                //    $$(".bundle").hide();
-                //    $$(".item").hide();
-                //    $$("#tab2").addClass('active');
-                //    $$("#tab3").removeClass('active');
-                //    $$("#tab1").removeClass('active');
-                //});
-
             }
 
             if (isAndroid) {
@@ -208,12 +175,7 @@ function GetVendorItems() {
                     $$('#itemlist li:nth-child(n + 25)').remove();
                     lastIndex = $$('#itemlist li').length;
                     offset = $$('#itemlist li').length;
-                    //AppendOffers();
-                    //$$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
-                    //if (localStorage.getItem('lang') != 1) {
-                    //    $$(".tablinkhighlight").css('transform', 'translate3d(0%, 0px, 0px)');
-                    //}
-
+                    
                     $$(".bundle").show();
                     $$(".item").hide();
                     $$(".vendore").hide();
@@ -247,11 +209,7 @@ function GetVendorItems() {
                     $$('#itemlist li:nth-child(n + 25)').remove();
                     lastIndex = $$('#itemlist li').length;
                     offset = $$('#itemlist li').length;
-                    //$$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
-                    //if (localStorage.getItem('lang') != 1) {
-                    //    $$(".tablinkhighlight").css('transform', 'translate3d(100%, 0px, 0px)');
-                    //}
-
+                    
                     $$(".vendore").show();
                     $$(".bundle").hide();
                     $$(".item").hide();
@@ -286,7 +244,7 @@ function GetItems(url, custumerID, outletID, lang, input) {
         {
             url: "" + url + "/Items?customerID=" + custumerID + "&outletID=" + outletID + "&languageID=" + lang + "",
             method: "Get",
-            timeout: 60000,
+            
             success: function (data, xhr) {
                 var itemsIs = JSON.parse(data);
                 if (itemsIs == undefined || itemsIs == null) {
@@ -389,7 +347,7 @@ function GetOffers(url, custumerID, outletID, lang, input) {
         {
             url: "" + url + "/offers?customerID=" + custumerID + "&outletID=" + outletID + "&languageID=" + lang + "",
             method: "Get",
-            timeout: 15000,
+            
             success: function (data, xhr) {
                 var theOfferIs = JSON.parse(data);
                 if (theOfferIs == null || theOfferIs == undefined) {

@@ -107,42 +107,56 @@ myApp.onPageInit('catg', function (page) {
                                 <div class="card-header custom-header-style"><span>`+ vendoreinfo[i].name + `</span> <span class="button edit-btn"><i class="myicon-eoa-edit"></i></span></div>
                                 <div class="card-content">
                                     <div class="card-content-inner">
+                                        <div class="list-block accordion-list">
+                                          <ul>
+                                            <li class="accordion-item">   
+                                                <a href="#" class="item-link item-content net_total_li">
+                                                   <div class="item-media">` + lag.NetTotal + ` : </div>
+                                                   <div class="item-inner">
+                                                  <div class="item-title" id="Net` + str + `">127,6</div>
+                                                 </div>
+                                                                                            
+                                                </a>
+                                              <div class="accordion-item-content">
+                                                <div class="content-block">
+                                                 <div class="list-block media-list">
+                                                             <ul class="prices">
+                                                                                        <li>
+                                                                                            <a href="#" class="item-link item-content">
+                                                                                                <div class="item-media">` + lag.Gross + `  : </div>
+                                                                                                <div class="item-inner">
+                                                                                                    <div class="item-title bolder_text_xs" id="gro` + str + `">106.63</div>
+                                                                                                </div>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="#" class="item-link item-content">
+                                                                                                <div class="item-media">` + lag.Discount + ` : </div>
+                                                                                                <div class="item-inner">
+                                                                                                    <div class="item-title bolder_text_xs" id="des` + str + `" >0.00</div>
+                                                                                                </div>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="#" class="item-link item-content">
+                                                                                                <div class="item-media">` + lag.Tax + ` : </div>
+                                                                                                <div class="item-inner">
+                                                                                                    <div class="item-title bolder_text_xs" id="tax` + str + `">0.16</div>
+                                                                                                </div>
+                                                                                            </a>
+                                                                                        </li>
+                                                               </ul>
+                                                 </div>
+                                                </div>
+                                              </div>
+                                            </li>
+                                        <div>
+
+
+
+
                                         <div class="list-block media-list">
-                                            <ul class="prices">
-                                                <li>
-                                                    <a href="#" class="item-link item-content">
-                                                        <div class="item-media">` + lag.Gross + `  : </div>
-                                                        <div class="item-inner">
-                                                            <div class="item-title bolder_text_xs" id="gro` + str + `">106.63</div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="item-link item-content">
-                                                        <div class="item-media">` + lag.Discount + ` : </div>
-                                                        <div class="item-inner">
-                                                            <div class="item-title bolder_text_xs" id="des` + str + `" >0.00</div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="item-link item-content">
-                                                        <div class="item-media">` + lag.Tax + ` : </div>
-                                                        <div class="item-inner">
-                                                            <div class="item-title bolder_text_xs" id="tax` + str + `">0.16</div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <!-- <span class="arrow-btn"> <i class="fa fa-angle-up" aria-hidden="true"></i> </span> -->
-                                                    <a href="#" class="item-link item-content net_total_li">
-                                                        <div class="item-media">` + lag.NetTotal + ` : </div>
-                                                        <div class="item-inner">
-                                                            <div class="item-title" id="Net` + str + `">127,6</div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                         
                                             <ul class="itemsOrderList" id="itemsOrderList`+ vendoreinfo[i].input + `">
                                                 
                                                 
@@ -329,9 +343,8 @@ myApp.onPageInit('catg', function (page) {
                                                         <div class="item-inner">
                                                            
                                                                 <div class="item-title">` + IOAlist[i].ItemDescription + `</div>
-                                                                 <div class="item-after">`+ IOAlist[i].Price + ` </div>
-                                                                
-                                                                 <div class="item-subtitle"> quantity : `+ IOAlist[i].RequiredQuanity + ` </div>
+                                                                    <span class="price_on_catg_list">`+ IOAlist[i].Price +`</span>
+                                                                 <div class="item-subtitle"> `+ string+` : `+ IOAlist[i].RequiredQuanity + ` </div>
                                                            
                                                         </div>
                                                     </a>
@@ -419,6 +432,9 @@ myApp.onPageInit('catg', function (page) {
                 count = vendoreinfo[i].input;
             }
         }
+        ///testo faqa3 hoon
+        console.log(customerids);
+        
         var CU_id = customerids["A" + count][0];
         var OUT_id = customerids["A" + count][1];
 
@@ -461,10 +477,13 @@ myApp.onPageInit('catg', function (page) {
             }
         }
         console.log(JSON.stringify(OrderJsonObject));
-        $$.post("" + url + "/QuotationValidation",
-            OrderJsonObject,
-            function (data, status) {
-
+        //replace post with ajax call 
+        $$.ajax({
+            method: "post",
+            url: "" + url + "/QuotationValidation",
+            data: OrderJsonObject,
+            
+            success: function (data, status, xhr) {
                 if (data == "null") {
                     myApp.hidePreloader(loading);
                     myApp.alert('Network error please try again');
@@ -484,7 +503,40 @@ myApp.onPageInit('catg', function (page) {
                 localStorage.setItem('Qut', data);
 
                 mainView.router.loadPage({ url: 'promo.html', force: true });
-            });
+            },
+            error: function (data, textStatus, xhr) {
+                myApp.hidePreloader(loading);
+                myApp.alert('Please check your internet connection and try again !', 'EOA');
+            }
+        });
+
+
+
+
+        //$$.post("" + url + "/QuotationValidation",
+        //    OrderJsonObject,
+        //    function (data, status) {
+
+        //        if (data == "null") {
+        //            myApp.hidePreloader(loading);
+        //            myApp.alert('Network error please try again');
+        //            mainView.router.loadPage({ url: 'Qutaion.html', force: true }); return;
+        //        }
+        //        ordertosvae = OrderJsonObject;
+
+
+        //        myApp.hidePreloader(loading);
+        //        var krons = JSON.parse(data);
+
+        //        proorder = krons;
+        //        promotionnettotal = krons.NetTotal;
+        //        promotiondescount = krons.Discount;
+        //        promotiontax = krons.Tax;
+        //        promotiongross = krons.GrossTotal;
+        //        localStorage.setItem('Qut', data);
+
+        //        mainView.router.loadPage({ url: 'promo.html', force: true });
+        //    });
 
 
 
@@ -996,29 +1048,44 @@ myApp.onPageInit('Brand', function (page) {
 
 });
 
+//shit of history
 myApp.onPageInit('orderhistory', function (page) {
+    $$('#byVendorComponent').html('');
+    $$('#byDateComponent').html('');
+    $$('#byStatusComponent').html('');
     getHist();
+    getHistoryByQuery('oh.orderdate');
+    $$('#byStatus').on('click', function () {
+        $$('#byVendorComponent').html('');
+        $$('#byDateComponent').html('');
+        $$('#byStatusComponent').html('');
+        getHistoryByQuery('oh.Status');
+        return;
+        // $$('#byStatusComponent').append('hi st');
+    });
+    $$('#byVendor').on('click', function () {
+        $$('#byVendorComponent').html('');
+        $$('#byDateComponent').html('');
+        $$('#byStatusComponent').html('');
+        getHistoryByQuery('v.name');
+        return;
+        // $$('#byVendorComponent').append('hi vemdore');
+    });
+    $$('#byDate').on('click', function () {
+        $$('#byVendorComponent').html('');
+        $$('#byDateComponent').html('');
+        $$('#byStatusComponent').html('');
 
+        getHistoryByQuery('oh.orderdate');
+        return;
+        // $$('#byDateComponent').append('hi date');
+    });
     $$("#history").remove();
     $$("#history").hide();
-
-    //var data;
-    //    data=localStorage.getItem("History");
-    //    data=JSON.parse(data);
-
-
-
-
+    $$('#byDate').addClass('active');
+    $$('#byStatus').removeClass('active');
+    $$('#byVendor').removeClass('active');
     $$("#homeicon").removeClass('myicon-eoa-home-active');
-    //        $$("#homeicon").addClass('myicon-eoa-home-not-active');
-    //        $$("#searchicon").addClass('searchinactive');
-    //        $$("#searchicon").removeClass('searchactive');
-    //        $$("#reordericon").removeClass('reorderinactive');
-    //        $$("#reordericon").addClass('Mmyorders');
-    //        $$("#ordericon").removeClass('myicon-eoa-my-order-active');
-    //        $$("#ordericon").addClass('myicon-eoa-my-order');
-
-
     $$("#backhistory").on('click', function () {
 
         mainView.router.loadPage({
@@ -1026,45 +1093,6 @@ myApp.onPageInit('orderhistory', function (page) {
             force: true
         });
     });
-
-    //    $$(document).on('click','.cfd',function(e){
-    //        ;
-    //    $$(this).removeClass("accordion-item-expanded");
-    //     //   $$(".accordion-item-content").css("display","none");
-    //   //å $$(this).removeClass("accordion-item");
-    //        $$(".accordion-item-content").toggleClass("heightauto");
-    //        
-    //       if(!$(".accordion-item-content").hasClass('heightauto')){
-    //           $(".accordion-item-content").css("height",'0 !important');
-    //       }
-    //    });
-
-    //    $$(document).on('click','.cfd',function(e){
-    //        
-    //        e.preventDefault();
-    ////        var id2=this.id;
-    //       if($(this).find('div.accordion-item-content').css('height')=="auto"){
-    //               $(this).find('div.accordion-item-content').removeAttr("style");  
-    //       }else {
-    //           $(this).find('div.accordion-item-content').css('height','auto'); 
-    //       }        
-    //    });
-
-    //GetOrderHistory();
-
-    //    $$("#OrderDate").on('click',function(){
-    //        $$("#OrderDate").addClass('active');
-    //        $$("#Status").removeClass('active');
-    //    });
-    //    $$("#Status").on('click',function(){
-    //        $$("#OrderDate").addClass('active');
-    //        $$("#Status").removeClass('active');
-    //    });
-
-    //
-
-
-
 
 });
 

@@ -46,6 +46,9 @@
         "phonegap-plugin-barcodescanner": {
             "CAMERA_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
+        },
+        "cordova-plugin-fcm": {
+            "PACKAGE_NAME": "com.alienbrainapps.eoabeta"
         }
     },
     "dependent_plugins": {

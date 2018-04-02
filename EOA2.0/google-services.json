@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "441465261473",
+    "firebase_url": "https://eoa-development.firebaseio.com",
+    "project_id": "eoa-development",
+    "storage_bucket": "eoa-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441465261473:android:1b92730b476702bb",
+        "android_client_info": {
+          "package_name": "com.alienbrainapps.eoabeta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441465261473-vn1qrt6imbllsorg59vmvihaup4vb20e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAX9LCVf05Wo2rNRBhSwLgQFxUZblK0vQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
